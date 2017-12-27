@@ -1,0 +1,71 @@
+﻿@* For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860 *@
+@using Newtonsoft.Json;
+@using System;
+@using System.Collections;
+@using System.IO;
+@using AutoMapper
+
+@section scripts {
+    <script src="~/js/Memoriam.js"></script>
+}
+<div class="well-lg">
+    <div class="">
+        <p>George David “Mac” McDonald, 81, of Poland, Maine (formerly of Portsmouth, NH), died Friday, September 12th, 2014 quickly and peacefully at the Hospice House in Auburn with his wife and children at his bedside.</p>
+
+        <p>
+            He was born November 16th, 1932 at the Old Farm House in Wales, Maine; the son of the late George and Beatrice (Polly) McDonald. In 1950, Mac went into the US Air Force, where he met his first wife, Doreen, in England. They were married for 40
+            years until her death in 1992. Mac resided in Portsmouth, NH with Doreen and their children. He worked as a cook at Pease Air force Base Dining Hall and Hospital; he was also employed at J.M. Fields supermarket and he retired at the age of
+            55. Mac and Doreen became “snowbirds,” traveling from Maine to Florida most winters, returning to Maine for Christmas to spend time with his family and snowmobile in the woods of Maine. They spent many years traveling in their motor home,
+            mostly to Florida, Missouri and Tennessee, staying at KOAs and Yogi Bear’s Jellystone Campground.
+        </p>
+
+        <p>
+            In 1970, Mac purchased land in Poland, ME on Tripp Lake. After many years of hard work, he established Mac’s Camping Area, a family-centered campground which became a source of many friends, and a place where family came to gather every weekend.
+            Here, he could be seen zipping around in his golf cart, making sure everyone was working hard, and also enjoyed his Sunday morning rituals with his brother Lawrence for a ride around the lake. He loved country music, and weekend camping/canoe
+            trips on the Saco River. He looked forward to spending time with his camp family, participating in the crazy activities, and seeing the multiple generations of campers returning year after year.
+        </p>
+
+        <p>
+            Mac married Faye in 1995 and they have been married for almost 20 years. They traveled for six years in their motor home together, still snowbirds, spending their summers at camp and winters in Florida at Hillcrest RV Resort in Zephyrhills. Here,
+            they participated in many activities at the resort’s rec hall, especially the country music dances, social hour with friends at 3pm, playing hand and foot, and his favorite: ice cream socials on Sundays. They attended the annual Strawberry
+            Festival in Plant City, enjoyed the flea markets, and the Parkesdale Market for their famous strawberries and cream; they loved going to dinner, especially the Golden Corral, China Buffet, and Applebee’s.
+        </p>
+
+        <p>
+            He is survived by his wife, Faye (Bumpus) McDonald; his son, Blaine R. McDonald and his wife, Joan (Tucci) McDonald and their children, Shaine and Wade; his daughter, Linda Harnden and her husband, Douglas Harnden and their children Nicholas and
+            Nathan; his daughter, Janice Guilmette, her boyfriend, Kevin McIntire; his granddaughter, Carrie Cornett and her husband, Ian; his step daughter, Wanda James and her husband, Bobby; his step daughter, Kim Ayotte and her husband, Dean; his
+            step daughter, Candy Mezziani and her husband Kader; his step son Gary Bumpus, and his wife Beth; his step son Randy Bumpus and his wife Kendra; fifteen step grandchildren and three step great grandchildren; his sisters, Pearl Moody, Joan
+            Huff and Pauline Morris and Madeline (McDonald) Polley and her husband Roger Polley; his brother, Lawrence McDonald and his wife, Louella; his brother, Winfield McDonald, and his wife Pauline; his brother, Kenneth; his sister-in-law, Sheila
+            (Chick) McDonald; and many nieces and nephews.
+        </p>
+
+        <p>He is predeceased by his wife, Doreen; his son, Steve; his brother, John; his brother Blaine; brother-in-laws, Howard Moody, Leland Huff and Cleba Spofford; and son-in-law, Marty Guilmette;.</p>
+
+        <p>
+            Per Mac’s wishes, no funeral services were held, and instead there was a celebration of life at Mac’s Camping Area on Saturday, May 30th, 2015. Donations for a memorial plaque, which will be placed at the campground, may be given to Janice.
+
+        </p>
+    </div>
+</div>
+@section BottomPane {
+
+    <div class="row">
+        <div class="jumbotron">
+            <div class="row">
+                <div id="macsContent" class="" style="width: 100%;">
+                    <div class="row vertical-align">
+                        <div class="slider single-item lazy" id="macCarousel">
+            @foreach (var item in ViewBag.ImageList)
+            {
+                <div>
+                    <img data-lazy="@Url.Content("~/images/grandpa/" + item)" alt="Photo of our late founder" class="img-responsive"/>
+                </div>
+            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="carousel-dots" class="row">
+            </div>
+        </div>
+}

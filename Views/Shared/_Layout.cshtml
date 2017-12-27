@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html ng-app="@ViewBag.ngApp">
+
+<head>
+    <meta charset="utf-8" http-equiv="Content-Type" content="text/html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Mac's Camping Area, LLC</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.css" />
+        <link rel="stylesheet" href="~/css/theme.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+        <link rel="stylesheet" href="~/css/theme.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+    @RenderSection("header", required: false)
+</head>
+<!-- Create ViewData.onLoad to for calling out body script loading on page for Contact View -->
+
+<body onload="@ViewBag.onLoad" ng-controller="@ViewBag.ngController">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">Mac's Camping Area</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Memoriam">In Memoriam</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Contact">Contact</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Activities">Activities</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Amenities">Amenities</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Rates">Rates</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="RV">RV Rentals</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="(function() {var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus();})()">Flickr Library</a>
+                    </li>
+                </ul>
+                @*  Authentication Not yet implemented
+                    @await Html.PartialAsync("_LoginPartial")
+                *@
+            </div>
+        </div>
+    </div>
+    <div class="body-content container">
+        <div class="row"><br /></div>
+        <div class="row"><br /></div>
+        <div class="row" id="title">
+            <h1 style="text-align: center;">@ViewData["Title"]</h1>
+        </div>
+        @RenderBody()
+        <div class="row">
+            @RenderSection("TopPane", false)
+        </div>
+        <div>
+            <div class="row">
+                <div id="contentPane1">
+                    <div id="topLeft" class="col-md-4 col-lg-4">@RenderSection("TopLeft", false)</div>
+                    <div id="topCenter" class="col-md-4 col-lg-4">@RenderSection("TopCenter", false)</div>
+                    <div id="altUi" class="hidden">@RenderSection("AltUi", false)</div>
+                    <div id="topRight" class="col-md-4 col-lg-4">@RenderSection("TopRight", false)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="contentPane2" class="">
+                    <div id="midLeft" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("MidLeft", false)</div>
+                    <div id="midCenter" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("MidCenter", false)</div>
+                    <div id="midRight" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("MidRight", false)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="contentPane3" class="panel panel-group">
+                    <div id="bottomLeft" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("BottomLeft", false)</div>
+                    <div id="bottomCenter" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("BottomCenter", false)</div>
+                    <div id="bottomRight" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("BottomRight", false)</div>
+                </div>
+                <div id="bottomPane" class="row">@RenderSection("BottomPane", false)</div>
+        </div>
+        <footer>
+            <p>&copy; 2017 - Mac's Camping Area, LLC</p>
+        </footer>
+    </div>
+</div>
+    <environment names="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" asp-fallback-src="~/lib/jquery/dist/jquery.min.js" asp-fallback-test="window.jQuery"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

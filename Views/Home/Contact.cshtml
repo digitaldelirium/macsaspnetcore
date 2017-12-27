@@ -1,0 +1,257 @@
+@model MacsASPNETCore.ViewModels.ContactViewModel
+@section TopPane{
+    <div>
+        <h3 style="text-align: center;">@ViewData["Message"]</h3>
+    </div>
+    <div id="mapDiv">
+        <div id="address" itemtype="http://schema.org/LocalBusiness" itemscope>
+            <address itemprop="address">
+                <span itemprop="streetAddress">
+                    73 Larch Drive
+                </span><br/>
+                <span itemprop="addressLocality">
+                    Poland
+                </span>, <span itemprop="addressRegion">ME</span> <span itemprop="postalCode">04274</span><br/>
+                <abbr title="Phone">P:</abbr>
+                <a href="tel:2079984238" itemprop="telephone">207.998.4238</a> or <a href="tel:6033121769" itemprop="telephone">603.312.1769</a><br/>
+                <strong>Email:</strong> <a href="mailto:info@macscampingarea.com" itemprop="email">info@macscampingarea.com</a><br/>
+                <meta itemprop="latitude" content="44.052341" />
+                <meta itemprop="longitude" content="-70.440102"/>
+                <meta itemprop="openingHours" datetime="Mo-Su 09:00-20:00" />
+                <meta itemprop="employee" content="Janice Guilmette" />
+            </address>
+        </div>
+        <div id="campMap" style="height: 400px; position: relative;" itemtype="http://schema.org/LocalBusiness" itemscope itemprop="geo">
+        </div>
+    </div>
+    <div class="row container hide">
+        <div class="form-group">
+            <div class="checkbox">
+                <input type="checkbox" id="showMyDirections">Get Personalized Directions
+            </div>
+        </div>
+    </div>
+}
+@section AltUi{
+
+    <div class="row" id="getDirections">
+        <div class="panel">
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="streetAddress">Street Address: </label>
+                    <input type="text" id="streetAddress" size="80">
+                </div>
+                <div class="form-group">
+                    <label for="cityName">City:</label><input type="text" id="cityName">
+                </div>
+                <div class="form-group">
+                    <label for="stateCode">State:</label><input type="text" id="stateCode">
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Zip Code:</label><input type="text" id="zipCode">
+                </div>
+                <input type="submit" value="Get Directions">
+            </form>
+        </div>
+    </div>
+}
+@section TopLeft{
+    <div id="standardNorthbound">
+        <h4>Via I-95 N</h4>
+        <ul class="list-group">
+            <li class="list-group-item">Take exit 63 - Grey/New Gloucester<br/>(formerly exit 11)</li>
+            <li class="list-group-item">Go through the toll booth and take a left and take the first right</li>
+            <li class="list-group-item">Turn left between Exxon Gas and Dry Mills Store <br/> (N Raymond Rd)</li>
+            <li class="list-group-item">Continue for 9 mi</li>
+            <li class="list-group-item">Go straight through the first stop sign <br/>(crossing Rt 11)</li>
+            <li class="list-group-item">At the stop sign bare slight left up the hill onto Megquire Hill Rd</li>
+            <li class="list-group-item">Take a right onto Fernald Rd <br/>(dirt road)</li>
+            <li class="list-group-item">When you come to a "Y" in the road, bear left onto Larch Rd</li>
+            <li class="list-group-item">There will be a general store on your left, bare right down the hill</li>
+            <li class="list-group-item">Follow signs to Mac's Camping Area</li>
+        </ul>
+    </div>
+
+}
+@section TopCenter{
+    <div id="standardSouthbound">
+        <h4> Via I-95 S</h4>
+        <ul class="list-group">
+            <li class="list-group-item">Take exit 75 - Auburn</li>
+            <li class="list-group-item">Turn slight right to Washington Rd</li>
+            <li class="list-group-item">Turn right at Poland Spring Rd</li>
+            <li class="list-group-item">Turn left at ME-122 W/Poland Spring Rd</li>
+            <li class="list-group-item">Continue onto Carpenter Rd</li>
+            <li class="list-group-item">Turn right at Range Hill Rd</li>
+            <li class="list-group-item">Turn left at Cleve Tripp Rd</li>
+            <li class="list-group-item">Turn right between Exxon Gas and Dry Mills Store (N Raymond Rd)</li>
+            <li class="list-group-item">Continue for about 9 mi</li>
+            <li class="list-group-item">Go straight through the first stop sign <br/> (crossing Rt 11)</li>
+            <li class="list-group-item">At the stop sign bear slight left up the hill onto Megquire Hill Rd</li>
+            <li class="list-group-item">Take a right onto Fernald Rd <br/> (dirt road)</li>
+            <li class="list-group-item">When you come to a "Y" in the road, bear left onto Larch Dr</li>
+            <li class="list-group-item">There will be a general store on your left, bear right down the hill</li>
+            <li class="list-group-item">Follow signs to Mac's Camping Area</li>
+        </ul>
+    </div>
+}
+@section TopRight{
+    <h3 style="text-align: center">Send us an email</h3>
+    <div id="contactForm">
+        <form method="post">
+            <div class="row">
+                <div id="mailSent" class="col-md-12 col-lg-12 alert alert-info" role="alert" style="text-align: center;">
+                    Mail Sent!
+                </div>
+                <div id="mailSuccess" class="col-md-12 col-lg-12 alert alert-success" style="text-align: center;">
+                    Mail Sent Successfully!
+                </div>
+                <div id="mailError" class="col-md-12 col-lg-12 col-sm-12 col-xs-12 alert alert-danger alert-dismissable" style="text-align: center;">
+                    Error Sending Mail!&nbsp;&nbsp;
+                </div>
+                <div asp-validation-summary="ModelOnly"></div>
+                @if(ViewBag.MailMessage != null){
+                <div>@ViewBag.MailMessage</div>
+                }
+            </div>
+            <div class="row">
+                <div class="modal hidden" id="msgError">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" aria-hidden="true" type="button" data-dismiss="modal"></button>
+                                <h4>Message Not Sent!</h4>
+                            </div>
+                            <div class="modal-body" id="errMsg">Error:&nbsp;&nbsp;</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="modal hidden" id="msgSuccess">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" aria-hidden="true" type="button" data-dismiss="modal"></button>
+                                <h4>Message Sent Successfully!</h4>
+                            </div>
+                            <div class="modal-body">Your mail to Mac's was sent successfully, someone should be responding soon.</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <fieldset>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 control-label">
+                            <label asp-for="FirstName">First Name:</label>
+                        </div>
+                        <div class="col-md-9 col-lg-9 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                            <input class="form-control" data-val="true" data-val-length="The field First Name must be a string with a minimum length of 2 and a maximum length of 12." data-val-length-max="12" data-val-length-min="2" data-val-required="First Name must be at least two characters, and less than 12!" id="FirstName" type="text" value="" asp-for="FirstName" />
+                        </div>
+                        <div id="FirstNameValidation">
+                            <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3 control-label">
+                            <label asp-for="LastName">Last Name:</label>
+                        </div>
+                        <div class="col-md-9 col-lg-9 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                            <input class="form-control" data-val="true" data-val-length="The field Last Name must be a string with a minimum length of 2 and a maximum length of 20." data-val-length-max="20" data-val-length-min="2" data-val-required="Last Name must be at least two characters, and less than 20!" id="LastName" asp-for="LastName" type="text" value="" />
+                        </div>
+                        <div id="LastNameValidation">
+                            <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3 col-lg-3 control-label">
+                            <label asp-for="PhoneNumber">Phone:</label>
+                        </div>
+                        <div class="col-md-9 col-lg-9 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone" aria-hidden="true"></i></span>
+                            <input class="form-control" data-val="true" data-val-phone="This is not a valid phone number, please correct it and try again!" id="PhoneNumber" asp-for="PhoneNumber" type="text" value="" />
+                        </div>
+                        <div id="PhoneNumberValidation">
+                            <span class="field-validation-valid" data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3 col-lg-3 control-label">
+                            <label asp-for="EmailAddress">Email:</label>
+                        </div>
+                        <div class="col-md-9 col-lg-9 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                            <input class="form-control" data-val="true" data-val-email="This is not a valid email address!" data-val-required="The Your Email field is required." id="EmailAddress" asp-for="EmailAddress" type="email" value="" />
+                        </div>
+                        <div id="EmailAddressValidation">
+                            <span class="field-validation-valid" data-valmsg-for="EmailAddress" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3 col-md-3 control-label">
+                            <div class="col-md-offset-4 col-lg-offset-4">
+                                <label asp-for="Subject">Subject:</label>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-lg-9 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-paperclip" aria-hidden="true"></i></span>
+                            <input class="form-control" data-val="true" data-val-required="The Subject field is required." id="Subject" asp-for="Subject" type="text" value="" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3 col-lg-3 control-label">
+                            <label asp-for="EmailBody">Email Body:</label>
+                        </div>
+                        <div class="col-md-9 col-lg-9">
+                            <textarea id="EmailBody" class="form-control" cols="100" data-val="true" data-val-required="The Email Body field is required." asp-for="EmailBody" rows="10" wrap="soft"></textarea>
+                        </div>
+                        <div id="EmailBodyValidation">
+                            <span class="field-validation-valid" data-valmsg-for="EmailBody" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-offset-3 col-md-offset-3 input-group">
+                        <br />
+                        <!--span class="input-group-addon"><i class="glyphicon glyphicon-send" aria-hidden="true"></i></span>-->
+                        <input type="submit" value="Send Email" name="SendEmail" class="btn btn-default" onclick="sendEmail();" /><br />
+                        <br />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+}
+@section scripts{
+    <script type="text/javascript" src="//www.bing.com/api/maps/mapcontrol"></script>
+    <script type='text/javascript' src='//www.bing.com/api/maps/mapcontrol?callback=campMap' async defer></script>
+    <script type="text/javascript" src="~/js/map.js"></script>
+    <script type="text/javascript" src="~/js/contactForm.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+}

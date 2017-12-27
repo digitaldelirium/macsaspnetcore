@@ -1,0 +1,114 @@
+﻿@using Microsoft.AspNetCore.Mvc.ViewFeatures;
+@using MacsASPNETCore.Models;
+@using System.Linq;
+@{
+    DateTime starting;
+    DateTime ending;
+    int year = DateTime.Now.Year;
+    string activityByMonth = "/api/activities/month";
+}
+@section TopPane {
+
+}
+@section scripts{
+    <script src="~/js/Activities.js"></script>
+}
+<div class="col-md-8 col-lg-8">
+    <div class="row">
+        <h1 >@ViewData["Title"]</h1>
+    </div>
+    <div class="row">
+        <h2 style="text-align: center">@ViewData["Message"]</h2>
+    </div>
+    <div id="activityCalendar" class="row">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3>
+                    <b>
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </b>
+                    &nbsp;Schedule&nbsp;
+                    <b>
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </b>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <noscript>
+                    <div class="alert alert-warning"></div>
+                </noscript>
+                <div id="showAllActivities" class="row hidden">
+                    <a href="#" class="btn btn-info btn-lg btn-block" onclick="getFullSchedule();">Show All Activities</a>
+                </div>
+                <ul id="activityTabs" class="nav nav-tabs">
+                    <li class="nav nav-tabs" id="tabJan"><a href="#" onclick="getJanuary();">Jan</a></li>
+                    <li class="nav nav-tabs" id="tabFeb"><a href="#" onclick="getFebruary();">Feb</a></li>
+                    <li class="nav nav-tabs" id="tabMar"><a href="#" onclick="getMarch();">Mar</a></li>
+                    <li class="nav nav-tabs" id="tabApr"><a href="#" onclick="getApril();">Apr</a></li>
+                    <li class="nav nav-tabs" id="tabMay"><a href="#" onclick="getMay();">May</a></li>
+                    <li class="nav nav-tabs" id="tabJun"><a href="#" onclick="getJune();">Jun</a></li>
+                    <li class="nav nav-tabs" id="tabJul"><a href="#" onclick="getJuly();">Jul</a></li>
+                    <li class="nav nav-tabs" id="tabAug"><a href="#" onclick="getAugust();">Aug</a></li>
+                    <li class="nav nav-tabs" id="tabSep"><a href="#" onclick="getSeptember();">Sept</a></li>
+                    <li class="nav nav-tabs" id="tabOct"><a href="#" onclick="getOctober();">Oct</a></li>
+                    <li class="nav nav-tabs" id="tabNov"><a href="#" onclick="getNovember();">Nov</a></li>
+                    <li class="nav nav-tabs" id="tabDec"><a href="#" onclick="getDecember();">Dec</a></li>
+                </ul>
+                <div id="activities">
+                    <div class="tab-content" id="allActivities">
+                        <h3>Full Schedule</h3>
+                    </div>
+                    <div class="tab-content" id="monthJan">
+                        <h3>January</h3>
+                    </div>
+                    <div class="tab-content" id="monthFeb">
+                        <h3>February</h3>
+                    </div>
+                    <div class="tab-content" id="monthMar">
+                        <h3>March</h3>
+                    </div>
+                </div>
+                <div id="monthApr" class="tab-content">
+                    <h3>April</h3>
+                </div>
+                <div id="monthMay" class="tab-content">
+                    <h3>May</h3>
+                </div>
+                <div id="monthJun" class="tab-content">
+                    <h3>June</h3>
+                </div>
+                <div id="monthJul" class="tab-content">
+                    <h3>July</h3>
+                </div>
+                <div id="monthAug" class="tab-content">
+                    <h3>August</h3>
+                </div>
+                <div id="monthSep" class="tab-content">
+                    <h3>September</h3>
+                </div>
+                <div id="monthOct" class="tab-content">
+                    <h3>October</h3>
+                </div>
+                <div id="monthNov" class="tab-content">
+                    <h3>November</h3>
+                </div>
+                <div id="monthDec" class="tab-content">
+                    <h3>December</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-6"><img src="~/images/christmas-in-july.jpg" alt="2015 Auction at Mac's'" class="img-responsive" /></div>
+        <div class="col-md-6 col-lg-6"><img src="~/images/activityslide/1310.JPG" alt="Kid's fishing off the dock on Tripp Lake" class="img-responsive" /></div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-4" id="forecastPane">
+    <a href="//www.accuweather.com/en/us/poland-me/04274/sailing-current-weather/2183551" class="aw-widget-legal">
+        <!--
+        By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at http://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at http://www.accuweather.com/en/privacy.
+        -->
+    </a><div id="awtd1462067697006" class="aw-widget-36hour" data-locationkey="2183551" data-unit="f" data-language="en-us" data-useip="false" data-uid="awtd1462067697006" data-editlocation="false" data-lifestyle="sailing"></div>
+    <script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>
+</div>

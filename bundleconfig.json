@@ -1,0 +1,26 @@
+[
+  {
+    "outputFileName": "wwwroot/js/site.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/theme.css",
+    "inputFiles": [
+      "wwwroot/css/theme.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Activities.es5.js",
+    "inputFiles": [
+      "wwwroot/js/Activities.es5.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/site.css",
+    "inputFiles": [
+      "wwwroot/css/site.css"
+    ]
+  }
+]

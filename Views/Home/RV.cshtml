@@ -1,0 +1,95 @@
+﻿<div class="row">
+    <h2 style="text-align: center">@ViewData["Message"]</h2>
+</div>
+
+@section TopLeft {
+    <div id="unit1" class="panel panel-info">
+        <div class="panel panel-heading">
+            <h4 style="text-align: center">RV Rental A</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12" id="t1Container">
+                <div id="trailer1" class="slider single-item lazy">
+                    @foreach (var image in ViewBag.ImageList)
+                    {
+                        <div>
+                            <img data-lazy="@Url.Content("~/images/trailer1/" + image)" alt="Slide Show Picture of rental unit A" class="img-responsive"/>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-body list-group">
+            <ul class="list-unstyled">
+                <li>DirecTV</li>
+                <li>gas grill outside</li>
+                <li>located next to the bathhouse</li>
+                <li>gated area for pets</li>
+            </ul>
+        </div>
+    </div>
+}
+
+@section TopCenter {
+    <div class="">
+        <div class="panel list-group">
+            <ul class="list-group" style="text-align: center">
+                <li class="list-group-item">
+                    <em>Sheets, pillows, blankets, &amp; towels are </em><em style="color: red;">not</em><em> included</em>
+                </li>
+                <br />
+                <li class="list-group-item">sleeps 6 adults in beds</li>
+                <li class="list-group-item">screened in front porch</li>
+                <li class="list-group-item">queen size futon on porch</li>
+                <li class="list-group-item">small table with 4 chairs</li>
+                <li class="list-group-item">full size refrigerator/freezer combo</li>
+                <li class="list-group-item">plenty of storage/closet space</li>
+                <li class="list-group-item">small tub and shower</li>
+                <li class="list-group-item">gas stove and oven inside</li>
+                <li class="list-group-item">outdoor fireplace (firewood available for purchase)</li>
+                <li class="list-group-item">water &amp; sewer included</li>
+                <li class="list-group-item">gas heat</li>
+                <li class="list-group-item">electric air conditioning</li>
+                <li class="list-group-item">inside electricity at pay per use fee</li>
+                <li class="list-group-item">pots, pans, dishes, silverware</li>
+                <li class="list-group-item">TV, DVD</li>
+                <li class="list-group-item">coffee maker with filter</li>
+                <li class="list-group-item">blender</li>
+                <li class="list-group-item">microwave</li>
+            </ul>
+        </div>
+    </div>
+}
+
+@section TopRight {
+    <div id="unit2" class="panel panel-info">
+        <div class="panel panel-heading">
+            <h4 style="text-align: center">RV Rental B</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12" id="t2Container">
+                <div class="lazy slider single-item" id="trailer2">
+                    @foreach (var image in ViewBag.ImageList2)
+                    {
+                        <div>
+                            <img data-lazy="@Url.Content("~/images/trailer2/" + image)" alt="Slide show picture of rental unit B" class="img-responsive centered"/>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-body list-group">
+            <ul class="list-unstyled">
+                <li>charcoal and gas grill outside <br />(bring your own charcoal or purchase on-site)</li>
+            </ul>
+            <br />
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/js/RV.js">
+
+
+    </script>
+}

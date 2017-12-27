@@ -1,0 +1,80 @@
+﻿@section TopPane {
+    <span itemtype="http://schema.org/LodgingBusiness" itemscope>
+    <meta itemprop="founder" content="George 'Mac' McDonald"/>
+    <meta itemprop="foundingLocation" content="Poland, ME"/>
+    <meta itemprop="currenciesAccepted" content="USD" />
+    <meta itemprop="paymentAccepted" content="cash, credit card" />
+    <meta itemprop="legalName" content="Mac's Camping Area, LLC" />
+    <span itemprop="description" class="hidden">Mac's Camping Area has been serving DownEast Maine campers for over 40 years. We specialize in having a small, close-knit community of recurring campers.  Some of whom have been with us for multiple generations.  We have also have a wedding tent and a rec hall available for event rentals!</span>
+    <meta name="keywords" content="camping maine downeast event rentals Poland maine camping fishing sailing go to camp ** www.macscampingarea.com">
+    <meta name="keywords" content="+camping +maine +downeast +event +rentals +Poland +maine +camping +fishing +sailing +go +to +camp ** www.macscampingarea.com">
+</span>
+<div class="fb-like"
+     data-share="true"
+     data-width="450"
+     data-show-faces="true">
+</div>
+    <div class="row">
+        <div class="lead" style="text-align: center;">
+            Welcome to picturesque Poland, Maine! <br> Find out for yourself why Mainers call it "Vacationland", and it's the place New Englanders camp for the summers!
+        </div>
+    </div>
+    <div class="row">
+        <div class="jumbotron">
+            <div class="row">
+                <div id="titleContent" class="col-xs-12">
+                    <div class="row vertical-align">
+                        <div class="slider single-item lazy" id="titleCarousel">
+                            @foreach (var image in ViewBag.ImageList)
+                            {
+                                <div>
+                                    <img data-lazy="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="carousel-dots" class="row">
+            </div>
+        </div>
+    </div>
+
+}
+
+@section TopLeft {
+    <h2>Family Owned</h2>
+    <p>
+        Mac's Camping Area has been owned and run by the McDonald family for over 40 years and prides itself in being small enough to focus on customer service and events tailored to our campers' wants and needs. Mac's is lucky to have customers who have
+        been camping here for multiple generations and continue to come back year after year!
+    </p>
+    <br /><br />
+}
+@section TopCenter {
+    <h2>Location</h2>
+    <p>
+        Located on beautiful Tripp Lake, Mac's Camping Area offers an affordable campground with fun for everyone! Whether it is exciting activities, swimming in the lake, fishing on the docks or just simply relaxing, Mac's has something to offer everyone
+        at any age!
+    </p>
+    <br />
+    <br />
+    <p>
+        <a class="btn btn-default" asp-action="Amenities">See Amenities »</a>
+    </p>
+}
+@section TopRight {
+    <h2>Activities</h2>
+    <p>
+        A variety of activities are scheduled most weekends with fun for all ages -- kids and adults alike. Get involved in the planning process, or simply take part.
+        <br />
+        <br />
+        <br /> We know how to have fun!
+    </p>
+    <br />
+    <p>
+        <a asp-action="Activities" class="btn btn-default">See Activities »</a>
+    </p>
+}
+@section scripts{
+    <script src="~/js/Index.js"></script>
+}
