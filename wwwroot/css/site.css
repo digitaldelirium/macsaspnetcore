@@ -1,0 +1,88 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch);
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-family: 'Cabin Sketch', cursive; }
+
+form {
+    display: table;
+}
+
+    form p {
+        display: table-row;
+    }
+
+.control-label {
+    display: table-cell;
+    text-align: right;
+}
+
+input {
+    display: table-cell;
+}
+
+
+
+#titleCarousel {
+    width: auto;
+    height: auto;
+}
+
+
+.jumbotron img {
+    height: 60vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#macCarousel {
+    width: auto;
+    height: 50vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#macPhotos {
+    text-align: center;
+}
+
+.centerer {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.centered {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#trailer1 {
+    text-align: center;
+    width: 100%;
+}
+#trailer1 img {
+    height: 30vh;
+}
+
+#trailer2 {
+    text-align: center;
+    width: 100%;
+}
+#trailer2 img {
+    height: 30vh;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
