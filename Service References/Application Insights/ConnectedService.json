@@ -1,7 +1,7 @@
 ﻿{
   "ProviderId": "Microsoft.ApplicationInsights.ConnectedService.ConnectedServiceProvider",
-  "Version": "5.203.60426.3",
+  "Version": "8.10.1106.1",
   "GettingStartedDocument": {
-    "Uri": "https://go.microsoft.com/fwlink/?LinkID=613414"
+    "Uri": "https://go.microsoft.com/fwlink/?LinkID=798432"
   }
 }

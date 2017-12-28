@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using MacsASPNETCore.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data;
+using MySql.Fabric;
 using Newtonsoft.Json.Serialization;
 using MacsASPNETCore.Services;
 using Microsoft.Extensions.Logging;
@@ -26,7 +28,7 @@ namespace MacsASPNETCore
             var activities = Configuration["Data:ActivityDb:ConnectionString"];
             // Add framework services.
             //services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddDbContext<ActivityDbContext>(options => options.UseSqlServer(activities))
+            services.AddDbContext<ActivityDbContext>(options => options.UseMySQL(activities))
                 .AddDbContext<CustomerDbContext>()
                 .AddDbContext<ReservationDbContext>()
                 .AddDbContext<ApplicationDbContext>();
