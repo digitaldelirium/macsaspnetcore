@@ -32,10 +32,10 @@ namespace MacsASPNETCore
             
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddDbContext<ActivityDbContext>(options => options.UseMySQL(activities))
-                .AddDbContext<CustomerDbContext>(options => options.UseMySQL(customerdb))
-                .AddDbContext<ReservationDbContext>(options => options.UseMySQL(rezdb))
-                .AddDbContext<ApplicationDbContext>(options => options.UseMySQL(appdb));
+            services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
+                .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerdb))
+                .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
+                .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
             
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddIdentity<ApplicationUser, IdentityRole>()
