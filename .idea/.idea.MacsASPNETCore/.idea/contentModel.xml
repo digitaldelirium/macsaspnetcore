@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.Rider2017.2/system/resharper-host/local/Transient/ReSharperHost/v10/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/app.config.transform" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlCommand.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlCommandBuilder.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlConnection.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlConnectionStringBuilder.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlDataAdapter.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlDataReader.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlException.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlHelper.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlParameter.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlParameterCollection.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/docs/MySqlTransaction.xml" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/mysql.data/6.10.5/contentFiles/any/netcoreapp2.0/web.config.transform" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p=".gitignore" t="Include" />
+      <e p="Activities.db" t="Include" />
+      <e p="Activities2017.csv" t="Include" />
+      <e p="Activities2017.sql" t="Include" />
+      <e p="ActivitySeedData.sql" t="Include" />
+      <e p="Controllers" t="Include">
+        <e p="AccountController.cs" t="Include" />
+        <e p="Api" t="Include">
+          <e p="ActivityController.cs" t="Include" />
+          <e p="ContactController.cs" t="Include" />
+        </e>
+        <e p="HomeController.cs" t="Include" />
+        <e p="ManageController.cs" t="Include" />
+      </e>
+      <e p="Customers.db" t="Include" />
+      <e p="Deploy" t="Include">
+        <e p="Publishaspnet-Website.ps1" t="Include" />
+      </e>
+      <e p="Dockerfile" t="Include" />
+      <e p="Identities.db" t="Include" />
+      <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
+      <e p="MacsASPNETCore.sln" t="IncludeFlat" />
+      <e p="Migrations" t="Include">
+        <e p="00000000000000_CreateIdentitySchema.Designer.cs" t="Include" />
+        <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
+        <e p="ActivityDb" t="Include">
+          <e p="20160424033250_InitializeActivities.Designer.cs" t="Include" />
+          <e p="20160424033250_InitializeActivities.cs" t="Include" />
+          <e p="20160424155214_FixedActivityDataAnnotations.Designer.cs" t="Include" />
+          <e p="20160424155214_FixedActivityDataAnnotations.cs" t="Include" />
+          <e p="ActivityDbContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
+        <e p="CustomerDb" t="Include">
+          <e p="20160423202440_AddCustomers.Designer.cs" t="Include" />
+          <e p="20160423202440_AddCustomers.cs" t="Include" />
+          <e p="20160423211002_UpdateCustomersContext.Designer.cs" t="Include" />
+          <e p="20160423211002_UpdateCustomersContext.cs" t="Include" />
+          <e p="CustomerDbContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="ReservationDb" t="Include">
+          <e p="20160423201746_AddReservations.Designer.cs" t="Include" />
+          <e p="20160423201746_AddReservations.cs" t="Include" />
+          <e p="20160423213617_UpdateReservationContext.Designer.cs" t="Include" />
+          <e p="20160423213617_UpdateReservationContext.cs" t="Include" />
+          <e p="ReservationDbContextModelSnapshot.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Models" t="Include">
+        <e p="Activity.cs" t="Include" />
+        <e p="ActivityDbContext.cs" t="Include" />
+        <e p="ActivityDbContextSeedData.cs" t="Include" />
+        <e p="ActivityRepository.cs" t="Include" />
+        <e p="Address.cs" t="Include" />
+        <e p="ApplicationDbContext.cs" t="Include" />
+        <e p="ApplicationUser.cs" t="Include" />
+        <e p="Calendar.cs" t="Include" />
+        <e p="Country.cs" t="Include" />
+        <e p="Customer.cs" t="Include" />
+        <e p="CustomerDbContext.cs" t="Include" />
+        <e p="Email.cs" t="Include" />
+        <e p="IActivityRepository.cs" t="Include" />
+        <e p="PhoneNumber.cs" t="Include" />
+        <e p="Postal.cs" t="Include" />
+        <e p="Reservation.cs" t="Include" />
+        <e p="ReservationDbContext.cs" t="Include" />
+        <e p="State.cs" t="Include" />
+      </e>
+      <e p="Program.cs" t="Include" />
+      <e p="Project_Readme.html" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="PublishProfiles" t="Include">
+          <e p="MacsASPNETCore2016 - Web Deploy-publish.ps1" t="Include" />
+          <e p="macscampingarea - Web Deploy-publish.ps1" t="Include" />
+          <e p="publish-module.psm1" t="Include" />
+        </e>
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="README.md" t="Include" />
+      <e p="Reservations.db" t="Include" />
+      <e p="Service References" t="Include">
+        <e p="Application Insights" t="Include">
+          <e p="ConnectedService.json" t="Include" />
+        </e>
+      </e>
+      <e p="Services" t="Include">
+        <e p="DebugMailService.cs" t="Include" />
+        <e p="IEmailSender.cs" t="Include" />
+        <e p="ISmsSender.cs" t="Include" />
+        <e p="MessageServices.cs" t="Include" />
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="ViewModels" t="Include">
+        <e p="Account" t="Include">
+          <e p="ExternalLoginConfirmationViewModel.cs" t="Include" />
+          <e p="ForgotPasswordViewModel.cs" t="Include" />
+          <e p="LoginViewModel.cs" t="Include" />
+          <e p="RegisterViewModel.cs" t="Include" />
+          <e p="ResetPasswordViewModel.cs" t="Include" />
+          <e p="SendCodeViewModel.cs" t="Include" />
+          <e p="VerifyCodeViewModel.cs" t="Include" />
+        </e>
+        <e p="ActivityViewModel.cs" t="Include" />
+        <e p="ContactViewModel.cs" t="Include" />
+        <e p="Manage" t="Include">
+          <e p="AddPhoneNumberViewModel.cs" t="Include" />
+          <e p="ChangePasswordViewModel.cs" t="Include" />
+          <e p="ConfigureTwoFactorViewModel.cs" t="Include" />
+          <e p="FactorViewModel.cs" t="Include" />
+          <e p="IndexViewModel.cs" t="Include" />
+          <e p="ManageLoginsViewModel.cs" t="Include" />
+          <e p="RemoveLoginViewModel.cs" t="Include" />
+          <e p="SetPasswordViewModel.cs" t="Include" />
+          <e p="VerifyPhoneNumberViewModel.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Views" t="Include">
+        <e p="Account" t="Include">
+          <e p="ConfirmEmail.cshtml" t="Include" />
+          <e p="ExternalLoginConfirmation.cshtml" t="Include" />
+          <e p="ExternalLoginFailure.cshtml" t="Include" />
+          <e p="ForgotPassword.cshtml" t="Include" />
+          <e p="ForgotPasswordConfirmation.cshtml" t="Include" />
+          <e p="Lockout.cshtml" t="Include" />
+          <e p="Login.cshtml" t="Include" />
+          <e p="Register.cshtml" t="Include" />
+          <e p="ResetPassword.cshtml" t="Include" />
+          <e p="ResetPasswordConfirmation.cshtml" t="Include" />
+          <e p="SendCode.cshtml" t="Include" />
+          <e p="VerifyCode.cshtml" t="Include" />
+        </e>
+        <e p="Home" t="Include">
+          <e p="About.cshtml" t="Include" />
+          <e p="Activities.cshtml" t="Include" />
+          <e p="Amenities.cshtml" t="Include" />
+          <e p="Contact.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+          <e p="Memoriam.cshtml" t="Include" />
+          <e p="RV.cshtml" t="Include" />
+          <e p="Rates.cshtml" t="Include" />
+        </e>
+        <e p="Manage" t="Include">
+          <e p="AddPhoneNumber.cshtml" t="Include" />
+          <e p="ChangePassword.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+          <e p="ManageLogins.cshtml" t="Include" />
+          <e p="SetPassword.cshtml" t="Include" />
+          <e p="VerifyPhoneNumber.cshtml" t="Include" />
+        </e>
+        <e p="Shared" t="Include">
+          <e p="Error.cshtml" t="Include" />
+          <e p="_Layout.cshtml" t="Include" />
+          <e p="_LoginPartial.cshtml" t="Include" />
+          <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+        </e>
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="_ViewStart.cshtml" t="Include" />
+      </e>
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="bower.json" t="Include" />
+      <e p="bundleconfig.json" t="Include" />
+      <e p="compilerconfig.json" t="Include" />
+      <e p="compilerconfig.json.defaults" t="Include" />
+      <e p="docs" t="Include" />
+      <e p="gulpfile.js" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.0" t="Include">
+            <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="package-lock.json" t="Include" />
+      <e p="package.json" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="web.config" t="Include" />
+    </e>
+  </component>
+</project>

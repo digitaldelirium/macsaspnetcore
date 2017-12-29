@@ -6,9 +6,11 @@ namespace MacsASPNETCore.Models
 {
     public class CustomerDbContext : DbContext
     {
-        public CustomerDbContext(){
+        public CustomerDbContext(DbContextOptions<CustomerDbContext> options) : base(options)
+        {
             Database.EnsureCreated();
         }
+        
         public DbSet<Customer> Customers { get; set; } 
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -17,13 +19,6 @@ namespace MacsASPNETCore.Models
         public DbSet<Postal> PostalCodes { get; set; }
         public DbSet<Email> EmailAddresses { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var path = PlatformServices.Default.Application.ApplicationBasePath;
-            optionsBuilder.UseSqlite("Filename=" + Path.Combine(path, "Customers.db"));
-            
-            base.OnConfiguring(optionsBuilder);
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>()

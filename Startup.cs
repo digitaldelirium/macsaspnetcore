@@ -1,23 +1,23 @@
-﻿using Microsoft.AspNetCore.Builder;
+using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using MacsASPNETCore.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data;
-using MySql.Fabric;
 using Newtonsoft.Json.Serialization;
 using MacsASPNETCore.Services;
 using Microsoft.Extensions.Logging;
 using MacsASPNETCore.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace MacsASPNETCore
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,16 +26,21 @@ namespace MacsASPNETCore
         public void ConfigureServices(IServiceCollection services)
         {
             var activities = Configuration["Data:ActivityDb:ConnectionString"];
+            var appdb = Configuration["Data:ApplicationDb:ConnectionString"];
+            var customerdb = Configuration["Data:CustomerDb:ConnectionString"];
+            var rezdb = Configuration["Data:ReservationDb:ConnectionString"];
+            
             // Add framework services.
-            //services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddDbContext<ActivityDbContext>(options => options.UseMySQL(activities))
-                .AddDbContext<CustomerDbContext>()
-                .AddDbContext<ReservationDbContext>()
-                .AddDbContext<ApplicationDbContext>();
+            services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
+                .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerdb))
+                .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
+                .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
+            
             services.AddScoped<IActivityRepository, ActivityRepository>();
- /*           services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders(); */
+                .AddDefaultTokenProviders(); 
             services.AddMvc()
                 .AddJsonOptions(
                     opt => { opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); }
@@ -56,7 +61,6 @@ namespace MacsASPNETCore
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            //app.UseApplicationInsightsRequestTelemetry();
 
             if (env.IsDevelopment())
             {
@@ -78,19 +82,19 @@ namespace MacsASPNETCore
                             .Database.Migrate();
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
+                    throw;
                 }
             }
-
-            //app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
 
             Mapper.Initialize(config => { config.CreateMap<Activity, ActivityViewModel>().ReverseMap(); }
                 );
 
-            //app.UseIdentity();
+            app.UseAuthentication();
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
@@ -101,3 +105,4 @@ namespace MacsASPNETCore
         //public static void Main(string[] args) => WebHostBuilder.Run<Startup>(args);
     }
 }
+
