@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\src\macsaspnetcore" t="IncludeRecursive">
+    <e p="$USER_HOME$/.Rider2017.2/system/resharper-host/local/Transient/ReSharperHost/v10/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p=".gitignore" t="Include" />
       <e p="Activities.db" t="Include" />
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
       <e p="ActivitySeedData.sql" t="Include" />
-      <e p="appsettings.Development.json" t="Include" />
-      <e p="appsettings.json" t="Include" />
-      <e p="bin" t="ExcludeRecursive" />
-      <e p="bower.json" t="Include" />
-      <e p="bundleconfig.json" t="Include" />
-      <e p="compilerconfig.json" t="Include" />
-      <e p="compilerconfig.json.defaults" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="Api" t="Include">
@@ -27,33 +21,32 @@
       <e p="Deploy" t="Include">
         <e p="Publishaspnet-Website.ps1" t="Include" />
       </e>
-      <e p="gulpfile.js" t="Include" />
       <e p="Identities.db" t="Include" />
       <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
       <e p="MacsASPNETCore.sln" t="IncludeFlat" />
       <e p="Migrations" t="Include">
-        <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
         <e p="00000000000000_CreateIdentitySchema.Designer.cs" t="Include" />
+        <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
         <e p="ActivityDb" t="Include">
-          <e p="20160424033250_InitializeActivities.cs" t="Include" />
           <e p="20160424033250_InitializeActivities.Designer.cs" t="Include" />
-          <e p="20160424155214_FixedActivityDataAnnotations.cs" t="Include" />
+          <e p="20160424033250_InitializeActivities.cs" t="Include" />
           <e p="20160424155214_FixedActivityDataAnnotations.Designer.cs" t="Include" />
+          <e p="20160424155214_FixedActivityDataAnnotations.cs" t="Include" />
           <e p="ActivityDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         <e p="CustomerDb" t="Include">
-          <e p="20160423202440_AddCustomers.cs" t="Include" />
           <e p="20160423202440_AddCustomers.Designer.cs" t="Include" />
-          <e p="20160423211002_UpdateCustomersContext.cs" t="Include" />
+          <e p="20160423202440_AddCustomers.cs" t="Include" />
           <e p="20160423211002_UpdateCustomersContext.Designer.cs" t="Include" />
+          <e p="20160423211002_UpdateCustomersContext.cs" t="Include" />
           <e p="CustomerDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="ReservationDb" t="Include">
-          <e p="20160423201746_AddReservations.cs" t="Include" />
           <e p="20160423201746_AddReservations.Designer.cs" t="Include" />
-          <e p="20160423213617_UpdateReservationContext.cs" t="Include" />
+          <e p="20160423201746_AddReservations.cs" t="Include" />
           <e p="20160423213617_UpdateReservationContext.Designer.cs" t="Include" />
+          <e p="20160423213617_UpdateReservationContext.cs" t="Include" />
           <e p="ReservationDbContextModelSnapshot.cs" t="Include" />
         </e>
       </e>
@@ -77,25 +70,15 @@
         <e p="ReservationDbContext.cs" t="Include" />
         <e p="State.cs" t="Include" />
       </e>
-      <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
-          <e p="netcoreapp2.0" t="Include">
-            <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
-          </e>
-        </e>
-      </e>
-      <e p="package-lock.json" t="Include" />
-      <e p="package.json" t="Include" />
-      <e p="packages" t="ExcludeRecursive" />
       <e p="Program.cs" t="Include" />
       <e p="Project_Readme.html" t="Include" />
       <e p="Properties" t="Include">
-        <e p="launchSettings.json" t="Include" />
         <e p="PublishProfiles" t="Include">
           <e p="MacsASPNETCore2016 - Web Deploy-publish.ps1" t="Include" />
           <e p="macscampingarea - Web Deploy-publish.ps1" t="Include" />
           <e p="publish-module.psm1" t="Include" />
         </e>
+        <e p="launchSettings.json" t="Include" />
       </e>
       <e p="README.md" t="Include" />
       <e p="Reservations.db" t="Include" />
@@ -136,8 +119,6 @@
         </e>
       </e>
       <e p="Views" t="Include">
-        <e p="_ViewImports.cshtml" t="Include" />
-        <e p="_ViewStart.cshtml" t="Include" />
         <e p="Account" t="Include">
           <e p="ConfirmEmail.cshtml" t="Include" />
           <e p="ExternalLoginConfirmation.cshtml" t="Include" />
@@ -159,8 +140,8 @@
           <e p="Contact.cshtml" t="Include" />
           <e p="Index.cshtml" t="Include" />
           <e p="Memoriam.cshtml" t="Include" />
-          <e p="Rates.cshtml" t="Include" />
           <e p="RV.cshtml" t="Include" />
+          <e p="Rates.cshtml" t="Include" />
         </e>
         <e p="Manage" t="Include">
           <e p="AddPhoneNumber.cshtml" t="Include" />
@@ -171,14 +152,33 @@
           <e p="VerifyPhoneNumber.cshtml" t="Include" />
         </e>
         <e p="Shared" t="Include">
+          <e p="Error.cshtml" t="Include" />
           <e p="_Layout.cshtml" t="Include" />
           <e p="_LoginPartial.cshtml" t="Include" />
           <e p="_ValidationScriptsPartial.cshtml" t="Include" />
-          <e p="Error.cshtml" t="Include" />
+        </e>
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="_ViewStart.cshtml" t="Include" />
+      </e>
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="bower.json" t="Include" />
+      <e p="bundleconfig.json" t="Include" />
+      <e p="compilerconfig.json" t="Include" />
+      <e p="compilerconfig.json.defaults" t="Include" />
+      <e p="gulpfile.js" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.0" t="Include">
+            <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
+          </e>
         </e>
       </e>
+      <e p="package-lock.json" t="Include" />
+      <e p="package.json" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
       <e p="web.config" t="Include" />
     </e>
-    <e p="C:\Users\Ian\.Rider2017.2\system\resharper-host\local\Transient\ReSharperHost\v10\SolutionCaches\_MacsASPNETCore.-412206951.00" t="ExcludeRecursive" />
   </component>
 </project>

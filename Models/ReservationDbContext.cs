@@ -6,20 +6,13 @@ namespace MacsASPNETCore.Models
 {
     public class ReservationDbContext : DbContext   
     {
-        public ReservationDbContext()
+        public ReservationDbContext(DbContextOptions<ReservationDbContext> options): base(options)
         {
             Database.EnsureCreated();
         }
-         public DbSet<Reservation> Reservations {get; set;}
-         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var path = PlatformServices.Default.Application.ApplicationBasePath;
-            optionsBuilder.UseSqlite("Filename=" + Path.Combine(path, "Reservations.db"));
-            
-            base.OnConfiguring(optionsBuilder);
-        }
         
+        public DbSet<Reservation> Reservations {get; set;}
+         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Reservation>()
