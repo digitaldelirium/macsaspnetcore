@@ -6,9 +6,9 @@ FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
 COPY *.sln ./
 COPY ./MacsASPNETCore.csproj macsaspnetcore/
+WORKDIR /src/macsaspnetcore
 RUN dotnet restore
 COPY . .
-WORKDIR /src/macsaspnetcore
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
