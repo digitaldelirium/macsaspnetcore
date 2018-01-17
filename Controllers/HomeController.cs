@@ -75,9 +75,11 @@ namespace MacsASPNETCore.Controllers
 
             if (ModelState.IsValid)
             {
-
-                    ModelState.Clear();
-                    ViewBag.MailMessage = "Mail sent, Thanks!";
+                if (_env.IsDevelopment())
+                {
+                    ViewBag.MailMessage = "Dummy Mail sent, Thanks!";
+                    return View();
+                }
 
                 using (var client = new SmtpClient())
                 {
@@ -112,6 +114,9 @@ namespace MacsASPNETCore.Controllers
                     client.Send(message);
                     client.Disconnect(true);
                 }
+                
+                ModelState.Clear();
+                ViewBag.MailMessage = "Mail sent, Thanks!";
             }
             return View();
         }
