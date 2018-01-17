@@ -5,7 +5,7 @@ EXPOSE 80
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
 COPY *.sln ./
-COPY macsaspnetcore/MacsASPNETCore.csproj macsaspnetcore/
+COPY ./MacsASPNETCore.csproj macsaspnetcore/
 RUN dotnet restore
 COPY . .
 WORKDIR /src/macsaspnetcore
