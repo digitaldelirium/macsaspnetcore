@@ -33,6 +33,8 @@ namespace MacsASPNETCore
                     throw;
                 }
             }
+
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
