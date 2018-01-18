@@ -12,15 +12,24 @@ using Microsoft.Extensions.Logging;
 using MacsASPNETCore.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace MacsASPNETCore
 {
     public class Startup
     {
-        private IConfiguration Configuration { get; }
-        public Startup(IConfiguration configuration)
+        private IConfigurationRoot Configuration { get; }
+        private IHostingEnvironment Environment { get; }
+        public Startup(IHostingEnvironment environment)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder();
+            if (Environment.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+            Configuration = builder.Build();
+            Environment = environment;
         }
         
         public void ConfigureServices(IServiceCollection services)
@@ -40,7 +49,11 @@ namespace MacsASPNETCore
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders(); 
+                .AddDefaultTokenProviders();
+            
+                // Require HTTPS
+                services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
+
             services.AddMvc()
                 .AddJsonOptions(
                     opt => { opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); }
@@ -61,6 +74,9 @@ namespace MacsASPNETCore
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            var options = new RewriteOptions()
+                .AddRedirectToHttps();
+            app.UseRewriter(options);
 
             if (env.IsDevelopment())
             {
@@ -70,6 +86,7 @@ namespace MacsASPNETCore
             }
             else
             {
+
                 app.UseExceptionHandler("/Home/Error");
 
                 // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
