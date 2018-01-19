@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
+using MacsASPNETCore.ViewModels;
 
 namespace MacsASPNETCore.Models
 {
