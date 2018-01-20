@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MacsASPNETCore.Models;
+using MacsASPNETCore.ViewModels.Account;
 using MacsASPNETCore.Services;
 using MacsASPNETCore.ViewModels;
-using MacsASPNETCore.ViewModels.Account;
 
 namespace MacsASPNETCore.Controllers
 {

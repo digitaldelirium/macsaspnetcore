@@ -55,12 +55,12 @@
                 <div id="macsContent" class="" style="width: 100%;">
                     <div class="row vertical-align">
                         <div class="slider single-item lazy" id="macCarousel">
-            @foreach (var item in ViewBag.ImageList)
-            {
-                <div>
-                    <img data-lazy="@Url.Content("~/images/grandpa/" + item)" alt="Photo of our late founder" class="img-responsive"/>
-                </div>
-            }
+                            @foreach (var item in ViewBag.ImageList)
+                            {
+                                <div>
+                                    <img data-lazy="@Url.Content("~/images/grandpa/" + item)" alt="Photo of our late founder" class="img-responsive"/>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -68,4 +68,5 @@
             <div id="carousel-dots" class="row">
             </div>
         </div>
+    </div>
 }
