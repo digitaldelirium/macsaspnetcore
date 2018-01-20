@@ -29,20 +29,25 @@ namespace MacsASPNETCore
             var builder = new ConfigurationBuilder();
             Environment = environment;
 
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+
             if (Environment.IsDevelopment())
             {
                 builder.AddUserSecrets<Startup>();
+                builder.AddJsonFile("appsettings.Development.json", optional: false);
+            }
+            else
+            {
+                builder.AddJsonFile("appsettings.json", optional: false);
             }
 
-            builder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false)
-                .AddEnvironmentVariables();
+            builder.AddEnvironmentVariables();
 
             Configuration = builder.Build();
             builder.AddAzureKeyVault(
-                $"https://{Configuration["Vault"]}.vault.azure.net",
-                Configuration["ClientId"],
-                Configuration["ClientSecret"]);
+                $"https://{Configuration["Azure:KeyVault:Vault"]}.vault.azure.net",
+                Configuration["Azure:KeyVault:ClientId"],
+                Configuration["Azure:KeyVault:ClientSecret"]);
         }
         
         public void ConfigureServices(IServiceCollection services)
