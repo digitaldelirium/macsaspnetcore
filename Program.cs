@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using MacsASPNETCore;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -13,6 +15,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http.Features.Authentication;
 using Microsoft.Azure.KeyVault;
+using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
@@ -74,19 +77,14 @@ namespace MacsASPNETCore
 
                 });
 
-            var cert = GetCertificate(_environment);
-            if (!File.Exists(certPath))
-            {
-                Console.WriteLine(certPath);
-                Exit(4);
-            }
+                _pfxCert = GetCertificate(_environment);
 
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
                     options.Listen(IPAddress.Loopback, 5000);
                     options.Listen(IPAddress.Loopback, 5001,
-                        listenOptions => { listenOptions.UseHttps(certPath, null); });
+                        listenOptions => { listenOptions.UseHttps(_pfxCert); });
                 })
                 .UseIISIntegration()
                 .UseApplicationInsights();
@@ -94,26 +92,68 @@ namespace MacsASPNETCore
             return host.Build();
         }
 
-        private static object GetCertificate(IHostingEnvironment environment)
+        private static X509Certificate2 GetCertificate(IHostingEnvironment environment)
         {
             var pfx = new X509Certificate2();
-            if (environment.IsDevelopment())
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
-                string certPath = Directory.GetCurrentDirectory().ToString() + "Macs.pfx";
-                pfx = new X509Certificate2(certPath);
+                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
+                if (File.Exists(certPath))
+                {
+                    try
+                    {
+                        var rawBytes = File.ReadAllBytes(certPath);
+                        pfx = new X509Certificate2(rawBytes);
+                    }
+                    catch (CryptographicException exception)
+                    {
+                        Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
+                        Exit(5);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(certPath + " is invalid!");
+                    Exit(4);
+                }
+      
             }
             else
             {
-                
+                var keyVaultCert = GetKeyVaultCert().Result ?? throw new ArgumentNullException("GetKeyVaultCert().Result");
+                pfx = new X509Certificate2(keyVaultCert.RawData);
             }
+
+            return pfx;
         }
 
-        public static async Task<string> GetToken(string authority, string res, string scope)
+        public static async Task<X509Certificate2> GetKeyVaultCert()
         {
-            var auth = new AuthenticationContext(authority);
-            var cred = new ClientCredential(WebConfigurationManager.AppSettings["ClientId],
-                WebConfigurationManager.AppSettings["ClientSecret"]);
-            
+            var pfx = new X509Certificate2();
+            var azureServiceTokenProvider = new AzureServiceTokenProvider();
+            try
+            {
+                var kvClient = new KeyVaultClient(
+                    new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
+
+                var secret = await kvClient
+                    .GetSecretAsync(
+                        "https://macscampvault.vault.azure.net/secrets/MacsPFX/9c7146c9e9a54b6b93fb232109d7de07")
+                    .ConfigureAwait(false);
+
+                if (secret.ContentType.Equals("application/x-pkcs12"))
+                {
+                    byte[] rawBytes = Encoding.ASCII.GetBytes(secret.Value);
+                    pfx = new X509Certificate2(rawBytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"There was a problem during the key vault operation\n{ex.Message}");
+                Exit(6);
+            }
+
+            return pfx;
         }
     }
 }
