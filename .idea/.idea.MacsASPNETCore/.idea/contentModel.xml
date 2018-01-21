@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\src\macsaspnetcore" t="IncludeRecursive">
+    <e p="$USER_HOME$/.Rider2017.3/system/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p=".gitattributes" t="Include" />
       <e p=".gitignore" t="Include" />
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
       <e p="ActivitySeedData.sql" t="Include" />
-      <e p="appsettings.Development.json" t="Include" />
-      <e p="appsettings.json" t="Include" />
-      <e p="bin" t="ExcludeRecursive" />
-      <e p="bower.json" t="Include" />
-      <e p="bundleconfig.json" t="Include" />
-      <e p="compilerconfig.json" t="Include" />
-      <e p="compilerconfig.json.defaults" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="Api" t="Include">
@@ -22,31 +17,37 @@
         <e p="HomeController.cs" t="Include" />
         <e p="ManageController.cs" t="Include" />
       </e>
-      <e p="create_EFMigrationsTable.sql" t="Include" />
       <e p="Deploy" t="Include">
         <e p="Publishaspnet-Website.ps1" t="Include" />
       </e>
       <e p="Dockerfile" t="Include" />
-      <e p="gulpfile.js" t="Include" />
+      <e p="Extensions" t="Include">
+        <e p="EmailSenderExtensions.cs" t="Include" />
+        <e p="UrlHelperExtensions.cs" t="Include" />
+      </e>
+      <e p="Macs.pfx" t="Include" />
       <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
       <e p="MacsASPNETCore.sln" t="IncludeFlat" />
+      <e p="MacsASPNETCore.sln.DotSettings" t="Include" />
       <e p="Migrations" t="Include">
-        <e p="20171229023122_InitialMigration.cs" t="Include" />
         <e p="20171229023122_InitialMigration.Designer.cs" t="Include" />
+        <e p="20171229023122_InitialMigration.cs" t="Include" />
         <e p="ActivityDbContextModelSnapshot.cs" t="Include" />
         <e p="ApplicationDb" t="Include">
-          <e p="20171229023457_InitialMigration.cs" t="Include" />
           <e p="20171229023457_InitialMigration.Designer.cs" t="Include" />
+          <e p="20171229023457_InitialMigration.cs" t="Include" />
+          <e p="20180121020354_AddRolesAndAdmin.Designer.cs" t="Include" />
+          <e p="20180121020354_AddRolesAndAdmin.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="CustomerDb" t="Include">
-          <e p="20171229023624_InitialMigration.cs" t="Include" />
           <e p="20171229023624_InitialMigration.Designer.cs" t="Include" />
+          <e p="20171229023624_InitialMigration.cs" t="Include" />
           <e p="CustomerDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="ReservationDb" t="Include">
-          <e p="20171229023708_InitialMigration.cs" t="Include" />
           <e p="20171229023708_InitialMigration.Designer.cs" t="Include" />
+          <e p="20171229023708_InitialMigration.cs" t="Include" />
           <e p="ReservationDbContextModelSnapshot.cs" t="Include" />
         </e>
       </e>
@@ -57,7 +58,6 @@
         <e p="ActivityRepository.cs" t="Include" />
         <e p="Address.cs" t="Include" />
         <e p="ApplicationDbContext.cs" t="Include" />
-        <e p="ApplicationUser.cs" t="Include" />
         <e p="Calendar.cs" t="Include" />
         <e p="Country.cs" t="Include" />
         <e p="Customer.cs" t="Include" />
@@ -70,25 +70,15 @@
         <e p="ReservationDbContext.cs" t="Include" />
         <e p="State.cs" t="Include" />
       </e>
-      <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
-          <e p="netcoreapp2.0" t="Include">
-            <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
-          </e>
-        </e>
-      </e>
-      <e p="package-lock.json" t="Include" />
-      <e p="package.json" t="Include" />
-      <e p="packages" t="ExcludeRecursive" />
       <e p="Program.cs" t="Include" />
       <e p="Project_Readme.html" t="Include" />
       <e p="Properties" t="Include">
-        <e p="launchSettings.json" t="Include" />
         <e p="PublishProfiles" t="Include">
           <e p="MacsASPNETCore2016 - Web Deploy-publish.ps1" t="Include" />
           <e p="macscampingarea - Web Deploy-publish.ps1" t="Include" />
           <e p="publish-module.psm1" t="Include" />
         </e>
+        <e p="launchSettings.json" t="Include" />
       </e>
       <e p="README.md" t="Include" />
       <e p="Service References" t="Include">
@@ -105,44 +95,46 @@
       <e p="Startup.cs" t="Include" />
       <e p="ViewModels" t="Include">
         <e p="Account" t="Include">
-          <e p="ExternalLoginConfirmationViewModel.cs" t="Include" />
+          <e p="ExternalLoginViewModel.cs" t="Include" />
           <e p="ForgotPasswordViewModel.cs" t="Include" />
           <e p="LoginViewModel.cs" t="Include" />
+          <e p="LoginWith2faViewModel.cs" t="Include" />
+          <e p="LoginWithRecoveryCodeViewModel.cs" t="Include" />
           <e p="RegisterViewModel.cs" t="Include" />
           <e p="ResetPasswordViewModel.cs" t="Include" />
-          <e p="SendCodeViewModel.cs" t="Include" />
-          <e p="VerifyCodeViewModel.cs" t="Include" />
         </e>
         <e p="ActivityViewModel.cs" t="Include" />
+        <e p="ApplicationRole.cs" t="Include" />
+        <e p="ApplicationUser.cs" t="Include" />
         <e p="ContactViewModel.cs" t="Include" />
+        <e p="ErrorViewModel.cs" t="Include" />
         <e p="Manage" t="Include">
-          <e p="AddPhoneNumberViewModel.cs" t="Include" />
           <e p="ChangePasswordViewModel.cs" t="Include" />
-          <e p="ConfigureTwoFactorViewModel.cs" t="Include" />
-          <e p="FactorViewModel.cs" t="Include" />
+          <e p="EnableAuthenticatorViewModel.cs" t="Include" />
+          <e p="ExternalLoginsViewModel.cs" t="Include" />
+          <e p="GenerateRecoveryCodesViewModel.cs" t="Include" />
           <e p="IndexViewModel.cs" t="Include" />
-          <e p="ManageLoginsViewModel.cs" t="Include" />
           <e p="RemoveLoginViewModel.cs" t="Include" />
           <e p="SetPasswordViewModel.cs" t="Include" />
-          <e p="VerifyPhoneNumberViewModel.cs" t="Include" />
+          <e p="ShowRecoveryCodesViewModel.cs" t="Include" />
+          <e p="TwoFactorAuthenticationViewModel.cs" t="Include" />
         </e>
       </e>
       <e p="Views" t="Include">
-        <e p="_ViewImports.cshtml" t="Include" />
-        <e p="_ViewStart.cshtml" t="Include" />
         <e p="Account" t="Include">
+          <e p="AccessDenied.cshtml" t="Include" />
           <e p="ConfirmEmail.cshtml" t="Include" />
-          <e p="ExternalLoginConfirmation.cshtml" t="Include" />
-          <e p="ExternalLoginFailure.cshtml" t="Include" />
+          <e p="ExternalLogin.cshtml" t="Include" />
           <e p="ForgotPassword.cshtml" t="Include" />
           <e p="ForgotPasswordConfirmation.cshtml" t="Include" />
           <e p="Lockout.cshtml" t="Include" />
           <e p="Login.cshtml" t="Include" />
+          <e p="LoginWith2fa.cshtml" t="Include" />
+          <e p="LoginWithRecoveryCode.cshtml" t="Include" />
           <e p="Register.cshtml" t="Include" />
           <e p="ResetPassword.cshtml" t="Include" />
           <e p="ResetPasswordConfirmation.cshtml" t="Include" />
-          <e p="SendCode.cshtml" t="Include" />
-          <e p="VerifyCode.cshtml" t="Include" />
+          <e p="SignedOut.cshtml" t="Include" />
         </e>
         <e p="Home" t="Include">
           <e p="About.cshtml" t="Include" />
@@ -151,24 +143,56 @@
           <e p="Contact.cshtml" t="Include" />
           <e p="Index.cshtml" t="Include" />
           <e p="Memoriam.cshtml" t="Include" />
-          <e p="Rates.cshtml" t="Include" />
           <e p="RV.cshtml" t="Include" />
+          <e p="Rates.cshtml" t="Include" />
         </e>
         <e p="Manage" t="Include">
-          <e p="AddPhoneNumber.cshtml" t="Include" />
           <e p="ChangePassword.cshtml" t="Include" />
+          <e p="Disable2fa.cshtml" t="Include" />
+          <e p="EnableAuthenticator.cshtml" t="Include" />
+          <e p="ExternalLogins.cshtml" t="Include" />
+          <e p="GenerateRecoveryCodes.cshtml" t="Include" />
           <e p="Index.cshtml" t="Include" />
-          <e p="ManageLogins.cshtml" t="Include" />
+          <e p="ManageNavPages.cs" t="Include" />
+          <e p="ResetAuthenticator.cshtml" t="Include" />
+          <e p="SendVerificationEmail.cshtml" t="Include" />
           <e p="SetPassword.cshtml" t="Include" />
-          <e p="VerifyPhoneNumber.cshtml" t="Include" />
+          <e p="ShowRecoveryCodes.cshtml" t="Include" />
+          <e p="TwoFactorAuthentication.cshtml" t="Include" />
+          <e p="_Layout.cshtml" t="Include" />
+          <e p="_ManageNav.cshtml" t="Include" />
+          <e p="_StatusMessage.cshtml" t="Include" />
+          <e p="_ViewImports.cshtml" t="Include" />
         </e>
         <e p="Shared" t="Include">
+          <e p="Error.cshtml" t="Include" />
           <e p="_Layout.cshtml" t="Include" />
           <e p="_LoginPartial.cshtml" t="Include" />
           <e p="_ValidationScriptsPartial.cshtml" t="Include" />
-          <e p="Error.cshtml" t="Include" />
+        </e>
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="_ViewStart.cshtml" t="Include" />
+      </e>
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="bower.json" t="Include" />
+      <e p="bundleconfig.json" t="Include" />
+      <e p="compilerconfig.json" t="Include" />
+      <e p="compilerconfig.json.defaults" t="Include" />
+      <e p="create_EFMigrationsTable.sql" t="Include" />
+      <e p="gulpfile.js" t="Include" />
+      <e p="hosting.json" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.0" t="Include">
+            <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
+          </e>
         </e>
       </e>
+      <e p="package-lock.json" t="Include" />
+      <e p="package.json" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
       <e p="web.config" t="Include" />
       <e p="wwwroot" t="Include">
         <e p="_references.js" t="Include" />
@@ -184,6 +208,8 @@
           <e p="1097.JPG" t="Include" />
           <e p="20140607_102523.jpg" t="Include" />
           <e p="20140607_104304_1.jpg" t="Include" />
+          <e p="DSCN0666.JPG" t="Include" />
+          <e p="P1030446.JPG" t="Include" />
           <e p="activityslide" t="Include">
             <e p="1248.JPG" t="Include" />
             <e p="1256.JPG" t="Include" />
@@ -199,17 +225,16 @@
           <e p="cake walk winners.jpg" t="Include" />
           <e p="christmas in july CROPPED.jpg" t="Include" />
           <e p="christmas-in-july.jpg" t="Include" />
-          <e p="DSCN0666.JPG" t="Include" />
           <e p="fishing-derby.jpg" t="Include" />
           <e p="fishing-off-dock.jpg" t="Include" />
           <e p="grandpa" t="Include">
             <e p="1221.JPG" t="Include" />
             <e p="663.JPG" t="Include" />
             <e p="666.JPG" t="Include" />
+            <e p="DSCN0678.JPG" t="Include" />
             <e p="cart-mac-and-faye.jpg" t="Include" />
             <e p="dad-flag.jpg" t="Include" />
             <e p="dad-wedding.jpg" t="Include" />
-            <e p="DSCN0678.JPG" t="Include" />
             <e p="grandpa-med-size.jpg" t="Include" />
             <e p="lawrence-and-mac.jpg" t="Include" />
             <e p="mac-and-carrie.jpg" t="Include" />
@@ -221,18 +246,17 @@
             <e p="st-paddy-mac-and-faye.jpg" t="Include" />
           </e>
           <e p="lake.JPG" t="Include" />
-          <e p="P1030446.JPG" t="Include" />
           <e p="titleslide" t="Include">
-            <e p="camp.jpg" t="Include" />
             <e p="DSCN0659.JPG" t="Include" />
             <e p="DSCN0666.JPG" t="Include" />
             <e p="DSCN0667.JPG" t="Include" />
-            <e p="horseshoe.JPG" t="Include" />
             <e p="P1030444.JPG" t="Include" />
             <e p="P1030446.JPG" t="Include" />
             <e p="P1030448.JPG" t="Include" />
             <e p="P1030453.JPG" t="Include" />
             <e p="P1030456.JPG" t="Include" />
+            <e p="camp.jpg" t="Include" />
+            <e p="horseshoe.JPG" t="Include" />
           </e>
           <e p="trailer1" t="Include">
             <e p="DSCN0668.JPG" t="Include" />
@@ -268,41 +292,56 @@
           <e p="Activities.es5.js" t="Include" />
           <e p="Activities.es5.min.js" t="Include" />
           <e p="Activities.js" t="Include" />
-          <e p="contactForm.js" t="Include" />
           <e p="Index.js" t="Include" />
-          <e p="map.js" t="Include" />
           <e p="Memoriam.js" t="Include" />
           <e p="RV.js" t="Include" />
+          <e p="contactForm.js" t="Include" />
+          <e p="map.js" t="Include" />
           <e p="site.js" t="Include" />
           <e p="site.min.js" t="Include" />
         </e>
         <e p="lib" t="Include">
+          <e p="Microsoft.jQuery.Unobtrusive.Ajax" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="bower.json" t="Include" />
+            <e p="jquery.unobtrusive-ajax.js" t="Include" />
+            <e p="jquery.unobtrusive-ajax.min.js" t="Include" />
+          </e>
+          <e p="Microsoft.jQuery.Unobtrusive.Validation" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="bower.json" t="Include" />
+            <e p="jquery.validate.unobtrusive.js" t="Include" />
+            <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+          </e>
           <e p="angular" t="Include">
             <e p=".bower.json" t="Include" />
+            <e p="README.md" t="Include" />
             <e p="angular-csp.css" t="Include" />
             <e p="angular.js" t="Include" />
             <e p="angular.min.js" t="Include" />
             <e p="angular.min.js.gzip" t="Include" />
             <e p="angular.min.js.map" t="Include" />
             <e p="bower.json" t="Include" />
-            <e p="Index.js" t="Include" />
+            <e p="index.js" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
           </e>
           <e p="angular-slick" t="Include">
             <e p=".bower.json" t="Include" />
             <e p=".bowerrc" t="Include" />
+            <e p="LICENCE" t="Include" />
             <e p="bower.json" t="Include" />
             <e p="dist" t="Include">
               <e p="slick.js" t="Include" />
               <e p="slick.min.js" t="Include" />
             </e>
-            <e p="LICENCE" t="Include" />
           </e>
           <e p="bootstrap" t="Include">
             <e p=".bower.json" t="Include" />
-            <e p="bower.json" t="Include" />
             <e p="CHANGELOG.md" t="Include" />
+            <e p="Gruntfile.js" t="Include" />
+            <e p="LICENSE" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="bower.json" t="Include" />
             <e p="dist" t="Include">
               <e p="css" t="Include">
                 <e p="bootstrap.css" t="Include" />
@@ -319,18 +358,15 @@
               <e p="configBridge.json" t="Include" />
               <e p="sauce_browsers.yml" t="Include" />
             </e>
-            <e p="Gruntfile.js" t="Include" />
             <e p="js" t="Include">
               <e p=".jscsrc" t="Include" />
             </e>
-            <e p="LICENSE" t="Include" />
             <e p="nuget" t="Include">
-              <e p="bootstrap.nuspec" t="Include" />
               <e p="MyGet.ps1" t="Include" />
+              <e p="bootstrap.nuspec" t="Include" />
             </e>
             <e p="package.js" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
           </e>
           <e p="grunt" t="Include">
             <e p=".bower.json" t="Include" />
@@ -339,14 +375,16 @@
             <e p=".jscsrc" t="Include" />
             <e p=".jshintrc" t="Include" />
             <e p=".travis.yml" t="Include" />
-            <e p="appveyor.yml" t="Include" />
             <e p="AUTHORS" t="Include" />
             <e p="CHANGELOG" t="Include" />
             <e p="CONTRIBUTING.md" t="Include" />
+            <e p="Gruntfile.js" t="Include" />
+            <e p="LICENSE" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="appveyor.yml" t="Include" />
             <e p="docs" t="Include">
               <e p="README.md" t="Include" />
             </e>
-            <e p="Gruntfile.js" t="Include" />
             <e p="internal-tasks" t="Include">
               <e p="bump.js" t="Include" />
               <e p="subgrunt.js" t="Include" />
@@ -368,18 +406,18 @@
                 <e p="task.js" t="Include" />
               </e>
             </e>
-            <e p="LICENSE" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="test" t="Include">
               <e p="fixtures" t="Include">
+                <e p="BOM.txt" t="Include" />
+                <e p="Gruntfile-cli.js" t="Include" />
                 <e p="a.js" t="Include" />
                 <e p="b.js" t="Include" />
                 <e p="banner.js" t="Include" />
                 <e p="banner2.js" t="Include" />
                 <e p="banner3.js" t="Include" />
-                <e p="BOM.txt" t="Include" />
                 <e p="expand" t="Include">
+                  <e p="README.md" t="Include" />
                   <e p="css" t="Include">
                     <e p="baz.css" t="Include" />
                     <e p="qux.css" t="Include" />
@@ -397,7 +435,6 @@
                     <e p="bar.js" t="Include" />
                     <e p="foo.js" t="Include" />
                   </e>
-                  <e p="README.md" t="Include" />
                 </e>
                 <e p="expand-mapping-ext" t="Include">
                   <e p="dir.ectory" t="Include">
@@ -423,7 +460,6 @@
                     <e p="file2.js" t="Include" />
                   </e>
                 </e>
-                <e p="Gruntfile-cli.js" t="Include" />
                 <e p="iso-8859-1.json" t="Include" />
                 <e p="iso-8859-1.txt" t="Include" />
                 <e p="iso-8859-1.yaml" t="Include" />
@@ -465,19 +501,19 @@
             <e p=".jshintignore" t="Include" />
             <e p=".jshintrc" t="Include" />
             <e p=".travis.yml" t="Include" />
-            <e p="appveyor.yml" t="Include" />
             <e p="AUTHORS" t="Include" />
             <e p="CHANGELOG" t="Include" />
             <e p="CONTRIBUTING.md" t="Include" />
+            <e p="Gruntfile.js" t="Include" />
+            <e p="LICENSE-MIT" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="appveyor.yml" t="Include" />
             <e p="docs" t="Include">
               <e p="jshint-examples.md" t="Include" />
               <e p="jshint-options.md" t="Include" />
               <e p="jshint-overview.md" t="Include" />
             </e>
-            <e p="Gruntfile.js" t="Include" />
-            <e p="LICENSE-MIT" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="tasks" t="Include">
               <e p="jshint.js" t="Include" />
               <e p="lib" t="Include">
@@ -503,19 +539,19 @@
             <e p=".gitignore" t="Include" />
             <e p=".jshintrc" t="Include" />
             <e p=".travis.yml" t="Include" />
-            <e p="appveyor.yml" t="Include" />
             <e p="AUTHORS" t="Include" />
             <e p="CHANGELOG" t="Include" />
             <e p="CONTRIBUTING.md" t="Include" />
+            <e p="Gruntfile.js" t="Include" />
+            <e p="LICENSE-MIT" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="appveyor.yml" t="Include" />
             <e p="docs" t="Include">
               <e p="uglify-examples.md" t="Include" />
               <e p="uglify-options.md" t="Include" />
               <e p="uglify-overview.md" t="Include" />
             </e>
-            <e p="Gruntfile.js" t="Include" />
-            <e p="LICENSE-MIT" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="tasks" t="Include">
               <e p="lib" t="Include">
                 <e p="uglify.js" t="Include" />
@@ -661,13 +697,13 @@
               <e p="data" t="Include">
                 <e p="Data.js" t="Include" />
               </e>
-              <e p="Data.js" t="Include" />
+              <e p="data.js" t="Include" />
               <e p="deferred.js" t="Include" />
               <e p="deprecated.js" t="Include" />
               <e p="dimensions.js" t="Include" />
               <e p="effects" t="Include">
-                <e p="animatedSelector.js" t="Include" />
                 <e p="Tween.js" t="Include" />
+                <e p="animatedSelector.js" t="Include" />
               </e>
               <e p="effects.js" t="Include" />
               <e p="event" t="Include">
@@ -723,13 +759,13 @@
           <e p="jquery-ui" t="Include">
             <e p=".bower.json" t="Include" />
             <e p=".gitignore" t="Include" />
+            <e p="README.md" t="Include" />
             <e p="bower.json" t="Include" />
             <e p="component.json" t="Include" />
             <e p="composer.json" t="Include" />
             <e p="jquery-ui.js" t="Include" />
             <e p="jquery-ui.min.js" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="themes" t="Include">
               <e p="base" t="Include">
                 <e p="accordion.css" t="Include" />
@@ -1318,16 +1354,16 @@
           </e>
           <e p="jquery-validation" t="Include">
             <e p=".bower.json" t="Include" />
+            <e p="CONTRIBUTING.md" t="Include" />
+            <e p="Gruntfile.js" t="Include" />
+            <e p="LICENSE.md" t="Include" />
+            <e p="README.md" t="Include" />
             <e p="bower.json" t="Include" />
             <e p="build" t="Include">
               <e p="release.js" t="Include" />
             </e>
-            <e p="CHANGELOG.md" t="Include" />
-            <e p="CONTRIBUTING.md" t="Include" />
-            <e p="Gruntfile.js" t="Include" />
-            <e p="LICENSE.md" t="Include" />
+            <e p="changelog.md" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="src" t="Include">
               <e p="additional" t="Include">
                 <e p="accept.js" t="Include" />
@@ -1359,11 +1395,11 @@
                 <e p="nowhitespace.js" t="Include" />
                 <e p="pattern.js" t="Include" />
                 <e p="phoneNL.js" t="Include" />
-                <e p="phonesUK.js" t="Include" />
                 <e p="phoneUK.js" t="Include" />
                 <e p="phoneUS.js" t="Include" />
-                <e p="postalcodeBR.js" t="Include" />
+                <e p="phonesUK.js" t="Include" />
                 <e p="postalCodeCA.js" t="Include" />
+                <e p="postalcodeBR.js" t="Include" />
                 <e p="postalcodeIT.js" t="Include" />
                 <e p="postalcodeNL.js" t="Include" />
                 <e p="postcodeUK.js" t="Include" />
@@ -1450,16 +1486,16 @@
           </e>
           <e p="jquery.validation" t="Include">
             <e p=".bower.json" t="Include" />
+            <e p="CONTRIBUTING.md" t="Include" />
+            <e p="Gruntfile.js" t="Include" />
+            <e p="LICENSE.md" t="Include" />
+            <e p="README.md" t="Include" />
             <e p="bower.json" t="Include" />
             <e p="build" t="Include">
               <e p="release.js" t="Include" />
             </e>
-            <e p="CHANGELOG.md" t="Include" />
-            <e p="CONTRIBUTING.md" t="Include" />
-            <e p="Gruntfile.js" t="Include" />
-            <e p="LICENSE.md" t="Include" />
+            <e p="changelog.md" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="src" t="Include">
               <e p="additional" t="Include">
                 <e p="accept.js" t="Include" />
@@ -1492,11 +1528,11 @@
                 <e p="nowhitespace.js" t="Include" />
                 <e p="pattern.js" t="Include" />
                 <e p="phoneNL.js" t="Include" />
-                <e p="phonesUK.js" t="Include" />
                 <e p="phoneUK.js" t="Include" />
                 <e p="phoneUS.js" t="Include" />
-                <e p="postalcodeBR.js" t="Include" />
+                <e p="phonesUK.js" t="Include" />
                 <e p="postalCodeCA.js" t="Include" />
+                <e p="postalcodeBR.js" t="Include" />
                 <e p="postalcodeIT.js" t="Include" />
                 <e p="postalcodeNL.js" t="Include" />
                 <e p="postcodeUK.js" t="Include" />
@@ -1576,18 +1612,6 @@
             </e>
             <e p="validation.jquery.json" t="Include" />
           </e>
-          <e p="Microsoft.jQuery.Unobtrusive.Ajax" t="Include">
-            <e p=".bower.json" t="Include" />
-            <e p="bower.json" t="Include" />
-            <e p="jquery.unobtrusive-ajax.js" t="Include" />
-            <e p="jquery.unobtrusive-ajax.min.js" t="Include" />
-          </e>
-          <e p="Microsoft.jQuery.Unobtrusive.Validation" t="Include">
-            <e p=".bower.json" t="Include" />
-            <e p="bower.json" t="Include" />
-            <e p="jquery.validate.unobtrusive.js" t="Include" />
-            <e p="jquery.validate.unobtrusive.min.js" t="Include" />
-          </e>
           <e p="modernizr" t="Include">
             <e p="feature-detects" t="Include">
               <e p="a" t="Include">
@@ -1597,9 +1621,10 @@
           </e>
           <e p="moment" t="Include">
             <e p=".bower.json" t="Include" />
-            <e p="bower.json" t="Include" />
             <e p="CHANGELOG.md" t="Include" />
             <e p="LICENSE" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="bower.json" t="Include" />
             <e p="locale" t="Include">
               <e p="af.js" t="Include" />
               <e p="ar-ma.js" t="Include" />
@@ -1696,7 +1721,6 @@
               <e p="tests.js" t="Include" />
             </e>
             <e p="moment.js" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="src" t="Include">
               <e p="lib" t="Include">
                 <e p="create" t="Include">
@@ -1906,15 +1930,15 @@
             <e p=".gitignore" t="Include" />
             <e p=".travis.yml" t="Include" />
             <e p="CHANGELOG.md" t="Include" />
-            <e p="Index.js" t="Include" />
+            <e p="MIT.LICENSE" t="Include" />
+            <e p="README.md" t="Include" />
+            <e p="index.js" t="Include" />
             <e p="lib" t="Include">
               <e p="email.js" t="Include" />
               <e p="file_handler.js" t="Include" />
               <e p="sendgrid.js" t="Include" />
             </e>
-            <e p="MIT.LICENSE" t="Include" />
             <e p="package.json" t="Include" />
-            <e p="README.md" t="Include" />
             <e p="test" t="Include">
               <e p="assets" t="Include">
                 <e p="logo.png" t="Include" />
@@ -1936,13 +1960,13 @@
           </e>
           <e p="slick-carousel" t="Include">
             <e p=".bower.json" t="Include" />
-            <e p="bower.json" t="Include" />
-            <e p="component.json" t="Include" />
             <e p="CONTRIBUTING.markdown" t="Include" />
             <e p="LICENSE" t="Include" />
             <e p="Makefile" t="Include" />
-            <e p="package.json" t="Include" />
             <e p="README.markdown" t="Include" />
+            <e p="bower.json" t="Include" />
+            <e p="component.json" t="Include" />
+            <e p="package.json" t="Include" />
             <e p="slick" t="Include">
               <e p="ajax-loader.gif" t="Include" />
               <e p="config.rb" t="Include" />
@@ -1963,9 +1987,9 @@
           </e>
           <e p="underscore" t="Include">
             <e p=".bower.json" t="Include" />
-            <e p="bower.json" t="Include" />
             <e p="LICENSE" t="Include" />
             <e p="README.md" t="Include" />
+            <e p="bower.json" t="Include" />
             <e p="underscore-min.js" t="Include" />
             <e p="underscore-min.map" t="Include" />
             <e p="underscore.js" t="Include" />
@@ -1974,6 +1998,5 @@
         <e p="web.config" t="Include" />
       </e>
     </e>
-    <e p="C:\Users\maste\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_MacsASPNETCore.-412206951.00" t="ExcludeRecursive" />
   </component>
 </project>

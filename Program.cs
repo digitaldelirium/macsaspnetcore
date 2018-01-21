@@ -4,6 +4,7 @@ using MacsASPNETCore;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mime;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -41,10 +42,10 @@ namespace MacsASPNETCore
         
         public static void Main(string[] args)
         {
+
+            var host = BuildWebHost(args);
             
-            BuildWebHost(args).Run();
-            
- /*           using (var scope = host.Services.CreateScope())
+            using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
 
@@ -57,10 +58,12 @@ namespace MacsASPNETCore
                 {
                     Console.WriteLine(e);
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(e, "An error occurred seeding the DB.");
+                    logger.LogError(e, "An error occurred seeding the Activity DB.");
                     throw;
                 }
-            } */
+            }
+            
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args)
@@ -86,6 +89,7 @@ namespace MacsASPNETCore
                     options.Listen(IPAddress.Loopback, 5001,
                         listenOptions => { listenOptions.UseHttps(_pfxCert); });
                 })
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseApplicationInsights();
 
