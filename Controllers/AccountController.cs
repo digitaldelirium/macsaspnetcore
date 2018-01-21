@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -62,7 +63,7 @@ namespace MacsASPNETCore.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -294,7 +295,8 @@ namespace MacsASPNETCore.Controllers
                 ViewData["ReturnUrl"] = returnUrl;
                 ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return View("ExternalLogin", new ExternalLoginViewModel { Email = email });
+                var firstName = info.Principal.FindFirstValue(ClaimTypes.GivenName);
+                return View("ExternalLogin", new ExternalLoginViewModel { Email = email, UserName = firstName});
             }
         }
 
@@ -311,7 +313,7 @@ namespace MacsASPNETCore.Controllers
                 {
                     throw new ApplicationException("Error loading external login information during confirmation.");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -320,6 +322,20 @@ namespace MacsASPNETCore.Controllers
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        switch (user.NormalizedEmail)
+                        {
+                                case "IAN.CORNETT@OUTLOOK.COM":
+                                case "IAN.CORNETT@GMAIL.COM":
+                                    _userManager.AddToRoleAsync(user, "Administrators");
+                                    break;
+                                case "JANMICKEYDEE62@COMCAST.NET":
+                                case "CUPIEDOLL81@GMAIL.COM":
+                                    _userManager.AddToRoleAsync(user, "Managers");
+                                    break;
+                                default:
+                                    _userManager.AddToRoleAsync(user, "Users");
+                                    break;
+                        }
                         return RedirectToLocal(returnUrl);
                     }
                 }
