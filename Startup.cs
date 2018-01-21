@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ using MacsASPNETCore.Services;
 using Microsoft.Extensions.Logging;
 using MacsASPNETCore.ViewModels;
 using AutoMapper;
+using AutoMapper.Mappers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -65,15 +67,24 @@ namespace MacsASPNETCore
                 .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
             
             services.AddScoped<IActivityRepository, ActivityRepository>();
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+                {
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequiredUniqueChars = 3;
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
+                    options.Lockout.MaxFailedAccessAttempts = 5;
+                    options.SignIn.RequireConfirmedEmail = true;
+                    // Each user must have a unique email
+                    options.User.RequireUniqueEmail = true;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddSingleton<IConfiguration>(Configuration);
             
-                // Require HTTPS
-                services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
-
+            // Require HTTPS
+            services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
+            
             services.AddMvc()
                 .AddJsonOptions(
                     opt => { opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); }
@@ -107,7 +118,7 @@ namespace MacsASPNETCore
 #endif
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -115,6 +126,8 @@ namespace MacsASPNETCore
             var options = new RewriteOptions()
                 .AddRedirectToHttps();
             app.UseRewriter(options);
+
+            CreateRoles(serviceProvider).Wait();
 
             if (env.IsDevelopment())
             {
@@ -156,8 +169,47 @@ namespace MacsASPNETCore
             app.UseMvc(routes => { routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"); });
         }
 
-        // Entry point for the application.
-        //public static void Main(string[] args) => WebHostBuilder.Run<Startup>(args);
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleMgr = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+            var usrMgr = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleNames = new string[]
+            {
+                "Administrators",
+                "Managers",
+                "Users",
+                "Guests"
+            };
+            IdentityResult roleResult;
+            
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await roleMgr.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    roleResult = await roleMgr.CreateAsync(new ApplicationRole(roleName));
+                }
+            }
+
+            var adminUser = new ApplicationUser
+            {
+                UserName = "Administrator",
+                Email = Configuration["AppSettings:AdminEmail"],
+                EmailConfirmed = true
+            };
+
+            string adminPwd = Configuration["AppSettings:AdminPassword"];
+            var user = await usrMgr.FindByEmailAsync(Configuration["AppSettings:AdminEmail"]);
+
+            if (user == null)
+            {
+                var createAdmin = await usrMgr.CreateAsync(adminUser, adminPwd);
+                if (createAdmin.Succeeded)
+                {
+                    await usrMgr.AddToRoleAsync(adminUser, "Administrators");
+                }
+            }
+        }
     }
 }
 
