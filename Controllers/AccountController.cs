@@ -326,14 +326,14 @@ namespace MacsASPNETCore.Controllers
                         {
                                 case "IAN.CORNETT@OUTLOOK.COM":
                                 case "IAN.CORNETT@GMAIL.COM":
-                                    _userManager.AddToRoleAsync(user, "Administrators");
+                                    _userManager.AddToRoleAsync(user, "Administrators").Wait();
                                     break;
                                 case "JANMICKEYDEE62@COMCAST.NET":
                                 case "CUPIEDOLL81@GMAIL.COM":
-                                    _userManager.AddToRoleAsync(user, "Managers");
+                                    _userManager.AddToRoleAsync(user, "Managers").Wait();
                                     break;
                                 default:
-                                    _userManager.AddToRoleAsync(user, "Users");
+                                    _userManager.AddToRoleAsync(user, "Users").Wait();
                                     break;
                         }
                         return RedirectToLocal(returnUrl);
