@@ -288,6 +288,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+.idea/contentModel.xml
 
 # CodeRush
 .cr/
@@ -320,3 +321,4 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
+.idea/.idea.MacsASPNETCore/.idea/contentModel.xml
