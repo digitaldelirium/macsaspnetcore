@@ -1,8 +1,6 @@
 FROM ubuntu:xenial
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    openssl \
-    apt-transport-https
+    apt-get install -y apt-transport-https
 
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | \
