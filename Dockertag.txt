@@ -1,1 +1,1 @@
-digitaldelirium/macsaspnetcore:latest
+macscampingarea/macscampingapp:latest
