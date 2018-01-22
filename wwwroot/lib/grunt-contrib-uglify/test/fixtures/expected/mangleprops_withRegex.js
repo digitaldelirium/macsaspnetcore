@@ -1,1 +1,0 @@
-var anObject={a:"val","#key2":"val2"};
