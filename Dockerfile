@@ -11,6 +11,14 @@ FROM build AS publish
 RUN dotnet publish -c Release -o /app
 
 FROM microsoft/aspnetcore:2 as base
+RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list \
+ && apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893 \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends \
+    apt-transport-https \
+    openssl \
+    azure-cli \
+ && rm -rf /var/lib/apt/lists/*
 
 FROM base AS final
 WORKDIR /app
