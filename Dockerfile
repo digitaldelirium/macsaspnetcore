@@ -11,22 +11,10 @@ RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheez
     azure-cli \
  && rm -rf /var/lib/apt/lists/*
 
-FROM microsoft/aspnetcore-build:2 AS build
-WORKDIR /src
-COPY *.sln ./
-COPY ./MacsASPNETCore.csproj macsaspnetcore/
-WORKDIR /src/macsaspnetcore
-RUN dotnet restore
-COPY . .
-RUN dotnet build -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish -c Release -o /app
-
 FROM microsoft/aspnetcore:2 as base
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY #{Build.ArtifactStagingDirectory}# /app .
 EXPOSE 443/tcp
 ENTRYPOINT ["dotnet", "MacsASPNETCore.dll"]
