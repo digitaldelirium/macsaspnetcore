@@ -122,6 +122,20 @@ namespace MacsASPNETCore
                 }
       
             }
+            else if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging"){
+                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
+                if(!File.Exists(certPath)){
+                    try {
+                        var rawBytes = Encoding.ASCII.GetBytes(_configuration["Certificates:MacsVM:PFX"]);
+                        pfx = new X509Certificate2(rawBytes);
+                    }
+                    catch (CryptographicException exception)
+                    {
+                        Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
+                        Exit(5);
+                    }
+                }
+            }
             else
             {
                 var keyVaultCert = GetKeyVaultCert().Result ?? throw new ArgumentNullException("GetKeyVaultCert().Result");
