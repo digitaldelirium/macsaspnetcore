@@ -101,7 +101,7 @@ namespace MacsASPNETCore
             var pfx = new X509Certificate2();
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
-                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
+                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs-Dev.pfx";
                 if (File.Exists(certPath))
                 {
                     try
