@@ -8,10 +8,10 @@ COPY MacsASPNETCore.csproj .
 RUN dotnet restore
 COPY . .
 WORKDIR /src/
-RUN dotnet build -c Debug -o /app *.csproj
+RUN dotnet build -c #{BuildConfiguration}# -o /app *.csproj
 
 FROM build AS publish
-RUN dotnet publish -c Debug -o /app *.csproj
+RUN dotnet publish -c #{BuildConfiguration}# -o /app *.csproj
 
 FROM base AS final
 WORKDIR /app
