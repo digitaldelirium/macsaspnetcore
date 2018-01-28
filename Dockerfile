@@ -16,5 +16,5 @@ RUN dotnet publish -c #{BuildConfiguration}# -o /app *.csproj
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-RUN echo "#{Macs-Dev}" /app/Macs-Dev.pfx
+COPY ./Macs-Dev.pfx /app/Macs-Dev.pfx
 ENTRYPOINT ["dotnet", "MacsASPNETCore.dll"]
