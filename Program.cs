@@ -114,10 +114,21 @@ namespace MacsASPNETCore
                         }
                         pfx = new X509Certificate2(rawBytes, securePassword);
                     }
-                    catch (CryptographicException exception)
+                    catch (Exception exception)
                     {
-                        Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
-                        Exit(5);
+                        try {
+                            var rawBytes = File.ReadAllBytes(certPath);
+                            pfx = new X509Certificate2(rawBytes);
+                        }
+                        catch (CryptographicException ex){
+                            Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
+                            Exit(5);
+                        }
+                        catch (Exception ex){
+                            Console.WriteLine("Another error occurred, see exception details");
+                            Console.WriteLine(ex.Message);
+                            Console.WriteLine(ex.StackTrace);
+                        }
                     }
                 }
                 else
