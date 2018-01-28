@@ -61,14 +61,26 @@ namespace MacsASPNETCore
             var appdb = Configuration["Data:ApplicationDb"];
             var customerdb = Configuration["Data:CustomerDb"];
             var rezdb = Configuration["Data:ReservationDb"];
-            
+
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
-                .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerdb))
-                .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
-                .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
-            
+            if (Environment.IsDevelopment())
+            {
+                services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
+                    .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerdb))
+                    .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
+                    .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
+            }
+            else
+            {
+
+                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
+                    .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerdb))
+                    .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
+                    .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
+
+            }
+
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 {

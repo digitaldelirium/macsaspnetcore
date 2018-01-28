@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Reflection;
+using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -85,12 +86,11 @@ namespace MacsASPNETCore
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Loopback, 5000);
-                    options.Listen(IPAddress.Loopback, 5001,
+                    options.Listen(IPAddress.Loopback, 80);
+                    options.Listen(IPAddress.Loopback, 443,
                         listenOptions => { listenOptions.UseHttps(_pfxCert); });
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseApplicationInsights();
 
             return host.Build();
@@ -107,7 +107,12 @@ namespace MacsASPNETCore
                     try
                     {
                         var rawBytes = File.ReadAllBytes(certPath);
-                        pfx = new X509Certificate2(rawBytes);
+                        var securePassword = new SecureString();
+                        foreach (var c in "developer")
+                        {
+                            securePassword.AppendChar(c);
+                        }
+                        pfx = new X509Certificate2(rawBytes, securePassword);
                     }
                     catch (CryptographicException exception)
                     {
