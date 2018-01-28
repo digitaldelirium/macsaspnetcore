@@ -1,6 +1,6 @@
 FROM microsoft/aspnetcore:2.0 AS base
 WORKDIR /app
-EXPOSE 5000 5001
+EXPOSE 443 80
 
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
@@ -16,5 +16,5 @@ RUN dotnet publish -c Debug -o /app *.csproj
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ADD ./Macs-Dev.pfx /app/Macs-Dev.pfx
+RUN echo "" /app/Macs-Dev.pfx
 ENTRYPOINT ["dotnet", "MacsASPNETCore.dll"]
