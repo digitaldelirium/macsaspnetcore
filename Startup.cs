@@ -46,6 +46,7 @@ namespace MacsASPNETCore
                 builder.AddJsonFile("appsetttings.json", optional: false);
             }
 
+            builder.AddJsonFile("hosting.json", optional: false);
             builder.AddEnvironmentVariables();
 
             Configuration = builder.Build();

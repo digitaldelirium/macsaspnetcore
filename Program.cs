@@ -128,6 +128,7 @@ namespace MacsASPNETCore
                             Console.WriteLine("Another error occurred, see exception details");
                             Console.WriteLine(ex.Message);
                             Console.WriteLine(ex.StackTrace);
+                            Exit(6);
                         }
                     }
                 }
