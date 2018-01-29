@@ -62,4 +62,4 @@
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
 
-Dockerfile merge=ours
+#Dockerfile merge=ours

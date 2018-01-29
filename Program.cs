@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Reflection;
+using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -85,12 +86,11 @@ namespace MacsASPNETCore
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Loopback, 5000);
-                    options.Listen(IPAddress.Loopback, 5001,
+                    options.Listen(IPAddress.Loopback, 80);
+                    options.Listen(IPAddress.Loopback, 443,
                         listenOptions => { listenOptions.UseHttps(_pfxCert); });
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseApplicationInsights();
 
             return host.Build();
@@ -101,18 +101,35 @@ namespace MacsASPNETCore
             var pfx = new X509Certificate2();
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
-                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
+                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs-Dev.pfx";
                 if (File.Exists(certPath))
                 {
                     try
                     {
                         var rawBytes = File.ReadAllBytes(certPath);
-                        pfx = new X509Certificate2(rawBytes);
+                        var securePassword = new SecureString();
+                        foreach (var c in "developer")
+                        {
+                            securePassword.AppendChar(c);
+                        }
+                        pfx = new X509Certificate2(rawBytes, securePassword);
                     }
-                    catch (CryptographicException exception)
+                    catch (Exception exception)
                     {
-                        Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
-                        Exit(5);
+                        try {
+                            var rawBytes = File.ReadAllBytes(certPath);
+                            pfx = new X509Certificate2(rawBytes);
+                        }
+                        catch (CryptographicException ex){
+                            Console.WriteLine($"Could not open certificate!\n\n{ex.Message}");
+                            Exit(5);
+                        }
+                        catch (Exception ex){
+                            Console.WriteLine("Another error occurred, see exception details");
+                            Console.WriteLine(ex.Message);
+                            Console.WriteLine(ex.StackTrace);
+                            Exit(6);
+                        }
                     }
                 }
                 else

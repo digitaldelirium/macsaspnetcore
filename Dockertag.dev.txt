@@ -1,0 +1,3 @@
+macscampingarea/macsapp:development
+macscampingarea/macsapp:dev
+macscampingarea/macsapp:debug
