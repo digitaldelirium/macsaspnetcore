@@ -6,3 +6,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - "80"
+      - "443"
+    deploy:
+      replicas: 1
+      restart_policy: always
+  macsdb:
+    image: 
