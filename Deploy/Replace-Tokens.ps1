@@ -1,3 +1,4 @@
+#! /usr/bin/pwsh
 function Replace-Tokens {
     [CmdletBinding()]
     param (
