@@ -35,7 +35,7 @@ function Replace-Tokens {
             az login
         }
 
-        if(![string]::IsNullOrEmpty($SubscriptionId)){
+        if(!($SubscriptionId.Equals($null))){
             $accounts = az account list | ConvertFrom-Json
             az account set --subscription $SubscriptionId
         }
