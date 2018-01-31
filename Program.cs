@@ -114,7 +114,7 @@ namespace MacsASPNETCore
                         }
                         pfx = new X509Certificate2(rawBytes, securePassword);
                     }
-                    catch (Exception exception)
+                    catch (Exception)
                     {
                         try {
                             var rawBytes = File.ReadAllBytes(certPath);
