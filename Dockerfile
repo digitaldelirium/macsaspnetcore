@@ -1,6 +1,5 @@
 FROM microsoft/aspnetcore:2.0 AS base
 WORKDIR /app
-EXPOSE 443 80
 
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
@@ -17,4 +16,5 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 COPY ./Macs-Dev.pfx /app/Macs-Dev.pfx
+EXPOSE 443 80
 ENTRYPOINT ["dotnet", "MacsASPNETCore.dll"]
