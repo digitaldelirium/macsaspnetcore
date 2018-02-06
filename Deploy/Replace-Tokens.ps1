@@ -29,8 +29,7 @@ function Replace-Tokens {
     
     begin {
         if ($ClientId -ne $null) {
-            $password = ConvertTo-SecureString $ClientSecret -AsPlainText -Force
-            az login --service-principal --username $ClientId --password $password --tenant $TenantId
+            az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId
         }
         else {
             az login
@@ -41,7 +40,7 @@ function Replace-Tokens {
             az account set --subscription $SubscriptionId
         }
 
-        $script:kvSecrets = az keyvault secret list --vault-name $VaultName | ConvertFrom-Json
+        $script:kvSecrets = az keyvault secret list --vault-name $VaultName --maxresults 30 | ConvertFrom-Json
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
     }
     
@@ -58,22 +57,24 @@ function Replace-Tokens {
             $content = Get-Content $_.Name
             $x = 0
             foreach ($s in $content) {
-                [string]$r = s
-                if($s -match '#{+[a-z]+\W*[a-z]*}#+'){
-                    $token = $Matches.Values
-                    $token = $token.TrimStart(2).TrimEnd(2)
-                    $secretValue = $(az keyvault secret show --name $token --vault-name $VaultName) | ConvertFrom-Json | Select-Object -ExpandProperty value
+                if ($s -ne $null) {
+                    $r = $s
+                    if($s -match '#{+[a-z]+\W*[a-z]*}#+'){
+                        $token = $Matches.Values
+                        $token = $token.TrimStart(2).TrimEnd(2)
+                        $secretValue = $(az keyvault secret show --name $token --vault-name $VaultName) | ConvertFrom-Json | Select-Object -ExpandProperty value
 
-                    $r.Replace($Matches.Values, $secretValue)
-                }
+                        $r.Replace($Matches.Values, $secretValue)
+                    }
 
-                if (!$r.Equals($s)) {
-                    $content.Item($x) = $r
+                    if (!$r.Equals($s)) {
+                        $content.Item($x) = $r
+                    }
                 }
 
                 $x++ 
             }
-            Out-File -FilePath ./$_.Name -InputObject $content -Force
+            Out-File -FilePath ./$_ -InputObject $content -Force
         })
     }
     
@@ -84,7 +85,7 @@ function Replace-Tokens {
         $content = Get-Content .\Dockerfile
         foreach ($s in $content) {
             [int]$x = 0
-            [string]$r = $s
+            $r = $s
             if($s -match $tokenExp){
                 $token = $Matches.Values
                 $token = $token.TrimStart(2).TrimEnd(2)
