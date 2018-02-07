@@ -193,7 +193,7 @@ namespace MacsASPNETCore
             catch (Exception ex)
             {
                 Console.WriteLine($"There was a problem during the key vault operation\n{ex.Message}");
-                Exit(6);
+                throw;
             }
 
             return pfx;
