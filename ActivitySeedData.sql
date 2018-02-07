@@ -45,7 +45,7 @@ INSERT INTO [Activity] (Id,ActivityDescription,ActivityTitle,CalendarId,EndTime,
 INSERT INTO [Activity] (Id,ActivityDescription,ActivityTitle,CalendarId,EndTime,StartTime) VALUES (23,'We need your help! See Doug!','Docks in the Water',1,'2016-05-21 14:00:00','2016-05-21 10:30:00');
 INSERT INTO [Activity] (Id,ActivityDescription,ActivityTitle,CalendarId,EndTime,StartTime) VALUES (24,'If there are enough campers that want to play.<h5 style=''text-align: center; background-color: green;''>Cards will be 1 for $1.00 or 6 for $5.00</h5>','Bingo',1,'2016-07-03 21:00:00','2016-07-03 19:00:00');
 INSERT INTO [Activity] (Id,ActivityDescription,ActivityTitle,CalendarId,EndTime,StartTime) VALUES (25,'Food will be provided for your hard work. <br />Rain date: Oct 29th','Fall Cleanup',1,'2016-10-22 23:59:59','2016-10-22 09:00:00');
-INSERT INTO [Activity] (Id, CalendarId, ActivityTitle, ActivityDescription, StartTime, EndTime) VALUES (26, '2', 'Complimentary Continental Breakfast', 'at the docks before the Fishing Derby', '2017-06-03T07:00:00',
+/*INSERT INTO [Activity] (Id, CalendarId, ActivityTitle, ActivityDescription, StartTime, EndTime) VALUES (26, '2', 'Complimentary Continental Breakfast', 'at the docks before the Fishing Derby', '2017-06-03T07:00:00',
    '2017-06-03T08:30:00');
 INSERT INTO [Activity] (Id, CalendarId, ActivityTitle, ActivityDescription, StartTime, EndTime) VALUES
   (27,'2', 'Fishing Derby! <h5 style=''text-align: center; background-color: green;''>Free Fishing Day!!</h5>',
@@ -118,5 +118,5 @@ INSERT INTO [Activity] (Id, CalendarId, ActivityTitle, ActivityDescription, Star
 INSERT INTO [Activity] (Id, CalendarId, ActivityTitle, ActivityDescription, StartTime, EndTime) VALUES
   (45,'2', 'Fall Cleanup Rain Date (if necessary)',
    'Food will be provided for your hard work. Until it''s done!  Rain date is October 31st.', '2017-10-31T09:00:00',
-   '2017-10-31T23:59:59');
+   '2017-10-31T23:59:59'); */
 COMMIT;
