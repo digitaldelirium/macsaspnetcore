@@ -50,8 +50,10 @@ namespace MacsASPNETCore
             builder.AddEnvironmentVariables();
 
             Configuration = builder.Build();
+
+            var vaultName = Configuration["Azure:KeyVault:Vault"];
             builder.AddAzureKeyVault(
-                $"https://{Configuration["Azure:KeyVault:Vault"]}.vault.azure.net",
+                $"https://{vaultName}.vault.azure.net",
                 Configuration["Azure:KeyVault:ClientId"],
                 Configuration["Azure:KeyVault:ClientSecret"]);
         }
