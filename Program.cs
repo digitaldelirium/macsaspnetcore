@@ -174,9 +174,9 @@ namespace MacsASPNETCore
                 var config = builder.Build();
                 
                 builder.AddAzureKeyVault(
-                    config["Azure:KeyVault:Vault"],
-                    config["Azure:KeyVault:ClientId"],
-                    config["Azure:KeyVault:ClientSecret"]
+                    "macscampvault",
+                    "44c4e2a1-4b32-4d7b-b063-ab00907ab449",
+                    "#{client-secret}#"
                 );
 
                 var secret = config["macsvmssl"];
