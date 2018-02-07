@@ -183,13 +183,9 @@ namespace MacsASPNETCore
             {
                 var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
                 var certBundle = await kvClient
-                    .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl");
-#if DEBUG
-                Console.WriteLine(certBundle.Value);
-#endif
-                var rawBytes = Encoding.ASCII.GetBytes(certBundle.Value);
+                    .GetCertificateAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl");
                 
-                pfx = new X509Certificate2(rawBytes, "");
+                pfx = new X509Certificate2(certBundle.Cer);
 
             }
             catch (Exception ex)
