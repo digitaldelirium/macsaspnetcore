@@ -163,7 +163,7 @@ namespace MacsASPNETCore
                     catch (CryptographicException exception)
                     {
                         Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
-                        Exit(5);
+                        throw;
                     }
                 }
             }
@@ -183,7 +183,7 @@ namespace MacsASPNETCore
             {
                 var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
                 var certBundle = await kvClient
-                    .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl/74aee6540fb44c139d7c47c338932603");
+                    .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl");
 
                 var rawBytes = Encoding.ASCII.GetBytes(certBundle.Value);
                 
@@ -202,10 +202,10 @@ namespace MacsASPNETCore
         public static async Task<string> GetToken(string authority, string resource, string scope)
         {
             var authContext = new AuthenticationContext(authority);
-            Console.WriteLine($"ClientId = {_configuration["Azure:KeyVault:ClientId"]}");
-            Console.WriteLine($"ClientSecret = {_configuration["Azure:KeyVault:ClientSecret"]}");
-            var clientCredential = new ClientCredential(_configuration["Azure:KeyVault:ClientId"], 
-               _configuration["Azure:KeyVault:ClientSecret"]);
+            Console.WriteLine($"ClientId = 44c4e2a1-4b32-4d7b-b063-ab00907ab449");
+            Console.WriteLine($"ClientSecret = #{client-secret}#");
+            var clientCredential = new ClientCredential("44c4e2a1-4b32-4d7b-b063-ab00907ab449", 
+                "#{client-secret}#");
 
             var result = await authContext.AcquireTokenAsync(resource, clientCredential);
             
