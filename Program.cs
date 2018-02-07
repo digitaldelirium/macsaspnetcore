@@ -12,6 +12,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using MacsASPNETCore.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting.Internal;
@@ -77,6 +78,19 @@ namespace MacsASPNETCore
                         .AddJsonFile("hosting.json", optional: false)
                         .AddEnvironmentVariables();
 
+                    if (Environment.IsDevelopment())
+                    {
+                        config.AddJsonFile("appsettings.Development.json", optional: false);
+                    }
+                    else if (Environment.IsStaging())
+                    {
+                        config.AddJsonFile("appsettings.Staging.json", optional: false);
+                    }
+                    else
+                    {
+                        config.AddJsonFile("appsettings.json", optional: false);
+                    }
+                    
                     _configuration = config.Build();
 
                 });
@@ -140,7 +154,8 @@ namespace MacsASPNETCore
       
             }
             else if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging"){
-                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
+                var certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
+                
                 if(!File.Exists(certPath)){
                     try {
                         var rawBytes = Encoding.ASCII.GetBytes(_configuration["Certificates:MacsVM:PFX"]);
@@ -165,29 +180,14 @@ namespace MacsASPNETCore
         public static async Task<X509Certificate2> GetKeyVaultCert()
         {
             var pfx = new X509Certificate2();
-            var azureServiceTokenProvider = new AzureServiceTokenProvider();
             try
             {
-                IConfigurationBuilder builder = new ConfigurationBuilder();
-                builder.SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json")
-                    .AddJsonFile("hosting.json");
+                var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
+                var certBundle = await kvClient
+                    .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl/74aee6540fb44c139d7c47c338932603");
 
-                var config = builder.Build();
+                var rawBytes = Encoding.ASCII.GetBytes(certBundle.Value);
                 
-                builder.AddAzureKeyVault(
-                    "macscampvault",
-                    "44c4e2a1-4b32-4d7b-b063-ab00907ab449",
-                    config["Azure:KeyVault:ClientSecret"]
-                );
-
-#if DEBUG
-         Console.WriteLine(config["Azure:KeyVault:ClientSecret"]);       
-#endif                
-
-                var secret = config["macsvmssl"];
-
-                var rawBytes = Encoding.ASCII.GetBytes(secret);
                 pfx = new X509Certificate2(rawBytes);
 
             }
@@ -198,6 +198,20 @@ namespace MacsASPNETCore
             }
 
             return pfx;
+        }
+
+        public static async Task<string> GetToken(string authority, string resource, string scope)
+        {
+            var authContext = new AuthenticationContext(authority);
+            var clientCredential = new ClientCredential(_configuration["Azure:KeyVault:ClientId"], 
+               _configuration["Azure:KeyVault:ClientSecret"]);
+
+            var result = await authContext.AcquireTokenAsync(resource, clientCredential);
+            
+            if(result == null)
+                throw new InvalidOperationException("Failed to get Azure JWT Token");
+
+            return result.AccessToken;
         }
     }
 }
