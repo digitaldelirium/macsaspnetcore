@@ -52,9 +52,7 @@ namespace MacsASPNETCore
             Configuration = builder.Build();
 
             var vaultName = Configuration["Azure:KeyVault:Vault"];
-            Console.WriteLine("\n");
-            Console.WriteLine(vaultName);
-            Console.WriteLine("\n");
+
             builder.AddAzureKeyVault(
                 $"https://{vaultName}.vault.azure.net",
                 Configuration["Azure:KeyVault:ClientId"],
@@ -82,8 +80,7 @@ namespace MacsASPNETCore
 
                 services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
                     .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerdb))
-                    .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
-                    .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
+                    .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb));
 
             }
 
