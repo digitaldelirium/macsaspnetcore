@@ -1,20 +1,18 @@
-FROM microsoft/aspnetcore:2.0 AS base
-WORKDIR /app
-
 FROM microsoft/aspnetcore-build:2.0 AS build
+ARG BLDCONFIG
 WORKDIR /src
-COPY MacsASPNETCore.csproj .
+COPY *.sln ./
+COPY ./MacsASPNETCore.csproj macsaspnetcore/
+WORKDIR /src/macsaspnetcore
 RUN dotnet restore
 COPY . .
-WORKDIR /src/
-RUN dotnet build -c #{BuildConfiguration}# -o /app *.csproj
+RUN dotnet build -c ${BLDCONFIG} -o /app
 
 FROM build AS publish
-RUN dotnet publish -c #{BuildConfiguration}# -o /app *.csproj
+RUN dotnet publish -c ${BLDCONFIG} -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-COPY ./Macs-Dev.pfx /app/Macs-Dev.pfx
-EXPOSE 443 80
+EXPOSE 443/tcp
 ENTRYPOINT ["dotnet", "MacsASPNETCore.dll"]
