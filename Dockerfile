@@ -1,6 +1,5 @@
 FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
-COPY *.sln ./
 COPY ./MacsASPNETCore.csproj macsaspnetcore/
 WORKDIR /src/macsaspnetcore
 RUN dotnet restore
