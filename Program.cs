@@ -202,6 +202,8 @@ namespace MacsASPNETCore
         public static async Task<string> GetToken(string authority, string resource, string scope)
         {
             var authContext = new AuthenticationContext(authority);
+            Console.WriteLine($"ClientId = {_configuration["Azure:KeyVault:ClientId"]}");
+            Console.WriteLine($"ClientSecret = {_configuration["Azure:KeyVault:ClientSecret"]}");
             var clientCredential = new ClientCredential(_configuration["Azure:KeyVault:ClientId"], 
                _configuration["Azure:KeyVault:ClientSecret"]);
 
