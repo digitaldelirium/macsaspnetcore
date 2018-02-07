@@ -33,12 +33,12 @@ namespace MacsASPNETCore
     public class Program
     {
         private static IConfigurationRoot _configuration;
-        private static IHostingEnvironment _environment { get; set; }
-        private static X509Certificate2 _pfxCert { get; set; }
+        private static IHostingEnvironment Environment { get; set; }
+        private static X509Certificate2 PfxCert { get; set; }
         
         public Program(IHostingEnvironment environment)
         {
-            _environment = environment;
+            Environment = environment;
         }
         
         public static void Main(string[] args)
@@ -81,14 +81,14 @@ namespace MacsASPNETCore
 
                 });
 
-                _pfxCert = GetCertificate(_environment);
+                PfxCert = GetCertificate(Environment);
 
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
                     options.Listen(IPAddress.Loopback, 80);
                     options.Listen(IPAddress.Loopback, 443,
-                        listenOptions => { listenOptions.UseHttps(_pfxCert); });
+                        listenOptions => { listenOptions.UseHttps(PfxCert); });
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseApplicationInsights();
@@ -99,7 +99,7 @@ namespace MacsASPNETCore
         private static X509Certificate2 GetCertificate(IHostingEnvironment environment)
         {
             var pfx = new X509Certificate2();
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
                 string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs-Dev.pfx";
                 if (File.Exists(certPath))
@@ -139,7 +139,7 @@ namespace MacsASPNETCore
                 }
       
             }
-            else if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging"){
+            else if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging"){
                 string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
                 if(!File.Exists(certPath)){
                     try {
@@ -169,19 +169,25 @@ namespace MacsASPNETCore
             try
             {
                 IConfigurationBuilder builder = new ConfigurationBuilder();
-                builder.AddJsonFile("appsettings.json");
+                builder.SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .AddJsonFile("hosting.json");
 
                 var config = builder.Build();
                 
                 builder.AddAzureKeyVault(
                     "macscampvault",
                     "44c4e2a1-4b32-4d7b-b063-ab00907ab449",
-                    "#{client-secret}#"
+                    config["Azure:KeyVault:ClientSecret"]
                 );
+
+#if DEBUG
+         Console.WriteLine(config["Azure:KeyVault:ClientSecret"]);       
+#endif                
 
                 var secret = config["macsvmssl"];
 
-                byte[] rawBytes = Encoding.ASCII.GetBytes(secret);
+                var rawBytes = Encoding.ASCII.GetBytes(secret);
                 pfx = new X509Certificate2(rawBytes);
 
             }
