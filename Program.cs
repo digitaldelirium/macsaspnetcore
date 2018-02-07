@@ -76,19 +76,6 @@ namespace MacsASPNETCore
                     config.SetBasePath(Directory.GetCurrentDirectory())
                         .AddJsonFile("hosting.json", optional: false)
                         .AddEnvironmentVariables();
-
-                    if (Environment.IsDevelopment())
-                    {
-                        config.AddJsonFile("appsettings.Development.json", optional: false);
-                    }
-                    else if (Environment.IsStaging())
-                    {
-                        config.AddJsonFile("appsettings.Staging.json", optional: false);
-                    }
-                    else
-                    {
-                        config.AddJsonFile("appsettings.json", optional: false);
-                    }
                     
                     _configuration = config.Build();
 
