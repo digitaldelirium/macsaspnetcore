@@ -7,7 +7,7 @@ COPY . .
 RUN dotnet build -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app
 
 FROM build AS publish
-RUN dotnet publish -c #{BuildConfiguration}# -o /app
+RUN dotnet publish -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app
 
 FROM base AS final
 WORKDIR /app
