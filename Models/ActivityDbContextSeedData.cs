@@ -69,7 +69,7 @@ namespace MacsASPNETCore.Models {
                                 StartTime = new DateTime(2016, 8, 14, 8, 0, 0), EndTime = new DateTime(2016, 8, 14, 10, 0, 0), ActivityTitle = "Mac’s Traditional Breakfast", ActivityDescription =  "Choose from scrambled eggs, fried eggs, or French toast, served with home fries, bacon or sausage, toast, juice and coffee."
                             },
                             new Activity(){
-                                StartTime = new DateTime(2016, 8, 20, 18, 0, 0), EndTime = new DateTime(2016, 8, 20, 20, 0, 0), ActivityTitle = "Fallin’ Off the Bone Ribs & Chicken Barbeque Dinner", ActivityDescription = "¼ rack of ribs, chicken leg, potato, cole slaw, corn on the cob & dessert. <br /><p class='text-success'><em>We will need you to sign up for this dinner in advance to get a proper head count.</em></p>"
+                                StartTime = new DateTime(2016, 8, 20, 18, 0, 0), EndTime = new DateTime(2016, 8, 20, 20, 0, 0), ActivityTitle = "Fallin’ Off the Bone Ribs & Chicken Barbeque Dinner", ActivityDescription = "1/4 rack of ribs, chicken leg, potato, cole slaw, corn on the cob & dessert. <br /><p class='text-success'><em>We will need you to sign up for this dinner in advance to get a proper head count.</em></p>"
                             },
                             new Activity(){
                                 StartTime = new DateTime(2016, 9, 3, 12, 30, 0), EndTime = new DateTime(2016, 9, 3, 17, 0, 0), ActivityTitle = "Liz and Lynn's Campers Pool Potluck", ActivityDescription = "Please make sure you sign the potluck sheet. It will help her out.<br />She will have the campers pool and surprises throughout the day. <br />Come and join the fun! More details will follow."
