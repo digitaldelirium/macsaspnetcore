@@ -181,11 +181,9 @@ namespace MacsASPNETCore
 
                 var secret = config["macsvmssl"];
 
-                if (secret.ContentType.Equals("application/x-pkcs12"))
-                {
-                    byte[] rawBytes = Encoding.ASCII.GetBytes(secret.Value);
-                    pfx = new X509Certificate2(rawBytes);
-                }
+                byte[] rawBytes = Encoding.ASCII.GetBytes(secret);
+                pfx = new X509Certificate2(rawBytes);
+
             }
             catch (Exception ex)
             {
