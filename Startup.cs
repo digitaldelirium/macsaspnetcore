@@ -43,7 +43,7 @@ namespace MacsASPNETCore
                 builder.AddJsonFile("appsettings.Staging.json", optional: false);
             }
             else {
-                builder.AddJsonFile("appsetttings.json", optional: false);
+                builder.AddJsonFile("appsettings.json", optional: false);
             }
 
 //            builder.AddJsonFile("hosting.json", optional: false);
