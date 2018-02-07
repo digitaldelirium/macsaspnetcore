@@ -4,7 +4,7 @@ COPY ./MacsASPNETCore.csproj macsaspnetcore/
 WORKDIR /src/macsaspnetcore
 RUN dotnet restore
 COPY . .
-RUN dotnet build -c #{BuildConfiguration}# -o /app
+RUN dotnet build -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app
 
 FROM build AS publish
 RUN dotnet publish -c #{BuildConfiguration}# -o /app
