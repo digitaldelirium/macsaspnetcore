@@ -80,7 +80,8 @@ namespace MacsASPNETCore
 
                 services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
                     .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerdb))
-                    .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb));
+                    .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
+                    .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
 
             }
 
