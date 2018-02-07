@@ -168,13 +168,18 @@ namespace MacsASPNETCore
             var azureServiceTokenProvider = new AzureServiceTokenProvider();
             try
             {
-                var kvClient = new KeyVaultClient(
-                    new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
+                IConfigurationBuilder builder = new ConfigurationBuilder();
+                builder.AddJsonFile("appsettings.json");
 
-                var secret = await kvClient
-                    .GetSecretAsync(
-                        "https://macscampvault.vault.azure.net/secrets/MacsPFX/9c7146c9e9a54b6b93fb232109d7de07")
-                    .ConfigureAwait(false);
+                var config = builder.Build();
+                
+                builder.AddAzureKeyVault(
+                    config["Azure:KeyVault:Vault"],
+                    config["Azure:KeyVault:ClientId"],
+                    config["Azure:KeyVault:ClientSecret"]
+                );
+
+                var secret = config["macsvmssl"];
 
                 if (secret.ContentType.Equals("application/x-pkcs12"))
                 {
