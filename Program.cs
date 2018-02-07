@@ -189,7 +189,7 @@ namespace MacsASPNETCore
 #endif
                 var rawBytes = Encoding.ASCII.GetBytes(certBundle.Value);
                 
-                pfx = new X509Certificate2(rawBytes);
+                pfx = new X509Certificate2(rawBytes, "");
 
             }
             catch (Exception ex)
