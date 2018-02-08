@@ -139,18 +139,14 @@ namespace MacsASPNETCore
       
             }
             else if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging"){
-                var certPath = Directory.GetCurrentDirectory().ToString() + "/Macs.pfx";
-                
-                if(!File.Exists(certPath)){
-                    try {
-                        var rawBytes = Encoding.ASCII.GetBytes(_configuration["Certificates:MacsVM:PFX"]);
-                        pfx = new X509Certificate2(rawBytes);
-                    }
-                    catch (CryptographicException exception)
-                    {
-                        Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
-                        throw;
-                    }
+                try {
+                    var rawBytes = Encoding.ASCII.GetBytes(_configuration["Certificates:MacsVM:PFX"]);
+                    pfx = new X509Certificate2(rawBytes);
+                }
+                catch (CryptographicException exception)
+                {
+                    Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
+                    throw;
                 }
             }
             else
@@ -183,11 +179,10 @@ namespace MacsASPNETCore
                 }
                 var password = new SecureString();
                 
-                //var coll = new X509Certificate2Collection();
-                //coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
-                //pfx = coll[1];
-                //Console.WriteLine(coll.Length);
-                pfx = new X509Certificate2(bytes, password);
+                var coll = new X509Certificate2Collection();
+                coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
+                pfx = coll[1];
+                Console.WriteLine(coll.Count);
             }
             catch (Exception ex)
             {
