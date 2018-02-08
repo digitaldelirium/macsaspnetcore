@@ -169,10 +169,17 @@ namespace MacsASPNETCore
             try
             {
                 var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
-                var certBundle = await kvClient
+                var secret = await kvClient
                     .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl");
 
-                var bytes = Encoding.ASCII.GetBytes(certBundle.Value);
+                byte[] bytes;
+                if(secret.ContentType == "application/x-pkcs12")
+                    bytes = Encoding.ASCII.GetBytes(secret.Value);
+                else
+                {
+                    Console.WriteLine("secret is not PFX!!");
+                    Exit(2);
+                }
                 var password = new SecureString();
                 
                 pfx = new X509Certificate2(bytes, password);
