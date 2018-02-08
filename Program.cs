@@ -177,6 +177,7 @@ namespace MacsASPNETCore
                     bytes = Encoding.ASCII.GetBytes(secret.Value);
                 else
                 {
+                    bytes = new byte[0];
                     Console.WriteLine("secret is not PFX!!");
                     Exit(2);
                 }
@@ -197,8 +198,7 @@ namespace MacsASPNETCore
         public static async Task<string> GetToken(string authority, string resource, string scope)
         {
             var authContext = new AuthenticationContext(authority);
-            Console.WriteLine($"ClientId = 44c4e2a1-4b32-4d7b-b063-ab00907ab449");
-            Console.WriteLine($"ClientSecret = #{client-secret}#");
+            
             var clientCredential = new ClientCredential("44c4e2a1-4b32-4d7b-b063-ab00907ab449", 
                 "#{client-secret}#");
 
