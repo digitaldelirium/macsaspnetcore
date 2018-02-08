@@ -183,6 +183,8 @@ namespace MacsASPNETCore
                 coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
                 pfx = coll[1];
                 Console.WriteLine(coll.Count);
+                Console.WriteLine(coll[0]);
+                Console.WriteLine(coll[1]);
             }
             catch (Exception ex)
             {
