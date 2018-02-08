@@ -183,11 +183,11 @@ namespace MacsASPNETCore
                 }
                 var password = new SecureString();
                 
-                var coll = new X509Certificate2Collection();
-                coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
-                pfx = coll[1];
-                Console.WriteLine(coll.Length);
-
+                //var coll = new X509Certificate2Collection();
+                //coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
+                //pfx = coll[1];
+                //Console.WriteLine(coll.Length);
+                pfx = new X509Certificate2(bytes, password);
             }
             catch (Exception ex)
             {
