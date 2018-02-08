@@ -37,10 +37,12 @@ namespace MacsASPNETCore
             {
                 builder.AddUserSecrets<Startup>();
                 builder.AddJsonFile("appsettings.Development.json", optional: false);
+                builder.AddJsonFile("hosting.json", optional: false);
             }
             else if (Environment.IsStaging())
             {
                 builder.AddJsonFile("appsettings.Staging.json", optional: false);
+                builder.AddJsonFile("hosting.json", optional: false);
             }
             else {
                 builder.AddJsonFile("appsettings.json", optional: false);
