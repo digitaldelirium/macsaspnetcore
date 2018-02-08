@@ -101,7 +101,7 @@ namespace MacsASPNETCore
             var pfx = new X509Certificate2();
             if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
-                string certPath = Directory.GetCurrentDirectory().ToString() + "/Macs-Dev.pfx";
+                var certPath = Directory.GetCurrentDirectory().ToString() + "/Macs-Dev.pfx";
                 if (File.Exists(certPath))
                 {
                     try
@@ -164,14 +164,18 @@ namespace MacsASPNETCore
 
         public static async Task<X509Certificate2> GetKeyVaultCert()
         {
-            var pfx = new X509Certificate2();
+            X509Certificate2 pfx;
+
             try
             {
                 var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
                 var certBundle = await kvClient
-                    .GetCertificateAsync("https://macscampvault.vault.azure.net/certificates/macsvmssl");
+                    .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl");
+
+                var bytes = Encoding.ASCII.GetBytes(certBundle.Value);
+                var password = new SecureString();
                 
-                pfx = new X509Certificate2(certBundle.Cer);
+                pfx = new X509Certificate2(bytes, password);
 
             }
             catch (Exception ex)
