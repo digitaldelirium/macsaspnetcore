@@ -181,7 +181,7 @@ namespace MacsASPNETCore
                 
                 var coll = new X509Certificate2Collection();
                 coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
-                pfx = new X509Certificate2(coll.Export(X509ContentType.Pkcs12, null));
+                pfx = new X509Certificate2(coll.Export(X509ContentType.Pkcs12));
             }
             catch (Exception ex)
             {
