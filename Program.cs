@@ -152,8 +152,7 @@ namespace MacsASPNETCore
             }
             else
             {
-                var keyVaultCert = GetKeyVaultCert().Result ?? throw new ArgumentNullException("GetKeyVaultCert().Result");
-                pfx = new X509Certificate2(keyVaultCert.RawData);
+                pfx = GetKeyVaultCert().Result ?? throw new ArgumentNullException("GetKeyVaultCert().Result");
             }
 
             return pfx;
@@ -183,6 +182,7 @@ namespace MacsASPNETCore
                 var coll = new X509Certificate2Collection();
                 coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
                 pfx = coll[0];
+                File.WriteAllBytes(Directory.GetCurrentDirectory().ToString() + "/Macs.pfx", bytes);
                 Console.WriteLine(pfx.HasPrivateKey);
                 Console.WriteLine(pfx.GetRSAPrivateKey());
 
