@@ -35,7 +35,7 @@ namespace MacsASPNETCore
         private static IConfigurationRoot _configuration;
         private static IHostingEnvironment Environment { get; set; }
         private static X509Certificate2 PfxCert { get; set; }
-        
+        private static AsymmetricAlgorithm PrivateKey { get; set; }
         public Program(IHostingEnvironment environment)
         {
             Environment = environment;
@@ -82,6 +82,7 @@ namespace MacsASPNETCore
                 });
 
                 PfxCert = GetCertificate(Environment);
+                PrivateKey = PfxCert.GetRSAPrivateKey();
 
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
