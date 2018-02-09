@@ -166,7 +166,7 @@ namespace MacsASPNETCore
             {
                 var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(GetToken));
                 var secret = await kvClient
-                    .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/letsencrypt").ConfigureAwait(false);
+                    .GetSecretAsync("https://macscampvault.vault.azure.net/secrets/macsvmssl").ConfigureAwait(false);
 
                 byte[] bytes;
                 if(secret.ContentType == "application/x-pkcs12")
