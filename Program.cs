@@ -87,9 +87,16 @@ namespace MacsASPNETCore
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Loopback, 80);
-                    options.Listen(IPAddress.Loopback, 443,
-                        listenOptions => { listenOptions.UseHttps(PfxCert); });
+                    if(!Environment.IsProduction()){
+                        options.Listen(IPAddress.Loopback, 80);
+                        options.Listen(IPAddress.Loopback, 443,
+                            listenOptions => { listenOptions.UseHttps(PfxCert); });
+                    }
+                    else {
+                        options.Listen(IPAddress.Any, 80);
+                        options.Listen(IPAddress.Any, 443, 
+                            listenOptions => { listenOptions.UseHttps(PfxCert); });
+                    }
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseApplicationInsights();
