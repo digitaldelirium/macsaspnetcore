@@ -182,7 +182,8 @@ namespace MacsASPNETCore
                 var coll = new X509Certificate2Collection();
                 coll.Import(bytes, null, X509KeyStorageFlags.Exportable);
                 pfx = coll[0];
-                Console.WriteLine(coll[0].PrivateKey);
+                Console.WriteLine(pfx.HasPrivateKey);
+                Console.WriteLine(pfx.GetRSAPrivateKey());
 
             }
             catch (Exception ex)
