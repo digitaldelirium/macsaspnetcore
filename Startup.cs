@@ -114,8 +114,8 @@ namespace MacsASPNETCore
 
             services.AddAuthentication().AddFacebook(facebookOptions =>
             {
-                facebookOptions.AppId = Configuration["FacebookAppId"];
-                facebookOptions.AppSecret = Configuration["FacebookAppSecret"];
+                facebookOptions.AppId = Configuration["AppSettings:FacebookAppId"];
+                facebookOptions.AppSecret = Configuration["AppSettings:FacebookAppSecret"];
             });
 
             services.ConfigureApplicationCookie(options =>
