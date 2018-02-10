@@ -322,3 +322,7 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 .idea/.idea.MacsASPNETCore/.idea/contentModel.xml
+
+# Ignore other environment's secrets and settings
+appsettings.Staging.json
+appsettings.json
