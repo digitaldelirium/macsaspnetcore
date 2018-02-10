@@ -37,21 +37,26 @@ namespace MacsASPNETCore
             {
                 builder.AddUserSecrets<Startup>();
                 builder.AddJsonFile("appsettings.Development.json", optional: false);
+                builder.AddJsonFile("hosting.json", optional: false);
             }
             else if (Environment.IsStaging())
             {
                 builder.AddJsonFile("appsettings.Staging.json", optional: false);
+                builder.AddJsonFile("hosting.json", optional: false);
             }
             else {
-                builder.AddJsonFile("appsetttings.json", optional: false);
+                builder.AddJsonFile("appsettings.json", optional: false);
             }
 
-            builder.AddJsonFile("hosting.json", optional: false);
+//            builder.AddJsonFile("hosting.json", optional: false);
             builder.AddEnvironmentVariables();
 
             Configuration = builder.Build();
+
+            var vaultName = Configuration["Azure:KeyVault:Vault"];
+
             builder.AddAzureKeyVault(
-                $"https://{Configuration["Azure:KeyVault:Vault"]}.vault.azure.net",
+                $"https://{vaultName}.vault.azure.net",
                 Configuration["Azure:KeyVault:ClientId"],
                 Configuration["Azure:KeyVault:ClientSecret"]);
         }
@@ -109,8 +114,8 @@ namespace MacsASPNETCore
 
             services.AddAuthentication().AddFacebook(facebookOptions =>
             {
-                facebookOptions.AppId = Configuration["FacebookAppId"];
-                facebookOptions.AppSecret = Configuration["FacebookAppSecret"];
+                facebookOptions.AppId = Configuration["AppSettings:FacebookAppId"];
+                facebookOptions.AppSecret = Configuration["AppSettings:FacebookAppSecret"];
             });
 
             services.ConfigureApplicationCookie(options =>
