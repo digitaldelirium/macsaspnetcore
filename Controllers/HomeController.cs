@@ -22,7 +22,7 @@ namespace MacsASPNETCore.Controllers
         private ReservationDbContext _reservations;
         private CustomerDbContext _customers;
         private IActivityRepository _activityRepository;
-
+        private readonly int year = DateTime.Now.Year;
         private readonly IConfiguration _configuration;
         //private ApplicationDbContext _context;
 
@@ -124,7 +124,7 @@ namespace MacsASPNETCore.Controllers
         }
         public IActionResult Rates()
         {
-            ViewData["Title"] = "2017 Rates";
+            ViewData["Title"] = $"{year} Rates";
             return View();
         }
 
@@ -157,7 +157,8 @@ namespace MacsASPNETCore.Controllers
             var activityPics = new System.IO.DirectoryInfo(_env.WebRootPath +  "/images/activityslide").GetFiles();
             var activities = _activityRepository.GetAllActivities()
                 .AsQueryable();
-            ViewData["Title"] = "2017 Activities";
+
+            ViewData["Title"] = $"{year} Activities";
             ViewData["Message"] = "See what's going on at Mac's this year";
             ViewBag.ImageList = activityPics;
             return View(activities);
@@ -170,7 +171,7 @@ namespace MacsASPNETCore.Controllers
             ViewBag.ngController = "ActivitiesController";
             var activityPics = new System.IO.DirectoryInfo(_env.WebRootPath +  "/images/activityslide").GetFiles();
             var activities = _activityRepository.GetAllActivitiesByMonth(startDate, endDate).AsEnumerable();
-            ViewData["Title"] = "2017 Activities";
+            ViewData["Title"] = $"{year} Activities";
             ViewData["Message"] = "See what's going on at Mac's this year";
             ViewBag.ImageList = activityPics;
             return Json(activities);

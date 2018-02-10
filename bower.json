@@ -1,22 +1,23 @@
 {
-    "name": "ASP.NET",
-    "private": true,
-    "dependencies": {
-        "bootstrap": "latest",
-        "jquery": "latest",
-        "jquery-validation": "latest",
-        "jquery-validation-unobtrusive": "latest",
-        "angular": "1.4.6",
-        "Microsoft.jQuery.Unobtrusive.Validation": "latest",
-        "Microsoft.jQuery.Unobtrusive.Ajax": "latest",
-        "slick-carousel": "1.5.8",
-        "angular-slick": "~0.2.1",
-        "grunt": "~1.0.1",
-        "grunt-contrib-uglify": "~1.0.1",
-        "moment": "latest"
-    },
-    "resolutions": {
-        "angular": "1.4.6",
-        "slick-carousel": "1.5.8"
-    }
+  "name": "ASP.NET",
+  "private": true,
+  "dependencies": {
+      "bootstrap": "3.3.7",
+      "jquery": "latest",
+      "jquery-ui": "latest",
+      "jquery-validation": "latest",
+      "jquery-validation-unobtrusive": "latest",
+      "angular": "1.4.6",
+      "Microsoft.jQuery.Unobtrusive.Validation": "latest",
+      "Microsoft.jQuery.Unobtrusive.Ajax": "latest",
+      "slick-carousel": "1.5.8",
+      "angular-slick": "~0.2.1",
+      "grunt": "~1.0.1",
+      "grunt-contrib-uglify": "~1.0.1",
+      "moment": "latest"
+  },
+  "resolutions": {
+      "angular": "1.4.6",
+      "slick-carousel": "1.5.8"
+  }
 }

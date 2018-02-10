@@ -2,12 +2,22 @@
   "name": "ASP.NET",
   "private": true,
   "dependencies": {
-    "bootstrap": "^3.3.6",
-    "jquery": "^2.2.3",
-    "jquery-validation": "^1.15.0",
-    "jquery-validation-unobtrusive": "~3.2.4",
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "jquery-validation": "latest",
+    "jquery-validation-unobtrusive": "latest",
     "angular": "1.4.6",
-    "underscore": "^1.8.3",
-    "modernizr": "^3.3.1"
+    "Microsoft.jQuery.Unobtrusive.Validation": "latest",
+    "Microsoft.jQuery.Unobtrusive.Ajax": "latest",
+    "slick-carousel": "1.5.8",
+    "angular-slick": "~0.2.1",
+    "grunt": "~1.0.1",
+    "grunt-contrib-uglify": "~1.0.1",
+    "moment": "latest"
+  },
+  "resolutions": {
+    "angular": "1.4.6",
+    "slick-carousel": "1.5.8"
   }
 }
