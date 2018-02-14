@@ -8,7 +8,8 @@ RUN dotnet build -c debug MacsASPNETCore.csproj -o /app
 
 FROM build AS publish
 RUN dotnet publish -c debug MacsASPNETCore.csproj -o /app
-
+WORKDIR /app
+RUN flatten-packages
 #FROM microsoft/aspnetcore:2.0 as base
 
 #FROM base AS final
