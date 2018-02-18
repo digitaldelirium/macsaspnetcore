@@ -1,6 +1,6 @@
 #! /usr/bin/pwsh
 function Replace-Tokens {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName='Default')]
     param (
         [Parameter(Mandatory=$true, HelpMessage='Client ID for SPN', ParameterSetName='SPN')]
         [ValidateNotNullOrEmpty()]
@@ -17,30 +17,47 @@ function Replace-Tokens {
         [string]
         $TenantId,
 
-        [Parameter(Mandatory=$true, HelpMessage="Key Vault Name")]
+        [Parameter(Mandatory=$true, HelpMessage="Key Vault Name", ParameterSetName='Default')]
+        [Parameter(Mandatory=$true, HelpMessage="Key Vault Name", ParameterSetName='SPN')]        
         [ValidateNotNullOrEmpty()]
         [string]
         $VaultName,
 
         [Parameter(Mandatory=$false, HelpMessage="full or partial subscription name, if not default")]
         [string]
-        $SubscriptionId
+        $SubscriptionId,
+
+        # Parameter help description
+        [Parameter(Mandatory, ParameterSetName='SPN')]
+        [switch]
+        $SPN
     )
     
     begin {
-        if ($ClientId -ne $null) {
+
+        if ($SPN) {
             az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId
         }
         else {
-            az login
+            $username = Read-Host -Prompt 'Please enter your Azure Username'
+            az login --username $username
         }
 
-        if(!($SubscriptionId.Equals($null))){
-            $accounts = az account list | ConvertFrom-Json
+        if(!([string]::IsNullOrWhiteSpace($SubscriptionId))){
+            $accounts = az account list
             az account set --subscription $SubscriptionId
         }
 
-        $script:kvSecrets = az keyvault secret list --vault-name $VaultName --maxresults 30 | ConvertFrom-Json
+        $script:secrets = az keyvault secret list --vault-name $VaultName
+        [psobject[]]$script:kvSecrets
+        try {
+            $kvSecrets = $secrets | ConvertFrom-Json
+        }
+        catch [System.Exception]{
+            Write-Error -Message "Conversion from JSON failed"
+            ThrowError
+        }
+
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
     }
     
@@ -79,26 +96,5 @@ function Replace-Tokens {
     }
     
     end {
-        $envVariables = Get-ChildItem Env:
-        $config = $envVariables.Name("BuildConfiguration")
-        # New Content Block Scope
-        $content = Get-Content .\Dockerfile
-        foreach ($s in $content) {
-            [int]$x = 0
-            $r = $s
-            if($s -match $tokenExp){
-                $token = $Matches.Values
-                $token = $token.TrimStart(2).TrimEnd(2)
-                $r.Replace($Matches.Values, $config)
-
-                if (!$r.Equals($s)){
-                    $content.Item($x) = $r
-                }
-
-                $x++
-            }
-            
-            Out-File -FilePath ./Dockerfile -InputObject $content -Force
-        }
     }
 }

@@ -16,6 +16,17 @@
 <div class="col-md-8 col-lg-8">
     <div class="row">
         <h1 >@ViewData["Title"]</h1>
+        <span>
+            <script language="javascript">
+               (function() {
+                   var today = new Date();
+                   if (today.getMonth() < 4) {
+                       document.write("<h3>Schedule not yet set for Summer 2018</h3>");
+                   }
+                   document.write("Schedule subect to change");
+               })
+            </script>
+        </span>
     </div>
     <div class="row">
         <h2 style="text-align: center">@ViewData["Message"]</h2>
@@ -105,10 +116,10 @@
 </div>
 
 <div class="col-lg-4 col-md-4" id="forecastPane">
-    <a href="//www.accuweather.com/en/us/poland-me/04274/sailing-current-weather/2183551" class="aw-widget-legal">
+    <a href="https://www.accuweather.com/en/us/poland-me/04274/sailing-current-weather/2183551" class="aw-widget-legal">
         <!--
         By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at http://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at http://www.accuweather.com/en/privacy.
         -->
     </a><div id="awtd1462067697006" class="aw-widget-36hour" data-locationkey="2183551" data-unit="f" data-language="en-us" data-useip="false" data-uid="awtd1462067697006" data-editlocation="false" data-lifestyle="sailing"></div>
-    <script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>
+    <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
 </div>
