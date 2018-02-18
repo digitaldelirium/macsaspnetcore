@@ -2,7 +2,7 @@
 
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '732145460227308',
+            appId: '101842023547502',
             xfbml: true,
             version: 'v2.3'
         });
@@ -24,25 +24,13 @@ $(document).ready(function () {
     var pageHeight = $(window).height();
     var jumboContainer = $("#titleContent").height();
     carouselHeight = pageHeight * .40;
-
-    $("#titleCarousel").slick({
-        infinite: true,
-        autoplay: true,
-        arrows: true,
-        appendArrows: "#titleCarousel",
-        appendDots: "#titleCarousel",
-        autoplaySpeed: 3000,
-        dots: true,
-        dotsClass: "slick-dots",
-        fade: true,
-        lazyLoad: "ondemand",
-        pauseOnHover: true,
-        waitForAnimate: true,
-        prevArrow: "prevSlide",
-        nextArrow: "nextSlide",
-        slidesToShow: 1,
-        slidesToScroll: 1
-});
+    
+    function playcarousel() {
+        $('.carousel-control.right').trigger("click");
+    }
+    
+    window.setInterval(playcarousel, 5000)
+    
 
     $("#titleCarousel").css({ maxHeight: jumboContainer + "px" });
 
