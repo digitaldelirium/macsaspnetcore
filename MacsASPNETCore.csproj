@@ -15,6 +15,9 @@
     <ApplicationInsightsAnnotationResourceId>/subscriptions/86392d70-8079-4fe1-a8ae-db5e853dd9a8/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/MacsASPNETCore</ApplicationInsightsAnnotationResourceId>
     <StartupObject>MacsASPNETCore.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <None Update="wwwroot\**\*;Views\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
