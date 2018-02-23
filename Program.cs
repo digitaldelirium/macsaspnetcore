@@ -83,13 +83,19 @@ namespace MacsASPNETCore
 
                 PfxCert = GetCertificate(Environment);
                 PrivateKey = PfxCert.GetRSAPrivateKey();
-
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
+                    #if DEBUG
+                        options.Listen(IPAddress.Loopback, 80);
+                        options.Listen(IPAddress.Loopback, 443,
+                            listenOptions => { listenOptions.UseHttps(PfxCert); });
+                    #else 
                         options.Listen(IPAddress.Any, 80);
                         options.Listen(IPAddress.Any, 443, 
                             listenOptions => { listenOptions.UseHttps(PfxCert); });
+                    #endif
+
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseApplicationInsights();
