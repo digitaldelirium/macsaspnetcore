@@ -8,14 +8,27 @@
             <h4 style="text-align: center">RV Rental A</h4>
         </div>
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12" id="t1Container">
-                <div id="trailer1" class="slider single-item lazy">
+            <div class="col" id="t1Container">
+                <div id="trailer1" class="carousel slide" data-ride="carousel">
+                    @{
+                        var i = 0;
+                    }
+                    <div class="carousel-inner">
                     @foreach (var image in ViewBag.ImageList)
                     {
-                        <div>
-                            <img data-lazy="@Url.Content("~/images/trailer1/" + image)" alt="Slide Show Picture of rental unit A" class="img-responsive"/>
-                        </div>
+                        if (i == 0){
+                            <div class="carousel item active">
+                                <img src="@Url.Content("~/images/trailer1/" + image)" alt="Slide Show Picture of rental unit A" class="img-responsive d-block img-fluid"/>
+                            </div>
+                        }
+                        else {
+                            <div class="carousel item">
+                                <img data-lazy="@Url.Content("~/images/trailer1/" + image)" alt="Slide Show Picture of rental unit A" class="img-responsive d-block img-fluid"/>
+                            </div>
+                        }
+                        i++;
                     }
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,14 +80,27 @@
             <h4 style="text-align: center">RV Rental B</h4>
         </div>
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12" id="t2Container">
-                <div class="lazy slider single-item" id="trailer2">
+            <div class="col" id="t2Container">
+                <div class="carousel slide" id="trailer2">
+                    <div class="carousel-inner">
+                    @{
+                        var x = 0;
+                    }
                     @foreach (var image in ViewBag.ImageList2)
                     {
-                        <div>
-                            <img data-lazy="@Url.Content("~/images/trailer2/" + image)" alt="Slide show picture of rental unit B" class="img-responsive centered"/>
-                        </div>
-                    }
+                        if (x == 0){
+                            <div class="carousel item active">
+                                <img src="@Url.Content("~/images/trailer2/" + image)" alt="Slide show picture of rental unit B" class="img-responsive centered"/>
+                            </div>                            
+                        }
+                        else {
+                            <div class="carousel item">
+                                <img src="@Url.Content("~/images/trailer2/" + image)" alt="Slide show picture of rental unit B" class="img-responsive centered"/>
+                            </div>
+                        }
+                        x++;
+                    }</div>
+
                 </div>
             </div>
         </div>
