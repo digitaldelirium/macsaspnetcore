@@ -61,9 +61,6 @@
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Memoriam">Memoriam</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
                 </li>
                 <li class="nav-item">
@@ -114,7 +111,7 @@
                 <div id="bottomCenter" class="col" style="display: none;">@RenderSection("BottomCenter", false)</div>
                 <div id="bottomRight" class="col" style="display: none;">@RenderSection("BottomRight", false)</div>
             </div>
-            <div id="bottomPane" class="row">@RenderSection("BottomPane", false)</div>
+            <div id="bottomPane" class="row container-fluid">@RenderSection("BottomPane", false)</div>
         </div>
         <footer>
             <p>&copy; 2018 - Mac's Camping Area, LLC</p>
