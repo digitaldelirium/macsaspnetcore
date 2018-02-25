@@ -19,48 +19,50 @@
             Welcome to picturesque Poland, Maine! <br> Find out for yourself why Mainers call it "Vacationland", and it's the place New Englanders camp for the summers!
         </div>
     </div>
-    <div class="row">
-        <div>
-            <div id="titleContent" class="col">
-                <div class="container">
-                    <div class="carousel slide" id="titleCarousel" data-ride="carousel">
-                        @{
-                            var i = 0;
-                        }
-                        <div class="carousel-inner">
-                            @foreach (var image in ViewBag.ImageList)
-                            {
-                                if (i == 0)
-                                {
-                                    <div class="carousel item active">
-                                        <img src="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive d-block img-fluid"/>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="carousel-item">
-                                        <img src="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive d-block img-fluid"/>
-                                    </div>
-                                }
-                                i++;
-                            }
-                        </div>
-                        <ul class="carousel-indicators">
-                            @for (var n = 0; n < i; n++)
-                            {
-                                if (n == 0)
-                                {
-                                    <li data-target="#titleCarousel" data-slide-to="@n" class="active"></li>
-                                    continue;
-                                }
-                                <li data-target="#titleCarousel" data-slide-to="@n"></li>
-                            }
-                        </ul>
-
+    <div class="carousel slide" id="titleCarousel" data-ride="carousel">
+        <script>
+            var imageList = @ViewBag.ImageList;
+        </script>
+        @{
+            var i = 0;
+        }
+        <div class="carousel-inner" id="titleInner">
+            @foreach (var image in ViewBag.ImageList)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <img src="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive d-block img-fluid"/>
                     </div>
-                </div>
-            </div>
+                }
+                else
+                {
+                    <div class="carousel-item">
+                        <img src="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive d-block img-fluid"/>
+                    </div>
+                }
+                i++;
+            }
         </div>
+        <ul class="carousel-indicators">
+            @for (var n = 0; n < i; n++)
+            {
+                if (n == 0)
+                {
+                    <li data-target="#titleCarousel" data-slide-to="@n" class="active"></li>
+                    continue;
+                }
+                <li data-target="#titleCarousel" data-slide-to="@n"></li>
+            }
+        </ul>
+            <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#titleCarousel" data-slide="prev" id="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#titleCarousel" data-slide="next" id="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
         <div id="carousel-dots">
         </div>
     </div>
