@@ -87,8 +87,8 @@ namespace MacsASPNETCore
                 .UseKestrel(options =>
                 {
                     #if DEBUG
-                        options.Listen(IPAddress.Loopback, 80);
-                        options.Listen(IPAddress.Loopback, 443,
+                        options.Listen(IPAddress.Loopback, 5000);
+                        options.Listen(IPAddress.Loopback, 5001,
                             listenOptions => { listenOptions.UseHttps(PfxCert); });
                     #else 
                         options.Listen(IPAddress.Any, 80);

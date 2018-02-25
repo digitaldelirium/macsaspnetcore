@@ -4,12 +4,10 @@ COPY ./MacsASPNETCore.csproj macsaspnetcore/
 WORKDIR /src/macsaspnetcore
 RUN dotnet restore
 COPY . .
-RUN dotnet build -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app
+RUN dotnet build -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app -r ubuntu.16.04-x64
 
 FROM build AS publish
-RUN dotnet publish -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app && \
-    npm install flatten-packages && \
-    flatten-packages /app
+RUN dotnet publish -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app -r ubuntu.16.04-x64
 
 FROM microsoft/aspnetcore:2.0 as base
 

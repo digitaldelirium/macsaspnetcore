@@ -326,3 +326,6 @@ ASALocalRun/
 # Ignore other environment's secrets and settings
 appsettings.Staging.json
 appsettings.json
+
+# Ignore SQLite files
+*.db

@@ -9,7 +9,9 @@
       <e p=".vsts-ci.yml" t="Include" />
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
+      <e p="Activity.db" t="Include" />
       <e p="ActivitySeedData.sql" t="Include" />
+      <e p="Application.db" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="Api" t="Include">
@@ -19,6 +21,7 @@
         <e p="HomeController.cs" t="Include" />
         <e p="ManageController.cs" t="Include" />
       </e>
+      <e p="Customers.db" t="Include" />
       <e p="Deploy" t="Include">
         <e p="Replace-Tokens.ps1" t="Include" />
         <e p="dockerbld.sh" t="Include" />
@@ -697,6 +700,7 @@
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="README.md" t="Include" />
+      <e p="Reservations.db" t="Include" />
       <e p="Service References" t="Include">
         <e p="Application Insights" t="Include">
           <e p="ConnectedService.json" t="Include" />
@@ -758,7 +762,6 @@
           <e p="Amenities.cshtml" t="Include" />
           <e p="Contact.cshtml" t="Include" />
           <e p="Index.cshtml" t="Include" />
-          <e p="Memoriam.cshtml" t="Include" />
           <e p="RV.cshtml" t="Include" />
           <e p="Rates.cshtml" t="Include" />
         </e>
@@ -797,6 +800,7 @@
       <e p="compilerconfig.json" t="Include" />
       <e p="compilerconfig.json.defaults" t="Include" />
       <e p="create_EFMigrationsTable.sql" t="Include" />
+      <e p="dev.Dockerfile" t="Include" />
       <e p="docker-compose.ci.build.yml" t="Include" />
       <e p="docker-compose.dcproj" t="IncludeRecursive" />
       <e p="docker-compose.override.yml" t="Include" />
@@ -824,16 +828,6 @@
           <e p="theme.min.css" t="Include" />
         </e>
         <e p="favicon.ico" t="Include" />
-        <e p="fonts" t="Include">
-          <e p="glyphicons_free" t="Include">
-            <e p="glyphicons" t="Include">
-              <e p="png" t="Include" />
-            </e>
-            <e p="glyphicons-social" t="Include">
-              <e p="png" t="Include" />
-            </e>
-          </e>
-        </e>
         <e p="images" t="Include">
           <e p="1097.JPG" t="Include" />
           <e p="20140607_102523.jpg" t="Include" />
@@ -845,6 +839,7 @@
             <e p="1256.JPG" t="Include" />
             <e p="1303.JPG" t="Include" />
             <e p="1310.JPG" t="Include" />
+            <e p="1314.JPG" t="Include" />
             <e p="1349.JPG" t="Include" />
             <e p="20140607_072758.jpg" t="Include" />
             <e p="20140607_102523.jpg" t="Include" />
@@ -931,6 +926,7 @@
         </e>
         <e p="web.config" t="Include" />
       </e>
+      <e p="yarn.lock" t="Include" />
     </e>
   </component>
 </project>
