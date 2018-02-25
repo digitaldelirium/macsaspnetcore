@@ -1,38 +1,69 @@
 ﻿@section TopPane {
     <span itemtype="http://schema.org/LodgingBusiness" itemscope>
-    <meta itemprop="founder" content="George 'Mac' McDonald"/>
-    <meta itemprop="foundingLocation" content="Poland, ME"/>
-    <meta itemprop="currenciesAccepted" content="USD" />
-    <meta itemprop="paymentAccepted" content="cash, credit card" />
-    <meta itemprop="legalName" content="Mac's Camping Area, LLC" />
-    <span itemprop="description" class="hidden">Mac's Camping Area has been serving DownEast Maine campers for over 40 years. We specialize in having a small, close-knit community of recurring campers.  Some of whom have been with us for multiple generations.  We have also have a wedding tent and a rec hall available for event rentals!</span>
-    <meta name="keywords" content="camping maine downeast event rentals Poland maine camping fishing sailing go to camp ** www.macscampingarea.com">
-    <meta name="keywords" content="+camping +maine +downeast +event +rentals +Poland +maine +camping +fishing +sailing +go +to +camp ** www.macscampingarea.com">
-</span>
-    <div class="fb-like" data-href="https://macscampingarea.com" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <meta itemprop="founder" content="George 'Mac' McDonald"/>
+        <meta itemprop="foundingLocation" content="Poland, ME"/>
+        <meta itemprop="currenciesAccepted" content="USD"/>
+        <meta itemprop="paymentAccepted" content="cash, credit card"/>
+        <meta itemprop="legalName" content="Mac's Camping Area, LLC"/>
+        <span itemprop="description" class="hidden">Mac's Camping Area has been serving DownEast Maine campers for over 40 years. We specialize in having a small, close-knit community of recurring campers. Some of whom have been with us for multiple generations. We have also have a wedding tent and a rec hall available for event rentals!</span>
+        <meta name="keywords" content="camping maine downeast event rentals Poland maine camping fishing sailing go to camp ** www.macscampingarea.com">
+        <meta name="keywords" content="+camping +maine +downeast +event +rentals +Poland +maine +camping +fishing +sailing +go +to +camp ** www.macscampingarea.com">
+    </span>
+    <div class="fb-like"
+         data-share="true"
+         data-width="450"
+         data-show-faces="true">
+    </div>
     <div class="row">
         <div class="lead" style="text-align: center;">
             Welcome to picturesque Poland, Maine! <br> Find out for yourself why Mainers call it "Vacationland", and it's the place New Englanders camp for the summers!
         </div>
     </div>
-    <div class="row">
-        <div class="jumbotron">
-            <div class="row">
-                <div id="titleContent" class="col-xs-12">
-                    <div class="row vertical-align">
-                        <div class="slider single-item lazy" id="titleCarousel">
-                            @foreach (var image in ViewBag.ImageList)
-                            {
-                                <div>
-                                    <img data-lazy="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive" />
-                                </div>
-                            }
-                        </div>
+    <div class="carousel slide" id="titleCarousel" data-ride="carousel">
+        <script>
+            var imageList = @ViewBag.ImageList;
+        </script>
+        @{
+            var i = 0;
+        }
+        <div class="carousel-inner" id="titleInner">
+            @foreach (var image in ViewBag.ImageList)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        <img src="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive d-block img-fluid"/>
                     </div>
-                </div>
-            </div>
-            <div id="carousel-dots" class="row">
-            </div>
+                }
+                else
+                {
+                    <div class="carousel-item">
+                        <img src="@Url.Content("~/images/titleslide/" + image)" alt="Picture of Mac's Camping Area" class="img-responsive d-block img-fluid"/>
+                    </div>
+                }
+                i++;
+            }
+        </div>
+        <ul class="carousel-indicators">
+            @for (var n = 0; n < i; n++)
+            {
+                if (n == 0)
+                {
+                    <li data-target="#titleCarousel" data-slide-to="@n" class="active"></li>
+                    continue;
+                }
+                <li data-target="#titleCarousel" data-slide-to="@n"></li>
+            }
+        </ul>
+            <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#titleCarousel" data-slide="prev" id="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#titleCarousel" data-slide="next" id="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+        <div id="carousel-dots">
         </div>
     </div>
 

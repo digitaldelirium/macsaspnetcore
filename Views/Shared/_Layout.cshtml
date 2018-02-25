@@ -1,6 +1,6 @@
 ﻿﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 <!DOCTYPE html>
-<html ng-app="@ViewBag.ngApp">
+<html>
 
 <head>
     <meta charset="utf-8" http-equiv="Content-Type" content="text/html" />
@@ -8,16 +8,13 @@
     <title>@ViewData["Title"] - Mac's Camping Area, LLC</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick-theme.css" />
-        <link rel="stylesheet" href="~/css/theme.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">        <link rel="stylesheet" href="~/css/theme.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick-theme.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
         <link rel="stylesheet" href="~/css/theme.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
@@ -26,67 +23,68 @@
 </head>
 <!-- Create ViewData.onLoad to for calling out body script loading on page for Contact View -->
 
-<body onload="@ViewBag.onLoad" ng-controller="@ViewBag.ngController">
+<body onload="@ViewBag.onLoad">
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=2063880430535462&autoLogAppEvents=1';
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '101842023547502',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.12'
+        });
+      
+        FB.AppEvents.logPageView();   
+      
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="navbar navbar-fixed-top hidden-lg-up navbar-expand-lg" role="navigation">
+    <div class="container align-middle">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a asp-controller="Home" asp-action="Index" class="navbar-brand">Mac's Camping Area</a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a asp-controller="Home" asp-action="Index">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            <span class="sr-only">Toggle Navigation</span>           
+        </button>
+        <div class="collapse navbar-collapse navbar-toggleable-md" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Memoriam">In Memoriam</a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Contact">Contact</a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Activities">Activities</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Activities">Activities</a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Amenities">Amenities</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Amenities">Amenities</a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Rates">Rates</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Rates">Rates</a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="RV">RV Rentals</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="RV">RV Rentals</a>
-                </li>
-                <li>
-                    <a href="#" onclick="(function() { var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus(); })()">Flickr Library</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="(function() { var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus(); })()">Flickr Library</a>
                 </li>
             </ul>
-            @*  Authentication Not yet implemented *@
             @await Html.PartialAsync("_LoginPartial")
-
         </div>
     </div>
 </div>
 <div class="body-content container">
-    
-    <div class="row"><br/></div>
-    <div class="row"><br/></div>
-    <div class="row" id="title">
-        <h1 style="text-align: center;">@ViewData["Title"]</h1>
-    </div>
+    <h1 style="text-align: center;">@ViewData["Title"]</h1>
     @RenderBody()
     <div class="row">
         @RenderSection("TopPane", false)
@@ -94,53 +92,44 @@
     <div>
         <div class="row">
             <div id="contentPane1">
-                <div id="topLeft" class="col-md-4 col-lg-4">@RenderSection("TopLeft", false)</div>
-                <div id="topCenter" class="col-md-4 col-lg-4">@RenderSection("TopCenter", false)</div>
+                <div id="topLeft" class="col-md-4">@RenderSection("TopLeft", false)</div>
+                <div id="topCenter" class="col-md-4">@RenderSection("TopCenter", false)</div>
                 <div id="altUi" class="hidden">@RenderSection("AltUi", false)</div>
-                <div id="topRight" class="col-md-4 col-lg-4">@RenderSection("TopRight", false)</div>
+                <div id="topRight" class="col-md-4">@RenderSection("TopRight", false)</div>
             </div>
         </div>
         <div class="row">
             <div id="contentPane2" class="">
-                <div id="midLeft" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("MidLeft", false)</div>
-                <div id="midCenter" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("MidCenter", false)</div>
-                <div id="midRight" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("MidRight", false)</div>
+                <div id="midLeft" class="col" style="display: none;">@RenderSection("MidLeft", false)</div>
+                <div id="midCenter" class="col" style="display: none;">@RenderSection("MidCenter", false)</div>
+                <div id="midRight" class="col" style="display: none;">@RenderSection("MidRight", false)</div>
             </div>
         </div>
         <div class="row">
             <div id="contentPane3" class="panel panel-group">
-                <div id="bottomLeft" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("BottomLeft", false)</div>
-                <div id="bottomCenter" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("BottomCenter", false)</div>
-                <div id="bottomRight" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("BottomRight", false)</div>
+                <div id="bottomLeft" class="col" style="display: none;">@RenderSection("BottomLeft", false)</div>
+                <div id="bottomCenter" class="col" style="display: none;">@RenderSection("BottomCenter", false)</div>
+                <div id="bottomRight" class="col" style="display: none;">@RenderSection("BottomRight", false)</div>
             </div>
-            <div id="bottomPane" class="row">@RenderSection("BottomPane", false)</div>
+            <div id="bottomPane" class="row container-fluid">@RenderSection("BottomPane", false)</div>
         </div>
         <footer>
-            <p>&copy;
-                <span>
-                    <script language="javascript">
-                        (function() {
-                            var today = new Date();
-                            document.write(today.getFullYear());
-                        })();
-                    </script>
-                </span> - Mac's Camping Area, LLC</p>
+            <p>&copy; 2018 - Mac's Camping Area, LLC</p>
         </footer>
     </div>
 </div>
 <environment names="Development">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment names="Staging,Production">
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" asp-fallback-src="~/lib/jquery/dist/jquery.min.js" asp-fallback-test="window.jQuery"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>

@@ -1,20 +1,20 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch);
-
-
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 { font-family: 'Cabin Sketch', cursive; }
+h6 {
+    font-family: 'Cabin Sketch', cursive;
+}
 
 form {
     display: table;
 }
 
-    form p {
-        display: table-row;
-    }
+form p {
+    display: table-row;
+}
 
 .control-label {
     display: table-cell;
@@ -25,13 +25,10 @@ input {
     display: table-cell;
 }
 
-
-
 #titleCarousel {
     width: auto;
     height: auto;
 }
-
 
 .jumbotron img {
     height: 60vh;
@@ -68,6 +65,7 @@ input {
     text-align: center;
     width: 100%;
 }
+
 #trailer1 img {
     height: 30vh;
 }
@@ -76,6 +74,7 @@ input {
     text-align: center;
     width: 100%;
 }
+
 #trailer2 img {
     height: 30vh;
 }
@@ -86,3 +85,10 @@ h3 {
     text-align: center;
 }
 
+body {
+    padding-top: 60px;
+}
+
+.carousel-inner img {
+    margin: auto
+}
