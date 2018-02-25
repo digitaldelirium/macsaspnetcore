@@ -46,17 +46,6 @@ namespace MacsASPNETCore.Controllers
             return View();
         }
 
-        public IActionResult Memoriam()
-        { 
-            var slidepath = _env.WebRootPath +  "/images/grandpa";
-            ViewData["Title"] = "Remembering George 'Mac' McDonald";
-            ViewBag.ngApp = "MemoriamApp";
-            ViewBag.ngController = "MemoriamController";
-            var grandpaSlide = new System.IO.DirectoryInfo(slidepath).GetFiles();
-            ViewBag.ImageList = grandpaSlide;
-            return View();
-        }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Please drop us a line or pay us a visit!";
