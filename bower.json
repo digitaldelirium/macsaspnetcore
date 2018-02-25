@@ -2,13 +2,8 @@
     "name": "ASP.NET",
     "private": true,
     "dependencies": {
-        "jquery": "latest",
-        "jquery-validation": "latest",
-        "jquery-validation-unobtrusive": "latest",
         "Microsoft.jQuery.Unobtrusive.Validation": "latest",
-        "Microsoft.jQuery.Unobtrusive.Ajax": "latest",
-        "grunt": "~1.0.1",
-        "moment": "latest"
+        "Microsoft.jQuery.Unobtrusive.Ajax": "latest"
     },
     "resolutions": {}
 }

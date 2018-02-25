@@ -66,7 +66,7 @@
     <Folder Include="Migrations" />
   </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-    <Exec Command="yarn install --flat" />
+    <Exec Command="yarn install" />
     <Exec Command="bower install" />
   </Target>
   <!--
