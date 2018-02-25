@@ -8,13 +8,13 @@
     <title>@ViewData["Title"] - Mac's Camping Area, LLC</title>
 
     <environment names="Development">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">        <link rel="stylesheet" href="~/css/theme.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />        
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/5.0.6/css/font-awesome.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/theme.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="~/css/theme.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
@@ -46,7 +46,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
-<div class="navbar navbar-fixed-top hidden-lg-up navbar-expand-lg" role="navigation">
+<div class="navbar navbar-fixed-top navbar-expand" role="navigation">
     <div class="container align-middle">
         <div class="navbar-header">
             <a asp-controller="Home" asp-action="Index" class="navbar-brand">Mac's Camping Area</a>
@@ -92,10 +92,10 @@
     <div>
         <div class="row">
             <div id="contentPane1">
-                <div id="topLeft" class="col-md-4">@RenderSection("TopLeft", false)</div>
-                <div id="topCenter" class="col-md-4">@RenderSection("TopCenter", false)</div>
+                <div id="topLeft" class="col-lg-4">@RenderSection("TopLeft", false)</div>
+                <div id="topCenter" class="col-lg-4">@RenderSection("TopCenter", false)</div>
                 <div id="altUi" class="hidden">@RenderSection("AltUi", false)</div>
-                <div id="topRight" class="col-md-4">@RenderSection("TopRight", false)</div>
+                <div id="topRight" class="col-lg-4">@RenderSection("TopRight", false)</div>
             </div>
         </div>
         <div class="row">
