@@ -822,6 +822,7 @@
         <e p="_references.js" t="Include" />
         <e p="bower.json" t="Include" />
         <e p="css" t="Include">
+          <e p="font-awesome.css" t="Include" />
           <e p="site.css" t="Include" />
           <e p="site.min.css" t="Include" />
           <e p="theme.css" t="Include" />
