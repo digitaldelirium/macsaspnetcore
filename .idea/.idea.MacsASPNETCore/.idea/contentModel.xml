@@ -800,7 +800,6 @@
       <e p="compilerconfig.json" t="Include" />
       <e p="compilerconfig.json.defaults" t="Include" />
       <e p="create_EFMigrationsTable.sql" t="Include" />
-      <e p="dev.Dockerfile" t="Include" />
       <e p="docker-compose.ci.build.yml" t="Include" />
       <e p="docker-compose.dcproj" t="IncludeRecursive" />
       <e p="docker-compose.override.yml" t="Include" />
