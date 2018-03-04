@@ -86,16 +86,18 @@ namespace MacsASPNETCore
                 host.UseStartup<Startup>()
                 .UseKestrel(options =>
                 {
-                    #if DEBUG
-                        options.Listen(IPAddress.Loopback, 5000);
-                        options.Listen(IPAddress.Loopback, 5001,
+                    if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                    {
+                        options.Listen(IPAddress.Loopback, 8081);
+                        options.Listen(IPAddress.Loopback, 8443,
                             listenOptions => { listenOptions.UseHttps(PfxCert); });
-                    #else 
+                    }
+                    else
+                    {
                         options.Listen(IPAddress.Any, 80);
-                        options.Listen(IPAddress.Any, 443, 
+                        options.Listen(IPAddress.Any, 443,
                             listenOptions => { listenOptions.UseHttps(PfxCert); });
-                    #endif
-
+                    }
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseApplicationInsights();
