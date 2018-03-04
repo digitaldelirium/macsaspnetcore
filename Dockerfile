@@ -7,7 +7,7 @@ COPY . .
 RUN dotnet build -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app -r ubuntu.16.04-x64
 
 FROM build AS publish
-RUN dotnet publish -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app -r ubuntu.16.04-x64
+RUN dotnet publish -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app
 
 FROM microsoft/aspnetcore:2.0 as base
 
