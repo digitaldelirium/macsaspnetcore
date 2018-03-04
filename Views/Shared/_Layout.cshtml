@@ -25,58 +25,56 @@
 
 <body onload="@ViewBag.onLoad">
 
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '101842023547502',
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v2.12'
-        });
-      
-        FB.AppEvents.logPageView();   
-      
-    };
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<nav class="navbar navbar-expand-lg">
-    <a href="#" class="navbar-brand">Mac's Camping Area</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle Navigation" (click)="isCollapsed = !isCollapsed">
-        <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-        <span class="sr-only">Toggle Navigation</span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Activities">Activities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Amenities">Amenities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Rates">Rates</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="RV">RV Rentals</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" onclick="(function() { var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus(); })()">Flickr Library</a>
-            </li>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=2063880430535462&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">Mac's Camping Area</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Memoriam">In Memoriam</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Contact">Contact</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Activities">Activities</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Amenities">Amenities</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="Rates">Rates</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="RV">RV Rentals</a>
+                </li>
+                <li>
+                    <a href="#" onclick="(function() { var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus(); })()">Flickr Library</a>
+                </li>
+            </ul>
+            @*  Authentication Not yet implemented 
             @await Html.PartialAsync("_LoginPartial")
-        </ul>
+*@
+        </div>
     </div>
 </nav>
 <div class="body-content container">
@@ -113,14 +111,14 @@
     </div>
 </div>
 <environment names="Development">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment names="Staging,Production">
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js" asp-fallback-test="window.jQuery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js" asp-fallback-test="window.jQuery"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
