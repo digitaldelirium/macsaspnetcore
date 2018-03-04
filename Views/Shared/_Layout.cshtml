@@ -74,9 +74,9 @@
                     <a href="#" onclick="(function() { var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus(); })()">Flickr Library</a>
                 </li>
             </ul>
-            @*  Authentication Not yet implemented *@
+            @*  Authentication Not yet implemented 
             @await Html.PartialAsync("_LoginPartial")
-
+*@
         </div>
     </div>
 </div>
@@ -129,14 +129,14 @@
     </div>
 </div>
 <environment names="Development">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment names="Staging,Production">
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js" asp-fallback-test="window.jQuery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js" asp-fallback-test="window.jQuery"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
