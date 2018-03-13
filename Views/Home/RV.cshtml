@@ -8,12 +8,8 @@
             <h4 style="text-align: center">RV Rental A</h4>
         </div>
         <div class="row">
-            <div class="col" id="t1Container">
-                <div id="trailer1" class="carousel slide" data-ride="carousel">
-                    @{
-                        var i = 0;
-                    }
-                    <div class="carousel-inner">
+            <div class="col-sm-12" id="t1Container">
+                <div id="trailer1" class="slider single-item lazy">
                     @foreach (var image in ViewBag.ImageList)
                     {
                         if (i == 0){
