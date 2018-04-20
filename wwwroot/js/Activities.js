@@ -1,4 +1,3 @@
-
 var gotJan = false;
 var gotFeb = false;
 var gotMar = false;
@@ -117,7 +116,7 @@ function getUpcomingMonthEvents(target, month) {
         dataType: "json",
         url: "/api/activities/month",
         data: { starting: startDate, ending: endDate },
-        success: function (data) {
+        success: function(data) {
             if (data.length > 0) {
                 for (var i = 0; i < data.length; ++i) {
                     $(target).append(renderData(data[i]));
@@ -129,7 +128,7 @@ function getUpcomingMonthEvents(target, month) {
                 $(target).append(noEvents);
             }
         },
-        error: function () {
+        error: function() {
             var errString = "<div class=\"panel panel-warning\">" +
                 "<div class=\"panel-header\">An Error Has Occurred</div>" +
                 "<div class=\"panel-body\">Could not retrieve " + monthNames[month] + " data</div></div>";
@@ -145,7 +144,7 @@ var year = Date.getFullYear;
 
 // Hide all months as default
 hideMonths();
-(function () {
+(function() {
     function pageInit() {
         // hide _Layout items
         $("#topLeft").hide();
@@ -285,19 +284,29 @@ hideMonths();
 
     pageInit();
 })();
+
+/*function getAll() {
+    $("#tabAll").click(function(){
+        removeActiveClasses();
+        if(!gotSched) {
+            
+        }
+    })
+}*/
+
 function getJanuary() {
-    $("#tabJan").click(function () {
+    $("#tabJan").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 0, 1).toUTCString();
-        var endDate = new Date(2017, 0, 31).toUTCString();
+        var startDate = new Date(year, 0, 1).toUTCString();
+        var endDate = new Date(year, 0, 31).toUTCString();
         if (!gotJan) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthJan").append(renderData(data[i]));
@@ -309,7 +318,7 @@ function getJanuary() {
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#monthJan").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve January data</div></div>");
@@ -325,19 +334,19 @@ function getJanuary() {
 }
 
 function getFebruary() {
-    $("#tabFeb").click(function () {
+    $("#tabFeb").click(function() {
         hideMonths();
         removeActiveClasses();
         getUpcomingMonthEvents();
-        var startDate = new Date(2017, 1, 1).toUTCString();
-        var endDate = new Date(2017, 1, 29).toUTCString();
+        var startDate = new Date(year, 1, 1).toUTCString();
+        var endDate = new Date(year, 1, 29).toUTCString();
         if (!gotFeb) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthFeb").append(renderData(data[i]));
@@ -350,7 +359,7 @@ function getFebruary() {
                     }
 
                 },
-                error: function () {
+                error: function() {
                     $("#monthFeb").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve February data</div></div>");
@@ -364,19 +373,20 @@ function getFebruary() {
         $("#monthFeb").addClass("active");
     });
 }
+
 function getMarch() {
-    $("#tabMar").click(function () {
+    $("#tabMar").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 2, 1).toUTCString();
-        var endDate = new Date(2017, 2, 31).toUTCString();
+        var startDate = new Date(year, 2, 1).toUTCString();
+        var endDate = new Date(year, 2, 31).toUTCString();
         if (!gotMar) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         if (data.length > 0) {
                             for (var i = 0; i < data.length; ++i) {
@@ -395,7 +405,7 @@ function getMarch() {
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#monthMar").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve March data</div></div>");
@@ -411,18 +421,18 @@ function getMarch() {
 }
 
 function getApril() {
-    $("#tabApr").click(function () {
+    $("#tabApr").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 3, 1).toUTCString();
-        var endDate = new Date(2017, 3, 30).toUTCString();
+        var startDate = new Date(year, 3, 1).toUTCString();
+        var endDate = new Date(year, 3, 30).toUTCString();
         if (!gotApr) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         if (data.length > 0) {
                             for (var i = 0; i < data.length; ++i) {
@@ -441,7 +451,7 @@ function getApril() {
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#monthApr").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve April data</div></div>");
@@ -455,19 +465,20 @@ function getApril() {
         $("#monthApr").addClass("active");
     });
 }
+
 function getMay() {
-    $("#tabMay").click(function () {
+    $("#tabMay").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 4, 1).toUTCString();
-        var endDate = new Date(2017, 4, 31).toUTCString();
+        var startDate = new Date(year, 4, 1).toUTCString();
+        var endDate = new Date(year, 4, 31).toUTCString();
         if (!gotMay) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthMay").append(renderData(data[i]));
@@ -480,7 +491,7 @@ function getMay() {
                     }
 
                 },
-                error: function () {
+                error: function() {
                     $("#monthMay").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve May data</div></div>");
@@ -493,19 +504,20 @@ function getMay() {
         $("#monthMay").addClass("active");
     });
 }
+
 function getJune() {
-    $("#tabJun").click(function () {
+    $("#tabJun").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 5, 1).toUTCString();
-        var endDate = new Date(2017, 5, 30).toUTCString();
+        var startDate = new Date(year, 5, 1).toUTCString();
+        var endDate = new Date(year, 5, 30).toUTCString();
         if (!gotJun) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthJun").append(renderData(data[i]));
@@ -517,7 +529,7 @@ function getJune() {
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#monthJun").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve June data</div></div>");
@@ -532,18 +544,18 @@ function getJune() {
 }
 
 function getJuly() {
-    $("#tabJul").click(function () {
+    $("#tabJul").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 6, 1).toUTCString();
-        var endDate = new Date(2017, 6, 31).toUTCString();
+        var startDate = new Date(year, 6, 1).toUTCString();
+        var endDate = new Date(year, 6, 31).toUTCString();
         if (!gotJul) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
 
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -557,7 +569,7 @@ function getJuly() {
                     }
                 },
 
-                error: function () {
+                error: function() {
                     $("#monthJul").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve July data</div></div>");
@@ -573,18 +585,18 @@ function getJuly() {
 
 function getAugust() {
 
-    $("#tabAug").click(function () {
+    $("#tabAug").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 7, 1).toUTCString();
-        var endDate = new Date(2017, 7, 31).toUTCString();
+        var startDate = new Date(year, 7, 1).toUTCString();
+        var endDate = new Date(year, 7, 31).toUTCString();
         if (!gotAug) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
 
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -597,7 +609,7 @@ function getAugust() {
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#monthAug").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve August data</div></div>");
@@ -614,18 +626,18 @@ function getAugust() {
 
 function getSeptember() {
 
-    $("#tabSep").click(function () {
+    $("#tabSep").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 8, 1).toUTCString();
-        var endDate = new Date(2017, 8, 30).toUTCString();
+        var startDate = new Date(year, 8, 1).toUTCString();
+        var endDate = new Date(year, 8, 30).toUTCString();
         if (!gotSep) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthSep").append(renderData(data[i]));
@@ -637,7 +649,7 @@ function getSeptember() {
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#monthSep").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve September data</div></div>");
@@ -653,18 +665,18 @@ function getSeptember() {
 
 function getOctober() {
 
-    $("#tabOct").click(function () {
+    $("#tabOct").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 9, 1).toUTCString();
-        var endDate = new Date(2017, 9, 31).toUTCString();
+        var startDate = new Date(year, 9, 1).toUTCString();
+        var endDate = new Date(year, 9, 31).toUTCString();
         if (!gotOct) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthOct").append(renderData(data[i]));
@@ -676,7 +688,7 @@ function getOctober() {
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#monthOct").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve October data</div></div>");
@@ -692,18 +704,18 @@ function getOctober() {
 
 function getNovember() {
 
-    $("#tabNov").click(function () {
+    $("#tabNov").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 10, 1).toUTCString();
-        var endDate = new Date(2017, 10, 30).toUTCString();
+        var startDate = new Date(year, 10, 1).toUTCString();
+        var endDate = new Date(year, 10, 30).toUTCString();
         if (!gotNov) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0 && gotNov === false) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthNov").append(renderData(data[i]));
@@ -716,7 +728,7 @@ function getNovember() {
                     }
                     self.gotNov = true;
                 },
-                error: function () {
+                error: function() {
                     $("#monthNov").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve November data</div></div>");
@@ -732,18 +744,18 @@ function getNovember() {
 
 function getDecember() {
 
-    $("#tabDec").click(function () {
+    $("#tabDec").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2017, 11, 1).toUTCString();
-        var endDate = new Date(2017, 11, 31).toUTCString();
+        var startDate = new Date(year, 11, 1).toUTCString();
+        var endDate = new Date(year, 11, 31).toUTCString();
         if (!gotDec) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
                 data: { starting: startDate, ending: endDate },
-                success: function (data) {
+                success: function(data) {
                     if (data.length > 0 && gotDec === false) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#monthDec").append(renderData(data[i]));
@@ -757,7 +769,7 @@ function getDecember() {
 
                     gotDec = true;
                 },
-                error: function () {
+                error: function() {
                     $("#monthDec").append("<div class='panel panel-warning'>" +
                         "<div class='panel-header'>An Error Has Occurred</div>" +
                         "<div class='panel-body'>Could not retrieve December data</div></div>");
@@ -770,31 +782,30 @@ function getDecember() {
         $("#monthDec").addClass("active");
     });
 
-     function getFullSchedule() {
+    function getFullSchedule() {
         hideMonths();
         $("#allActivities").show();
-        $("#allActivities").addClass("active");       
+        $("#allActivities").addClass("active");
         if (!gotSched) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities",
                 data: {},
-                sucess: function (data) {
+                sucess: function(data) {
                     if (data.length > 0 && gotSched === false) {
                         for (var i = 0; i < data.length; ++i) {
                             $("#allActivities").append(renderData(data[i]));
                         }
                         gotSched = true;
-                    }
-                    else {
+                    } else {
                         $("#allActivities").append("<div class='panel panel-warning'>" +
                             "<div class='panel panel-header'>An Error Has Occurred Retrieving Calendar'</div>" +
                             "<div class='panel panel-body'> There are no events this year.  Either none have been entered, or there's an error talking to the database (probable)</div></div>"
                         );
                     }
                 },
-                error: function () {
+                error: function() {
                     $("#allActivities").append("<div class='panel panel-warning'>" +
                         "<div class='panel panel-header'>An Error Has Occurred Retrieving Calendar'</div>" +
                         "<div class='panel panel-body'> There are no events this year.  Either none have been entered, or there's an error talking to the database (probable)</div></div>");
@@ -802,5 +813,5 @@ function getDecember() {
 
             });
         }
-    };
+    }
 }
