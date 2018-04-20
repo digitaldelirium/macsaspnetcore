@@ -29,10 +29,7 @@ function hideMonths() {
     $("#allActivities").hide();
 }
 
-
 hideMonths();
-
-
 
 function removeActiveClasses() {
     $("#tabJan").removeClass("active");
@@ -140,7 +137,8 @@ function getUpcomingMonthEvents(target, month) {
 
 }
 
-var year = Date.getFullYear;
+var today = new Date();
+var year = today.getFullYear;
 
 // Hide all months as default
 hideMonths();
@@ -285,21 +283,12 @@ hideMonths();
     pageInit();
 })();
 
-/*function getAll() {
-    $("#tabAll").click(function(){
-        removeActiveClasses();
-        if(!gotSched) {
-            
-        }
-    })
-}*/
-
 function getJanuary() {
     $("#tabJan").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 0, 1).toUTCString();
-        var endDate = new Date(year, 0, 31).toUTCString();
+        var startDate = new Date(2018, 0, 1).toUTCString();
+        var endDate = new Date(2018, 0, 31).toUTCString();
         if (!gotJan) {
             $.ajax({
                 type: "GET",
@@ -338,8 +327,8 @@ function getFebruary() {
         hideMonths();
         removeActiveClasses();
         getUpcomingMonthEvents();
-        var startDate = new Date(year, 1, 1).toUTCString();
-        var endDate = new Date(year, 1, 29).toUTCString();
+        var startDate = new Date(2018, 1, 1).toUTCString();
+        var endDate = new Date(2018, 1, 29).toUTCString();
         if (!gotFeb) {
             $.ajax({
                 type: "GET",
@@ -378,8 +367,8 @@ function getMarch() {
     $("#tabMar").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 2, 1).toUTCString();
-        var endDate = new Date(year, 2, 31).toUTCString();
+        var startDate = new Date(2018, 2, 1).toUTCString();
+        var endDate = new Date(2018, 2, 31).toUTCString();
         if (!gotMar) {
             $.ajax({
                 type: "GET",
@@ -424,8 +413,8 @@ function getApril() {
     $("#tabApr").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 3, 1).toUTCString();
-        var endDate = new Date(year, 3, 30).toUTCString();
+        var startDate = new Date(2018, 3, 1).toUTCString();
+        var endDate = new Date(2018, 3, 30).toUTCString();
         if (!gotApr) {
             $.ajax({
                 type: "GET",
@@ -470,8 +459,8 @@ function getMay() {
     $("#tabMay").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 4, 1).toUTCString();
-        var endDate = new Date(year, 4, 31).toUTCString();
+        var startDate = new Date(2018, 4, 1).toUTCString();
+        var endDate = new Date(2018, 4, 31).toUTCString();
         if (!gotMay) {
             $.ajax({
                 type: "GET",
@@ -509,8 +498,8 @@ function getJune() {
     $("#tabJun").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 5, 1).toUTCString();
-        var endDate = new Date(year, 5, 30).toUTCString();
+        var startDate = new Date(2018, 5, 1).toUTCString();
+        var endDate = new Date(2018, 5, 30).toUTCString();
         if (!gotJun) {
             $.ajax({
                 type: "GET",
@@ -547,8 +536,8 @@ function getJuly() {
     $("#tabJul").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 6, 1).toUTCString();
-        var endDate = new Date(year, 6, 31).toUTCString();
+        var startDate = new Date(2018, 6, 1).toUTCString();
+        var endDate = new Date(2018, 6, 31).toUTCString();
         if (!gotJul) {
             $.ajax({
                 type: "GET",
@@ -588,8 +577,8 @@ function getAugust() {
     $("#tabAug").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 7, 1).toUTCString();
-        var endDate = new Date(year, 7, 31).toUTCString();
+        var startDate = new Date(2018, 7, 1).toUTCString();
+        var endDate = new Date(2018, 7, 31).toUTCString();
         if (!gotAug) {
             $.ajax({
                 type: "GET",
@@ -629,8 +618,8 @@ function getSeptember() {
     $("#tabSep").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 8, 1).toUTCString();
-        var endDate = new Date(year, 8, 30).toUTCString();
+        var startDate = new Date(2018, 8, 1).toUTCString();
+        var endDate = new Date(2018, 8, 30).toUTCString();
         if (!gotSep) {
             $.ajax({
                 type: "GET",
@@ -668,8 +657,8 @@ function getOctober() {
     $("#tabOct").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 9, 1).toUTCString();
-        var endDate = new Date(year, 9, 31).toUTCString();
+        var startDate = new Date(2018, 9, 1).toUTCString();
+        var endDate = new Date(2018, 9, 31).toUTCString();
         if (!gotOct) {
             $.ajax({
                 type: "GET",
@@ -707,8 +696,8 @@ function getNovember() {
     $("#tabNov").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 10, 1).toUTCString();
-        var endDate = new Date(year, 10, 30).toUTCString();
+        var startDate = new Date(2018, 10, 1).toUTCString();
+        var endDate = new Date(2018, 10, 30).toUTCString();
         if (!gotNov) {
             $.ajax({
                 type: "GET",
@@ -747,8 +736,8 @@ function getDecember() {
     $("#tabDec").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(year, 11, 1).toUTCString();
-        var endDate = new Date(year, 11, 31).toUTCString();
+        var startDate = new Date(2018, 11, 1).toUTCString();
+        var endDate = new Date(2018, 11, 31).toUTCString();
         if (!gotDec) {
             $.ajax({
                 type: "GET",
