@@ -5,24 +5,16 @@
 @section TopLeft {
     <div id="unit1" class="panel panel-info">
         <div class="panel panel-heading">
-            <h4 style="text-align: center">RV Rental A</h4>
+            <h4 style="text-align: center">Lakeview</h4>
         </div>
         <div class="row">
             <div class="col-sm-12" id="t1Container">
                 <div id="trailer1" class="slider single-item lazy">
                     @foreach (var image in ViewBag.ImageList)
                     {
-                        if (i == 0){
-                            <div class="carousel-item active">
-                                <img src="@Url.Content("~/images/trailer1/" + image)" alt="Slide Show Picture of rental unit A" class="img-responsive d-block img-fluid"/>
-                            </div>
-                        }
-                        else {
-                            <div class="carousel-item">
-                                <img src="@Url.Content("~/images/trailer1/" + image)" alt="Slide Show Picture of rental unit A" class="img-responsive d-block img-fluid"/>
-                            </div>
-                        }
-                        i++;
+                        <div>
+                            <img data-lazy="@Url.Content("~/images/lakeview/" + image)" alt="Slide Show Picture of rental unit A" class="img-responsive"/>
+                        </div>
                     }
                     </div>
                         <ol class="carousel-indicators">
@@ -52,6 +44,8 @@
                 <li>gas grill outside</li>
                 <li>located next to the bathhouse</li>
                 <li>gated area for pets</li>
+                <li>screened in front porch</li>            
+                <li>queen size futon on porch</li>                    
             </ul>
         </div>
     </div>
@@ -66,9 +60,8 @@
                 </li>
                 <br />
                 <li class="list-group-item">sleeps 6 adults in beds</li>
-                <li class="list-group-item">screened in front porch</li>
-                <li class="list-group-item">queen size futon on porch</li>
-                <li class="list-group-item">small table with 4 chairs</li>
+                <li class="list-group-item">1x queen bed</li>
+                <li class="list-group-item">small table</li>
                 <li class="list-group-item">full size refrigerator/freezer combo</li>
                 <li class="list-group-item">plenty of storage/closet space</li>
                 <li class="list-group-item">small tub and shower</li>
@@ -83,6 +76,7 @@
                 <li class="list-group-item">coffee maker with filter</li>
                 <li class="list-group-item">blender</li>
                 <li class="list-group-item">microwave</li>
+                <li class="list-group-item">toaster oven</li>
             </ul>
         </div>
     </div>
@@ -102,17 +96,9 @@
                     }
                     @foreach (var image in ViewBag.ImageList2)
                     {
-                        if (x == 0){
-                            <div class="carousel-item active">
-                                <img src="@Url.Content("~/images/trailer2/" + image)" alt="Slide show picture of rental unit B" class="img-responsive centered"/>
-                            </div>                            
-                        }
-                        else {
-                            <div class="carousel-item">
-                                <img src="@Url.Content("~/images/trailer2/" + image)" alt="Slide show picture of rental unit B" class="img-responsive centered"/>
-                            </div>
-                        }
-                        x++;
+                        <div>
+                            <img data-lazy="@Url.Content("~/images/lilypad/" + image)" alt="Slide show picture of lily pad rental" class="img-responsive centered"/>
+                        </div>
                     }
                     </div>
                     <ol class="carousel-indicators">
@@ -138,7 +124,11 @@
         </div>
         <div class="panel panel-body list-group">
             <ul class="list-unstyled">
-                <li>charcoal and gas grill outside <br />(bring your own charcoal or purchase on-site)</li>
+                <li>1x sofa with hide-a-bed</li>
+                <li>fold-down bench seat table</li>
+                <li>second bedroom with two-twin beds</li>
+                <li><em>coming soon</em>:  Weber Grill</li>
+                <li><em>coming soon</em>:  Screened in patio</li>
             </ul>
             <br />
         </div>

@@ -119,8 +119,8 @@ namespace MacsASPNETCore.Controllers
 
         public IActionResult RV()
         {
-            var slidepath1 = _env.WebRootPath +  "/images/trailer1";
-            var slidepath2 = _env.WebRootPath +  "/images/trailer2";
+            var slidepath1 = _env.WebRootPath +  "/images/lakeview";
+            var slidepath2 = _env.WebRootPath +  "/images/lilypad";
             ViewData["Title"] = "RV Rentals";
             ViewData["Message"] = "2 RV Rentals Available";
             var trailer1Slide = new System.IO.DirectoryInfo(slidepath1).GetFiles();
