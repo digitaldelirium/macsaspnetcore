@@ -152,6 +152,7 @@ namespace MacsASPNETCore.Controllers
             ViewBag.ImageList = activityPics;
             return View(activities);
         }
+
         [HttpPost]
         public JsonResult Activities(DateTime startDate, DateTime endDate)
         {
@@ -164,6 +165,13 @@ namespace MacsASPNETCore.Controllers
             ViewData["Message"] = "See what's going on at Mac's this year";
             ViewBag.ImageList = activityPics;
             return Json(activities);
+        }
+
+        public IActionResult CampMap()
+        {
+            ViewData["Title"] = "Map of Mac's Camping Area";
+            ViewData["Message"] = "Get a lay of the land at Mac's!";
+            return View();
         }
     }
 }
