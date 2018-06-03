@@ -19,6 +19,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.ResponseCompression;
+using System.IO.Compression;
+using System.Linq;
 
 namespace MacsASPNETCore
 {
@@ -129,16 +132,9 @@ namespace MacsASPNETCore
                 options.SlidingExpiration = true;
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
             });
-#if DEBUG
-            //Add Email Service
-            services.AddScoped<IEmailSender, DebugMailService>();
-#else
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddResponseCompression(options => {
+
+                services.AddResponseCompression(options => {
                 options.Providers.Add<GzipCompressionProvider>();
-                options.Providers.Add<CustomCompressionProvider>();
                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
                     new[] {
                         "image/svg+xml"
@@ -149,9 +145,17 @@ namespace MacsASPNETCore
             
             services.Configure<GzipCompressionProviderOptions>(options =>
             {
-                options.Level = CompressionLevel.Fastest
-            }
-            );
+                options.Level = CompressionLevel.Fastest;
+            });
+            
+#if DEBUG
+            //Add Email Service
+            services.AddScoped<IEmailSender, DebugMailService>();
+#else
+            // Add application services.
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+
 #endif
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
