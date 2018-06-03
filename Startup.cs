@@ -136,6 +136,22 @@ namespace MacsASPNETCore
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddResponseCompression(options => {
+                options.Providers.Add<GzipCompressionProvider>();
+                options.Providers.Add<CustomCompressionProvider>();
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] {
+                        "image/svg+xml"
+                    }
+                );
+            });
+
+            
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest
+            }
+            );
 #endif
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -170,6 +186,8 @@ namespace MacsASPNETCore
                         serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
                             .Database.Migrate();
                     }
+
+                    
                 }
                 catch (Exception ex)
                 {
@@ -188,6 +206,7 @@ namespace MacsASPNETCore
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             app.UseMvc(routes => { routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"); });
+            
         }
 
         private async Task CreateRoles(IServiceProvider serviceProvider)
