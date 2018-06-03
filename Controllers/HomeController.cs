@@ -46,17 +46,6 @@ namespace MacsASPNETCore.Controllers
             return View();
         }
 
-        public IActionResult Memoriam()
-        { 
-            var slidepath = _env.WebRootPath +  "/images/grandpa";
-            ViewData["Title"] = "Remembering George 'Mac' McDonald";
-            ViewBag.ngApp = "MemoriamApp";
-            ViewBag.ngController = "MemoriamController";
-            var grandpaSlide = new System.IO.DirectoryInfo(slidepath).GetFiles();
-            ViewBag.ImageList = grandpaSlide;
-            return View();
-        }
-
         public IActionResult Contact()
         {
             ViewData["Message"] = "Please drop us a line or pay us a visit!";
@@ -163,6 +152,7 @@ namespace MacsASPNETCore.Controllers
             ViewBag.ImageList = activityPics;
             return View(activities);
         }
+
         [HttpPost]
         public JsonResult Activities(DateTime startDate, DateTime endDate)
         {
@@ -175,6 +165,13 @@ namespace MacsASPNETCore.Controllers
             ViewData["Message"] = "See what's going on at Mac's this year";
             ViewBag.ImageList = activityPics;
             return Json(activities);
+        }
+
+        public IActionResult CampMap()
+        {
+            ViewData["Title"] = "Map of Mac's Camping Area";
+            ViewData["Message"] = "Get a lay of the land at Mac's!";
+            return View();
         }
     }
 }
