@@ -1,9 +1,9 @@
 {
-  "Azure" : {
-    "KeyVault" : {
-      "Vault": "macscampvault",
-      "ClientId": "44c4e2a1-4b32-4d7b-b063-ab00907ab449",
-      "ClientSecret": "#{client-secret}#"
+    "Azure": {
+        "KeyVault": {
+            "Vault": "macscampvault",
+            "ClientId": "e8725941-c27a-4012-8c89-19aca10b11a5",
+            "ClientSecret": "#{client-secret}#"
+        }
     }
-  }
 }
