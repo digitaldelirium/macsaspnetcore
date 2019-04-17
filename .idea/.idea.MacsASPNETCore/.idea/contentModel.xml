@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$USER_HOME$/.Rider2017.3/system/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.3/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p=".dockerignore" t="Include" />
       <e p=".gitattributes" t="Include" />
@@ -9,9 +12,7 @@
       <e p=".vsts-ci.yml" t="Include" />
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
-      <e p="Activity.db" t="Include" />
       <e p="ActivitySeedData.sql" t="Include" />
-      <e p="Application.db" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="Api" t="Include">
@@ -21,621 +22,9 @@
         <e p="HomeController.cs" t="Include" />
         <e p="ManageController.cs" t="Include" />
       </e>
-      <e p="Customers.db" t="Include" />
       <e p="Deploy" t="Include">
         <e p="Replace-Tokens.ps1" t="Include" />
         <e p="dockerbld.sh" t="Include" />
-        <e p="python" t="Include">
-          <e p="venv" t="Include">
-            <e p="bin" t="Include">
-              <e p="activate" t="Include" />
-              <e p="activate.csh" t="Include" />
-              <e p="activate.fish" t="Include" />
-              <e p="activate_this.py" t="Include" />
-              <e p="easy_install" t="Include" />
-              <e p="easy_install-3.5" t="Include" />
-              <e p="pip" t="Include" />
-              <e p="pip3" t="Include" />
-              <e p="pip3.5" t="Include" />
-              <e p="python" t="Include" />
-              <e p="python-config" t="Include" />
-              <e p="python3" t="Include" />
-              <e p="python3.5" t="Include" />
-              <e p="wheel" t="Include" />
-            </e>
-            <e p="lib" t="Include">
-              <e p="python3.5" t="Include">
-                <e p="__pycache__" t="Include">
-                  <e p="_bootlocale.cpython-35.pyc" t="Include" />
-                  <e p="_collections_abc.cpython-35.pyc" t="Include" />
-                  <e p="_weakrefset.cpython-35.pyc" t="Include" />
-                  <e p="abc.cpython-35.pyc" t="Include" />
-                  <e p="codecs.cpython-35.pyc" t="Include" />
-                  <e p="genericpath.cpython-35.pyc" t="Include" />
-                  <e p="io.cpython-35.pyc" t="Include" />
-                  <e p="os.cpython-35.pyc" t="Include" />
-                  <e p="posixpath.cpython-35.pyc" t="Include" />
-                  <e p="site.cpython-35.pyc" t="Include" />
-                  <e p="stat.cpython-35.pyc" t="Include" />
-                </e>
-                <e p="site-packages" t="Include">
-                  <e p="__pycache__" t="Include">
-                    <e p="easy_install.cpython-35.pyc" t="Include" />
-                  </e>
-                  <e p="pip" t="Include">
-                    <e p="__pycache__" t="Include">
-                      <e p="__init__.cpython-35.pyc" t="Include" />
-                      <e p="__main__.cpython-35.pyc" t="Include" />
-                      <e p="basecommand.cpython-35.pyc" t="Include" />
-                      <e p="baseparser.cpython-35.pyc" t="Include" />
-                      <e p="cmdoptions.cpython-35.pyc" t="Include" />
-                      <e p="download.cpython-35.pyc" t="Include" />
-                      <e p="exceptions.cpython-35.pyc" t="Include" />
-                      <e p="index.cpython-35.pyc" t="Include" />
-                      <e p="locations.cpython-35.pyc" t="Include" />
-                      <e p="pep425tags.cpython-35.pyc" t="Include" />
-                      <e p="status_codes.cpython-35.pyc" t="Include" />
-                      <e p="wheel.cpython-35.pyc" t="Include" />
-                    </e>
-                    <e p="_vendor" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="appdirs.cpython-35.pyc" t="Include" />
-                        <e p="distro.cpython-35.pyc" t="Include" />
-                        <e p="ipaddress.cpython-35.pyc" t="Include" />
-                        <e p="ordereddict.cpython-35.pyc" t="Include" />
-                        <e p="pyparsing.cpython-35.pyc" t="Include" />
-                        <e p="re-vendor.cpython-35.pyc" t="Include" />
-                        <e p="retrying.cpython-35.pyc" t="Include" />
-                        <e p="six.cpython-35.pyc" t="Include" />
-                      </e>
-                      <e p="cachecontrol" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="_cmd.cpython-35.pyc" t="Include" />
-                          <e p="adapter.cpython-35.pyc" t="Include" />
-                          <e p="cache.cpython-35.pyc" t="Include" />
-                          <e p="compat.cpython-35.pyc" t="Include" />
-                          <e p="controller.cpython-35.pyc" t="Include" />
-                          <e p="filewrapper.cpython-35.pyc" t="Include" />
-                          <e p="heuristics.cpython-35.pyc" t="Include" />
-                          <e p="serialize.cpython-35.pyc" t="Include" />
-                          <e p="wrapper.cpython-35.pyc" t="Include" />
-                        </e>
-                        <e p="caches" t="Include">
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                            <e p="file_cache.cpython-35.pyc" t="Include" />
-                            <e p="redis_cache.cpython-35.pyc" t="Include" />
-                          </e>
-                        </e>
-                      </e>
-                      <e p="colorama" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="ansi.cpython-35.pyc" t="Include" />
-                          <e p="ansitowin32.cpython-35.pyc" t="Include" />
-                          <e p="initialise.cpython-35.pyc" t="Include" />
-                          <e p="win32.cpython-35.pyc" t="Include" />
-                          <e p="winterm.cpython-35.pyc" t="Include" />
-                        </e>
-                      </e>
-                      <e p="distlib" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="compat.cpython-35.pyc" t="Include" />
-                          <e p="database.cpython-35.pyc" t="Include" />
-                          <e p="index.cpython-35.pyc" t="Include" />
-                          <e p="locators.cpython-35.pyc" t="Include" />
-                          <e p="manifest.cpython-35.pyc" t="Include" />
-                          <e p="markers.cpython-35.pyc" t="Include" />
-                          <e p="metadata.cpython-35.pyc" t="Include" />
-                          <e p="resources.cpython-35.pyc" t="Include" />
-                          <e p="scripts.cpython-35.pyc" t="Include" />
-                          <e p="util.cpython-35.pyc" t="Include" />
-                          <e p="version.cpython-35.pyc" t="Include" />
-                          <e p="wheel.cpython-35.pyc" t="Include" />
-                        </e>
-                        <e p="_backport" t="Include">
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                            <e p="misc.cpython-35.pyc" t="Include" />
-                            <e p="shutil.cpython-35.pyc" t="Include" />
-                            <e p="sysconfig.cpython-35.pyc" t="Include" />
-                            <e p="tarfile.cpython-35.pyc" t="Include" />
-                          </e>
-                        </e>
-                      </e>
-                      <e p="html5lib" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="_ihatexml.cpython-35.pyc" t="Include" />
-                          <e p="_inputstream.cpython-35.pyc" t="Include" />
-                          <e p="_tokenizer.cpython-35.pyc" t="Include" />
-                          <e p="_utils.cpython-35.pyc" t="Include" />
-                          <e p="constants.cpython-35.pyc" t="Include" />
-                          <e p="html5parser.cpython-35.pyc" t="Include" />
-                          <e p="serializer.cpython-35.pyc" t="Include" />
-                        </e>
-                        <e p="_trie" t="Include">
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                            <e p="_base.cpython-35.pyc" t="Include" />
-                            <e p="datrie.cpython-35.pyc" t="Include" />
-                            <e p="py.cpython-35.pyc" t="Include" />
-                          </e>
-                        </e>
-                        <e p="filters" t="Include">
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                            <e p="alphabeticalattributes.cpython-35.pyc" t="Include" />
-                            <e p="base.cpython-35.pyc" t="Include" />
-                            <e p="inject_meta_charset.cpython-35.pyc" t="Include" />
-                            <e p="lint.cpython-35.pyc" t="Include" />
-                            <e p="optionaltags.cpython-35.pyc" t="Include" />
-                            <e p="sanitizer.cpython-35.pyc" t="Include" />
-                            <e p="whitespace.cpython-35.pyc" t="Include" />
-                          </e>
-                        </e>
-                        <e p="treeadapters" t="Include">
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                            <e p="genshi.cpython-35.pyc" t="Include" />
-                            <e p="sax.cpython-35.pyc" t="Include" />
-                          </e>
-                        </e>
-                        <e p="treebuilders" t="Include">
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                            <e p="base.cpython-35.pyc" t="Include" />
-                            <e p="dom.cpython-35.pyc" t="Include" />
-                            <e p="etree.cpython-35.pyc" t="Include" />
-                            <e p="etree_lxml.cpython-35.pyc" t="Include" />
-                          </e>
-                        </e>
-                        <e p="treewalkers" t="Include">
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                            <e p="base.cpython-35.pyc" t="Include" />
-                            <e p="dom.cpython-35.pyc" t="Include" />
-                            <e p="etree.cpython-35.pyc" t="Include" />
-                            <e p="etree_lxml.cpython-35.pyc" t="Include" />
-                            <e p="genshi.cpython-35.pyc" t="Include" />
-                          </e>
-                        </e>
-                      </e>
-                      <e p="lockfile" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="linklockfile.cpython-35.pyc" t="Include" />
-                          <e p="mkdirlockfile.cpython-35.pyc" t="Include" />
-                          <e p="pidlockfile.cpython-35.pyc" t="Include" />
-                          <e p="sqlitelockfile.cpython-35.pyc" t="Include" />
-                          <e p="symlinklockfile.cpython-35.pyc" t="Include" />
-                        </e>
-                      </e>
-                      <e p="packaging" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__about__.cpython-35.pyc" t="Include" />
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="_compat.cpython-35.pyc" t="Include" />
-                          <e p="_structures.cpython-35.pyc" t="Include" />
-                          <e p="markers.cpython-35.pyc" t="Include" />
-                          <e p="requirements.cpython-35.pyc" t="Include" />
-                          <e p="specifiers.cpython-35.pyc" t="Include" />
-                          <e p="utils.cpython-35.pyc" t="Include" />
-                          <e p="version.cpython-35.pyc" t="Include" />
-                        </e>
-                      </e>
-                      <e p="pkg_resources" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                        </e>
-                      </e>
-                      <e p="progress" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="bar.cpython-35.pyc" t="Include" />
-                          <e p="counter.cpython-35.pyc" t="Include" />
-                          <e p="helpers.cpython-35.pyc" t="Include" />
-                          <e p="spinner.cpython-35.pyc" t="Include" />
-                        </e>
-                      </e>
-                      <e p="requests" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="adapters.cpython-35.pyc" t="Include" />
-                          <e p="api.cpython-35.pyc" t="Include" />
-                          <e p="auth.cpython-35.pyc" t="Include" />
-                          <e p="certs.cpython-35.pyc" t="Include" />
-                          <e p="compat.cpython-35.pyc" t="Include" />
-                          <e p="cookies.cpython-35.pyc" t="Include" />
-                          <e p="exceptions.cpython-35.pyc" t="Include" />
-                          <e p="hooks.cpython-35.pyc" t="Include" />
-                          <e p="models.cpython-35.pyc" t="Include" />
-                          <e p="sessions.cpython-35.pyc" t="Include" />
-                          <e p="status_codes.cpython-35.pyc" t="Include" />
-                          <e p="structures.cpython-35.pyc" t="Include" />
-                          <e p="utils.cpython-35.pyc" t="Include" />
-                        </e>
-                        <e p="packages" t="Include">
-                          <e p="__init__.py" t="Include" />
-                          <e p="__pycache__" t="Include">
-                            <e p="__init__.cpython-35.pyc" t="Include" />
-                          </e>
-                          <e p="chardet" t="Include">
-                            <e p="__init__.py" t="Include" />
-                            <e p="__pycache__" t="Include">
-                              <e p="__init__.cpython-35.pyc" t="Include" />
-                              <e p="big5freq.cpython-35.pyc" t="Include" />
-                              <e p="big5prober.cpython-35.pyc" t="Include" />
-                              <e p="chardetect.cpython-35.pyc" t="Include" />
-                              <e p="chardistribution.cpython-35.pyc" t="Include" />
-                              <e p="charsetgroupprober.cpython-35.pyc" t="Include" />
-                              <e p="charsetprober.cpython-35.pyc" t="Include" />
-                              <e p="codingstatemachine.cpython-35.pyc" t="Include" />
-                              <e p="compat.cpython-35.pyc" t="Include" />
-                              <e p="constants.cpython-35.pyc" t="Include" />
-                              <e p="cp949prober.cpython-35.pyc" t="Include" />
-                              <e p="escprober.cpython-35.pyc" t="Include" />
-                              <e p="escsm.cpython-35.pyc" t="Include" />
-                              <e p="eucjpprober.cpython-35.pyc" t="Include" />
-                              <e p="euckrfreq.cpython-35.pyc" t="Include" />
-                              <e p="euckrprober.cpython-35.pyc" t="Include" />
-                              <e p="euctwfreq.cpython-35.pyc" t="Include" />
-                              <e p="euctwprober.cpython-35.pyc" t="Include" />
-                              <e p="gb2312freq.cpython-35.pyc" t="Include" />
-                              <e p="gb2312prober.cpython-35.pyc" t="Include" />
-                              <e p="hebrewprober.cpython-35.pyc" t="Include" />
-                              <e p="jisfreq.cpython-35.pyc" t="Include" />
-                              <e p="jpcntx.cpython-35.pyc" t="Include" />
-                              <e p="langbulgarianmodel.cpython-35.pyc" t="Include" />
-                              <e p="langcyrillicmodel.cpython-35.pyc" t="Include" />
-                              <e p="langgreekmodel.cpython-35.pyc" t="Include" />
-                              <e p="langhebrewmodel.cpython-35.pyc" t="Include" />
-                              <e p="langhungarianmodel.cpython-35.pyc" t="Include" />
-                              <e p="langthaimodel.cpython-35.pyc" t="Include" />
-                              <e p="latin1prober.cpython-35.pyc" t="Include" />
-                              <e p="mbcharsetprober.cpython-35.pyc" t="Include" />
-                              <e p="mbcsgroupprober.cpython-35.pyc" t="Include" />
-                              <e p="mbcssm.cpython-35.pyc" t="Include" />
-                              <e p="sbcharsetprober.cpython-35.pyc" t="Include" />
-                              <e p="sbcsgroupprober.cpython-35.pyc" t="Include" />
-                              <e p="sjisprober.cpython-35.pyc" t="Include" />
-                              <e p="universaldetector.cpython-35.pyc" t="Include" />
-                              <e p="utf8prober.cpython-35.pyc" t="Include" />
-                            </e>
-                            <e p="big5freq.py" t="Include" />
-                            <e p="big5prober.py" t="Include" />
-                            <e p="chardetect.py" t="Include" />
-                            <e p="chardistribution.py" t="Include" />
-                            <e p="charsetgroupprober.py" t="Include" />
-                            <e p="charsetprober.py" t="Include" />
-                            <e p="codingstatemachine.py" t="Include" />
-                            <e p="compat.py" t="Include" />
-                            <e p="constants.py" t="Include" />
-                            <e p="cp949prober.py" t="Include" />
-                            <e p="escprober.py" t="Include" />
-                            <e p="escsm.py" t="Include" />
-                            <e p="eucjpprober.py" t="Include" />
-                            <e p="euckrfreq.py" t="Include" />
-                            <e p="euckrprober.py" t="Include" />
-                            <e p="euctwfreq.py" t="Include" />
-                            <e p="euctwprober.py" t="Include" />
-                            <e p="gb2312freq.py" t="Include" />
-                            <e p="gb2312prober.py" t="Include" />
-                            <e p="hebrewprober.py" t="Include" />
-                            <e p="jisfreq.py" t="Include" />
-                            <e p="jpcntx.py" t="Include" />
-                            <e p="langbulgarianmodel.py" t="Include" />
-                            <e p="langcyrillicmodel.py" t="Include" />
-                            <e p="langgreekmodel.py" t="Include" />
-                            <e p="langhebrewmodel.py" t="Include" />
-                            <e p="langhungarianmodel.py" t="Include" />
-                            <e p="langthaimodel.py" t="Include" />
-                            <e p="latin1prober.py" t="Include" />
-                            <e p="mbcharsetprober.py" t="Include" />
-                            <e p="mbcsgroupprober.py" t="Include" />
-                            <e p="mbcssm.py" t="Include" />
-                            <e p="sbcharsetprober.py" t="Include" />
-                            <e p="sbcsgroupprober.py" t="Include" />
-                            <e p="sjisprober.py" t="Include" />
-                            <e p="universaldetector.py" t="Include" />
-                            <e p="utf8prober.py" t="Include" />
-                          </e>
-                          <e p="urllib3" t="Include">
-                            <e p="__init__.py" t="Include" />
-                            <e p="__pycache__" t="Include">
-                              <e p="__init__.cpython-35.pyc" t="Include" />
-                              <e p="_collections.cpython-35.pyc" t="Include" />
-                              <e p="connection.cpython-35.pyc" t="Include" />
-                              <e p="connectionpool.cpython-35.pyc" t="Include" />
-                              <e p="exceptions.cpython-35.pyc" t="Include" />
-                              <e p="fields.cpython-35.pyc" t="Include" />
-                              <e p="filepost.cpython-35.pyc" t="Include" />
-                              <e p="poolmanager.cpython-35.pyc" t="Include" />
-                              <e p="request.cpython-35.pyc" t="Include" />
-                              <e p="response.cpython-35.pyc" t="Include" />
-                            </e>
-                            <e p="_collections.py" t="Include" />
-                            <e p="connection.py" t="Include" />
-                            <e p="connectionpool.py" t="Include" />
-                            <e p="contrib" t="Include">
-                              <e p="__init__.py" t="Include" />
-                              <e p="__pycache__" t="Include">
-                                <e p="__init__.cpython-35.pyc" t="Include" />
-                                <e p="appengine.cpython-35.pyc" t="Include" />
-                                <e p="ntlmpool.cpython-35.pyc" t="Include" />
-                                <e p="pyopenssl.cpython-35.pyc" t="Include" />
-                                <e p="socks.cpython-35.pyc" t="Include" />
-                              </e>
-                              <e p="appengine.py" t="Include" />
-                              <e p="ntlmpool.py" t="Include" />
-                              <e p="pyopenssl.py" t="Include" />
-                              <e p="socks.py" t="Include" />
-                            </e>
-                            <e p="exceptions.py" t="Include" />
-                            <e p="fields.py" t="Include" />
-                            <e p="filepost.py" t="Include" />
-                            <e p="packages" t="Include">
-                              <e p="__init__.py" t="Include" />
-                              <e p="__pycache__" t="Include">
-                                <e p="__init__.cpython-35.pyc" t="Include" />
-                                <e p="ordered_dict.cpython-35.pyc" t="Include" />
-                                <e p="six.cpython-35.pyc" t="Include" />
-                              </e>
-                              <e p="ordered_dict.py" t="Include" />
-                              <e p="six.py" t="Include" />
-                              <e p="ssl_match_hostname" t="Include">
-                                <e p="__init__.py" t="Include" />
-                                <e p="__pycache__" t="Include">
-                                  <e p="__init__.cpython-35.pyc" t="Include" />
-                                  <e p="_implementation.cpython-35.pyc" t="Include" />
-                                </e>
-                                <e p="_implementation.py" t="Include" />
-                              </e>
-                            </e>
-                            <e p="poolmanager.py" t="Include" />
-                            <e p="request.py" t="Include" />
-                            <e p="response.py" t="Include" />
-                            <e p="util" t="Include">
-                              <e p="__init__.py" t="Include" />
-                              <e p="__pycache__" t="Include">
-                                <e p="__init__.cpython-35.pyc" t="Include" />
-                                <e p="connection.cpython-35.pyc" t="Include" />
-                                <e p="request.cpython-35.pyc" t="Include" />
-                                <e p="response.cpython-35.pyc" t="Include" />
-                                <e p="retry.cpython-35.pyc" t="Include" />
-                                <e p="ssl_.cpython-35.pyc" t="Include" />
-                                <e p="timeout.cpython-35.pyc" t="Include" />
-                                <e p="url.cpython-35.pyc" t="Include" />
-                              </e>
-                              <e p="connection.py" t="Include" />
-                              <e p="request.py" t="Include" />
-                              <e p="response.py" t="Include" />
-                              <e p="retry.py" t="Include" />
-                              <e p="ssl_.py" t="Include" />
-                              <e p="timeout.py" t="Include" />
-                              <e p="url.py" t="Include" />
-                            </e>
-                          </e>
-                        </e>
-                      </e>
-                      <e p="webencodings" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="labels.cpython-35.pyc" t="Include" />
-                          <e p="mklabels.cpython-35.pyc" t="Include" />
-                          <e p="tests.cpython-35.pyc" t="Include" />
-                          <e p="x_user_defined.cpython-35.pyc" t="Include" />
-                        </e>
-                      </e>
-                    </e>
-                    <e p="commands" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="check.cpython-35.pyc" t="Include" />
-                        <e p="completion.cpython-35.pyc" t="Include" />
-                        <e p="download.cpython-35.pyc" t="Include" />
-                        <e p="freeze.cpython-35.pyc" t="Include" />
-                        <e p="hash.cpython-35.pyc" t="Include" />
-                        <e p="help.cpython-35.pyc" t="Include" />
-                        <e p="install.cpython-35.pyc" t="Include" />
-                        <e p="list.cpython-35.pyc" t="Include" />
-                        <e p="search.cpython-35.pyc" t="Include" />
-                        <e p="show.cpython-35.pyc" t="Include" />
-                        <e p="uninstall.cpython-35.pyc" t="Include" />
-                        <e p="wheel.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="compat" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="dictconfig.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="models" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="index.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="operations" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="check.cpython-35.pyc" t="Include" />
-                        <e p="freeze.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="req" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="req_file.cpython-35.pyc" t="Include" />
-                        <e p="req_install.cpython-35.pyc" t="Include" />
-                        <e p="req_set.cpython-35.pyc" t="Include" />
-                        <e p="req_uninstall.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="utils" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="appdirs.cpython-35.pyc" t="Include" />
-                        <e p="build.cpython-35.pyc" t="Include" />
-                        <e p="deprecation.cpython-35.pyc" t="Include" />
-                        <e p="encoding.cpython-35.pyc" t="Include" />
-                        <e p="filesystem.cpython-35.pyc" t="Include" />
-                        <e p="glibc.cpython-35.pyc" t="Include" />
-                        <e p="hashes.cpython-35.pyc" t="Include" />
-                        <e p="logging.cpython-35.pyc" t="Include" />
-                        <e p="outdated.cpython-35.pyc" t="Include" />
-                        <e p="packaging.cpython-35.pyc" t="Include" />
-                        <e p="setuptools_build.cpython-35.pyc" t="Include" />
-                        <e p="ui.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="vcs" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="bazaar.cpython-35.pyc" t="Include" />
-                        <e p="git.cpython-35.pyc" t="Include" />
-                        <e p="mercurial.cpython-35.pyc" t="Include" />
-                        <e p="subversion.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                  </e>
-                  <e p="pkg_resources" t="Include">
-                    <e p="__pycache__" t="Include">
-                      <e p="__init__.cpython-35.pyc" t="Include" />
-                      <e p="py31compat.cpython-35.pyc" t="Include" />
-                    </e>
-                    <e p="_vendor" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="appdirs.cpython-35.pyc" t="Include" />
-                        <e p="pyparsing.cpython-35.pyc" t="Include" />
-                        <e p="six.cpython-35.pyc" t="Include" />
-                      </e>
-                      <e p="packaging" t="Include">
-                        <e p="__pycache__" t="Include">
-                          <e p="__about__.cpython-35.pyc" t="Include" />
-                          <e p="__init__.cpython-35.pyc" t="Include" />
-                          <e p="_compat.cpython-35.pyc" t="Include" />
-                          <e p="_structures.cpython-35.pyc" t="Include" />
-                          <e p="markers.cpython-35.pyc" t="Include" />
-                          <e p="requirements.cpython-35.pyc" t="Include" />
-                          <e p="specifiers.cpython-35.pyc" t="Include" />
-                          <e p="utils.cpython-35.pyc" t="Include" />
-                          <e p="version.cpython-35.pyc" t="Include" />
-                        </e>
-                      </e>
-                    </e>
-                    <e p="extern" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                  </e>
-                  <e p="setuptools" t="Include">
-                    <e p="__pycache__" t="Include">
-                      <e p="__init__.cpython-35.pyc" t="Include" />
-                      <e p="archive_util.cpython-35.pyc" t="Include" />
-                      <e p="build_meta.cpython-35.pyc" t="Include" />
-                      <e p="config.cpython-35.pyc" t="Include" />
-                      <e p="dep_util.cpython-35.pyc" t="Include" />
-                      <e p="depends.cpython-35.pyc" t="Include" />
-                      <e p="dist.cpython-35.pyc" t="Include" />
-                      <e p="extension.cpython-35.pyc" t="Include" />
-                      <e p="glibc.cpython-35.pyc" t="Include" />
-                      <e p="glob.cpython-35.pyc" t="Include" />
-                      <e p="launch.cpython-35.pyc" t="Include" />
-                      <e p="lib2to3_ex.cpython-35.pyc" t="Include" />
-                      <e p="monkey.cpython-35.pyc" t="Include" />
-                      <e p="msvc.cpython-35.pyc" t="Include" />
-                      <e p="namespaces.cpython-35.pyc" t="Include" />
-                      <e p="package_index.cpython-35.pyc" t="Include" />
-                      <e p="pep425tags.cpython-35.pyc" t="Include" />
-                      <e p="py27compat.cpython-35.pyc" t="Include" />
-                      <e p="py31compat.cpython-35.pyc" t="Include" />
-                      <e p="py33compat.cpython-35.pyc" t="Include" />
-                      <e p="py36compat.cpython-35.pyc" t="Include" />
-                      <e p="sandbox.cpython-35.pyc" t="Include" />
-                      <e p="site-patch.cpython-35.pyc" t="Include" />
-                      <e p="ssl_support.cpython-35.pyc" t="Include" />
-                      <e p="unicode_utils.cpython-35.pyc" t="Include" />
-                      <e p="version.cpython-35.pyc" t="Include" />
-                      <e p="wheel.cpython-35.pyc" t="Include" />
-                      <e p="windows_support.cpython-35.pyc" t="Include" />
-                    </e>
-                    <e p="command" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="alias.cpython-35.pyc" t="Include" />
-                        <e p="bdist_egg.cpython-35.pyc" t="Include" />
-                        <e p="bdist_rpm.cpython-35.pyc" t="Include" />
-                        <e p="bdist_wininst.cpython-35.pyc" t="Include" />
-                        <e p="build_clib.cpython-35.pyc" t="Include" />
-                        <e p="build_ext.cpython-35.pyc" t="Include" />
-                        <e p="build_py.cpython-35.pyc" t="Include" />
-                        <e p="develop.cpython-35.pyc" t="Include" />
-                        <e p="dist_info.cpython-35.pyc" t="Include" />
-                        <e p="easy_install.cpython-35.pyc" t="Include" />
-                        <e p="egg_info.cpython-35.pyc" t="Include" />
-                        <e p="install.cpython-35.pyc" t="Include" />
-                        <e p="install_egg_info.cpython-35.pyc" t="Include" />
-                        <e p="install_lib.cpython-35.pyc" t="Include" />
-                        <e p="install_scripts.cpython-35.pyc" t="Include" />
-                        <e p="py36compat.cpython-35.pyc" t="Include" />
-                        <e p="register.cpython-35.pyc" t="Include" />
-                        <e p="rotate.cpython-35.pyc" t="Include" />
-                        <e p="saveopts.cpython-35.pyc" t="Include" />
-                        <e p="sdist.cpython-35.pyc" t="Include" />
-                        <e p="setopt.cpython-35.pyc" t="Include" />
-                        <e p="test.cpython-35.pyc" t="Include" />
-                        <e p="upload.cpython-35.pyc" t="Include" />
-                        <e p="upload_docs.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="extern" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                  </e>
-                  <e p="wheel" t="Include">
-                    <e p="__pycache__" t="Include">
-                      <e p="__init__.cpython-35.pyc" t="Include" />
-                      <e p="__main__.cpython-35.pyc" t="Include" />
-                      <e p="archive.cpython-35.pyc" t="Include" />
-                      <e p="bdist_wheel.cpython-35.pyc" t="Include" />
-                      <e p="decorator.cpython-35.pyc" t="Include" />
-                      <e p="egg2wheel.cpython-35.pyc" t="Include" />
-                      <e p="install.cpython-35.pyc" t="Include" />
-                      <e p="metadata.cpython-35.pyc" t="Include" />
-                      <e p="paths.cpython-35.pyc" t="Include" />
-                      <e p="pep425tags.cpython-35.pyc" t="Include" />
-                      <e p="pkginfo.cpython-35.pyc" t="Include" />
-                      <e p="util.cpython-35.pyc" t="Include" />
-                      <e p="wininst2wheel.cpython-35.pyc" t="Include" />
-                    </e>
-                    <e p="signatures" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                        <e p="djbec.cpython-35.pyc" t="Include" />
-                        <e p="ed25519py.cpython-35.pyc" t="Include" />
-                        <e p="keys.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                    <e p="tool" t="Include">
-                      <e p="__pycache__" t="Include">
-                        <e p="__init__.cpython-35.pyc" t="Include" />
-                      </e>
-                    </e>
-                  </e>
-                </e>
-              </e>
-            </e>
-          </e>
-        </e>
       </e>
       <e p="Dockerfile" t="Include" />
       <e p="Dockertag.dev.txt" t="Include" />
@@ -690,6 +79,7 @@
         <e p="State.cs" t="Include" />
       </e>
       <e p="Program.cs" t="Include" />
+      <e p="Program.cs.old" t="Include" />
       <e p="Project_Readme.html" t="Include" />
       <e p="Properties" t="Include">
         <e p="PublishProfiles" t="Include">
@@ -700,12 +90,6 @@
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="README.md" t="Include" />
-      <e p="Reservations.db" t="Include" />
-      <e p="Service References" t="Include">
-        <e p="Application Insights" t="Include">
-          <e p="ConnectedService.json" t="Include" />
-        </e>
-      </e>
       <e p="Services" t="Include">
         <e p="DebugMailService.cs" t="Include" />
         <e p="IEmailSender.cs" t="Include" />
@@ -760,6 +144,7 @@
           <e p="About.cshtml" t="Include" />
           <e p="Activities.cshtml" t="Include" />
           <e p="Amenities.cshtml" t="Include" />
+          <e p="CampMap.cshtml" t="Include" />
           <e p="Contact.cshtml" t="Include" />
           <e p="Index.cshtml" t="Include" />
           <e p="Memoriam.cshtml" t="Include" />
@@ -801,10 +186,6 @@
       <e p="compilerconfig.json" t="Include" />
       <e p="compilerconfig.json.defaults" t="Include" />
       <e p="create_EFMigrationsTable.sql" t="Include" />
-      <e p="docker-compose.ci.build.yml" t="Include" />
-      <e p="docker-compose.dcproj" t="IncludeRecursive" />
-      <e p="docker-compose.override.yml" t="Include" />
-      <e p="docker-compose.yml" t="Include" />
       <e p="gulpfile.js" t="Include" />
       <e p="hosting.json" t="Include" />
       <e p="obj" t="ExcludeRecursive">
@@ -847,6 +228,9 @@
           </e>
           <e p="auction.jpg" t="Include" />
           <e p="cake walk winners.jpg" t="Include" />
+          <e p="campmap.png" t="Include" />
+          <e p="campmap.svg" t="Include" />
+          <e p="campmap.svgz" t="Include" />
           <e p="christmas in july CROPPED.jpg" t="Include" />
           <e p="christmas-in-july.jpg" t="Include" />
           <e p="fishing-derby.jpg" t="Include" />
@@ -870,6 +254,22 @@
             <e p="st-paddy-mac-and-faye.jpg" t="Include" />
           </e>
           <e p="lake.JPG" t="Include" />
+          <e p="lakeview" t="Include">
+            <e p="DSCN0668.JPG" t="Include" />
+            <e p="DSCN0670.JPG" t="Include" />
+            <e p="DSCN0672.JPG" t="Include" />
+            <e p="DSCN0676.JPG" t="Include" />
+          </e>
+          <e p="lilypad" t="Include">
+            <e p="IMG_20170816_160741.jpg" t="Include" />
+            <e p="IMG_20170816_160816.jpg" t="Include" />
+            <e p="IMG_20170816_161300.jpg" t="Include" />
+            <e p="IMG_20170816_161333.jpg" t="Include" />
+            <e p="IMG_20170816_161347.jpg" t="Include" />
+            <e p="IMG_20170816_161504.jpg" t="Include" />
+            <e p="IMG_20170816_161527.jpg" t="Include" />
+            <e p="IMG_20170816_161551.jpg" t="Include" />
+          </e>
           <e p="titleslide" t="Include">
             <e p="DSCN0659.JPG" t="Include" />
             <e p="DSCN0666.JPG" t="Include" />
@@ -881,22 +281,6 @@
             <e p="P1030456.JPG" t="Include" />
             <e p="camp.jpg" t="Include" />
             <e p="horseshoe.JPG" t="Include" />
-          </e>
-          <e p="trailer1" t="Include">
-            <e p="DSCN0668.JPG" t="Include" />
-            <e p="DSCN0670.JPG" t="Include" />
-            <e p="DSCN0672.JPG" t="Include" />
-            <e p="DSCN0676.JPG" t="Include" />
-          </e>
-          <e p="trailer2" t="Include">
-            <e p="P1030428.JPG" t="Include" />
-            <e p="P1030429.JPG" t="Include" />
-            <e p="P1030430.JPG" t="Include" />
-            <e p="P1030432.JPG" t="Include" />
-            <e p="P1030433.JPG" t="Include" />
-            <e p="P1030437.JPG" t="Include" />
-            <e p="P1030438.JPG" t="Include" />
-            <e p="P1030441.JPG" t="Include" />
           </e>
           <e p="ui-bg_diagonals-small_25_c5ddfc_40x40.png" t="Include" />
           <e p="ui-bg_diagonals-thick_20_e69700_40x40.png" t="Include" />

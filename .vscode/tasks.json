@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/MacsASPNETCore.csproj"
+                "${workspaceFolder}/macsaspnetcore.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
