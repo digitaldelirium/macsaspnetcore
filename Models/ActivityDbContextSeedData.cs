@@ -2,13 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MacsASPNETCore.Models {
-    public static class ActivityDbContextSeedData {
+namespace macsaspnetcore.Models
+{
+    public static class ActivityDbContextSeedData
+    {
 
-        public static void Initialize(ActivityDbContext context) {
-            if (!context.Calendars.Any()) {
+        public static void Initialize(ActivityDbContext context)
+        {
+            if (!context.Calendars.Any())
+            {
                 // Add new data
-                var campCalendar = new Calendar() {
+                var campCalendar = new Calendar()
+                {
                     Year = DateTime.UtcNow.Year,
                     Activities = new Activity[] {
                             new Activity() {
@@ -40,7 +45,7 @@ namespace MacsASPNETCore.Models {
                             },
                             new Activity() {
                                 StartTime = new DateTime(2016, 6, 25, 18, 0, 0), EndTime = new DateTime(2016, 6, 25, 22, 0, 0), ActivityTitle = "Auction", ActivityDescription = "Back by popular demand! We will have Doug as our auctioneer. We are looking for any donated items: anything new, handmade, antique, items for camp, anything in good working condition. We will also have a couple of mystery boxes to take a chance on. This has been a lot of fun in the past. All proceeds will go right back into the activities fund! Scramble burgers served."
-                            },                            
+                            },
                             new Activity() {
                                 StartTime = new DateTime(2016, 7, 2, 9, 0, 0), EndTime = new DateTime(2016, 7, 3, 20, 0, 0), ActivityTitle = "Horseshoe Tournament", ActivityDescription = "See Doug for details.<br />Hopefully, there will be enough guys around to play!"
                             },
@@ -88,10 +93,10 @@ namespace MacsASPNETCore.Models {
                             }
                         }
                 };
-                
+
                 context.Calendars.Add(campCalendar);
                 context.Activities.AddRange(campCalendar.Activities);
-                
+
                 context.SaveChanges();
             }
         }

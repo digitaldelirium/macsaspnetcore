@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MacsASPNETCore.Models
+namespace macsaspnetcore.Models
 {
     public class Activity
     {
-        public int Id {get; set;}
+        public int Id { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
         [DataType(DataType.DateTime)]

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 
-namespace MacsASPNETCore.Services
+namespace macsaspnetcore.Services
 {
     // This class is used by the application to send Email and SMS
     // when you turn on two-factor authentication in ASP.NET Identity.
@@ -13,13 +13,13 @@ namespace MacsASPNETCore.Services
     {
         private MimeMessage _msg;
         private readonly IConfiguration _configuration;
-        
+
         public AuthMessageSender(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-        
-        public  Task SendEmailAsync(MimeMessage msg)
+
+        public Task SendEmailAsync(MimeMessage msg)
         {
             // Plug in your email service here to send an email.
             // Pull API Key from Config

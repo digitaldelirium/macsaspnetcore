@@ -2,9 +2,9 @@
 using System;
 using System.IO;
 using System.Linq;
-using MacsASPNETCore.Models;
-using MacsASPNETCore.Services;
-using MacsASPNETCore.ViewModels;
+using macsaspnetcore.Models;
+using macsaspnetcore.Services;
+using macsaspnetcore.ViewModels;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using MimeKit;
 
-namespace MacsASPNETCore.Controllers
+namespace macsaspnetcore.Controllers
 {
     public class HomeController : Controller
     {
@@ -105,7 +105,7 @@ namespace MacsASPNETCore.Controllers
                     client.Send(message);
                     client.Disconnect(true);
                 }
-                
+
                 ModelState.Clear();
                 ViewBag.MailMessage = "Mail sent, Thanks!";
             }
@@ -119,8 +119,8 @@ namespace MacsASPNETCore.Controllers
 
         public IActionResult RV()
         {
-            var slidepath1 = _env.WebRootPath +  "/images/lakeview";
-            var slidepath2 = _env.WebRootPath +  "/images/lilypad";
+            var slidepath1 = _env.WebRootPath + "/images/lakeview";
+            var slidepath2 = _env.WebRootPath + "/images/lilypad";
             ViewData["Title"] = "RV Rentals";
             ViewData["Message"] = "2 RV Rentals Available";
             var trailer1Slide = new System.IO.DirectoryInfo(slidepath1).GetFiles();
@@ -143,7 +143,7 @@ namespace MacsASPNETCore.Controllers
 
         public IActionResult Activities()
         {
-            var activityPics = new System.IO.DirectoryInfo(_env.WebRootPath +  "/images/activityslide").GetFiles();
+            var activityPics = new System.IO.DirectoryInfo(_env.WebRootPath + "/images/activityslide").GetFiles();
             var activities = _activityRepository.GetAllActivities()
                 .AsQueryable();
 
@@ -159,7 +159,7 @@ namespace MacsASPNETCore.Controllers
             ViewBag.onLoad = "pageInit();";
             ViewBag.ngApp = "ActivitiesApp";
             ViewBag.ngController = "ActivitiesController";
-            var activityPics = new System.IO.DirectoryInfo(_env.WebRootPath +  "/images/activityslide").GetFiles();
+            var activityPics = new System.IO.DirectoryInfo(_env.WebRootPath + "/images/activityslide").GetFiles();
             var activities = _activityRepository.GetAllActivitiesByMonth(startDate, endDate).AsEnumerable();
             ViewData["Title"] = $"{year} Activities";
             ViewData["Message"] = "See what's going on at Mac's this year";

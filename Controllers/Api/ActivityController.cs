@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using System.Net;
 using AutoMapper;
-using MacsASPNETCore.Models;
-using MacsASPNETCore.ViewModels;
+using macsaspnetcore.Models;
+using macsaspnetcore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MacsASPNETCore.Controllers.Api
+namespace macsaspnetcore.Controllers.Api
 {
     [Route("api/activities")]
     public class ActivityController : Controller
@@ -51,12 +51,12 @@ namespace MacsASPNETCore.Controllers.Api
             }
             catch (Exception ex)
             {
-                Response.StatusCode = (int) HttpStatusCode.BadRequest;
-                return Json(new { Message = ex.Message});
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { Message = ex.Message });
             }
 
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return Json( new { Message = "Failed", ModelState = ModelState});
+            return Json(new { Message = "Failed", ModelState = ModelState });
         }
     }
 }

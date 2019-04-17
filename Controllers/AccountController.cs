@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MacsASPNETCore.Models;
-using MacsASPNETCore.ViewModels.Account;
-using MacsASPNETCore.Services;
-using MacsASPNETCore.ViewModels;
+using macsaspnetcore.Models;
+using macsaspnetcore.ViewModels.Account;
+using macsaspnetcore.Services;
+using macsaspnetcore.ViewModels;
 
-namespace MacsASPNETCore.Controllers
+namespace macsaspnetcore.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]
@@ -296,7 +296,7 @@ namespace MacsASPNETCore.Controllers
                 ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 var firstName = info.Principal.FindFirstValue(ClaimTypes.GivenName);
-                return View("ExternalLogin", new ExternalLoginViewModel { Email = email, UserName = firstName});
+                return View("ExternalLogin", new ExternalLoginViewModel { Email = email, UserName = firstName });
             }
         }
 
@@ -324,17 +324,17 @@ namespace MacsASPNETCore.Controllers
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         switch (user.NormalizedEmail)
                         {
-                                case "IAN.CORNETT@OUTLOOK.COM":
-                                case "IAN.CORNETT@GMAIL.COM":
-                                    _userManager.AddToRoleAsync(user, "Administrators").Wait();
-                                    break;
-                                case "JANMICKEYDEE62@COMCAST.NET":
-                                case "CUPIEDOLL81@GMAIL.COM":
-                                    _userManager.AddToRoleAsync(user, "Managers").Wait();
-                                    break;
-                                default:
-                                    _userManager.AddToRoleAsync(user, "Users").Wait();
-                                    break;
+                            case "IAN.CORNETT@OUTLOOK.COM":
+                            case "IAN.CORNETT@GMAIL.COM":
+                                _userManager.AddToRoleAsync(user, "Administrators").Wait();
+                                break;
+                            case "JANMICKEYDEE62@COMCAST.NET":
+                            case "CUPIEDOLL81@GMAIL.COM":
+                                _userManager.AddToRoleAsync(user, "Managers").Wait();
+                                break;
+                            default:
+                                _userManager.AddToRoleAsync(user, "Users").Wait();
+                                break;
                         }
                         return RedirectToLocal(returnUrl);
                     }
