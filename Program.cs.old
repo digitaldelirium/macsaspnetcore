@@ -14,7 +14,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using static System.Environment;
-using Microsoft.AspNetCore;
 
 namespace macsaspnetcore
 {
@@ -31,46 +30,67 @@ namespace macsaspnetcore
 
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args);
 
-            PfxCert = GetCertificate(_environment);
+            var host = BuildWebHost(args);
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    var context = services.GetRequiredService<ActivityDbContext>();
+                    ActivityDbContextSeedData.Initialize(context);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(e, "An error occurred seeding the Activity DB.");
+                    throw;
+                }
+            }
+
+            host.Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            var builder = new WebHostBuilder();
+
+            var host = builder.ConfigureAppConfiguration((context, config) =>
+                {
+                    config.SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("hosting.json", optional: false)
+                        .AddEnvironmentVariables();
+
+                    _configuration = config.Build();
+
+                });
+
+            PfxCert = GetCertificate(Environment);
+            PrivateKey = PfxCert.GetRSAPrivateKey();
 
             host.UseStartup<Startup>()
             .UseKestrel(options =>
-                {
-                    if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
-                    {
-                        options.Listen(IPAddress.Loopback, 8081);
-                        options.Listen(IPAddress.Loopback, 8443,
-                            listenOptions => { listenOptions.UseHttps(PfxCert); });
-                    }
-                    else
-                    {
-                        options.Listen(IPAddress.Any, 80);
-                        options.Listen(IPAddress.Any, 443,
-                            listenOptions => { listenOptions.UseHttps(PfxCert); });
-                    }
-                });
-
-            host.UseContentRoot(Directory.GetCurrentDirectory())
-                .UseApplicationInsights();
-
-            host.Build();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            var builder = new WebHostBuilder();
-            builder.ConfigureAppConfiguration((context, config) =>
             {
-                config.SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("hosting.json", optional: false)
-                    .AddEnvironmentVariables();
+                if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                {
+                    options.Listen(IPAddress.Loopback, 8081);
+                    options.Listen(IPAddress.Loopback, 8443,
+                        listenOptions => { listenOptions.UseHttps(PfxCert); });
+                }
+                else
+                {
+                    options.Listen(IPAddress.Any, 80);
+                    options.Listen(IPAddress.Any, 443,
+                        listenOptions => { listenOptions.UseHttps(PfxCert); });
+                }
+            })
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseApplicationInsights();
 
-                _configuration = config.Build();
-            });
-            return builder;
-
+            return host.Build();
         }
 
         private static X509Certificate2 GetCertificate(IHostingEnvironment environment)
@@ -191,6 +211,5 @@ namespace macsaspnetcore
 
             return result.AccessToken;
         }
-
     }
 }
