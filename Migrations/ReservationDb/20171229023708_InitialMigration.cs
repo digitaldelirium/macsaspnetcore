@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace MacsASPNETCore.Migrations.ReservationDb
+namespace macsaspnetcore.Migrations.ReservationDb
 {
     public partial class InitialMigration : Migration
     {

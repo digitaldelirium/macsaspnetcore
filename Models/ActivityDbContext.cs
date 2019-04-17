@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MacsASPNETCore.Models
+namespace macsaspnetcore.Models
 {
     public class ActivityDbContext : DbContext
     {
@@ -8,7 +8,7 @@ namespace MacsASPNETCore.Models
         {
             Database.EnsureCreated();
         }
-        
+
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Calendar> Calendars { get; set; }
 

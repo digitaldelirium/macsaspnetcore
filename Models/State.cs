@@ -1,4 +1,4 @@
-﻿namespace MacsASPNETCore.Models
+﻿namespace macsaspnetcore.Models
 {
     public class State
     {

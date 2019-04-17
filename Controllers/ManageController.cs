@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MacsASPNETCore.Models;
-using MacsASPNETCore.Models.ManageViewModels;
-using MacsASPNETCore.ViewModels;
-using MacsASPNETCore.ViewModels.Manage;
-using MacsASPNETCore.Services;
+using macsaspnetcore.Models;
+using macsaspnetcore.Models.ManageViewModels;
+using macsaspnetcore.ViewModels;
+using macsaspnetcore.ViewModels.Manage;
+using macsaspnetcore.Services;
 
-namespace MacsASPNETCore.Controllers
+namespace macsaspnetcore.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]
@@ -497,7 +497,7 @@ namespace MacsASPNETCore.Controllers
         {
             return string.Format(
                 AuthenicatorUriFormat,
-                _urlEncoder.Encode("MacsASPNETCore"),
+                _urlEncoder.Encode("macsaspnetcore"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }

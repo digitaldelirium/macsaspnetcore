@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.PlatformAbstractions;
 
-namespace MacsASPNETCore.Models
+namespace macsaspnetcore.Models
 {
     public class CustomerDbContext : DbContext
     {
@@ -10,8 +10,8 @@ namespace MacsASPNETCore.Models
         {
             Database.EnsureCreated();
         }
-        
-        public DbSet<Customer> Customers { get; set; } 
+
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<State> States { get; set; }

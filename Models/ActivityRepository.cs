@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace MacsASPNETCore.Models
+namespace macsaspnetcore.Models
 {
     public class ActivityRepository : IActivityRepository
     {
         private ActivityDbContext _context;
 
-        public ActivityRepository(ActivityDbContext context){
+        public ActivityRepository(ActivityDbContext context)
+        {
             _context = context;
         }
 
         public List<Activity> GetAllActivities()
         {
-            return _context.Activities.OrderBy( a => a.StartTime).ToList();
+            return _context.Activities.OrderBy(a => a.StartTime).ToList();
         }
 
         public List<Activity> GetAllActivitiesByMonth(DateTime startDate, DateTime endDate)
@@ -34,7 +35,8 @@ namespace MacsASPNETCore.Models
             return _context.Calendars.OrderBy(c => c.Year).ToList();
         }
 
-        public List<Calendar> GetAllCalendarsWithActivities(){
+        public List<Calendar> GetAllCalendarsWithActivities()
+        {
             return _context.Calendars
             .Include(c => c.Activities)
             .OrderBy(c => c.Year)

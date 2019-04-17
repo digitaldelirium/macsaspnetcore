@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MacsASPNETCore.Migrations.ApplicationDb
+namespace macsaspnetcore.Migrations.ApplicationDb
 {
     public partial class AddRolesAndAdmin : Migration
     {

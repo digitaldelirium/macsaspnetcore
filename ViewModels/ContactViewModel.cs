@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace MacsASPNETCore.ViewModels
+namespace macsaspnetcore.ViewModels
 {
     /// <summary>
     ///  Email Message formatting
@@ -14,7 +14,7 @@ namespace MacsASPNETCore.ViewModels
     /// </summary>
     public class ContactViewModel
     {
-        
+
         [Required]
         [StringLength(255, MinimumLength = 2)]
         public string FirstName { get; set; }

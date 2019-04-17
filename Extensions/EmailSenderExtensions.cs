@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using MacsASPNETCore.Services;
+using macsaspnetcore.Services;
 
-namespace MacsASPNETCore.Services
+namespace macsaspnetcore.Services
 {
     public static class EmailSenderExtensions
     {

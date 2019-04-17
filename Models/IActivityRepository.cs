@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MacsASPNETCore.Models
+namespace macsaspnetcore.Models
 {
     public interface IActivityRepository
     {

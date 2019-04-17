@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MimeKit;
 
-namespace MacsASPNETCore.Services
+namespace macsaspnetcore.Services
 {
     public class DebugMailService : IEmailSender
     {

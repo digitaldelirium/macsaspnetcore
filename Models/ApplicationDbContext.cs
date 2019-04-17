@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
-using MacsASPNETCore.ViewModels;
+using macsaspnetcore.ViewModels;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 
-namespace MacsASPNETCore.Models
+namespace macsaspnetcore.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {

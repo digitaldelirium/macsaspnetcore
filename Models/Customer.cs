@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MacsASPNETCore.Models
+namespace macsaspnetcore.Models
 {
     public class Customer
     {
