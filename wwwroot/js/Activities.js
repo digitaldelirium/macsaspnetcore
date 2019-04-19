@@ -112,7 +112,10 @@ function getUpcomingMonthEvents(target, month) {
         type: "GET",
         dataType: "json",
         url: "/api/activities/month",
-        data: { starting: startDate, ending: endDate },
+        data: {
+            starting: startDate,
+            ending: endDate
+        },
         success: function(data) {
             if (data.length > 0) {
                 for (var i = 0; i < data.length; ++i) {
@@ -287,14 +290,17 @@ function getJanuary() {
     $("#tabJan").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 0, 1).toUTCString();
-        var endDate = new Date(2018, 0, 31).toUTCString();
+        var startDate = new Date(year, 0, 1).toUTCString();
+        var endDate = new Date(year, 0, 31).toUTCString();
         if (!gotJan) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -327,14 +333,17 @@ function getFebruary() {
         hideMonths();
         removeActiveClasses();
         getUpcomingMonthEvents();
-        var startDate = new Date(2018, 1, 1).toUTCString();
-        var endDate = new Date(2018, 1, 29).toUTCString();
+        var startDate = new Date(year, 1, 1).toUTCString();
+        var endDate = new Date(year, 1, 29).toUTCString();
         if (!gotFeb) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -367,14 +376,17 @@ function getMarch() {
     $("#tabMar").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 2, 1).toUTCString();
-        var endDate = new Date(2018, 2, 31).toUTCString();
+        var startDate = new Date(year, 2, 1).toUTCString();
+        var endDate = new Date(year, 2, 31).toUTCString();
         if (!gotMar) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         if (data.length > 0) {
@@ -413,14 +425,17 @@ function getApril() {
     $("#tabApr").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 3, 1).toUTCString();
-        var endDate = new Date(2018, 3, 30).toUTCString();
+        var startDate = new Date(year, 3, 1).toUTCString();
+        var endDate = new Date(year, 3, 30).toUTCString();
         if (!gotApr) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         if (data.length > 0) {
@@ -459,14 +474,17 @@ function getMay() {
     $("#tabMay").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 4, 1).toUTCString();
-        var endDate = new Date(2018, 4, 31).toUTCString();
+        var startDate = new Date(year, 4, 1).toUTCString();
+        var endDate = new Date(year, 4, 31).toUTCString();
         if (!gotMay) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -498,14 +516,17 @@ function getJune() {
     $("#tabJun").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 5, 1).toUTCString();
-        var endDate = new Date(2018, 5, 30).toUTCString();
+        var startDate = new Date(year, 5, 1).toUTCString();
+        var endDate = new Date(year, 5, 30).toUTCString();
         if (!gotJun) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -536,14 +557,17 @@ function getJuly() {
     $("#tabJul").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 6, 1).toUTCString();
-        var endDate = new Date(2018, 6, 31).toUTCString();
+        var startDate = new Date(year, 6, 1).toUTCString();
+        var endDate = new Date(year, 6, 31).toUTCString();
         if (!gotJul) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
 
                     if (data.length > 0) {
@@ -577,14 +601,17 @@ function getAugust() {
     $("#tabAug").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 7, 1).toUTCString();
-        var endDate = new Date(2018, 7, 31).toUTCString();
+        var startDate = new Date(year, 7, 1).toUTCString();
+        var endDate = new Date(year, 7, 31).toUTCString();
         if (!gotAug) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
 
                     if (data.length > 0) {
@@ -618,14 +645,17 @@ function getSeptember() {
     $("#tabSep").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 8, 1).toUTCString();
-        var endDate = new Date(2018, 8, 30).toUTCString();
+        var startDate = new Date(year, 8, 1).toUTCString();
+        var endDate = new Date(year, 8, 30).toUTCString();
         if (!gotSep) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -657,14 +687,17 @@ function getOctober() {
     $("#tabOct").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 9, 1).toUTCString();
-        var endDate = new Date(2018, 9, 31).toUTCString();
+        var startDate = new Date(year, 9, 1).toUTCString();
+        var endDate = new Date(year, 9, 31).toUTCString();
         if (!gotOct) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0) {
                         for (var i = 0; i < data.length; ++i) {
@@ -696,14 +729,17 @@ function getNovember() {
     $("#tabNov").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 10, 1).toUTCString();
-        var endDate = new Date(2018, 10, 30).toUTCString();
+        var startDate = new Date(year, 10, 1).toUTCString();
+        var endDate = new Date(year, 10, 30).toUTCString();
         if (!gotNov) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0 && gotNov === false) {
                         for (var i = 0; i < data.length; ++i) {
@@ -736,14 +772,17 @@ function getDecember() {
     $("#tabDec").click(function() {
         hideMonths();
         removeActiveClasses();
-        var startDate = new Date(2018, 11, 1).toUTCString();
-        var endDate = new Date(2018, 11, 31).toUTCString();
+        var startDate = new Date(year, 11, 1).toUTCString();
+        var endDate = new Date(year, 11, 31).toUTCString();
         if (!gotDec) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: "/api/activities/month",
-                data: { starting: startDate, ending: endDate },
+                data: {
+                    starting: startDate,
+                    ending: endDate
+                },
                 success: function(data) {
                     if (data.length > 0 && gotDec === false) {
                         for (var i = 0; i < data.length; ++i) {
