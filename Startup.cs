@@ -24,7 +24,6 @@ namespace MacsASPNETCore
         {
             Configuration = configuration;
             Environment = env;
-
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -41,12 +40,6 @@ namespace MacsASPNETCore
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.Lax;
             });
-
-            /*            services.AddDbContext<ApplicationDbContext>(options =>
-                            options.UseSqlite(
-                                Configuration.GetConnectionString("DefaultConnection")));
-                        services.AddDefaultIdentity<IdentityUser>()
-                            .AddEntityFrameworkStores<ApplicationDbContext>(); */
 
 #if DEBUG
             services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
@@ -81,14 +74,11 @@ namespace MacsASPNETCore
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                //                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            //            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
