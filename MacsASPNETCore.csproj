@@ -67,8 +67,7 @@
     <Folder Include="Migrations" />
   </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-    <Exec Command="npm install" />
-    <Exec Command="bower install" />
+    <Exec Command="yarn install" />
   </Target>
   <!--
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
