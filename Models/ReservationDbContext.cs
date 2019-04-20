@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.PlatformAbstractions;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class ReservationDbContext : DbContext
     {

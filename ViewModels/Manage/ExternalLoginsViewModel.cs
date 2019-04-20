@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace macsaspnetcore.ViewModels.Manage
+namespace MacsASPNETCore.ViewModels.Manage
 {
     public class ExternalLoginsViewModel
     {

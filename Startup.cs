@@ -9,34 +9,37 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using macsaspnetcore.Models;
+using MacsASPNETCore.Models;
+using MacsASPNETCore.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace macsaspnetcore
+namespace MacsASPNETCore
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfiguration Configuration { get; private set; }
+        public IHostingEnvironment Environment { get; private set; }
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
-        }
+            Environment = env;
 
-        public IConfiguration Configuration { get; }
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var activities = Configuration["Data:ActivityDb"];
-            var appdb = Configuration["Data:ApplicationDb"];
-            var customerDb = Configuration["Data:CustomerDb"];
-            var rezdb = Configuration["Data:ReservationDb"];
+            var activities = Configuration.GetValue<String>("Data:ActivityDb");
+            var appdb = Configuration.GetValue<String>("Data:ApplicationDb");
+            var customerDb = Configuration.GetValue<String>("Data:CustomerDb");
+            var rezdb = Configuration.GetValue<String>("Data:ReservationDb");
 
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.MinimumSameSitePolicy = SameSiteMode.Lax;
             });
 
             /*            services.AddDbContext<ApplicationDbContext>(options =>
@@ -47,7 +50,9 @@ namespace macsaspnetcore
 
 #if DEBUG
             services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
-                .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb));
+                .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb))
+                .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
+                .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
 #else
             services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
                 .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
@@ -60,6 +65,9 @@ namespace macsaspnetcore
             services.AddNodeServices();
             services.AddMvcCore()
                 .AddRazorViewEngine();
+
+            services.AddScoped<IEmailSender, AuthMessageSender>();
+            services.AddScoped<IActivityRepository, ActivityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,7 +81,7 @@ namespace macsaspnetcore
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                //                app.UseHsts();
             }
 
             app.UseHttpsRedirection();

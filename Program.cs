@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using macsaspnetcore.Models;
+using MacsASPNETCore.Models;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +16,7 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using static System.Environment;
 using Microsoft.AspNetCore;
 
-namespace macsaspnetcore
+namespace MacsASPNETCore
 {
     public class Program
     {
@@ -51,11 +51,11 @@ namespace macsaspnetcore
                             listenOptions => { listenOptions.UseHttps(PfxCert); });
                     }
                 });
-
+            
             host.UseContentRoot(Directory.GetCurrentDirectory())
                 .UseApplicationInsights();
 
-            host.Build();
+            host.Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
@@ -64,9 +64,18 @@ namespace macsaspnetcore
             builder.ConfigureAppConfiguration((context, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("hosting.json", optional: false)
-                    .AddEnvironmentVariables();
-
+                    .AddJsonFile("hosting.json", optional: false);
+ 
+                if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                {
+                    config.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true);
+                }
+                else
+                {
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                }
+                
+                config.AddEnvironmentVariables();
                 _configuration = config.Build();
             });
             return builder;

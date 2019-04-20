@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class PhoneNumber
     {

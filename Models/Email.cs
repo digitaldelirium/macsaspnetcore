@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class Email
     {

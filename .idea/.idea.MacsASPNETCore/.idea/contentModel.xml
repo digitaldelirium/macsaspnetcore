@@ -12,6 +12,7 @@
       <e p=".vsts-ci.yml" t="Include" />
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
+      <e p="Activity.db" t="Include" />
       <e p="ActivitySeedData.sql" t="Include" />
       <e p="Application.db" t="Include" />
       <e p="ClientPFX.pfx" t="Include" />
@@ -24,12 +25,15 @@
         <e p="HomeController.cs" t="Include" />
         <e p="ManageController.cs" t="Include" />
       </e>
+      <e p="Customers.db" t="Include" />
       <e p="Deploy" t="Include">
         <e p="ClientPFX.pfx" t="Include" />
         <e p="Macs-Dev.pfx" t="Include" />
         <e p="MacsPFX.pfx" t="Include" />
         <e p="Replace-Tokens.ps1" t="Include" />
         <e p="dockerbld.sh" t="Include" />
+        <e p="letsencrypt.pfx" t="Include" />
+        <e p="macsvmssl.pfx" t="Include" />
       </e>
       <e p="Dockerfile" t="Include" />
       <e p="Dockertag.dev.txt" t="Include" />
@@ -198,9 +202,33 @@
       <e p="hosting.json" t="Include" />
       <e p="letsencrypt.pfx" t="Include" />
       <e p="macsvmssl.pfx" t="Include" />
+      <e p="node_modules" t="ExcludeRecursive">
+        <e p="angular" t="IncludeRecursive" />
+        <e p="angular-carousel" t="IncludeRecursive" />
+        <e p="chalk" t="IncludeRecursive" />
+        <e p="clone" t="IncludeRecursive" />
+        <e p="flatten-packages" t="IncludeRecursive" />
+        <e p="fstream" t="IncludeRecursive" />
+        <e p="glob" t="IncludeRecursive" />
+        <e p="graceful-fs" t="IncludeRecursive" />
+        <e p="grunt" t="IncludeRecursive" />
+        <e p="grunt-bootlint" t="IncludeRecursive" />
+        <e p="gulp" t="IncludeRecursive" />
+        <e p="gulp-concat" t="IncludeRecursive" />
+        <e p="gulp-cssmin" t="IncludeRecursive" />
+        <e p="gulp-uglify" t="IncludeRecursive" />
+        <e p="jquery" t="IncludeRecursive" />
+        <e p="minimatch" t="IncludeRecursive" />
+        <e p="minimist" t="IncludeRecursive" />
+        <e p="moment" t="IncludeRecursive" />
+        <e p="readable-stream" t="IncludeRecursive" />
+        <e p="rimraf" t="IncludeRecursive" />
+        <e p="source-map" t="IncludeRecursive" />
+        <e p="tar" t="IncludeRecursive" />
+      </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
-          <e p="netcoreapp2.0" t="Include">
+          <e p="netcoreapp2.1" t="Include">
             <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
           </e>
         </e>

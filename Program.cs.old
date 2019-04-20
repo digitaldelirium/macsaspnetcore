@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using macsaspnetcore.Models;
+using MacsASPNETCore.Models;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using static System.Environment;
 
-namespace macsaspnetcore
+namespace MacsASPNETCore
 {
     public class Program
     {

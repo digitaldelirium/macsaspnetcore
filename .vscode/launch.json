@@ -9,7 +9,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/macsaspnetcore.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/MacsASPNETCore.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

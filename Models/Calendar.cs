@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class Calendar
     {

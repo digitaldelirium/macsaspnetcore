@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace macsaspnetcore.Models.ManageViewModels
+namespace MacsASPNETCore.Models.ManageViewModels
 {
     public class GenerateRecoveryCodesViewModel
     {

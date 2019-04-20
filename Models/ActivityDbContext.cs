@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class ActivityDbContext : DbContext
     {
