@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using macsaspnetcore.Models;
-using macsaspnetcore.ViewModels.Account;
-using macsaspnetcore.Services;
-using macsaspnetcore.ViewModels;
+using MacsASPNETCore.Models;
+using MacsASPNETCore.ViewModels.Account;
+using MacsASPNETCore.Services;
+using MacsASPNETCore.ViewModels;
 
-namespace macsaspnetcore.Controllers
+namespace MacsASPNETCore.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

@@ -2,9 +2,9 @@
 using System;
 using System.IO;
 using System.Linq;
-using macsaspnetcore.Models;
-using macsaspnetcore.Services;
-using macsaspnetcore.ViewModels;
+using MacsASPNETCore.Models;
+using MacsASPNETCore.Services;
+using MacsASPNETCore.ViewModels;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using MimeKit;
 
-namespace macsaspnetcore.Controllers
+namespace MacsASPNETCore.Controllers
 {
     public class HomeController : Controller
     {

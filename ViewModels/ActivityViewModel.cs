@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace macsaspnetcore.ViewModels
+namespace MacsASPNETCore.ViewModels
 {
     public class ActivityViewModel
     {

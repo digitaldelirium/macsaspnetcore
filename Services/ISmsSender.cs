@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace macsaspnetcore.Services
+namespace MacsASPNETCore.Services
 {
     public interface ISmsSender
     {

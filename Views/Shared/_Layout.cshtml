@@ -111,6 +111,7 @@
                 <div id="bottomRight" class="col-md-4 col-lg-4" style="display: none;">@RenderSection("BottomRight", false)</div>
             </div>
             <div id="bottomPane" class="row">@RenderSection("BottomPane", false)</div>
+            <partial name="_CookieConsentPartial" />
         </div>
         <footer>
             <p>&copy;
@@ -126,14 +127,14 @@
     </div>
 </div>
 <environment names="Development">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment names="Staging,Production">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js" asp-fallback-test="window.jQuery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js" asp-fallback-test="window.jQuery"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>    

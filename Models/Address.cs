@@ -1,4 +1,4 @@
-﻿namespace macsaspnetcore.Models
+﻿namespace MacsASPNETCore.Models
 {
     public class Address
     {
