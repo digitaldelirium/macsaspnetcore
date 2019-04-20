@@ -71,7 +71,6 @@
   </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <Exec Command="yarn install" />
-    <Exec Command="bower install" />
   </Target>
   <!--
 <Target Name="MyPreCompileTarget" BeforeTargets="Build">
