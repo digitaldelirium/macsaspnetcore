@@ -331,3 +331,6 @@ appsettings.json
 
 # Ignore published files
 app/*
+
+#Ignore Jetbrains
+.idea/
