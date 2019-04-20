@@ -1,15 +1,13 @@
 {
     "version": "2.0.0",
-    "tasks": [
-        {
-            "taskName": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/macsaspnetcore.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+    "tasks": [{
+        "label": "build",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "build",
+            "${workspaceFolder}/MacsASPNETCore.csproj"
+        ],
+        "problemMatcher": "$msCompile"
+    }]
 }
