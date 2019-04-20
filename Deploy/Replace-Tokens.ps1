@@ -102,18 +102,17 @@ function Replace-Tokens {
                 az keyvault secret download --vault-name $VaultName --file "./$($name).pfx" --name $name 
             })
 
-        $script:tokenExp = "#{+[a-z]+\W*[a-z]*}#+"
-        $jsonFiles.ForEach( {
-                $content = Get-Content $_.Name
-                $x = 0
-                foreach ($s in $content) {
-                    if ($s -ne $null) {
-                        $r = $s
-                        if ($s -match '#{+[a-z]+\W*[a-z]*}#+') {
-                            $token = $Matches.Values
-                            $token = $token.TrimStart("#", "{").TrimEnd("}", "#")
-                            Write-Host $token
-                            $secretValue = $(az keyvault secret show --name $token.TrimStart(2).TrimEnd(2) --vault-name $VaultName -o json) | ConvertFrom-Json | Select-Object -ExpandProperty value
+        $script:tokenExp = "${+[a-z]+\W*[a-z]*}+"
+        $jsonFiles.ForEach({
+            $content = Get-Content $_.Name
+            $x = 0
+            foreach ($s in $content) {
+                if ($s -ne $null) {
+                    $r = $s
+                    if($s -match '${+[a-z]+\W*[a-z]*}+'){
+                        $token = $Matches.Values
+                        $token = $token.TrimStart(2).TrimEnd(2)
+                        $secretValue = $(az keyvault secret show --name $token --vault-name $VaultName) | ConvertFrom-Json | Select-Object -ExpandProperty value
 
                             $r.Replace($Matches.Values, $secretValue)
                         }

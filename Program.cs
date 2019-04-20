@@ -51,7 +51,7 @@ namespace MacsASPNETCore
                             listenOptions => { listenOptions.UseHttps(PfxCert); });
                     }
                 });
-            
+
             host.UseContentRoot(Directory.GetCurrentDirectory())
                 .UseApplicationInsights();
 
@@ -65,7 +65,7 @@ namespace MacsASPNETCore
             {
                 config.SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("hosting.json", optional: false);
- 
+
                 if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
                 {
                     config.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true);
@@ -74,7 +74,7 @@ namespace MacsASPNETCore
                 {
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                 }
-                
+
                 config.AddEnvironmentVariables();
                 _configuration = config.Build();
             });
@@ -191,7 +191,7 @@ namespace MacsASPNETCore
             var authContext = new AuthenticationContext(authority);
 
             var clientCredential = new ClientCredential("e8725941-c27a-4012-8c89-19aca10b11a5",
-                "#{client-secret}#");
+                "${client-secret}");
 
             var result = await authContext.AcquireTokenAsync(resource, clientCredential);
 
