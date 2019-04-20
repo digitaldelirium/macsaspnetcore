@@ -13,6 +13,8 @@
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
       <e p="ActivitySeedData.sql" t="Include" />
+      <e p="Application.db" t="Include" />
+      <e p="ClientPFX.pfx" t="Include" />
       <e p="Controllers" t="Include">
         <e p="AccountController.cs" t="Include" />
         <e p="Api" t="Include">
@@ -23,6 +25,9 @@
         <e p="ManageController.cs" t="Include" />
       </e>
       <e p="Deploy" t="Include">
+        <e p="ClientPFX.pfx" t="Include" />
+        <e p="Macs-Dev.pfx" t="Include" />
+        <e p="MacsPFX.pfx" t="Include" />
         <e p="Replace-Tokens.ps1" t="Include" />
         <e p="dockerbld.sh" t="Include" />
       </e>
@@ -33,10 +38,13 @@
         <e p="EmailSenderExtensions.cs" t="Include" />
         <e p="UrlHelperExtensions.cs" t="Include" />
       </e>
+      <e p="Jenkinsfile" t="Include" />
       <e p="Macs-Dev.pfx" t="Include" />
+      <e p="Macs.pfx" t="Include" />
       <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
       <e p="MacsASPNETCore.sln" t="IncludeFlat" />
       <e p="MacsASPNETCore.sln.DotSettings" t="Include" />
+      <e p="MacsPFX.pfx" t="Include" />
       <e p="Migrations" t="Include">
         <e p="20171229023122_InitialMigration.Designer.cs" t="Include" />
         <e p="20171229023122_InitialMigration.cs" t="Include" />
@@ -90,6 +98,7 @@
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="README.md" t="Include" />
+      <e p="Reservations.db" t="Include" />
       <e p="Services" t="Include">
         <e p="DebugMailService.cs" t="Include" />
         <e p="IEmailSender.cs" t="Include" />
@@ -188,6 +197,8 @@
       <e p="create_EFMigrationsTable.sql" t="Include" />
       <e p="gulpfile.js" t="Include" />
       <e p="hosting.json" t="Include" />
+      <e p="letsencrypt.pfx" t="Include" />
+      <e p="macsvmssl.pfx" t="Include" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp2.0" t="Include">
