@@ -10,3 +10,6 @@ docker-compose.*.yml
 */obj
 !obj/Docker/publish/*
 !obj/Docker/empty/
+Macs-Dev.pfx
+Dockerfile
+Dev.dockerfile

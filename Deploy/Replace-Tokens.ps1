@@ -1,5 +1,4 @@
 #! /usr/bin/pwsh
-
 param (
     [Parameter(Mandatory = $true, HelpMessage = 'Client ID for SPN', ParameterSetName = 'SPN')]
     [ValidateNotNullOrEmpty()]
@@ -31,7 +30,6 @@ param (
     [switch]
     $SPN
 )
-
 function Replace-Tokens {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
@@ -65,7 +63,7 @@ function Replace-Tokens {
         [switch]
         $SPN
     )
-    
+        
     begin {
 
         if ($SPN) {
@@ -93,7 +91,7 @@ function Replace-Tokens {
 
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
     }
-    
+        
     process {
         $pfxFiles = $kvSecrets | Where-Object -FilterScript { $_.contentType -like 'application/x-pkcs12' } | Select-Object
         $pfxFiles.ForEach( {
@@ -103,31 +101,31 @@ function Replace-Tokens {
             })
 
         $script:tokenExp = "${+[a-z]+\W*[a-z]*}+"
-        $jsonFiles.ForEach({
-            $content = Get-Content $_.Name
-            $x = 0
-            foreach ($s in $content) {
-                if ($s -ne $null) {
-                    $r = $s
-                    if($s -match '${+[a-z]+\W*[a-z]*}+'){
-                        $token = $Matches.Values
-                        $token = $token.TrimStart(2).TrimEnd(2)
-                        $secretValue = $(az keyvault secret show --name $token --vault-name $VaultName) | ConvertFrom-Json | Select-Object -ExpandProperty value
+        $jsonFiles.ForEach( {
+                $content = Get-Content $_.Name
+                $x = 0
+                foreach ($s in $content) {
+                    if ($s -ne $null) {
+                        $r = $s
+                        if ($s -match '${+[a-z]+\W*[a-z]*}+') {
+                            $token = $Matches.Values
+                            $token = $token.TrimStart(2).TrimEnd(2)
+                            $secretValue = $(az keyvault secret show --name $token --vault-name $VaultName) | ConvertFrom-Json | Select-Object -ExpandProperty value
 
                             $r.Replace($Matches.Values, $secretValue)
                         }
 
                         if (!$r.Equals($s)) {
                             $content.Item($x) = $r
+                            Out-File -FilePath ./$r -InputObject $content -Force
                         }
                     }
 
                     $x++ 
                 }
-                Out-File -FilePath $_ -InputObject $content -Force
             })
     }
-    
+        
     end {
     }
 }
