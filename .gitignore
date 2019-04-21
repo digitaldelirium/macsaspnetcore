@@ -136,14 +136,14 @@ _TeamCity*
 
 # NCrunch
 _NCrunch_*
-.*crunch*.local.xml
+.*crunch*.local.xmlbff179f7ef9b457cb65b34993ae98203
 nCrunchTemp_*
 
 # MightyMoose
 *.mm.*
 AutoTest.Net/
 
-# Web workbench (sass)
+# Web workbench (sabff179f7ef9b457cb65b34993ae98203
 .sass-cache/
 
 # Installshield output folder
@@ -334,3 +334,6 @@ app/*
 
 #Ignore Jetbrains
 .idea/
+
+# Ignore bower_components
+bower_components/*
