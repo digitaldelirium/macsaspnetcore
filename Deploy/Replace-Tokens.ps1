@@ -67,29 +67,24 @@ function Replace-Tokens {
     begin {
 
         if ($SPN) {
-            az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId
+            [PSCredential]$credential = [PSCredential]::new($ClientId, $($ClientSecret | ConvertTo-SecureString -AsPlainText -Force))
+            Connect-AzAccount -ServicePrincipal -Credential $credential -Tenant $TenantId
         }
         else {
-            $username = Read-Host -Prompt 'Please enter your Azure Username'
-            az login --username $username
+            Connect-AzAccount
         }
 
         if (!([string]::IsNullOrWhiteSpace($SubscriptionId))) {
-            $accounts = az account list
-            az account set --subscription $SubscriptionId
+            $accounts = Get-AzSubscription
+            Set-AzContext -Subscription $SubscriptionId -Tenant $TenantId
         }
 
-        $script:secrets = az keyvault secret list --vault-name $VaultName
-        [psobject[]]$script:kvSecrets
-        try {
-            $kvSecrets = $secrets | ConvertFrom-Json
-        }
-        catch [System.Exception] {
-            Write-Error -Message "Conversion from JSON failed"
-            ThrowError
-        }
+        $global:kvSecrets = Get-AzKeyVaultSecret -VaultName $VaultName
 
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
+        $script:csFiles = Get-ChildItem -File -Path ./ -Recurse -Filter '*.cs'
+
+        $global:files = @($script:jsonFiles + $script:csFiles)
     }
         
     process {
@@ -101,31 +96,48 @@ function Replace-Tokens {
             })
 
         $script:tokenExp = "${+[a-z]+\W*[a-z]*}+"
-        $jsonFiles.ForEach( {
-                $content = Get-Content $_.Name
-                $x = 0
-                foreach ($s in $content) {
-                    if ($s -ne $null) {
-                        $r = $s
-                        if ($s -match '${+[a-z]+\W*[a-z]*}+') {
-                            $token = $Matches.Values
-                            $token = $token.TrimStart(2).TrimEnd(2)
-                            $secretValue = $(az keyvault secret show --name $token --vault-name $VaultName) | ConvertFrom-Json | Select-Object -ExpandProperty value
+        $secrets = @{}
 
-                            $r.Replace($Matches.Values, $secretValue)
-                        }
-
-                        if (!$r.Equals($s)) {
-                            $content.Item($x) = $r
-                            Out-File -FilePath ./$r -InputObject $content -Force
-                        }
+        $files.ForEach( {
+                $file = $_
+                $content = Get-Content $_
+                $matches = 0
+                $kvSecrets.Name.ForEach({
+                    Write-Host "Looking for #{$_}#"
+                    if($content -match "#{$_}#"){
+                        $matches++
+                        Write-Host "Replacing $Matches.Values with $_ Secret Values in $file"
+                        $content.replace("#{$_}#", $(Get-AzKeyVaultSecret -Name $_ -VaultName $VaultName).SecretValueText) | Set-Content $file
                     }
+                    
+                })
 
-                    $x++ 
+                if($matches -eq 0){
+                    Write-Host "No matches found for $file"
                 }
+                # foreach ($s in $content) {
+                #     if ($s -ne $null) {
+                #         if ($s -match '#{+[a-z]+\W*[a-z]*}#+') {
+                #             Write-Host $Matches.Values
+                #             $token = $Matches.Values
+                #             $secretValue = Get-AzKeyVaultSecret -Name $token.TrimStart('#','{').TrimEnd('}','#') -VaultName $VaultName
+
+                #             Write-Host "Replacing $token with $secretValue.Value for $_"
+                #             $content.Replace($token, $secretValue.Value) | Set-Content $_.PSPath
+                #         } else {
+                #             Write-Host "No matches found for $s in $_"
+                #         }
+                #     }
+                # }
             })
     }
         
     end {
     }
+}
+
+if ($SPN) {
+    Replace-Tokens -ClientId $ClientId -ClientSecret $ClientSecret -SPN -TenantId $TenantId -SubscriptionId $SubscriptionId -VaultName $VaultName
+} else {
+    Replace-Tokens -VaultName $VaultName
 }
