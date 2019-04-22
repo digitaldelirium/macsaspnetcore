@@ -75,61 +75,54 @@ function Replace-Tokens {
         }
 
         if (!([string]::IsNullOrWhiteSpace($SubscriptionId))) {
-            $accounts = Get-AzSubscription
             Set-AzContext -Subscription $SubscriptionId -Tenant $TenantId
         }
 
         $script:kvSecrets = Get-AzKeyVaultSecret -VaultName $VaultName
 
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
-        $script:csFiles = Get-ChildItem -File -Path ./ -Recurse -Filter '*.cs'
+        $script:csFiles = Get-ChildItem -File -Path ./ -Filter '*.cs'
 
         $script:files = @($script:jsonFiles + $script:csFiles)
     }
         
     process {
         $pfxFiles = $kvSecrets | Where-Object -FilterScript { $_.contentType -like 'application/x-pkcs12' } | Select-Object
-        $pfxFiles.ForEach( {
-                $prefix = "https://$($VaultName).vault.azure.net/secrets/".Length
-                $name = $_.id.Substring($prefix)
-                az keyvault secret download --vault-name $VaultName --file "./$($name).pfx" --name $name 
+        $pfxFiles.ForEach({
+                $prefix = "https://$($VaultName).vault.azure.net/secrets/"
+                $name = $_.id.Substring($prefix.ToString().Length + 4)
+                Write-Host "$name"                
+                $pfxSecret = Get-AzKeyVaultSecret -VaultName $vaultName -Name $name
+                $pfxUnprotectedBytes = [Convert]::FromBase64String($pfxSecret.SecretValueText)
+                $pfx = New-Object Security.Cryptography.X509Certificates.X509Certificate2
+                $pfx.Import($pfxUnprotectedBytes, $null, [Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
+                $pfx.PrivateKey.ExportParameters($true)
+                [IO.File]::WriteAllBytes("$name.pfx", $pfxUnprotectedBytes)
             })
 
         $script:tokenExp = "${+[a-z]+\W*[a-z]*}+"
         $secrets = @{}
 
-        $files.ForEach( {
+        $kvSecrets.Name.ForEach({
+            $secret = $_
+            Write-Host "Looking for #{$secret}#"
+            $files.ForEach({
                 $file = $_
-                $content = Get-Content $_
+                $content = Get-Content $file
                 $matches = 0
-                $kvSecrets.Name.ForEach({
-                    Write-Host "Looking for #{$_}#"
-                    if($content -match "#{$_}#"){
-                        $matches++
-                        Write-Host "Replacing $Matches.Values with $_ Secret Values in $file"
-                        $content.replace("#{$_}#", $(Get-AzKeyVaultSecret -Name $_ -VaultName $VaultName).SecretValueText) | Set-Content $file
-                    }
-                    
-                })
+                
+                if($content -match "#{$secret}#"){
+                    $matches++
+                    Write-Host "Replacing $file Values with $secret Secret Values"
+                    $content.replace("#{$secret}#", $(Get-AzKeyVaultSecret -Name $secret -VaultName $VaultName).SecretValueText) | Set-Content $file
+                }
 
                 if($matches -eq 0){
                     Write-Host "No matches found for $file"
                 }
-                # foreach ($s in $content) {
-                #     if ($s -ne $null) {
-                #         if ($s -match '#{+[a-z]+\W*[a-z]*}#+') {
-                #             Write-Host $Matches.Values
-                #             $token = $Matches.Values
-                #             $secretValue = Get-AzKeyVaultSecret -Name $token.TrimStart('#','{').TrimEnd('}','#') -VaultName $VaultName
+            })    
+        })
 
-                #             Write-Host "Replacing $token with $secretValue.Value for $_"
-                #             $content.Replace($token, $secretValue.Value) | Set-Content $_.PSPath
-                #         } else {
-                #             Write-Host "No matches found for $s in $_"
-                #         }
-                #     }
-                # }
-            })
     }
         
     end {
