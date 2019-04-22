@@ -336,4 +336,4 @@ app/*
 .idea/
 
 # Ignore bower_components
-bower_components/*
+bower_components
