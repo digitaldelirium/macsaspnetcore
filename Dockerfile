@@ -4,7 +4,7 @@ COPY ./MacsASPNETCore.csproj MacsASPNETCore/
 WORKDIR /src/MacsASPNETCore
 RUN dotnet restore
 COPY . .
-RUN dotnet build -c ${BuildConfiguration} MacsASPNETCore.csproj -o /app && \
+RUN dotnet build -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app && \
     curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y nodejs gcc g++ make apt-utils && \
     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
