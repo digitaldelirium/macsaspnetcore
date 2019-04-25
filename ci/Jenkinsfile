@@ -1,0 +1,116 @@
+pipeline{
+    agent{
+        label "linux"
+    }
+    parameters {
+        choice(name: 'BuildConfiguration', description: 'The Build Configuration to use', choices: ['Release','Debug'])
+        choice(name: 'GitBranch', description: 'The branch to build from Git', choices: ['develop','master','netcore_lts'])
+        choice(name: 'Environment', description: 'The environment to run in', choices: ['Development', 'Staging', 'Production'])
+        string(name: 'VaultName', description: 'The name of the Azure Key Vault hosting secrets', defaultValue: 'macscampvault')
+    }
+    environment {
+        BUILD_CONFIGURATION = "${BuildConfiguration}"
+    }
+    stages{
+        stage("Setup Environment"){
+            steps{
+                echo "========Setting Up Environment for Deployment========"
+                deleteDir()
+                git branch: "${GitBranch}", credentialsId: 'github-personal', url: 'https://github.com/digitaldelirium/macsaspnetcore.git'
+                
+                withCredentials([azureServicePrincipal('JenkinsWorker')]) {
+                    echo "====++++Replacing Tokens in Files++++===="
+                    sh'''
+                        /snap/bin/pwsh || sudo snap install powershell --classic
+                        /snap/bin/pwsh Deploy/Replace-Tokens.ps1 -ClientId ${AZURE_CLIENT_ID} -ClientSecret ${AZURE_CLIENT_SECRET} -SPN -TenantId ${AZURE_TENANT_ID} -SubscriptionId ${AZURE_SUBSCRIPTION_ID} -VaultName ${VaultName}
+                    '''
+                }
+            }
+            post{
+                success{
+                    echo "========Environment setup executed successfully========"
+                }
+                failure{
+                    echo "========Environment setup execution failed========"
+                }
+            }
+        }
+        stage("Build Docker Container"){
+            steps {
+                echo "====++++${currentBuild.number}++++===="
+                echo "====++++Setup .NET Build environment++++===="
+                sh'''
+                    sed -i 's/#{BuildConfiguration}#/${params.BuildConfiguration}/g' Dockerfile
+                '''
+
+                echo "====++++Build Docker Container++++===="
+                sh"""
+                    docker build --rm --compress . -t macscampingapp:latest -t macscampingapp:\${currentBuild.number} -t macscampingarea.azurecr.io/macscampingapp:\${currentBuild.number}
+                """
+            }
+        }
+        stage("Push container to registry"){
+            steps{
+                echo "====++++Push Container to ACR++++===="
+                sh'''
+                    REGISTRY_NAME="macscampingarea"
+                    az acr login --name $REGISTRY_NAME
+                    docker push $REGISTRY_NAME.azurecr.io/macscampingapp:${currentBuild.number}
+                '''
+            }
+        }
+        stage("Run Container"){
+            steps{
+                sshagent(['macscampingarea']) {
+                    echo "====++++Connect to MacsVM via SSH++++===="
+                    script {
+                        switch (Environment){
+                            case "Development":
+                                sh'''
+                                    ssh -A macs@macsvm.macscampingarea.com
+                                    az acr login --name macscampingarea
+                                    docker pull macscampingarea.azurecr.io/macscampingapp:${currentBuild.number}
+                                    docker run -dit --name macsdev macscampingarea.azurecr.io/macscampingapp:${currentBuild.number}
+                                '''
+                            break
+                            case "Staging":
+                                sh'''
+                                    ssh -A macs@macsvm.macscampingarea.com
+                                    az acr login --name macscampingarea
+                                    docker pull macscampingarea.azurecr.io/macscampingapp:${currentBuild.number}                                
+                                    docker run -dit --name macsstaging macscampingarea.azurecr.io/macscampingapp:${currentBuild.number} ASPNETCORE_ENVIRONMENT="Staging"
+                                '''
+                            break
+                            case "Production":
+                                sh'''
+                                    ssh -A macs@macsvm.macscampingarea.com
+                                    az acr login --name macscampingarea
+                                    docker pull macscampingarea.azurecr.io/macscampingapp:${currentBuild.number}
+                                    docker run -dit --name macsstaging --net host macscampingarea.azurecr.io/macscampingapp:${currentBuild.number} ASPNETCORE_ENVIRONMENT="Production"                            
+                                '''
+                            break
+                        }
+                    }
+                }
+
+            }
+        post{
+            success{
+                echo "====++++Run Container executed succesfully++++===="
+            }
+            failure{
+                echo "====++++Run Container execution failed++++===="
+            }
+    
+        }
+    }
+    }
+    post{
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}

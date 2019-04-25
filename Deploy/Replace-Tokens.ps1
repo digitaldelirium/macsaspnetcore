@@ -140,4 +140,6 @@ if ($SPN) {
     Replace-Tokens -ClientId $ClientId -ClientSecret $ClientSecret -SPN -TenantId $TenantId -SubscriptionId $SubscriptionId -VaultName $VaultName
 } else {
     Replace-Tokens -VaultName $VaultName
+    $dockerContent = Get-Content -Path .\Dockerfile
+    $dockerContent.replace("#{BuildConfiguration}#",$env:BUILD_CONFIGURATION) | Set-Content -Path ./Dockerfile
 }
