@@ -12,11 +12,12 @@ RUN dotnet build -c ${BuildConfiguration} MacsASPNETCore.csproj -o /app && \
     apt-get update && apt-get install yarn -y
 
 FROM build AS publish
-RUN dotnet publish -c ${BuildConfiguration} MacsASPNETCore.csproj -o /app
+RUN dotnet publish -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app
 
 FROM microsoft/dotnet:2.1-aspnetcore-runtime as base
 
 FROM base AS final
+ARG ASPNETCORE_ENVIRONMENT="Development"
 WORKDIR /app
 COPY --from=publish /app .
 EXPOSE 443/tcp
