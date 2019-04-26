@@ -69,14 +69,21 @@ pipeline{
         }
         stage("Push container to registry"){
             steps{
-                echo "====++++Push Container to ACR++++===="
-                withCredentials([azureServicePrincipal('JenkinsWorker')]) {                
-                    sh'''
-                        az login -u $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --service-principal --tenant $AZURE_TENANT_ID
-                        REGISTRY_NAME="macscampingarea"
-                        az acr login --name $REGISTRY_NAME
-                        docker push $REGISTRY_NAME.azurecr.io/macscampingapp:$BUILD_NUMBER
-                    '''
+                script {
+                    if($ENVIRONMENT != "Development"){
+                        echo "====++++Push Container to ACR++++===="
+                        withCredentials([azureServicePrincipal('JenkinsWorker')]) {                
+                            sh'''
+                                az login -u $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --service-principal --tenant $AZURE_TENANT_ID
+                                REGISTRY_NAME="macscampingarea"
+                                az acr login --name $REGISTRY_NAME
+                                docker push $REGISTRY_NAME.azurecr.io/macscampingapp:$BUILD_NUMBER
+                            '''
+                        }
+                    }
+                    else {
+                        echo "====++++Skipping due to Development Environment++++===="
+                    }
                 }
             }
         }
@@ -86,14 +93,9 @@ pipeline{
                 script {
                     switch ($ENVIRONMENT){
                         case "Development":
-                            sshagent(['']) {
-                                sh'''
-                                    ssh -A jenkins@192.168.1.12
-                                    az acr login --name macscampingarea
-                                    docker pull macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
-                                    docker run -dit --name macsdev macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
-                                '''
-                            }
+                            sh'''
+                                docker run -dit --name macsdev macscampingapp:$BUILD_NUMBER
+                            '''
                         break
                         case "Staging":
                             sshagent(['macscampingarea']) {                        

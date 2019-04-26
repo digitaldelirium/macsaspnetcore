@@ -17,7 +17,7 @@ RUN dotnet publish -c #{BuildConfiguration}# MacsASPNETCore.csproj -o /app
 FROM microsoft/dotnet:2.1-aspnetcore-runtime as base
 
 FROM base AS final
-ENV ASPNETCORE_ENVIRONMENT="#{Environment}#"
+ENV ASPNETCORE_ENVIRONMENT=#{Environment}#
 WORKDIR /app
 COPY --from=publish /app .
 EXPOSE 443/tcp
