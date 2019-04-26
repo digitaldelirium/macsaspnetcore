@@ -45,9 +45,25 @@ pipeline{
                 '''
 
                 echo "====++++Build Docker Container++++===="
-                sh"""
-                    docker build --rm --compress . -t macscampingapp:latest -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER
-                """
+                script {
+                    switch($ENVIRONMENT) {
+                        case "Development":
+                            sh"""
+                                docker build --rm --compress Dev.dockerfile -t macscampingapp:development -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:development
+                            """
+                        break
+                        case "Staging":
+                            sh"""
+                                docker build --rm --compress . -t macscampingapp:staging -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:staging
+                            """                        
+                        break
+                        case "Production":
+                            sh"""
+                                docker build --rm --compress . -t macscampingapp:latest -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:prod
+                            """
+                        break
+                    }
+                }
             }
         }
         stage("Push container to registry"){
