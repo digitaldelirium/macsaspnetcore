@@ -50,26 +50,25 @@ namespace MacsASPNETCore
                                 listenOptions => { listenOptions.UseHttps(PfxCert); });
                             break;
                         case "Staging":
-                            options.Listen(IPAddress.Any, 4080);
-                            options.Listen(IPAddress.IPv6Any, 4080);
-                            options.Listen(IPAddress.Any, 4443,
-                              listenOptions => { listenOptions.UseHttps(PfxCert); });
-                            options.Listen(IPAddress.IPv6Any, 4443,
+                            options.Listen(IPAddress.Any, 80);
+                            options.Listen(IPAddress.Any, 443,
                               listenOptions => { listenOptions.UseHttps(PfxCert); });
                             break;
                         case "Prod":
                             options.Listen(IPAddress.Any, 80);
-                            options.Listen(IPAddress.IPv6Any, 80);
-                            options.Listen(IPAddress.IPv6Any, 443,
-                              listenOptions => { listenOptions.UseHttps(PfxCert); });
                             options.Listen(IPAddress.Any, 443,
                               listenOptions => { listenOptions.UseHttps(PfxCert); });
                             break;
                     }
-                });
-
-            host.UseContentRoot(Directory.GetCurrentDirectory())
-                .UseApplicationInsights();
+                })
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseApplicationInsights()
+            .ConfigureLogging((hostingContext, logging) =>
+            {
+                logging.AddConsole();
+                logging.AddDebug();
+                logging.AddEventSourceLogger();
+            });
 
             host.Build().Run();
         }
