@@ -43,7 +43,7 @@
     "version": "2.1.0",
     "description": "Mac's Camping Area Web Application",
     "author": "Ian Cornett <ian.cornett@outlook.com>",
-    "license": "None",
+    "license": "WTFPL",
     "private": false,
     "engines": {
         "yarn": ">= 1.0.0"
@@ -52,5 +52,5 @@
         "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
     },
     "main": "index.js",
-    "repository": "https://github.com/n/a"
+    "repository": "https://github.com/digitaldelirium/macsaspnetcore"
 }
