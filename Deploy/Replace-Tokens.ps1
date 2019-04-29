@@ -10,18 +10,24 @@ param (
     [string]
     $ClientSecret,
 
+
     [Parameter(Mandatory, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
+
     [ValidateNotNullOrEmpty()]
     [string]
     $TenantId,
 
+
     [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
     [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
+
     [ValidateNotNullOrEmpty()]
     [string]
     $VaultName,
 
+
     [Parameter(HelpMessage = "full or partial subscription name, if not default")]
+
     [string]
     $SubscriptionId,
 
@@ -30,6 +36,7 @@ param (
     [switch]
     $SPN
 )
+
 function Replace-Tokens {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
@@ -37,6 +44,7 @@ function Replace-Tokens {
         [ValidateNotNullOrEmpty()]
         [string]
         $ClientId,
+
 
         [Parameter(Mandatory, HelpMessage = 'Client Secret for SPN', ParameterSetName = 'SPN')]
         [ValidateNotNullOrEmpty()]
@@ -79,7 +87,6 @@ function Replace-Tokens {
         }
 
         $script:kvSecrets = Get-AzKeyVaultSecret -VaultName $VaultName
-
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
         $script:csFiles = Get-ChildItem -File -Path ./ -Filter '*.cs'
 
@@ -129,6 +136,7 @@ function Replace-Tokens {
                 }
             }    
         }
+
 
     }
         
