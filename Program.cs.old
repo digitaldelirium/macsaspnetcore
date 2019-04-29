@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using macsaspnetcore.Models;
+using MacsASPNETCore.Models;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using static System.Environment;
 
-namespace macsaspnetcore
+namespace MacsASPNETCore
 {
     public class Program
     {
@@ -202,7 +202,7 @@ namespace macsaspnetcore
             var authContext = new AuthenticationContext(authority);
 
             var clientCredential = new ClientCredential("e8725941-c27a-4012-8c89-19aca10b11a5",
-                "#{client-secret}#");
+                "#{client-secret}");
 
             var result = await authContext.AcquireTokenAsync(resource, clientCredential);
 

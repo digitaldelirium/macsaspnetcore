@@ -136,14 +136,14 @@ _TeamCity*
 
 # NCrunch
 _NCrunch_*
-.*crunch*.local.xml
+.*crunch*.local.xmlbff179f7ef9b457cb65b34993ae98203
 nCrunchTemp_*
 
 # MightyMoose
 *.mm.*
 AutoTest.Net/
 
-# Web workbench (sass)
+# Web workbench (sabff179f7ef9b457cb65b34993ae98203
 .sass-cache/
 
 # Installshield output folder
@@ -213,7 +213,7 @@ ClientBin/
 ~$*
 *~
 *.dbmdl
-*.dbproj.schemaview
+*.dbproj.schemaviewdotnet publish -c Debug MacsASPNETCore.csproj -o /app
 *.jfm
 *.pfx
 *.publishsettings
@@ -251,7 +251,8 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 
-# GhostDoc plugin setting file
+# GhostDoc plugin setting filallation.
+  [4/5] Linking dependencies...
 *.GhostDoc.xml
 
 # Node.js Tools for Visual Studio
@@ -281,13 +282,6 @@ _Pvt_Extensions
 # Paket dependency manager
 .paket/paket.exe
 paket-files/
-
-# FAKE - F# Make
-.fake/
-
-# JetBrains Rider
-.idea/
-*.sln.iml
 .idea/contentModel.xml
 
 # CodeRush
@@ -324,6 +318,13 @@ ASALocalRun/
 .idea/.idea.MacsASPNETCore/.idea/contentModel.xml
 
 # Ignore other environment's secrets and settings
-appsettings.Staging.json
-appsettings.json
 *.db
+
+# Ignore published files
+app/*
+
+#Ignore Jetbrains
+.idea/
+
+# Ignore bower_components
+bower_components

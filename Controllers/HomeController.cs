@@ -1,10 +1,11 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using macsaspnetcore.Models;
-using macsaspnetcore.Services;
-using macsaspnetcore.ViewModels;
+using MacsASPNETCore.Models;
+using MacsASPNETCore.Services;
+using MacsASPNETCore.ViewModels;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
 using MimeKit;
 
-namespace macsaspnetcore.Controllers
+namespace MacsASPNETCore.Controllers
 {
     public class HomeController : Controller
     {
@@ -39,10 +40,16 @@ namespace macsaspnetcore.Controllers
 
         public IActionResult Index()
         {
-            var slidepath = _env.WebRootPath + "/images/titleslide";
+            var slidepath = "wwwroot/images/titleslide";
             ViewData["Title"] = "Welcome To Mac's Camping Area!";
             var titleSlide = new System.IO.DirectoryInfo(slidepath).GetFiles();
-            ViewBag.ImageList = titleSlide;
+            var images = new List<String>();
+
+            foreach (var item in titleSlide)
+            {
+                images.Add(item.FullName.Split('/').Last());
+            }
+            ViewBag.ImageList = images;
             return View();
         }
 
@@ -124,9 +131,21 @@ namespace macsaspnetcore.Controllers
             ViewData["Title"] = "RV Rentals";
             ViewData["Message"] = "2 RV Rentals Available";
             var trailer1Slide = new System.IO.DirectoryInfo(slidepath1).GetFiles();
+            var lakeviewPics = new List<String>();
+            foreach (var item in trailer1Slide)
+            {
+                lakeviewPics.Add(item.FullName.Split('/').Last());
+            }
+
             var trailer2Slide = new System.IO.DirectoryInfo(slidepath2).GetFiles();
-            ViewBag.ImageList = trailer1Slide;
-            ViewBag.ImageList2 = trailer2Slide;
+            var lilypadPics = new List<String>();
+
+            foreach (var item in trailer2Slide)
+            {
+                lilypadPics.Add(item.FullName.Split('/').Last());
+            }
+            ViewBag.ImageList = lakeviewPics;
+            ViewBag.ImageList2 = lilypadPics;
             return View();
         }
 

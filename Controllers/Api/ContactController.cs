@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Net;
-using macsaspnetcore.Services;
-using macsaspnetcore.ViewModels;
+using MacsASPNETCore.Services;
+using MacsASPNETCore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 
-namespace macsaspnetcore.Controllers.Api
+namespace MacsASPNETCore.Controllers.Api
 {
     [Route("api/contact")]
     public class ContactController : Controller

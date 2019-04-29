@@ -1,28 +1,33 @@
 #! /usr/bin/pwsh
-
 param (
-    [Parameter(Mandatory = $true, HelpMessage = 'Client ID for SPN', ParameterSetName = 'SPN')]
+    [Parameter(Mandatory, HelpMessage = 'Client ID for SPN', ParameterSetName = 'SPN')]
     [ValidateNotNullOrEmpty()]
     [string]
     $ClientId,
 
-    [Parameter(Mandatory = $true, HelpMessage = 'Client Secret for SPN', ParameterSetName = 'SPN')]
+    [Parameter(Mandatory, HelpMessage = 'Client Secret for SPN', ParameterSetName = 'SPN')]
     [ValidateNotNullOrEmpty()]
     [string]
     $ClientSecret,
 
-    [Parameter(Mandatory = $true, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
+
+    [Parameter(Mandatory, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
+
     [ValidateNotNullOrEmpty()]
     [string]
     $TenantId,
 
-    [Parameter(Mandatory = $true, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
-    [Parameter(Mandatory = $true, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
+
+    [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
+    [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
+
     [ValidateNotNullOrEmpty()]
     [string]
     $VaultName,
 
-    [Parameter(Mandatory = $false, HelpMessage = "full or partial subscription name, if not default")]
+
+    [Parameter(HelpMessage = "full or partial subscription name, if not default")]
+
     [string]
     $SubscriptionId,
 
@@ -35,28 +40,29 @@ param (
 function Replace-Tokens {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(Mandatory = $true, HelpMessage = 'Client ID for SPN', ParameterSetName = 'SPN')]
+        [Parameter(Mandatory, HelpMessage = 'Client ID for SPN', ParameterSetName = 'SPN')]
         [ValidateNotNullOrEmpty()]
         [string]
         $ClientId,
 
-        [Parameter(Mandatory = $true, HelpMessage = 'Client Secret for SPN', ParameterSetName = 'SPN')]
+
+        [Parameter(Mandatory, HelpMessage = 'Client Secret for SPN', ParameterSetName = 'SPN')]
         [ValidateNotNullOrEmpty()]
         [string]
         $ClientSecret,
 
-        [Parameter(Mandatory = $true, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
+        [Parameter(Mandatory, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
         [ValidateNotNullOrEmpty()]
         [string]
         $TenantId,
 
-        [Parameter(Mandatory = $true, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
-        [Parameter(Mandatory = $true, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
+        [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
+        [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
         [ValidateNotNullOrEmpty()]
         [string]
         $VaultName,
 
-        [Parameter(Mandatory = $false, HelpMessage = "full or partial subscription name, if not default")]
+        [Parameter(HelpMessage = "full or partial subscription name, if not default")]
         [string]
         $SubscriptionId,
 
@@ -65,72 +71,83 @@ function Replace-Tokens {
         [switch]
         $SPN
     )
-    
+        
     begin {
 
         if ($SPN) {
-            az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId
+            [PSCredential]$credential = [PSCredential]::new($ClientId, $($ClientSecret | ConvertTo-SecureString -AsPlainText -Force))
+            Connect-AzAccount -ServicePrincipal -Credential $credential -Tenant $TenantId
         }
         else {
-            $username = Read-Host -Prompt 'Please enter your Azure Username'
-            az login --username $username
+            Connect-AzAccount
         }
 
         if (!([string]::IsNullOrWhiteSpace($SubscriptionId))) {
-            $accounts = az account list
-            az account set --subscription $SubscriptionId
+            Set-AzContext -Subscription $SubscriptionId -Tenant $TenantId
         }
 
-        $script:secrets = az keyvault secret list --vault-name $VaultName -o json
-        [psobject[]]$script:kvSecrets
-        try {
-            $kvSecrets = $secrets | ConvertFrom-Json
-        }
-        catch [System.Exception] {
-            Write-Error -Message "Conversion from JSON failed"
-            Throw
-        }
-
+        $script:kvSecrets = Get-AzKeyVaultSecret -VaultName $VaultName
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
+        $script:csFiles = Get-ChildItem -File -Path ./ -Filter '*.cs'
+
+        $script:files = @($script:jsonFiles + $script:csFiles)
     }
-    
+        
     process {
         $pfxFiles = $kvSecrets | Where-Object -FilterScript { $_.contentType -like 'application/x-pkcs12' } | Select-Object
-        $pfxFiles.ForEach( {
-                $prefix = "https://$($VaultName).vault.azure.net/secrets/".Length
-                $name = $_.id.Substring($prefix)
-                az keyvault secret download --vault-name $VaultName --file "./$($name).pfx" --name $name 
-            })
+        $pfxFiles.ForEach{
+                $prefix = "https://$($VaultName).vault.azure.net/secrets/"
+                $name = $_.id.Substring($prefix.ToString().Length + 4)
+                Write-Host "$name"                
+                $pfxSecret = Get-AzKeyVaultSecret -VaultName $vaultName -Name $name
+                $pfxUnprotectedBytes = [Convert]::FromBase64String($pfxSecret.SecretValueText)
+                $pfx = New-Object Security.Cryptography.X509Certificates.X509Certificate2
+                $pfx.Import($pfxUnprotectedBytes, $null, [Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
+                $pfx.PrivateKey.ExportParameters($true)
+                [IO.File]::WriteAllBytes("$name.pfx", $pfxUnprotectedBytes)
+            }
 
-        $script:tokenExp = "#{+[a-z]+\W*[a-z]*}#+"
-        $jsonFiles.ForEach( {
-                $content = Get-Content $_.Name
-                $x = 0
-                foreach ($s in $content) {
-                    if ($s -ne $null) {
-                        $r = $s
-                        if ($s -match '#{+[a-z]+\W*[a-z]*}#+') {
-                            $token = $Matches.Values
-                            $token = $token.TrimStart("#", "{").TrimEnd("}", "#")
-                            Write-Host $token
-                            $secretValue = $(az keyvault secret show --name $token.TrimStart(2).TrimEnd(2) --vault-name $VaultName -o json) | ConvertFrom-Json | Select-Object -ExpandProperty value
-
-                            $r.Replace($Matches.Values, $secretValue)
-                        }
-
-                        if (!$r.Equals($s)) {
-                            $content.Item($x) = $r
-                        }
-                    }
-
-                    $x++ 
+        $kvSecrets.Name.ForEach{
+            $secret = $_
+            Write-Host "Looking for #{$secret}#"
+            $files.ForEach{
+                $file = $_
+                try
+                {
+                  $content = Get-Content $file
                 }
-                Out-File -FilePath $_ -InputObject $content -Force
-            })
+                catch [Management.Automation.ItemNotFoundException]
+                {
+                  Write-Debug "Skipping file $file due to bad path"
+                }
+                
+                
+                
+                $matches = 0
+                
+                if($content -match "#{$secret}#"){
+                    $matches++
+                    Write-Debug "Replacing $file Values with $secret Secret Values"
+                    $content.replace("#{$secret}#", $(Get-AzKeyVaultSecret -Name $secret -VaultName $VaultName).SecretValueText) | Set-Content $file
+                }
+
+                if($matches -eq 0){
+                    Write-Debug "No matches found for $file"
+                }
+            }    
+        }
+
+
     }
-    
+        
     end {
     }
 }
 
-Replace-Tokens -VaultName $VaultName
+if ($SPN) {
+    Replace-Tokens -ClientId $ClientId -ClientSecret $ClientSecret -SPN -TenantId $TenantId -SubscriptionId $SubscriptionId -VaultName $VaultName
+} else {
+    Replace-Tokens -VaultName $VaultName
+    $dockerContent = Get-Content -Path .\Dockerfile
+    $dockerContent.replace("#{BuildConfiguration}#",$env:BUILD_CONFIGURATION) | Set-Content -Path ./Dockerfile
+}

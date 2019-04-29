@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace macsaspnetcore.Migrations
+namespace MacsASPNETCore.Migrations
 {
     public partial class InitialMigration : Migration
     {

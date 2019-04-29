@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using System.Net;
 using AutoMapper;
-using macsaspnetcore.Models;
-using macsaspnetcore.ViewModels;
+using MacsASPNETCore.Models;
+using MacsASPNETCore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace macsaspnetcore.Controllers.Api
+namespace MacsASPNETCore.Controllers.Api
 {
     [Route("api/activities")]
     public class ActivityController : Controller

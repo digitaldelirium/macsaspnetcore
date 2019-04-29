@@ -2,7 +2,7 @@
 using System.Transactions;
 using Microsoft.AspNetCore.Identity;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class ApplicationRole : IdentityRole<Guid>
     {

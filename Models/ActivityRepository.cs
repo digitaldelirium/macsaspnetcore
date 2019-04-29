@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class ActivityRepository : IActivityRepository
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace macsaspnetcore.Models
+namespace MacsASPNETCore.Models
 {
     public class Reservation
     {

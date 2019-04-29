@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using macsaspnetcore.Models;
+using MacsASPNETCore.Models;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,21 +16,25 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using static System.Environment;
 using Microsoft.AspNetCore;
 
-namespace macsaspnetcore
+namespace MacsASPNETCore
 {
     public class Program
     {
-        private static IConfigurationRoot _configuration;
-        private static IHostingEnvironment _environment { get; set; }
+        private static IConfigurationRoot _configuration { get; set; }
+        private static IHostingEnvironment _environment { get; }
         private static X509Certificate2 PfxCert { get; set; }
         private static AsymmetricAlgorithm PrivateKey { get; set; }
-        public Program(IHostingEnvironment environment)
+
+        public Program()
         {
-            _environment = environment;
+
         }
+
+
 
         public static void Main(string[] args)
         {
+
             var host = CreateWebHostBuilder(args);
 
             PfxCert = GetCertificate(_environment);
@@ -38,24 +42,35 @@ namespace macsaspnetcore
             host.UseStartup<Startup>()
             .UseKestrel(options =>
                 {
-                    if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                    switch (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"))
                     {
-                        options.Listen(IPAddress.Loopback, 8081);
-                        options.Listen(IPAddress.Loopback, 8443,
-                            listenOptions => { listenOptions.UseHttps(PfxCert); });
+                        case "Development":
+                            options.Listen(IPAddress.Loopback, 8081);
+                            options.Listen(IPAddress.Loopback, 8443,
+                                listenOptions => { listenOptions.UseHttps(PfxCert); });
+                            break;
+                        case "Staging":
+                            options.Listen(IPAddress.Any, 80);
+                            options.Listen(IPAddress.Any, 443,
+                              listenOptions => { listenOptions.UseHttps(PfxCert); });
+                            break;
+                        case "Prod":
+                            options.Listen(IPAddress.Any, 80);
+                            options.Listen(IPAddress.Any, 443,
+                              listenOptions => { listenOptions.UseHttps(PfxCert); });
+                            break;
                     }
-                    else
-                    {
-                        options.Listen(IPAddress.Any, 80);
-                        options.Listen(IPAddress.Any, 443,
-                            listenOptions => { listenOptions.UseHttps(PfxCert); });
-                    }
-                });
+                })
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseApplicationInsights()
+            .ConfigureLogging((hostingContext, logging) =>
+            {
+                logging.AddConsole();
+                logging.AddDebug();
+                logging.AddEventSourceLogger();
+            });
 
-            host.UseContentRoot(Directory.GetCurrentDirectory())
-                .UseApplicationInsights();
-
-            host.Build();
+            host.Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
@@ -64,9 +79,20 @@ namespace macsaspnetcore
             builder.ConfigureAppConfiguration((context, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("hosting.json", optional: false)
-                    .AddEnvironmentVariables();
+                    .AddJsonFile("hosting.json", optional: false);
 
+                if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                {
+                    config.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true);
+                }
+                else
+                {
+                    var env = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    config.AddJsonFile($"appsettings.{env}.json", optional: false, reloadOnChange: true);
+                }
+
+                config.AddEnvironmentVariables();
                 _configuration = config.Build();
             });
             return builder;
@@ -76,69 +102,66 @@ namespace macsaspnetcore
         private static X509Certificate2 GetCertificate(IHostingEnvironment environment)
         {
             var pfx = new X509Certificate2();
-            if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            switch (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"))
             {
-                var certPath = Directory.GetCurrentDirectory().ToString() + "/Macs-Dev.pfx";
-                if (File.Exists(certPath))
-                {
-                    try
-                    {
-                        var rawBytes = File.ReadAllBytes(certPath);
-                        var securePassword = new SecureString();
-                        foreach (var c in "developer")
-                        {
-                            securePassword.AppendChar(c);
-                        }
-                        pfx = new X509Certificate2(rawBytes, securePassword);
-                    }
-                    catch (Exception)
+                case "Development":
+
+                    var certPath = Directory.GetCurrentDirectory().ToString() + "/Macs-Dev.pfx";
+                    if (File.Exists(certPath))
                     {
                         try
                         {
                             var rawBytes = File.ReadAllBytes(certPath);
-                            pfx = new X509Certificate2(rawBytes);
+                            var securePassword = new SecureString();
+                            foreach (var c in "developer")
+                            {
+                                securePassword.AppendChar(c);
+                            }
+                            pfx = new X509Certificate2(rawBytes, securePassword);
+                            return pfx;
                         }
-                        catch (CryptographicException ex)
+                        catch (Exception)
                         {
-                            Console.WriteLine($"Could not open certificate!\n\n{ex.Message}");
-                            throw;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Another error occurred, see exception details");
-                            Console.WriteLine(ex.Message);
-                            throw;
+                            try
+                            {
+                                var rawBytes = File.ReadAllBytes(certPath);
+                                pfx = new X509Certificate2(rawBytes);
+                                return pfx;
+                            }
+                            catch (CryptographicException ex)
+                            {
+                                Console.WriteLine($"Could not open certificate!\n\n{ex.Message}");
+                                throw;
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Another error occurred, see exception details");
+                                Console.WriteLine(ex.Message);
+                                throw;
+                            }
                         }
                     }
-                }
-                else
-                {
-                    Console.WriteLine(certPath + " is invalid!");
-                    Exit(4);
-                }
+                    else
+                    {
+                        Console.WriteLine(certPath + " does not exist or is invalid!");
+                        var files = Directory.GetFiles(Directory.GetCurrentDirectory().ToString());
+                        foreach (var item in files)
+                        {
+                            Console.WriteLine(item.ToString());
+                        }
 
-            }
-            else if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging")
-            {
-                try
-                {
-                    var rawBytes = Encoding.ASCII.GetBytes(_configuration["Certificates:MacsVM:PFX"]);
-                    pfx = new X509Certificate2(rawBytes);
-                }
-                catch (CryptographicException exception)
-                {
-                    Console.WriteLine($"Could not open certificate!\n\n{exception.Message}");
-                    throw;
-                }
-            }
-            else
-            {
-                pfx = GetKeyVaultCert().Result ?? throw new ArgumentNullException("GetKeyVaultCert().Result");
-            }
+                        Exit(4);
+                    }
 
-            return pfx;
+                    break;
+                default:
+                    pfx = GetKeyVaultCert().Result ?? throw new ArgumentNullException($"GetKeyVaultCert().Result");
+                    return pfx;
+            }
+            return new X509Certificate2();
+
+
         }
-
         public static async Task<X509Certificate2> GetKeyVaultCert()
         {
             X509Certificate2 pfx;
@@ -182,7 +205,7 @@ namespace macsaspnetcore
             var authContext = new AuthenticationContext(authority);
 
             var clientCredential = new ClientCredential("e8725941-c27a-4012-8c89-19aca10b11a5",
-                "#{client-secret}#");
+                "b8d9ee1c-896f-4ef6-8a9f-efb7fd6de64f");
 
             var result = await authContext.AcquireTokenAsync(resource, clientCredential);
 
@@ -191,6 +214,7 @@ namespace macsaspnetcore
 
             return result.AccessToken;
         }
-
     }
+
+
 }

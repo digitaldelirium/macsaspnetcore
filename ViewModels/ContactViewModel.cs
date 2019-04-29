@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace macsaspnetcore.ViewModels
+namespace MacsASPNETCore.ViewModels
 {
     /// <summary>
     ///  Email Message formatting
