@@ -17,31 +17,25 @@
       <e p="Application.db" t="Include" />
       <e p="ClientPFX.pfx" t="Include" />
       <e p="Controllers" t="Include">
-        <e p="AccountController.cs" t="Include" />
         <e p="Api" t="Include">
           <e p="ActivityController.cs" t="Include" />
           <e p="ContactController.cs" t="Include" />
         </e>
         <e p="HomeController.cs" t="Include" />
-        <e p="ManageController.cs" t="Include" />
       </e>
       <e p="Customers.db" t="Include" />
       <e p="Deploy" t="Include">
-        <e p="ClientPFX.pfx" t="Include" />
-        <e p="Macs-Dev.pfx" t="Include" />
-        <e p="MacsPFX.pfx" t="Include" />
         <e p="Replace-Tokens.ps1" t="Include" />
         <e p="dockerbld.sh" t="Include" />
-        <e p="letsencrypt.pfx" t="Include" />
-        <e p="macsvmssl.pfx" t="Include" />
       </e>
+      <e p="Dev.dockerfile" t="Include" />
       <e p="Dockerfile" t="Include" />
       <e p="Dockertag.dev.txt" t="Include" />
       <e p="Dockertag.txt" t="Include" />
       <e p="Extensions" t="Include">
         <e p="EmailSenderExtensions.cs" t="Include" />
-        <e p="UrlHelperExtensions.cs" t="Include" />
       </e>
+      <e p="Jenkinsfile" t="Include" />
       <e p="Macs-Dev.pfx" t="Include" />
       <e p="Macs.pfx" t="Include" />
       <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
@@ -110,48 +104,13 @@
       </e>
       <e p="Startup.cs" t="Include" />
       <e p="ViewModels" t="Include">
-        <e p="Account" t="Include">
-          <e p="ExternalLoginViewModel.cs" t="Include" />
-          <e p="ForgotPasswordViewModel.cs" t="Include" />
-          <e p="LoginViewModel.cs" t="Include" />
-          <e p="LoginWith2faViewModel.cs" t="Include" />
-          <e p="LoginWithRecoveryCodeViewModel.cs" t="Include" />
-          <e p="RegisterViewModel.cs" t="Include" />
-          <e p="ResetPasswordViewModel.cs" t="Include" />
-        </e>
         <e p="ActivityViewModel.cs" t="Include" />
         <e p="ApplicationRole.cs" t="Include" />
         <e p="ApplicationUser.cs" t="Include" />
         <e p="ContactViewModel.cs" t="Include" />
         <e p="ErrorViewModel.cs" t="Include" />
-        <e p="Manage" t="Include">
-          <e p="ChangePasswordViewModel.cs" t="Include" />
-          <e p="EnableAuthenticatorViewModel.cs" t="Include" />
-          <e p="ExternalLoginsViewModel.cs" t="Include" />
-          <e p="GenerateRecoveryCodesViewModel.cs" t="Include" />
-          <e p="IndexViewModel.cs" t="Include" />
-          <e p="RemoveLoginViewModel.cs" t="Include" />
-          <e p="SetPasswordViewModel.cs" t="Include" />
-          <e p="ShowRecoveryCodesViewModel.cs" t="Include" />
-          <e p="TwoFactorAuthenticationViewModel.cs" t="Include" />
-        </e>
       </e>
       <e p="Views" t="Include">
-        <e p="Account" t="Include">
-          <e p="AccessDenied.cshtml" t="Include" />
-          <e p="ConfirmEmail.cshtml" t="Include" />
-          <e p="ExternalLogin.cshtml" t="Include" />
-          <e p="ForgotPassword.cshtml" t="Include" />
-          <e p="ForgotPasswordConfirmation.cshtml" t="Include" />
-          <e p="Lockout.cshtml" t="Include" />
-          <e p="Login.cshtml" t="Include" />
-          <e p="LoginWith2fa.cshtml" t="Include" />
-          <e p="LoginWithRecoveryCode.cshtml" t="Include" />
-          <e p="Register.cshtml" t="Include" />
-          <e p="ResetPassword.cshtml" t="Include" />
-          <e p="ResetPasswordConfirmation.cshtml" t="Include" />
-          <e p="SignedOut.cshtml" t="Include" />
-        </e>
         <e p="Home" t="Include">
           <e p="About.cshtml" t="Include" />
           <e p="Activities.cshtml" t="Include" />
@@ -163,26 +122,9 @@
           <e p="RV.cshtml" t="Include" />
           <e p="Rates.cshtml" t="Include" />
         </e>
-        <e p="Manage" t="Include">
-          <e p="ChangePassword.cshtml" t="Include" />
-          <e p="Disable2fa.cshtml" t="Include" />
-          <e p="EnableAuthenticator.cshtml" t="Include" />
-          <e p="ExternalLogins.cshtml" t="Include" />
-          <e p="GenerateRecoveryCodes.cshtml" t="Include" />
-          <e p="Index.cshtml" t="Include" />
-          <e p="ManageNavPages.cs" t="Include" />
-          <e p="ResetAuthenticator.cshtml" t="Include" />
-          <e p="SendVerificationEmail.cshtml" t="Include" />
-          <e p="SetPassword.cshtml" t="Include" />
-          <e p="ShowRecoveryCodes.cshtml" t="Include" />
-          <e p="TwoFactorAuthentication.cshtml" t="Include" />
-          <e p="_Layout.cshtml" t="Include" />
-          <e p="_ManageNav.cshtml" t="Include" />
-          <e p="_StatusMessage.cshtml" t="Include" />
-          <e p="_ViewImports.cshtml" t="Include" />
-        </e>
         <e p="Shared" t="Include">
           <e p="Error.cshtml" t="Include" />
+          <e p="_CookieConsentPartial.cshtml" t="Include" />
           <e p="_Layout.cshtml" t="Include" />
           <e p="_LoginPartial.cshtml" t="Include" />
           <e p="_ValidationScriptsPartial.cshtml" t="Include" />
@@ -191,9 +133,28 @@
         <e p="_ViewStart.cshtml" t="Include" />
       </e>
       <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.Production.json" t="Include" />
+      <e p="appsettings.Staging.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
-      <e p="bower.json" t="Include" />
+      <e p="bower_components/grunt/node_modules" t="ExcludeRecursive">
+        <e p="rimraf" t="IncludeRecursive" />
+      </e>
+      <e p="bower_components/grunt/test/fixtures/load-npm-tasks/node_modules" t="ExcludeRecursive">
+        <e p="grunt-foo-plugin" t="IncludeRecursive" />
+      </e>
+      <e p="bower_components/grunt-contrib-uglify/node_modules" t="ExcludeRecursive">
+        <e p="uglify-js" t="IncludeRecursive" />
+      </e>
+      <e p="bower_components/jquery-validation/node_modules" t="ExcludeRecursive">
+        <e p="jquery" t="IncludeRecursive" />
+      </e>
+      <e p="bower_components/jquery-validation-unobtrusive/node_modules" t="ExcludeRecursive">
+        <e p="jquery" t="IncludeRecursive" />
+      </e>
+      <e p="bower_components/jquery.validation/node_modules" t="ExcludeRecursive">
+        <e p="jquery" t="IncludeRecursive" />
+      </e>
       <e p="bundleconfig.json" t="Include" />
       <e p="compilerconfig.json" t="Include" />
       <e p="compilerconfig.json.defaults" t="Include" />
@@ -203,6 +164,20 @@
       <e p="letsencrypt.pfx" t="Include" />
       <e p="macsvmssl.pfx" t="Include" />
       <e p="node_modules" t="ExcludeRecursive">
+        <e p="@bower_components/Microsoft.jQuery.Unobtrusive.Ajax" t="IncludeRecursive" />
+        <e p="@bower_components/Microsoft.jQuery.Unobtrusive.Validation" t="IncludeRecursive" />
+        <e p="@bower_components/angular" t="IncludeRecursive" />
+        <e p="@bower_components/angular-slick" t="IncludeRecursive" />
+        <e p="@bower_components/bootstrap" t="IncludeRecursive" />
+        <e p="@bower_components/grunt" t="IncludeRecursive" />
+        <e p="@bower_components/grunt-contrib-uglify" t="IncludeRecursive" />
+        <e p="@bower_components/jquery" t="IncludeRecursive" />
+        <e p="@bower_components/jquery-ui" t="IncludeRecursive" />
+        <e p="@bower_components/jquery-validation" t="IncludeRecursive" />
+        <e p="@bower_components/jquery-validation-unobtrusive" t="IncludeRecursive" />
+        <e p="@bower_components/jquery.validation" t="IncludeRecursive" />
+        <e p="@bower_components/moment" t="IncludeRecursive" />
+        <e p="@bower_components/slick-carousel" t="IncludeRecursive" />
         <e p="angular" t="IncludeRecursive" />
         <e p="angular-carousel" t="IncludeRecursive" />
         <e p="chalk" t="IncludeRecursive" />
@@ -233,7 +208,6 @@
           </e>
         </e>
       </e>
-      <e p="package-lock.json" t="Include" />
       <e p="package.json" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="web.config" t="Include" />
@@ -242,7 +216,6 @@
         <e p="bower.json" t="Include" />
         <e p="css" t="Include">
           <e p="site.css" t="Include" />
-          <e p="site.min.css" t="Include" />
           <e p="theme.css" t="Include" />
           <e p="theme.min.css" t="Include" />
         </e>
@@ -348,6 +321,7 @@
         </e>
         <e p="web.config" t="Include" />
       </e>
+      <e p="yarn.lock" t="Include" />
     </e>
   </component>
 </project>
