@@ -4,21 +4,19 @@ pipeline{
     }
     parameters {
         choice(name: 'BuildConfiguration', description: 'The Build Configuration to use', choices: ['Release','Debug'])
-        choice(name: 'GitBranch', description: 'The branch to build from Git', choices: ['develop','master','netcore_lts'])
         choice(name: 'Environment', description: 'The environment to run in', choices: ['Development', 'Staging', 'Production'])
         string(name: 'VaultName', description: 'The name of the Azure Key Vault hosting secrets', defaultValue: 'macscampvault')
     }
     environment {
         BUILD_CONFIGURATION = "${BuildConfiguration}"
         ENVIRONNENT = "${Environment}"
-        BRANCH = "${GitBranch}"
     }
     stages{
         stage("Setup Environment"){
             steps{
                 echo "========Setting Up Environment for Deployment========"
                 deleteDir()
-                git branch: '$BRANCH', credentialsId: 'github-creds', url: 'https://github.com/digitaldelirium/macsaspnetcore.git'
+                git branch: 'master', credentialsId: 'github-creds', url: 'https://github.com/digitaldelirium/macsaspnetcore.git'
                 
                 withCredentials([azureServicePrincipal('JenkinsWorker')]) {
                     echo "====++++Replacing Tokens in Files++++===="
