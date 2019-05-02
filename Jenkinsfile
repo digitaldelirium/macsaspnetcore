@@ -9,7 +9,7 @@ pipeline{
     }
     environment {
         BUILD_CONFIGURATION = "${BuildConfiguration}"
-        ENVIRONNENT = "${Environment}"
+        ENVIRONNENT_DEF = "${Environment}"
     }
     stages{
         stage("Setup Environment"){
@@ -40,12 +40,12 @@ pipeline{
                 echo "====++++Setup .NET Build environment++++===="
                 sh'''
                     sed -i "s/#{BuildConfiguration}#/${BUILD_CONFIGURATION}/g" Dockerfile
-                    sed -i "s/#{Environment}#/${ENVIRONMENT}/g" Dockerfile
+                    sed -i "s/#{Environment}#/${ENVIRONMENT_DEF}/g" Dockerfile
                 '''
 
                 echo "====++++Build Docker Container++++===="
                 script {
-                    switch($ENVIRONMENT) {
+                    switch($ENVIRONMENT_DEF) {
                         case "Development":
                             sh"""
                                 docker build --rm --compress Dev.dockerfile -t macscampingapp:development -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:development
