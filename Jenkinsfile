@@ -18,7 +18,7 @@ pipeline{
             steps{
                 echo "========Setting Up Environment for Deployment========"
                 deleteDir()
-                git branch: '$BRANCH', credentialsId: 'github-personal', url: 'https://github.com/digitaldelirium/macsaspnetcore.git'
+                git branch: '$BRANCH', credentialsId: 'github-ssh', url: 'git@github.com:digitaldelirium/macsaspnetcore.git'
                 
                 withCredentials([azureServicePrincipal('JenkinsWorker')]) {
                     echo "====++++Replacing Tokens in Files++++===="
