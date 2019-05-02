@@ -39,8 +39,8 @@ pipeline{
             steps {
                 echo "====++++Setup .NET Build environment++++===="
                 sh'''
-                    sed -i 's/#{BuildConfiguration}#/$BuildConfiguration/g' Dockerfile
-                    sed -i 's/#{Environment}#/$ENVIRONMENT/g' Dockerfile
+                    sed -i 's/#{BuildConfiguration}#/${BUILD_CONFIGURATION}/g' Dockerfile
+                    sed -i 's/#{Environment}#/${ENVIRONMENT}/g' Dockerfile
                 '''
 
                 echo "====++++Build Docker Container++++===="
