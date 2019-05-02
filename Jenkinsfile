@@ -4,12 +4,11 @@ pipeline{
     }
     parameters {
         choice(name: 'BuildConfiguration', description: 'The Build Configuration to use', choices: ['Release','Debug'])
-        choice(name: 'Environment', description: 'The environment to run in', choices: ['Development', 'Staging', 'Production'])
+        choice(name: 'RuntimeEnvironment', description: 'The environment to run in', choices: ['Development', 'Staging', 'Production'])
         string(name: 'VaultName', description: 'The name of the Azure Key Vault hosting secrets', defaultValue: 'macscampvault')
     }
     environment {
         BUILD_CONFIGURATION = "${BuildConfiguration}"
-        ENVIRONNENT_DEF = "${Environment}"
     }
     stages{
         stage("Setup Environment"){
@@ -40,12 +39,12 @@ pipeline{
                 echo "====++++Setup .NET Build environment++++===="
                 sh'''
                     sed -i "s/#{BuildConfiguration}#/${BUILD_CONFIGURATION}/g" Dockerfile
-                    sed -i "s/#{Environment}#/${ENVIRONMENT_DEF}/g" Dockerfile
+                    sed -i "s/#{Environment}#/${RuntimeEnvironment}/g" Dockerfile
                 '''
 
                 echo "====++++Build Docker Container++++===="
                 script {
-                    switch($ENVIRONMENT_DEF) {
+                    switch($RuntimeEnvironment) {
                         case "Development":
                             sh"""
                                 docker build --rm --compress Dev.dockerfile -t macscampingapp:development -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:development
