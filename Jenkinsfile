@@ -82,7 +82,7 @@ pipeline{
                                     docker push macscampingarea.azurecr.io/macscampingapp:staging
                                 '''
                             break
-                            case "Production"
+                            case "Production":
                                 sh'''
                                     docker push macscampingarea.azurecr.io/macscampingapp:prod
                                 '''
