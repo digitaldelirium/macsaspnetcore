@@ -48,17 +48,17 @@ pipeline{
                     switch(RUNTIME_ENVIRONMENT) {
                         case "Development":
                             sh"""
-                                docker build --rm --compress -t macscampingapp:development -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:development -f Dev.dockerfile
+                                docker build --rm --compress -t macscampingapp:development -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:development -f Dev.dockerfile
                             """
                         break
                         case "Staging":
                             sh"""
-                                docker build --rm --compress -t macscampingapp:staging -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:staging .
+                                docker build --rm --compress -t macscampingapp:staging -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:staging .
                             """                        
                         break
                         case "Production":
                             sh"""
-                                docker build --rm --compress -t macscampingapp:latest -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:prod .
+                                docker build --rm --compress -t macscampingapp:latest -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:prod .
                             """
                         break
                     }
