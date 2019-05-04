@@ -9,6 +9,7 @@ pipeline{
     }
     environment {
         BUILD_CONFIGURATION = "${BuildConfiguration}"
+        RUNTIME_ENVIRONMENT = "${RuntimeEnvironment}"
     }
     stages{
         stage("Setup Environment"){
@@ -39,12 +40,12 @@ pipeline{
                 echo "====++++Setup .NET Build environment++++===="
                 sh'''
                     sed -i "s/#{BuildConfiguration}#/${BUILD_CONFIGURATION}/g" Dockerfile
-                    sed -i "s/#{Environment}#/${RuntimeEnvironment}/g" Dockerfile
+                    sed -i "s/#{Environment}#/${RUNTIME_ENVIRONMENT}/g" Dockerfile
                 '''
 
                 echo "====++++Build Docker Container++++===="
                 script {
-                    switch($RuntimeEnvironment) {
+                    switch(RUNTIME_ENVIRONMENT) {
                         case "Development":
                             sh"""
                                 docker build --rm --compress Dev.dockerfile -t macscampingapp:development -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER macscampingarea.azurecr.io/macscampingapp:development
@@ -67,7 +68,7 @@ pipeline{
         stage("Push container to registry"){
             steps{
                 script {
-                    if($ENVIRONMENT != "Development"){
+                    if(RUNTIME_ENVIRONMENT != "Development"){
                         echo "====++++Push Container to ACR++++===="
                         withCredentials([azureServicePrincipal('JenkinsWorker')]) {                
                             sh'''
@@ -88,7 +89,7 @@ pipeline{
             steps{
                 echo "====++++Connect to MacsVM via SSH++++===="
                 script {
-                    switch ($ENVIRONMENT){
+                    switch (RUNTIME_ENVIRONMENT){
                         case "Development":
                             sh'''
                                 docker run -dit --name macsdev macscampingapp:$BUILD_NUMBER
@@ -110,7 +111,7 @@ pipeline{
                                     ssh -A macs@macsvm.macscampingarea.com
                                     az acr login --name macscampingarea
                                     docker pull macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
-                                    docker run -dit --name macsstaging --net host macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
+                                    docker run -dit --name macsprod-${currentBuild.number} --net host macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
                                 '''
                             }
                         break
