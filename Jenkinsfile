@@ -68,7 +68,7 @@ pipeline{
         stage("Push container to registry"){
             steps{
                 echo "====++++Push Container to ACR++++===="
-                withDockerRegistry(credentialsId: 'macsacrcred', url: 'macscampingarea.azurecr.io') {
+                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {
                     script {                        
                         switch(RUNTIME_ENVIRONMENT){
                             case "Development":
@@ -101,7 +101,7 @@ pipeline{
                         break
                         case "Staging":
                             sshagent(['macscampingarea']) {
-                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'macscampingarea.azurecr.io') {                    
+                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {                    
                                     sh'''
                                         ssh -A macs@macsvm.macscampingarea.com
                                         
@@ -113,7 +113,7 @@ pipeline{
                         break
                         case "Production":
                             sshagent(['macscampingarea']) {
-                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'macscampingarea.azurecr.io') {                      
+                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {                      
                                     sh'''
                                         ssh -A macs@macsvm.macscampingarea.com
                                         docker pull macscampingarea.azurecr.io/macscampingapp:prod
