@@ -104,7 +104,7 @@ pipeline{
                                 withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {                    
                                     sh'''
                                         ssh -A macs@macsvm.macscampingarea.com 'docker pull macscampingarea.azurecr.io/macscampingapp:staging'
-                                        ssh -A macs@macsvm.macscampingarea.com 'docker run -dit --name macsstaging macscampingarea.azurecr.io/macscampingapp:staging'
+                                        ssh -A macs@macsvm.macscampingarea.com 'docker run -dit --name macsstaging -p 8443:443 macscampingarea.azurecr.io/macscampingapp:staging'
                                     '''
                                 }
                             }
