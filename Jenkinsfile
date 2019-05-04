@@ -58,7 +58,7 @@ pipeline{
                         break
                         case "Production":
                             sh"""
-                                docker build --rm --compress -t macscampingapp:latest -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:prod .
+                                docker build --rm --compress -t macscampingapp:latest -t macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER -t macscampingarea.azurecr.io/macscampingapp:prod -t macscampingarea.azurecr.io/macscampingapp:latest .
                             """
                         break
                     }
@@ -67,18 +67,27 @@ pipeline{
         }
         stage("Push container to registry"){
             steps{
-                script {
-                    if(RUNTIME_ENVIRONMENT != "Development"){
-                        echo "====++++Push Container to ACR++++===="
-                        withCredentials([azureServicePrincipal('JenkinsWorker')]) {                
-                            sh'''
-                                az login -u $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --service-principal --tenant $AZURE_TENANT_ID
-                                docker push macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
-                            '''
+                echo "====++++Push Container to ACR++++===="
+                withCredentials([azureServicePrincipal('JenkinsWorker')]) {
+                    script {                        
+                        sh'''
+                            az login -u $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --service-principal --tenant $AZURE_TENANT_ID
+                        '''
+                        switch(RUNTIME_ENVIRONMENT){
+                            case "Development":
+                                echo "====++++Not Pushing DevCode to upstream repo++++===="
+                            break
+                            case "Staging":
+                                sh '''
+                                    docker push macscampingarea.azurecr.io/macscampingapp:staging
+                                '''
+                            break
+                            case "Production"
+                                sh'''
+                                    docker push macscampingarea.azurecr.io/macscampingapp:prod
+                                '''
+                            break
                         }
-                    }
-                    else {
-                        echo "====++++Skipping due to Development Environment++++===="
                     }
                 }
             }
