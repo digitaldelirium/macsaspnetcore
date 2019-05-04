@@ -71,7 +71,7 @@ pipeline{
                 withCredentials([azureServicePrincipal('JenkinsWorker')]) {
                     script {                        
                         sh'''
-                            docker login macscampingarea.azurecr.io
+                            docker login macscampingarea.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET
                         '''
                         switch(RUNTIME_ENVIRONMENT){
                             case "Development":
@@ -106,7 +106,7 @@ pipeline{
                             sshagent(['macscampingarea']) {                        
                                 sh'''
                                     ssh -A macs@macsvm.macscampingarea.com
-                                    az acr login --name macscampingarea
+                                    
                                     docker pull macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER                                
                                     docker run -dit --name macsstaging macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
                                 '''
