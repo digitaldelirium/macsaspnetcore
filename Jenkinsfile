@@ -118,7 +118,8 @@ pipeline{
                                     ssh -A macs@macsvm.macscampingarea.com
                                     az acr login --name macscampingarea
                                     docker pull macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
-                                    docker run -dit --name macsprod-${currentBuild.number} --net host macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
+                                    docker rm macsprod -f
+                                    docker run -dit --name macsprod-$BUILD_NUMBER --net host macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
                                 '''
                             }
                         break
