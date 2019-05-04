@@ -71,7 +71,7 @@ pipeline{
                 withCredentials([azureServicePrincipal('JenkinsWorker')]) {
                     script {                        
                         sh'''
-                            docker login macscampingarea.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET
+                            dbus-launch docker login macscampingarea.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET
                         '''
                         switch(RUNTIME_ENVIRONMENT){
                             case "Development":
