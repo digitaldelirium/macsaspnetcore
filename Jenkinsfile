@@ -71,7 +71,7 @@ pipeline{
                 withCredentials([azureServicePrincipal('JenkinsWorker')]) {
                     script {                        
                         sh'''
-                            az login -u $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --service-principal --tenant $AZURE_TENANT_ID
+                            docker login macscampingarea.azurecr.io
                         '''
                         switch(RUNTIME_ENVIRONMENT){
                             case "Development":
