@@ -14,7 +14,7 @@
         "@bower_components/bootstrap": "twbs/bootstrap#3.3.7",
         "@bower_components/grunt": "gruntjs/grunt#~1.0.1",
         "@bower_components/grunt-contrib-uglify": "gruntjs/grunt-contrib-uglify#~1.0.1",
-        "@bower_components/jquery": "jquery/jquery-dist#3.3.1",
+        "@bower_components/jquery": "jquery/jquery-dist#3.4.1",
         "@bower_components/jquery-ui": "components/jqueryui#*",
         "@bower_components/jquery-validation": "jzaefferer/jquery-validation#*",
         "@bower_components/jquery-validation-unobtrusive": "aspnet/jquery-validation-unobtrusive#*",
