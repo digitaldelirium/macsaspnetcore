@@ -73,7 +73,7 @@ pipeline{
                         withCredentials([azureServicePrincipal('JenkinsWorker')]) {                
                             sh'''
                                 az login -u $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --service-principal --tenant $AZURE_TENANT_ID
-                                docker push $REGISTRY_NAME.azurecr.io/macscampingapp:$BUILD_NUMBER
+                                docker push macscampingarea.azurecr.io/macscampingapp:$BUILD_NUMBER
                             '''
                         }
                     }
