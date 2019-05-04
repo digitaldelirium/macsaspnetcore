@@ -101,22 +101,26 @@ pipeline{
                         break
                         case "Staging":
                             sshagent(['macscampingarea']) {
-                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {                    
-                                    sh'''
-                                        ssh -A macs@macsvm.macscampingarea.com 'docker pull macscampingarea.azurecr.io/macscampingapp:staging'
-                                        ssh -A macs@macsvm.macscampingarea.com 'docker run -dit --name macsstaging -p 8443:443 macscampingarea.azurecr.io/macscampingapp:staging'
-                                    '''
+                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {
+                                    withDockerServer([credentialsId: 'macsvmdocker', uri: 'tcp://macsvm.macscampingarea.com:2376']) {               
+                                        sh'''
+                                            docker pull macscampingarea.azurecr.io/macscampingapp:staging
+                                            docker run -dit --name macsstaging -p 8443:443 macscampingarea.azurecr.io/macscampingapp:staging
+                                        '''
+                                    }
                                 }
                             }
                         break
                         case "Production":
                             sshagent(['macscampingarea']) {
-                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {                      
-                                    sh'''
-                                        ssh -A macs@macsvm.macscampingarea.com 'docker pull macscampingarea.azurecr.io/macscampingapp:prod'
-                                        ssh -A macs@macsvm.macscampingarea.com 'docker rm macsprod -f'
-                                        ssh -A macs@macsvm.macscampingarea.com 'docker run -dit --name macsprod --net host macscampingarea.azurecr.io/macscampingapp:prod'
-                                    '''
+                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {
+                                    withDockerServer([credentialsId: 'macsvmdocker', uri: 'tcp://macsvm.macscampingarea.com:2376']) {                    
+                                        sh'''
+                                            docker pull macscampingarea.azurecr.io/macscampingapp:prod
+                                            docker rm macsprod -f
+                                            docker run -dit --name macsprod --net host macscampingarea.azurecr.io/macscampingapp:prod
+                                        '''
+                                    }
                                 }
                             }
                         break
