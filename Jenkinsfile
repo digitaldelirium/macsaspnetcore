@@ -68,11 +68,8 @@ pipeline{
         stage("Push container to registry"){
             steps{
                 echo "====++++Push Container to ACR++++===="
-                withCredentials([azureServicePrincipal('JenkinsWorker')]) {
+                withDockerRegistry(credentialsId: 'macsacrcred', url: 'macscampingarea.azurecr.io') {
                     script {                        
-                        sh'''
-                            dbus-launch docker login macscampingarea.azurecr.io -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET
-                        '''
                         switch(RUNTIME_ENVIRONMENT){
                             case "Development":
                                 echo "====++++Not Pushing DevCode to upstream repo++++===="
@@ -103,24 +100,27 @@ pipeline{
                             '''
                         break
                         case "Staging":
-                            sshagent(['macscampingarea']) {                        
-                                sh'''
-                                    ssh -A macs@macsvm.macscampingarea.com
-                                    
-                                    docker pull macscampingarea.azurecr.io/macscampingapp:staging                             
-                                    docker run -dit --name macsstaging macscampingarea.azurecr.io/macscampingapp:staging
-                                '''
+                            sshagent(['macscampingarea']) {
+                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'macscampingarea.azurecr.io') {                    
+                                    sh'''
+                                        ssh -A macs@macsvm.macscampingarea.com
+                                        
+                                        docker pull macscampingarea.azurecr.io/macscampingapp:staging                             
+                                        docker run -dit --name macsstaging macscampingarea.azurecr.io/macscampingapp:staging
+                                    '''
+                                }
                             }
                         break
                         case "Production":
-                            sshagent(['macscampingarea']) {                        
-                                sh'''
-                                    ssh -A macs@macsvm.macscampingarea.com
-                                    az acr login --name macscampingarea
-                                    docker pull macscampingarea.azurecr.io/macscampingapp:prod
-                                    docker rm macsprod -f
-                                    docker run -dit --name macsprod-$BUILD_NUMBER --net host macscampingarea.azurecr.io/macscampingapp:prod
-                                '''
+                            sshagent(['macscampingarea']) {
+                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'macscampingarea.azurecr.io') {                      
+                                    sh'''
+                                        ssh -A macs@macsvm.macscampingarea.com
+                                        docker pull macscampingarea.azurecr.io/macscampingapp:prod
+                                        docker rm macsprod -f
+                                        docker run -dit --name macsprod --net host macscampingarea.azurecr.io/macscampingapp:prod
+                                    '''
+                                }
                             }
                         break
                     }
