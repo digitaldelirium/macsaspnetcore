@@ -103,10 +103,8 @@ pipeline{
                             sshagent(['macscampingarea']) {
                                 withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {                    
                                     sh'''
-                                        ssh -A macs@macsvm.macscampingarea.com
-                                        
-                                        docker pull macscampingarea.azurecr.io/macscampingapp:staging                             
-                                        docker run -dit --name macsstaging macscampingarea.azurecr.io/macscampingapp:staging
+                                        ssh -A macs@macsvm.macscampingarea.com 'docker pull macscampingarea.azurecr.io/macscampingapp:staging'
+                                        ssh -A macs@macsvm.macscampingarea.com 'docker run -dit --name macsstaging macscampingarea.azurecr.io/macscampingapp:staging'
                                     '''
                                 }
                             }
@@ -115,10 +113,9 @@ pipeline{
                             sshagent(['macscampingarea']) {
                                 withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {                      
                                     sh'''
-                                        ssh -A macs@macsvm.macscampingarea.com
-                                        docker pull macscampingarea.azurecr.io/macscampingapp:prod
-                                        docker rm macsprod -f
-                                        docker run -dit --name macsprod --net host macscampingarea.azurecr.io/macscampingapp:prod
+                                        ssh -A macs@macsvm.macscampingarea.com 'docker pull macscampingarea.azurecr.io/macscampingapp:prod'
+                                        ssh -A macs@macsvm.macscampingarea.com 'docker rm macsprod -f'
+                                        ssh -A macs@macsvm.macscampingarea.com 'docker run -dit --name macsprod --net host macscampingarea.azurecr.io/macscampingapp:prod'
                                     '''
                                 }
                             }
