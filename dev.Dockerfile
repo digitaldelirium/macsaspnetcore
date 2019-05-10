@@ -1,14 +1,17 @@
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
-COPY ./MacsASPNETCore.csproj MacsASPNETCore/
-WORKDIR /src/MacsASPNETCore
+COPY ./MacsASPNETCore.csproj macsaspnetcore/
+WORKDIR /src/macsaspnetcore
 RUN dotnet restore
 COPY . .
-RUN dotnet build -c Debug MacsASPNETCore.csproj -o /app && \
-    curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
-    apt-get install -y nodejs gcc g++ make apt-utils && \
-    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+RUN dotnet build --configuration debug MacsASPNETCore.csproj --output /app --runtime ubuntu.16.04-x64
+
+FROM build AS publish
+RUN dotnet publish --configuration debug MacsASPNETCore.csproj --output /app --runtime ubuntu.16.04-x64
+
+EXPOSE 443/tcp
+ENTRYPOINT ["dotnet", "MacsASPNETCore.dll"]
+bian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
     apt-get update && apt-get install yarn -y
 
 FROM build AS publish
