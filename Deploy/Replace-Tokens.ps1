@@ -10,16 +10,19 @@ param (
     [string]
     $ClientSecret,
 
+
     [Parameter(Mandatory, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
     [ValidateNotNullOrEmpty()]
     [string]
     $TenantId,
+
 
     [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
     [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
     [ValidateNotNullOrEmpty()]
     [string]
     $VaultName,
+
 
     [Parameter(HelpMessage = "full or partial subscription name, if not default")]
     [string]
@@ -79,7 +82,6 @@ function Replace-Tokens {
         }
 
         $script:kvSecrets = Get-AzKeyVaultSecret -VaultName $VaultName
-
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
         $script:csFiles = Get-ChildItem -File -Path ./ -Filter '*.cs'
 
@@ -140,4 +142,6 @@ if ($SPN) {
     Replace-Tokens -ClientId $ClientId -ClientSecret $ClientSecret -SPN -TenantId $TenantId -SubscriptionId $SubscriptionId -VaultName $VaultName
 } else {
     Replace-Tokens -VaultName $VaultName
+    $dockerContent = Get-Content -Path .\Dockerfile
+    $dockerContent.replace("#{BuildConfiguration}#",$env:BUILD_CONFIGURATION) | Set-Content -Path ./Dockerfile
 }

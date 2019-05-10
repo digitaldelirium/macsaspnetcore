@@ -25,6 +25,9 @@
       </e>
       <e p="Customers.db" t="Include" />
       <e p="Deploy" t="Include">
+        <e p="ClientPFX.pfx" t="Include" />
+        <e p="Macs-Dev.pfx" t="Include" />
+        <e p="MacsPFX.pfx" t="Include" />
         <e p="Replace-Tokens.ps1" t="Include" />
         <e p="dockerbld.sh" t="Include" />
       </e>
@@ -199,7 +202,6 @@
         <e p="rimraf" t="IncludeRecursive" />
         <e p="source-map" t="IncludeRecursive" />
         <e p="tar" t="IncludeRecursive" />
-      </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp2.1" t="Include">
