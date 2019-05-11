@@ -1,11 +1,4 @@
 {
-    "name": "macsaspnetcore",
-    "version": "2.0.0",
-    "description": "Mac's Camping Area Website",
-    "main": "index.js",
-    "repository": "git@github.com:digitaldelirium/macsaspnetcore.git",
-    "author": "Ian Cornett <ian.cornett@outlook.com>",
-    "license": "None",
     "dependencies": {
         "bootstrap": "^4.0.0",
         "chalk": "^1.1.3",

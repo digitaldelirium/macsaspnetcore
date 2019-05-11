@@ -20,12 +20,7 @@
     }(document, "script", "facebook-jssdk"));
 
     $(document).ready(function() {
-
-        var pageHeight = $(window).height();
-        carouselHeight = pageHeight * .40;
-        $("#titleContent").height(carouselHeight);
-
-        $("#titleContent").carousel({
+        $("#titleCarousel").carousel({
             interval: 3000
         });
     });

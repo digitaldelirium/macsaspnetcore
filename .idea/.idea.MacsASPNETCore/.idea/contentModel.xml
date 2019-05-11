@@ -3,8 +3,8 @@
   <component name="ContentModelStore">
     <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.3/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2018.3/system/resharper-host/local/Transient/ReSharperHost/v183/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p=".dockerignore" t="Include" />
       <e p=".gitattributes" t="Include" />
@@ -28,14 +28,21 @@
         <e p="Replace-Tokens.ps1" t="Include" />
         <e p="dockerbld.sh" t="Include" />
       </e>
-      <e p="Dev.dockerfile" t="Include" />
       <e p="Dockerfile" t="Include" />
       <e p="Dockertag.dev.txt" t="Include" />
       <e p="Dockertag.txt" t="Include" />
       <e p="Extensions" t="Include">
         <e p="EmailSenderExtensions.cs" t="Include" />
       </e>
+      <e p="Identity.db" t="Include" />
       <e p="Jenkinsfile" t="Include" />
+      <e p="Jenkinsfile~refs" t="Include">
+        <e p="remotes" t="Include">
+          <e p="origin" t="Include">
+            <e p="develop" t="Include" />
+          </e>
+        </e>
+      </e>
       <e p="Macs-Dev.pfx" t="Include" />
       <e p="Macs.pfx" t="Include" />
       <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
@@ -84,7 +91,6 @@
         <e p="State.cs" t="Include" />
       </e>
       <e p="Program.cs" t="Include" />
-      <e p="Program.cs.old" t="Include" />
       <e p="Project_Readme.html" t="Include" />
       <e p="Properties" t="Include">
         <e p="PublishProfiles" t="Include">
@@ -136,74 +142,54 @@
       <e p="appsettings.Staging.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
-      <e p="bower_components/grunt/node_modules" t="ExcludeRecursive">
-        <e p="rimraf" t="IncludeRecursive" />
-      </e>
-      <e p="bower_components/grunt/test/fixtures/load-npm-tasks/node_modules" t="ExcludeRecursive">
-        <e p="grunt-foo-plugin" t="IncludeRecursive" />
-      </e>
-      <e p="bower_components/grunt-contrib-uglify/node_modules" t="ExcludeRecursive">
-        <e p="uglify-js" t="IncludeRecursive" />
-      </e>
-      <e p="bower_components/jquery-validation/node_modules" t="ExcludeRecursive">
-        <e p="jquery" t="IncludeRecursive" />
-      </e>
-      <e p="bower_components/jquery-validation-unobtrusive/node_modules" t="ExcludeRecursive">
-        <e p="jquery" t="IncludeRecursive" />
-      </e>
-      <e p="bower_components/jquery.validation/node_modules" t="ExcludeRecursive">
-        <e p="jquery" t="IncludeRecursive" />
-      </e>
+      <e p="bower_components/grunt/node_modules/rimraf" t="IncludeRecursive" />
+      <e p="bower_components/grunt/test/fixtures/load-npm-tasks/node_modules/grunt-foo-plugin" t="IncludeRecursive" />
+      <e p="bower_components/grunt-contrib-uglify/node_modules/uglify-js" t="IncludeRecursive" />
+      <e p="bower_components/jquery-validation/node_modules/jquery" t="IncludeRecursive" />
+      <e p="bower_components/jquery-validation-unobtrusive/node_modules/jquery" t="IncludeRecursive" />
+      <e p="bower_components/jquery.validation/node_modules/jquery" t="IncludeRecursive" />
       <e p="bundleconfig.json" t="Include" />
       <e p="compilerconfig.json" t="Include" />
       <e p="compilerconfig.json.defaults" t="Include" />
       <e p="create_EFMigrationsTable.sql" t="Include" />
+      <e p="dev.Dockerfile" t="Include" />
       <e p="gulpfile.js" t="Include" />
       <e p="hosting.json" t="Include" />
       <e p="letsencrypt.pfx" t="Include" />
       <e p="macsvmssl.pfx" t="Include" />
-      <e p="node_modules" t="ExcludeRecursive">
-        <e p="@bower_components/Microsoft.jQuery.Unobtrusive.Ajax" t="IncludeRecursive" />
-        <e p="@bower_components/Microsoft.jQuery.Unobtrusive.Validation" t="IncludeRecursive" />
-        <e p="@bower_components/angular" t="IncludeRecursive" />
-        <e p="@bower_components/angular-slick" t="IncludeRecursive" />
-        <e p="@bower_components/bootstrap" t="IncludeRecursive" />
-        <e p="@bower_components/grunt" t="IncludeRecursive" />
-        <e p="@bower_components/grunt-contrib-uglify" t="IncludeRecursive" />
-        <e p="@bower_components/jquery" t="IncludeRecursive" />
-        <e p="@bower_components/jquery-ui" t="IncludeRecursive" />
-        <e p="@bower_components/jquery-validation" t="IncludeRecursive" />
-        <e p="@bower_components/jquery-validation-unobtrusive" t="IncludeRecursive" />
-        <e p="@bower_components/jquery.validation" t="IncludeRecursive" />
-        <e p="@bower_components/moment" t="IncludeRecursive" />
-        <e p="@bower_components/slick-carousel" t="IncludeRecursive" />
-        <e p="angular" t="IncludeRecursive" />
-        <e p="angular-carousel" t="IncludeRecursive" />
-        <e p="chalk" t="IncludeRecursive" />
-        <e p="clone" t="IncludeRecursive" />
-        <e p="flatten-packages" t="IncludeRecursive" />
-        <e p="fstream" t="IncludeRecursive" />
-        <e p="glob" t="IncludeRecursive" />
-        <e p="graceful-fs" t="IncludeRecursive" />
-        <e p="grunt" t="IncludeRecursive" />
-        <e p="grunt-bootlint" t="IncludeRecursive" />
-        <e p="gulp" t="IncludeRecursive" />
-        <e p="gulp-concat" t="IncludeRecursive" />
-        <e p="gulp-cssmin" t="IncludeRecursive" />
-        <e p="gulp-uglify" t="IncludeRecursive" />
-        <e p="jquery" t="IncludeRecursive" />
-        <e p="minimatch" t="IncludeRecursive" />
-        <e p="minimist" t="IncludeRecursive" />
-        <e p="moment" t="IncludeRecursive" />
-        <e p="readable-stream" t="IncludeRecursive" />
-        <e p="rimraf" t="IncludeRecursive" />
-        <e p="source-map" t="IncludeRecursive" />
-        <e p="tar" t="IncludeRecursive" />
-      </e>
+      <e p="node_modules/bootstrap" t="IncludeRecursive" />
+      <e p="node_modules/chalk" t="IncludeRecursive" />
+      <e p="node_modules/clone" t="IncludeRecursive" />
+      <e p="node_modules/eslint" t="IncludeRecursive" />
+      <e p="node_modules/eslint-config-defaults" t="IncludeRecursive" />
+      <e p="node_modules/flatten-packages" t="IncludeRecursive" />
+      <e p="node_modules/font-awesome" t="IncludeRecursive" />
+      <e p="node_modules/fstream" t="IncludeRecursive" />
+      <e p="node_modules/glob" t="IncludeRecursive" />
+      <e p="node_modules/glyphicons-halflings" t="IncludeRecursive" />
+      <e p="node_modules/graceful-fs" t="IncludeRecursive" />
+      <e p="node_modules/grunt" t="IncludeRecursive" />
+      <e p="node_modules/grunt-bootlint" t="IncludeRecursive" />
+      <e p="node_modules/gulp" t="IncludeRecursive" />
+      <e p="node_modules/gulp-concat" t="IncludeRecursive" />
+      <e p="node_modules/gulp-cssmin" t="IncludeRecursive" />
+      <e p="node_modules/gulp-uglify" t="IncludeRecursive" />
+      <e p="node_modules/jquery" t="IncludeRecursive" />
+      <e p="node_modules/minimatch" t="IncludeRecursive" />
+      <e p="node_modules/minimist" t="IncludeRecursive" />
+      <e p="node_modules/moment" t="IncludeRecursive" />
+      <e p="node_modules/popper.js" t="IncludeRecursive" />
+      <e p="node_modules/readable-stream" t="IncludeRecursive" />
+      <e p="node_modules/rimraf" t="IncludeRecursive" />
+      <e p="node_modules/source-map" t="IncludeRecursive" />
+      <e p="node_modules/tar" t="IncludeRecursive" />
+      <e p="node_modules/uglifyjs-webpack-plugin" t="IncludeRecursive" />
+      <e p="node_modules/webpack" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp2.1" t="Include">
             <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
+            <e p="UserSecretsAssemblyInfo.cs" t="Include" />
           </e>
         </e>
       </e>
@@ -214,7 +200,6 @@
         <e p="_references.js" t="Include" />
         <e p="bower.json" t="Include" />
         <e p="css" t="Include">
-          <e p="font-awesome.css" t="Include" />
           <e p="site.css" t="Include" />
           <e p="theme.css" t="Include" />
           <e p="theme.min.css" t="Include" />
