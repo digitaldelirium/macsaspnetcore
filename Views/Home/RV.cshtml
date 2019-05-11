@@ -18,7 +18,7 @@
                     }
                     </div>
                         <ol class="carousel-indicators">
-                        @for(int z = 0; z < i; z++){
+                        @for(int z = 0; z < ViewBag.ImageList.Count; z++){
                             if(z == 0){
                                 <li data-target="#trailer1" data-slide-to="{z}" class="active"></li>
                             }
@@ -91,9 +91,6 @@
             <div class="col" id="t2Container">
                 <div class="carousel slide" id="trailer2">
                     <div class="carousel-inner">
-                    @{
-                        var x = 0;
-                    }
                     @foreach (var image in ViewBag.ImageList2)
                     {
                         <div>
@@ -102,7 +99,7 @@
                     }
                     </div>
                     <ol class="carousel-indicators">
-                        @for(int y = 0; y < x; y++){
+                        @for(int y = 0; y < ViewBag.ImageList2.Count; y++){
                             if(y == 0){
                                 <li data-target="#trailer2" data-slide-to="{y}" class="active" ></li>
                             }
