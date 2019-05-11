@@ -5,16 +5,17 @@
 <head>
     <meta charset="utf-8" http-equiv="Content-Type" content="text/html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@ViewData["Title"] - Mac's Camping Area, LLC</title>
 
     <environment names="Development">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous" />        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous" />        
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="~/css/theme.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="~/css/theme.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
@@ -24,95 +25,85 @@
 <!-- Create ViewData.onLoad to for calling out body script loading on page for Contact View -->
 
 <body onload="@ViewBag.onLoad">
-
+    <span itemtype="http://schema.org/LodgingBusiness" itemscope>
+        <meta itemprop="founder" content="George 'Mac' McDonald"/>
+        <meta itemprop="foundingLocation" content="Poland, ME"/>
+        <meta itemprop="currenciesAccepted" content="USD"/>
+        <meta itemprop="paymentAccepted" content="cash, credit card"/>
+        <meta itemprop="legalName" content="Mac's Camping Area, LLC"/>
+        <span itemprop="description" class="hidden">Mac's Camping Area has been serving DownEast Maine campers for over 40 years. We specialize in having a small, close-knit community of recurring campers. Some of whom have been with us for multiple generations. We have also have a wedding tent and a rec hall available for event rentals!</span>
+        <meta name="keywords" content="camping maine downeast event rentals Poland maine camping fishing sailing go to camp ** www.macscampingarea.com">
+        <meta name="keywords" content="+camping +maine +downeast +event +rentals +Poland +maine +camping +fishing +sailing +go +to +camp ** www.macscampingarea.com">
+    </span>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=2063880430535462&autoLogAppEvents=1"></script>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a asp-controller="Home" asp-action="Index" class="navbar-brand">Mac's Camping Area</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a asp-controller="Home" asp-action="CampMap">Camp Map</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid" style="width: 100%">
+        <a href="#" class="navbar-brand">Mac's Camping Area</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Contact">Contact</a>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="CampMap" class="nav-link">Camp Map</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Activities">Activities</a>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Contact" class="nav-link">Contact Us</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Amenities">Amenities</a>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Activities" class="nav-link">Activities</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Rates">Rates</a>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Amenities" class="nav-link">Amenities</a>
                 </li>
-                <li>
-                    <a asp-controller="Home" asp-action="RV">RV Rentals</a>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Rates" class="nav-link">Rates</a>
                 </li>
-                <li>
-                    <a href="#" onclick="(function() { var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus(); })()">Flickr Library</a>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="RV" class="nav-link">RV Rentals</a>
                 </li>
             </ul>
-            @*  Authentication Not yet implemented 
-            @await Html.PartialAsync("_LoginPartial")
-*@
         </div>
-    </div>
-</nav>
-<div class="body-content container">
+    </nav>
+<div class="container" id="titleContent">
     <h1 style="text-align: center;">@ViewData["Title"]</h1>
-    @RenderBody()
+    <br />
+    <div class="fb-like" data-href="https://www.facebook.com/relaxatmacs" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <br/>
+        @RenderBody()
     <div class="row px-4">
-        @RenderSection("TopPane", false)
+            @RenderSection("TopPane", false)
+        </div>
+    <div class="row" id="contentPane1">
+        <div class="col col-md-4" id="topLeft">@RenderSection("TopLeft", false)</div>
+        <div class="col col-md-4" id="topCenter">@RenderSection("TopCenter", false)</div>
+        <div class="col col-md-4" id="topRight">@RenderSection("TopRight", false)</div>
     </div>
-    <div>
-        <div id="contentPane1 row px-4">
-            <div id="topLeft" class="col-md-4">@RenderSection("TopLeft", false)</div>
-            <div id="topCenter" class="col-md-4">@RenderSection("TopCenter", false)</div>
-            <div id="altUi" class="hidden">@RenderSection("AltUi", false)</div>
-            <div id="topRight" class="col-md-4">@RenderSection("TopRight", false)</div>
+    <div class="row hidden" id="altUi">
+        <div class="col-xs-12">
+            @RenderSection("AltUi", false)
         </div>
-        <div class="row">
-            <div id="contentPane2" class="">
-                <div id="midLeft" class="col" style="display: none;">@RenderSection("MidLeft", false)</div>
-                <div id="midCenter" class="col" style="display: none;">@RenderSection("MidCenter", false)</div>
-                <div id="midRight" class="col" style="display: none;">@RenderSection("MidRight", false)</div>
-            </div>
-        </div>
-        <div class="row">
-            <div id="contentPane3" class="panel panel-group">
-                <div id="bottomLeft" class="col" style="display: none;">@RenderSection("BottomLeft", false)</div>
-                <div id="bottomCenter" class="col" style="display: none;">@RenderSection("BottomCenter", false)</div>
-                <div id="bottomRight" class="col" style="display: none;">@RenderSection("BottomRight", false)</div>
-            </div>
-            <div id="bottomPane" class="row">@RenderSection("BottomPane", false)</div>
-            <partial name="_CookieConsentPartial" />
-        </div>
-        <footer>
-            <p>&copy; 2018 - Mac's Camping Area, LLC</p>
-        </footer>
     </div>
+        <div class="row" id="contentPane2">
+            <div class="col col-md-4" id="midLeft">@RenderSection("MidLeft", false)</div>
+            <div class="col col-md-4" id="midCenter">@RenderSection("MidCenter", false)</div>
+            <div class="col col-md-4" id="midRight">@RenderSection("MidRight", false)</div>
+        </div>
 </div>
 <environment names="Development">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment names="Staging,Production">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js" asp-fallback-test="window.jQuery"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.js"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
