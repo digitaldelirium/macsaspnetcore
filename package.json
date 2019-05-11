@@ -49,8 +49,8 @@
     },
     "devDependencies": {
         "eslint": "^4.18.1",
-        "eslint-config-defaults": "^9.0.0",,
-        "webpack": "^3.11.0"
+        "eslint-config-defaults": "^9.0.0",
+        "webpack": "^3.11.0",
         "grunt": "^1.0.4",
         "grunt-bootlint": "^0.12.1"
     },
