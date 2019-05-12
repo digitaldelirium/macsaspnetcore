@@ -141,7 +141,7 @@ function getUpcomingMonthEvents(target, month) {
 }
 
 var today = new Date();
-var year = today.getFullYear;
+var year = today.getFullYear();
 
 // Hide all months as default
 hideMonths();
@@ -291,7 +291,7 @@ function getJanuary() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 0, 1).toUTCString();
-        var endDate = new Date(year, 0, 31).toUTCString();
+        var endDate = new Date(year, 1, 1).toUTCString();
         if (!gotJan) {
             $.ajax({
                 type: "GET",
@@ -334,7 +334,7 @@ function getFebruary() {
         removeActiveClasses();
         getUpcomingMonthEvents();
         var startDate = new Date(year, 1, 1).toUTCString();
-        var endDate = new Date(year, 1, 29).toUTCString();
+        var endDate = new Date(year, 2, 1).toUTCString();
         if (!gotFeb) {
             $.ajax({
                 type: "GET",
@@ -377,7 +377,7 @@ function getMarch() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 2, 1).toUTCString();
-        var endDate = new Date(year, 2, 31).toUTCString();
+        var endDate = new Date(year, 3, 1).toUTCString();
         if (!gotMar) {
             $.ajax({
                 type: "GET",
@@ -426,7 +426,7 @@ function getApril() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 3, 1).toUTCString();
-        var endDate = new Date(year, 3, 30).toUTCString();
+        var endDate = new Date(year, 4, 1).toUTCString();
         if (!gotApr) {
             $.ajax({
                 type: "GET",
@@ -475,7 +475,7 @@ function getMay() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 4, 1).toUTCString();
-        var endDate = new Date(year, 4, 31).toUTCString();
+        var endDate = new Date(year, 5, 1).toUTCString();
         if (!gotMay) {
             $.ajax({
                 type: "GET",
@@ -517,7 +517,7 @@ function getJune() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 5, 1).toUTCString();
-        var endDate = new Date(year, 5, 30).toUTCString();
+        var endDate = new Date(year, 6, 1).toUTCString();
         if (!gotJun) {
             $.ajax({
                 type: "GET",
@@ -558,7 +558,7 @@ function getJuly() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 6, 1).toUTCString();
-        var endDate = new Date(year, 6, 31).toUTCString();
+        var endDate = new Date(year, 7, 1).toUTCString();
         if (!gotJul) {
             $.ajax({
                 type: "GET",
@@ -602,7 +602,7 @@ function getAugust() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 7, 1).toUTCString();
-        var endDate = new Date(year, 7, 31).toUTCString();
+        var endDate = new Date(year, 8, 1).toUTCString();
         if (!gotAug) {
             $.ajax({
                 type: "GET",
@@ -646,7 +646,7 @@ function getSeptember() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 8, 1).toUTCString();
-        var endDate = new Date(year, 8, 30).toUTCString();
+        var endDate = new Date(year, 9, 1).toUTCString();
         if (!gotSep) {
             $.ajax({
                 type: "GET",
@@ -688,7 +688,7 @@ function getOctober() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 9, 1).toUTCString();
-        var endDate = new Date(year, 9, 31).toUTCString();
+        var endDate = new Date(year, 10, 1).toUTCString();
         if (!gotOct) {
             $.ajax({
                 type: "GET",
@@ -730,7 +730,7 @@ function getNovember() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 10, 1).toUTCString();
-        var endDate = new Date(year, 10, 30).toUTCString();
+        var endDate = new Date(year, 11, 1).toUTCString();
         if (!gotNov) {
             $.ajax({
                 type: "GET",
@@ -773,7 +773,7 @@ function getDecember() {
         hideMonths();
         removeActiveClasses();
         var startDate = new Date(year, 11, 1).toUTCString();
-        var endDate = new Date(year, 11, 31).toUTCString();
+        var endDate = new Date(year, 0, 1).toUTCString();
         if (!gotDec) {
             $.ajax({
                 type: "GET",
