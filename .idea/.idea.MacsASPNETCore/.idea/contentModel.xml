@@ -124,7 +124,6 @@
           <e p="Error.cshtml" t="Include" />
           <e p="_CookieConsentPartial.cshtml" t="Include" />
           <e p="_Layout.cshtml" t="Include" />
-          <e p="_LoginPartial.cshtml" t="Include" />
           <e p="_ValidationScriptsPartial.cshtml" t="Include" />
         </e>
         <e p="_ViewImports.cshtml" t="Include" />
@@ -145,6 +144,7 @@
       <e p="hosting.json" t="Include" />
       <e p="letsencrypt.pfx" t="Include" />
       <e p="macsvmssl.pfx" t="Include" />
+      <e p="node_modules/@types" t="IncludeRecursive" />
       <e p="node_modules/bootstrap" t="IncludeRecursive" />
       <e p="node_modules/chalk" t="IncludeRecursive" />
       <e p="node_modules/clone" t="IncludeRecursive" />
@@ -184,7 +184,6 @@
       <e p="package.json" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="web.config" t="Include" />
-      <e p="webpack.config.js" t="Include" />
       <e p="wwwroot" t="Include">
         <e p="_references.js" t="Include" />
         <e p="bower.json" t="Include" />

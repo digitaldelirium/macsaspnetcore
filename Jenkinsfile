@@ -105,6 +105,7 @@ pipeline{
                                     withDockerServer([credentialsId: 'macsvmdocker', uri: 'tcp://macsvm.macscampingarea.com:2376']) {               
                                         sh'''
                                             docker pull macscampingarea.azurecr.io/macscampingapp:staging
+                                            docker rm macsstaging -f
                                             docker run -dit --name macsstaging -p 8443:443 macscampingarea.azurecr.io/macscampingapp:staging
                                         '''
                                     }
