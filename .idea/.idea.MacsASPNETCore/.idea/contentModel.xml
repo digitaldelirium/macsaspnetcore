@@ -36,13 +36,6 @@
       </e>
       <e p="Identity.db" t="Include" />
       <e p="Jenkinsfile" t="Include" />
-      <e p="Jenkinsfile~refs" t="Include">
-        <e p="remotes" t="Include">
-          <e p="origin" t="Include">
-            <e p="develop" t="Include" />
-          </e>
-        </e>
-      </e>
       <e p="Macs-Dev.pfx" t="Include" />
       <e p="Macs.pfx" t="Include" />
       <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
@@ -142,12 +135,7 @@
       <e p="appsettings.Staging.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
-      <e p="bower_components/grunt/node_modules/rimraf" t="IncludeRecursive" />
-      <e p="bower_components/grunt/test/fixtures/load-npm-tasks/node_modules/grunt-foo-plugin" t="IncludeRecursive" />
-      <e p="bower_components/grunt-contrib-uglify/node_modules/uglify-js" t="IncludeRecursive" />
-      <e p="bower_components/jquery-validation/node_modules/jquery" t="IncludeRecursive" />
-      <e p="bower_components/jquery-validation-unobtrusive/node_modules/jquery" t="IncludeRecursive" />
-      <e p="bower_components/jquery.validation/node_modules/jquery" t="IncludeRecursive" />
+      <e p="bower_components" t="Include" />
       <e p="bundleconfig.json" t="Include" />
       <e p="compilerconfig.json" t="Include" />
       <e p="compilerconfig.json.defaults" t="Include" />
@@ -166,7 +154,6 @@
       <e p="node_modules/font-awesome" t="IncludeRecursive" />
       <e p="node_modules/fstream" t="IncludeRecursive" />
       <e p="node_modules/glob" t="IncludeRecursive" />
-      <e p="node_modules/glyphicons-halflings" t="IncludeRecursive" />
       <e p="node_modules/graceful-fs" t="IncludeRecursive" />
       <e p="node_modules/grunt" t="IncludeRecursive" />
       <e p="node_modules/grunt-bootlint" t="IncludeRecursive" />
@@ -185,6 +172,7 @@
       <e p="node_modules/tar" t="IncludeRecursive" />
       <e p="node_modules/uglifyjs-webpack-plugin" t="IncludeRecursive" />
       <e p="node_modules/webpack" t="IncludeRecursive" />
+      <e p="node_modules/webpack-cli" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp2.1" t="Include">
@@ -196,10 +184,12 @@
       <e p="package.json" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="web.config" t="Include" />
+      <e p="webpack.config.js" t="Include" />
       <e p="wwwroot" t="Include">
         <e p="_references.js" t="Include" />
         <e p="bower.json" t="Include" />
         <e p="css" t="Include">
+          <e p="bootstrap.css" t="Include" />
           <e p="site.css" t="Include" />
           <e p="theme.css" t="Include" />
           <e p="theme.min.css" t="Include" />
@@ -293,8 +283,6 @@
           <e p="water.png" t="Include" />
         </e>
         <e p="js" t="Include">
-          <e p="Activities.es5.js" t="Include" />
-          <e p="Activities.es5.min.js" t="Include" />
           <e p="Activities.js" t="Include" />
           <e p="Index.js" t="Include" />
           <e p="Memoriam.js" t="Include" />
