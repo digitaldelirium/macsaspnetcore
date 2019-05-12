@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <PackageId>MacsASPNETCore</PackageId>
     <UserSecretsId>aspnet5-MacsASPNETCore-6b05b224-5da0-4726-8546-88ef3c66e2c4</UserSecretsId>
-    <RuntimeIdentifiers>linux-x64;win10-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>debian-x64; ubuntu-x64</RuntimeIdentifiers>
     <RuntimeFrameworkVersion>2.1.10</RuntimeFrameworkVersion>
     <AssetTargetFallback>$(AssetTargetFallback);dnxcore50</AssetTargetFallback>
     <ApplicationInsightsResourceId>/subscriptions/86392d70-8079-4fe1-a8ae-db5e853dd9a8/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/MacsASPNETCore</ApplicationInsightsResourceId>
