@@ -31,18 +31,20 @@
         <meta itemprop="currenciesAccepted" content="USD"/>
         <meta itemprop="paymentAccepted" content="cash, credit card"/>
         <meta itemprop="legalName" content="Mac's Camping Area, LLC"/>
-        <span itemprop="description" class="hidden">Mac's Camping Area has been serving DownEast Maine campers for over 40 years. We specialize in having a small, close-knit community of recurring campers. Some of whom have been with us for multiple generations. We have also have a wedding tent and a rec hall available for event rentals!</span>
+        <meta itemprop="description" content="Mac's Camping Area has been serving DownEast Maine campers for over 40 years. We specialize in having a small, close-knit community of recurring campers. Some of whom have been with us for multiple generations. We have also have a wedding tent and a rec hall available for event rentals!" />
         <meta name="keywords" content="camping maine downeast event rentals Poland maine camping fishing sailing go to camp ** www.macscampingarea.com">
         <meta name="keywords" content="+camping +maine +downeast +event +rentals +Poland +maine +camping +fishing +sailing +go +to +camp ** www.macscampingarea.com">
     </span>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=2063880430535462&autoLogAppEvents=1"></script>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid" style="width: 100%">
+<div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
         <a href="#" class="navbar-brand">Mac's Camping Area</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-            
+
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -66,9 +68,14 @@
                 <li class="nav-item">
                     <a asp-controller="Home" asp-action="RV" class="nav-link">RV Rentals</a>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="(function() { var win = window.open('https://www.flickr.com/photos/macscampingarea/sets/', '_blank');win.focus(); })()">Flickr Library</a>
+                </li>                
             </ul>
         </div>
     </nav>
+</div>
+    
 <div class="container" id="titleContent">
     <h1 style="text-align: center;">@ViewData["Title"]</h1>
     <br />
@@ -101,9 +108,9 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 <environment names="Staging,Production">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js" asp-fallback-test="window.jQuery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" asp-fallback-src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js" asp-fallback-test="window.jQuery"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.0/slick.min.js"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>

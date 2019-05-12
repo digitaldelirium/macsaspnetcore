@@ -25,6 +25,10 @@ input {
     display: table-cell;
 }
 
+img {
+    min-height: 100px;
+}
+
 #titleCarousel {
     width: auto;
     height: auto;
@@ -49,7 +53,7 @@ input {
     text-align: center;
 }
 
-.centerer {
+.centered {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
@@ -61,21 +65,21 @@ input {
     vertical-align: middle;
 }
 
-#trailer1 {
+#lakeview {
     text-align: center;
     width: 100%;
 }
 
-#trailer1 img {
+#lakeview img {
     height: 30vh;
 }
 
-#trailer2 {
+#lilypad {
     text-align: center;
     width: 100%;
 }
 
-#trailer2 img {
+#lilypad img {
     height: 30vh;
 }
 
