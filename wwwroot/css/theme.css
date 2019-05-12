@@ -1,6 +1,5 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
-@import url("https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-glyphicons.css");
-
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css")
 /*!
  * bootswatch v3.3.6
  * Homepage: http://bootswatch.com
@@ -260,10 +259,10 @@ th {
         text-decoration: underline;
     }
     a[href]:after {
-        content: " (" attr(href) ")";
+        content: " ("attr(href) ")";
     }
     abbr[title]:after {
-        content: " (" attr(title) ")";
+        content: " ("attr(title) ")";
     }
     a[href^="#"]:after,
     a[href^="javascript:"]:after {
@@ -1438,7 +1437,7 @@ img {
     vertical-align: middle;
 }
 
-.img-responsive,
+.img-fluid,
 .thumbnail>img,
 .thumbnail a>img,
 .carousel-inner>.item>img,

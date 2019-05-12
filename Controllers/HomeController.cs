@@ -163,8 +163,7 @@ namespace MacsASPNETCore.Controllers
         public IActionResult Activities()
         {
             var activityPics = new System.IO.DirectoryInfo(_env.WebRootPath + "/images/activityslide").GetFiles();
-            var activities = _activityRepository.GetAllActivities()
-                .AsQueryable();
+            var activities = _activityRepository.GetAllActivities().AsQueryable();
 
             ViewData["Title"] = $"{year} Activities";
             ViewData["Message"] = "See what's going on at Mac's this year";
