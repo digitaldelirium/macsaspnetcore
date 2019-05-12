@@ -108,6 +108,9 @@
             <div class="col" id="t2Container">
                 <div class="carousel slide carousel-fade" id="lilypad" data-ride="carousel">
                     <div class="carousel-inner">
+                    @{
+                        var x = 0;
+                    }
                     @foreach (var image in ViewBag.ImageList2)
                     {
                         if (x == 0)
