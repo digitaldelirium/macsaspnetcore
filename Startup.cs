@@ -18,13 +18,14 @@ namespace MacsASPNETCore
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
+        {
+            this.Configuration = configuration;
+            this.Environment = environment;
+
+        }
         public IConfiguration Configuration { get; private set; }
         public IHostingEnvironment Environment { get; private set; }
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
-        {
-            Configuration = configuration;
-            Environment = env;
-        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -41,18 +42,20 @@ namespace MacsASPNETCore
                 options.MinimumSameSitePolicy = SameSiteMode.Lax;
             });
 
-#if DEBUG
-            services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
-                .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb))
-                .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
-                .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
-#else
-            services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
-                .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
-                .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
-                .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
-#endif
-
+            if (Environment.EnvironmentName == "Development")
+            {
+                services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
+                    .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb))
+                    .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
+                    .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
+            }
+            else
+            {
+                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
+                    .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
+                    .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
+                    .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
+            }
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddNodeServices();
