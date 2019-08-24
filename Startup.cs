@@ -64,6 +64,8 @@ namespace MacsASPNETCore
 
             services.AddScoped<IEmailSender, AuthMessageSender>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
+            
+            services.AddApplicationInsightsTelemetry(Configuration.GetValue<String>("ApplicationInsights:InstrumentationKey"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
