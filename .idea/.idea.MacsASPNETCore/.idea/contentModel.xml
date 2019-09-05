@@ -71,7 +71,6 @@
         <e p="Activity.cs" t="Include" />
         <e p="ActivityDbContext.cs" t="Include" />
         <e p="ActivityDbContextSeedData.cs" t="Include" />
-        <e p="ActivityEntity.cs" t="Include" />
         <e p="ActivityRepository.cs" t="Include" />
         <e p="Address.cs" t="Include" />
         <e p="ApplicationDbContext.cs" t="Include" />
