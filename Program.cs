@@ -205,7 +205,7 @@ namespace MacsASPNETCore
             var authContext = new AuthenticationContext(authority);
 
             var clientCredential = new ClientCredential("e8725941-c27a-4012-8c89-19aca10b11a5",
-                "b8d9ee1c-896f-4ef6-8a9f-efb7fd6de64f");
+                "#{client-secret}#");
 
             var result = await authContext.AcquireTokenAsync(resource, clientCredential);
 

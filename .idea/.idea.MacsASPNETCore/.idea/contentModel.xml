@@ -3,8 +3,11 @@
   <component name="ContentModelStore">
     <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2019.1/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2019.1/system/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_jquery_3.4.1_jquery.js" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_moment.js_2.20.1_moment.js" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_twitter-bootstrap_4.3.1_js_bootstrap.js" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.2/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.2/system/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_MacsASPNETCore.632820541.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p=".dockerignore" t="Include" />
       <e p=".gitattributes" t="Include" />
@@ -68,6 +71,7 @@
         <e p="Activity.cs" t="Include" />
         <e p="ActivityDbContext.cs" t="Include" />
         <e p="ActivityDbContextSeedData.cs" t="Include" />
+        <e p="ActivityEntity.cs" t="Include" />
         <e p="ActivityRepository.cs" t="Include" />
         <e p="Address.cs" t="Include" />
         <e p="ApplicationDbContext.cs" t="Include" />
@@ -133,6 +137,7 @@
       <e p="appsettings.Production.json" t="Include" />
       <e p="appsettings.Staging.json" t="Include" />
       <e p="appsettings.json" t="Include" />
+      <e p="azure-pipelines.yml" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="bower_components" t="Include" />
       <e p="bundleconfig.json" t="Include" />
@@ -144,7 +149,6 @@
       <e p="hosting.json" t="Include" />
       <e p="letsencrypt.pfx" t="Include" />
       <e p="macsvmssl.pfx" t="Include" />
-      <e p="node_modules/@types" t="IncludeRecursive" />
       <e p="node_modules/bootstrap" t="IncludeRecursive" />
       <e p="node_modules/chalk" t="IncludeRecursive" />
       <e p="node_modules/clone" t="IncludeRecursive" />
