@@ -20,5 +20,5 @@ FROM base AS final
 ENV ASPNETCORE_ENVIRONMENT=#{Environment}#
 WORKDIR /app
 COPY --from=publish /app .
-EXPOSE 443/tcp
+EXPOSE 443/tcp 80/tcp
 ENTRYPOINT ["dotnet", "MacsASPNETCore.dll"]
