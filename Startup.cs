@@ -42,6 +42,24 @@ namespace MacsASPNETCore
                 options.MinimumSameSitePolicy = SameSiteMode.Lax;
             });
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins(
+                            "https://macscampingarea.com",
+                            "http://macscampingarea.com",
+                            "https://www.macscampingarea.com",
+                            "http://www.macscampingarea.com",
+                            "https://connect.facebook.com"
+                        )
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    }
+                );
+            });
+
             if (Environment.EnvironmentName == "Development")
             {
                 services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
@@ -64,7 +82,7 @@ namespace MacsASPNETCore
 
             services.AddScoped<IEmailSender, AuthMessageSender>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
-            
+
             services.AddApplicationInsightsTelemetry(Configuration.GetValue<String>("ApplicationInsights:InstrumentationKey"));
         }
 
@@ -80,6 +98,8 @@ namespace MacsASPNETCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
