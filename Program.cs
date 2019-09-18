@@ -50,8 +50,8 @@ namespace MacsASPNETCore
                                 listenOptions => { listenOptions.UseHttps(PfxCert); });
                             break;
                         case "Staging":
-                            options.Listen(IPAddress.Any, 80);
-                            options.Listen(IPAddress.Any, 443,
+                            options.Listen(IPAddress.Any, 9080);
+                            options.Listen(IPAddress.Any, 9443,
                               listenOptions => { listenOptions.UseHttps(PfxCert); });
                             break;
                         case "Production":
