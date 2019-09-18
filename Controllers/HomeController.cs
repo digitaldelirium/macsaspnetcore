@@ -82,14 +82,7 @@ namespace MacsASPNETCore.Controllers
                 Task<SendGrid.Response> response = SendContactMessage(model);
                 response.Wait();
 
-                if (response.Result.StatusCode == 0)
-                {
-                    ViewBag.MailMessage = "Mail sent!";
-                }
-                else
-                {
-                    ViewBag.MailMessage = "Please call us, something is wrong!";
-                }
+                ViewBag.MailMessage = "Message Sent!";
 
             }
             return View();
