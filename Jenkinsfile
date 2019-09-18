@@ -119,7 +119,7 @@ pipeline{
                                         sh'''
                                             docker pull macscampingarea.azurecr.io/macscampingapp:prod
                                             docker rm macsprod -f
-                                            docker run -dit --name macsprod --net host macscampingarea.azurecr.io/macscampingapp:prod
+                                            docker run -dit --name macsprod --net host --restart always macscampingarea.azurecr.io/macscampingapp:prod
                                         '''
                                     }
                                 }
