@@ -1,18 +1,16 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using MacsASPNETCore.Models;
 using MacsASPNETCore.Services;
 using MacsASPNETCore.ViewModels;
-using MailKit.Net.Smtp;
-using MailKit.Security;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
-using MimeKit;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace MacsASPNETCore.Controllers
 {
@@ -38,12 +36,17 @@ namespace MacsASPNETCore.Controllers
             //_context = context;
         }
 
+
+
         public IActionResult Index()
+
         {
+
             var slidepath = "wwwroot/images/titleslide";
             ViewData["Title"] = "Welcome To Mac's Camping Area!";
             var titleSlide = new System.IO.DirectoryInfo(slidepath).GetFiles();
             var images = new List<String>();
+
 
             foreach (var item in titleSlide)
             {
@@ -67,54 +70,27 @@ namespace MacsASPNETCore.Controllers
             ViewData["Message"] = "Please drop us a line or pay us a visit!";
             ViewData["Title"] = "Contact Mac's";
             ViewBag.onLoad = "getMap()";
-            var user = _configuration["AppSettings:SendGridUserName"];
-            var pass = _configuration["AppSettings:SendGridPassword"];
-            //var credential = new NetworkCredential(user, pass);
 
             if (ModelState.IsValid)
             {
-                if (_env.IsDevelopment())
+                // if (_env.IsDevelopment())
+                // {
+                //     ViewBag.MailMessage = "Dummy Mail sent, Thanks!";
+                //     return View();
+                // }
+
+                Task<SendGrid.Response> response = SendContactMessage(model);
+                response.Wait();
+
+                if (response.Result.StatusCode == 0)
                 {
-                    ViewBag.MailMessage = "Dummy Mail sent, Thanks!";
-                    return View();
+                    ViewBag.MailMessage = "Mail sent!";
+                }
+                else
+                {
+                    ViewBag.MailMessage = "Please call us, something is wrong!";
                 }
 
-                using (var client = new SmtpClient())
-                {
-                    var message = new MimeMessage();
-                    string name = model.FirstName + " " + model.LastName;
-                    DateTime dt = DateTime.UtcNow;
-                    TimeZoneInfo tz;
-                    try
-                    {
-                        tz = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
-                    }
-                    catch (System.Exception)
-                    {
-                        tz = TimeZoneInfo.FindSystemTimeZoneById("posixrules");
-                    }
-
-                    var utcOffset = new DateTimeOffset(dt, TimeSpan.Zero);
-                    var currentTime = utcOffset.ToOffset(tz.GetUtcOffset(utcOffset));
-                    var email = _configuration["AppSettings:InfoEmailAddress"];
-                    string emailFormatted = $"Contact Page Email \n from {name} <{model.EmailAddress}>\n Phone:  {model.PhoneNumber} sent at {currentTime}: \n\n {model.EmailBody}";
-
-                    message.From.Add(new MailboxAddress(name, email));
-                    message.To.Add(new MailboxAddress("Contact Page Email", email));
-                    message.Subject = model.Subject;
-                    message.Body = new TextPart("plain")
-                    {
-                        Text = emailFormatted
-                    };
-
-                    client.Connect("smtp.sendgrid.net", Convert.ToInt32(587), SecureSocketOptions.Auto);
-                    client.Authenticate(user, pass);
-                    client.Send(message);
-                    client.Disconnect(true);
-                }
-
-                ModelState.Clear();
-                ViewBag.MailMessage = "Mail sent, Thanks!";
             }
             return View();
         }
@@ -190,6 +166,20 @@ namespace MacsASPNETCore.Controllers
             ViewData["Title"] = "Map of Mac's Camping Area";
             ViewData["Message"] = "Get a lay of the land at Mac's!";
             return View();
+        }
+
+        public async Task<SendGrid.Response> SendContactMessage(ContactViewModel model)
+        {
+            var senderName = $"{model.FirstName} {model.LastName}";
+            var senderEmail = new EmailAddress(model.EmailAddress, senderName);
+            var recipientEmail = new EmailAddress(_configuration.GetSection("AppSettings:InfoEmailAddress").Value, "Contact Form Email");
+            var emailSubject = model.Subject;
+            var emailBody = model.EmailBody;
+            var apikey = _configuration.GetSection("AppSettings").GetSection("SendGridAPIKey").Value;
+            var client = new SendGridClient(apikey);
+            var msg = MailHelper.CreateSingleEmail(senderEmail, recipientEmail, emailSubject, emailBody, null);
+            var response = await client.SendEmailAsync(msg);
+            return response;
         }
     }
 }
