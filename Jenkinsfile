@@ -82,6 +82,7 @@ pipeline{
                             case "Production":
                                 sh'''
                                     docker push macscampingarea.azurecr.io/macscampingapp:prod
+                                    docker push macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER
                                 '''
                             break
                         }
