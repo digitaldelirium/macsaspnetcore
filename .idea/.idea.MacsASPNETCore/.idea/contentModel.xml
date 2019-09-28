@@ -12,7 +12,6 @@
       <e p=".dockerignore" t="Include" />
       <e p=".gitattributes" t="Include" />
       <e p=".gitignore" t="Include" />
-      <e p=".vsts-ci.yml" t="Include" />
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
       <e p="Activity.db" t="Include" />
@@ -22,7 +21,6 @@
       <e p="Controllers" t="Include">
         <e p="Api" t="Include">
           <e p="ActivityController.cs" t="Include" />
-          <e p="ContactController.cs" t="Include" />
         </e>
         <e p="HomeController.cs" t="Include" />
       </e>

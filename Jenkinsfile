@@ -82,6 +82,7 @@ pipeline{
                             case "Production":
                                 sh'''
                                     docker push macscampingarea.azurecr.io/macscampingapp:prod
+                                    docker push macscampingarea.azurecr.io/macscampingapp:\$BUILD_NUMBER
                                 '''
                             break
                         }
@@ -89,56 +90,6 @@ pipeline{
                 }
             }
         }
-        stage("Run Container"){
-            steps{
-                echo "====++++Connect to MacsVM via SSH++++===="
-                script {
-                    switch (RUNTIME_ENVIRONMENT){
-                        case "Development":
-                            sh'''
-                                docker run -dit --name macsdev macscampingapp:$BUILD_NUMBER
-                            '''
-                        break
-                        case "Staging":
-                            sshagent(['macscampingarea']) {
-                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {
-                                    withDockerServer([credentialsId: 'macsvmdocker', uri: 'tcp://macsvm.macscampingarea.com:2376']) {               
-                                        sh'''
-                                            docker pull macscampingarea.azurecr.io/macscampingapp:staging
-                                            docker rm macsstaging -f
-                                            docker run -dit --name macsstaging -p 8443:443 macscampingarea.azurecr.io/macscampingapp:staging
-                                        '''
-                                    }
-                                }
-                            }
-                        break
-                        case "Production":
-                            sshagent(['macscampingarea']) {
-                                withDockerRegistry(credentialsId: 'macsacrcred', url: 'https://macscampingarea.azurecr.io') {
-                                    withDockerServer([credentialsId: 'macsvmdocker', uri: 'tcp://macsvm.macscampingarea.com:2376']) {                    
-                                        sh'''
-                                            docker pull macscampingarea.azurecr.io/macscampingapp:prod
-                                            docker rm macsprod -f
-                                            docker run -dit --name macsprod --net host macscampingarea.azurecr.io/macscampingapp:prod
-                                        '''
-                                    }
-                                }
-                            }
-                        break
-                    }
-                }
-
-            }
-        post{
-            success{
-                echo "====++++Run Container executed succesfully++++===="
-            }
-            failure{
-                echo "====++++Run Container execution failed++++===="
-            }
-    
-        }
-    }
     }
     post{
         success{
