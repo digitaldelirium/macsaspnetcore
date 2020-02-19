@@ -30,18 +30,18 @@ function Replace-Tokens {
     }
         
     process {
-        $pfxFiles = $kvSecrets | Where-Object -FilterScript { $_.contentType -like 'application/x-pkcs12' } | Select-Object
-        $pfxFiles.ForEach{
-                $prefix = "https://$($VaultName).vault.azure.net/secrets/"
-                $name = $_.id.Substring($prefix.ToString().Length + 4)
-                Write-Host "$name"                
-                $pfxSecret = Get-AzKeyVaultSecret -VaultName $vaultName -Name $name
-                $pfxUnprotectedBytes = [Convert]::FromBase64String($pfxSecret.SecretValueText)
-                $pfx = New-Object Security.Cryptography.X509Certificates.X509Certificate2
-                $pfx.Import($pfxUnprotectedBytes, $null, [Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
-                $pfx.PrivateKey.ExportParameters($true)
-                [IO.File]::WriteAllBytes("$name.pfx", $pfxUnprotectedBytes)
-            }
+        # $pfxFiles = $kvSecrets | Where-Object -FilterScript { $_.contentType -like 'application/x-pkcs12' } | Select-Object
+        # $pfxFiles.ForEach{
+        #         $prefix = "https://$($VaultName).vault.azure.net/secrets/"
+        #         $name = $_.id.Substring($prefix.ToString().Length + 4)
+        #         Write-Host "$name"                
+        #         $pfxSecret = Get-AzKeyVaultSecret -VaultName $vaultName -Name $name
+        #         $pfxUnprotectedBytes = [Convert]::FromBase64String($pfxSecret.SecretValueText)
+        #         $pfx = New-Object Security.Cryptography.X509Certificates.X509Certificate2
+        #         $pfx.Import($pfxUnprotectedBytes, $null, [Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
+        #         $pfx.PrivateKey.ExportParameters($true)
+        #         [IO.File]::WriteAllBytes("$name.pfx", $pfxUnprotectedBytes)
+        #     }
 
         $kvSecrets.Name.ForEach{
             $secret = $_
