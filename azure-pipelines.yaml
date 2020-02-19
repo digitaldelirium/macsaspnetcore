@@ -23,9 +23,12 @@ stages:
   - job: ReplaceTokens
     displayName: 'Setup $(runtimeEnvironment) Environment for Deployment'
     steps:
+    # - pwsh: Install-Module Az -Force
+    # - pwsh: Import-Module Az -Force
     - task: AzurePowerShell@4
       inputs:
         azureSubscription: $(azureSubscription)
+        azurePowerShellVersion: 'Latest installed Version'
         scriptType: filePath
         scriptPath: $(Build.SourcesDirectory)/Deploy/Replace-Tokens.ps1
         scriptArguments:
