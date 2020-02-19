@@ -1,0 +1,57 @@
+trigger: 
+  - master
+  
+pr: true
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- name: buildConfiguration
+  value: ''
+- name: runtimeEnvironment
+  value: ''
+- name: vaultName
+  value: ''
+  azureSubscription: MSDN
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'f11ac748-c65a-4d5c-b96d-3688ea91770b'
+  imageRepository: 'digitaldelirium/macsaspnetcore'
+  containerRegistry: 'macscampingarea.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+  
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+stages:
+- stage: SetupEnvironment
+  displayName: 'Replace Tokens in files with secrets'
+  jobs:
+  - job: ReplaceTokens
+    displayName: 'Setup $(runtimeEnvironment) Environment for Deployment'
+    steps:
+    - task: AzurePowerShell@4
+      inputs:
+        azureSubscription: $(azureSubscription)
+        scriptType: filePath
+        scriptPath: $(Build.SourcesDirectory)/Deploy/Replace-Tokens.ps1
+        scriptArguments:
+          -VaultName $(vaultName)
+- stage: Build
+  displayName: Build and push stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+          Environment=$(runtimeEnvironment)
