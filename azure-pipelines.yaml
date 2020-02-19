@@ -36,7 +36,6 @@ stages:
   - job: Build
     displayName: Build and Push container to ACR
     dependsOn: ReplaceTokens
-    condition: success()
     pool:
       vmImage: $(vmImageName)
     steps:
