@@ -7,15 +7,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-- name: buildConfiguration
-- name: runtimeEnvironment
-- name: vaultName
-- name: azureSubscription
-  value: MSDN
   # Container registry service connection established during pipeline creation
-- name: dockerRegistryServiceConnection
-- name: imageRepository
-- name: containerRegistry
 - name: dockerfilePath
   value: '$(Build.SourcesDirectory)/Dockerfile'
 - name: tag
