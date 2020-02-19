@@ -25,8 +25,9 @@ function Replace-Tokens {
 
         $script:jsonFiles = Get-ChildItem -File -Path ./ -Filter '*.json'
         $script:csFiles = Get-ChildItem -File -Path ./ -Filter '*.cs'
+        $script:dockerFiles = Get-ChildItem -File -Path ./ -Filter 'Dockerfile'
 
-        $script:files = @($script:jsonFiles + $script:csFiles)
+        $script:files = @($script:jsonFiles + $script:csFiles + $script:dockerFiles)
     }
         
     process {
