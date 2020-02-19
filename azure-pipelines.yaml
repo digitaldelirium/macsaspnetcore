@@ -33,10 +33,8 @@ stages:
         scriptPath: $(Build.SourcesDirectory)/Deploy/Replace-Tokens.ps1
         scriptArguments:
           -VaultName $(vaultName)
-  displayName: Build and push stage
-  jobs:  
   - job: Build
-    displayName: Build
+    displayName: Build and Push container to ACR
     pool:
       vmImage: $(vmImageName)
     steps:
