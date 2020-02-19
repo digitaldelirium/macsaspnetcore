@@ -7,15 +7,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-- name: buildConfiguration
-- name: runtimeEnvironment
-- name: vaultName
-- name: azureSubscription
-  value: MSDN
   # Container registry service connection established during pipeline creation
-- name: dockerRegistryServiceConnection
-- name: imageRepository
-- name: containerRegistry
 - name: dockerfilePath
   value: '$(Build.SourcesDirectory)/Dockerfile'
 - name: tag
@@ -29,7 +21,7 @@ stages:
   displayName: 'Replace Tokens in files with secrets'
   jobs:
   - job: ReplaceTokens
-    displayName: 'Setup $[variables.runtimeEnvironment] Environment for Deployment'
+    displayName: 'Setup $(runtimeEnvironment) Environment for Deployment'
     steps:
     - task: AzurePowerShell@4
       inputs:
@@ -37,7 +29,7 @@ stages:
         scriptType: filePath
         scriptPath: $(Build.SourcesDirectory)/Deploy/Replace-Tokens.ps1
         scriptArguments:
-          -VaultName $[variables.vaultName]
+          -VaultName $(vaultName)
 - stage: Build
   displayName: Build and push stage
   jobs:  
