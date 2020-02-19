@@ -1,6 +1,6 @@
 trigger: 
   - master
-  
+
 pr: none
 
 pool:
@@ -13,13 +13,19 @@ variables:
   value: ''
 - name: vaultName
   value: ''
-  azureSubscription: MSDN
+- name: azureSubscription
+  value: MSDN
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'f11ac748-c65a-4d5c-b96d-3688ea91770b'
-  imageRepository: 'digitaldelirium/macsaspnetcore'
-  containerRegistry: 'macscampingarea.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
+- name: dockerRegistryServiceConnection
+  value: ''
+- name: imageRepository
+  value: ''
+- name: containerRegistry
+  value: ''
+- name: dockerfilePath
+  value: '$(Build.SourcesDirectory)/Dockerfile'
+- name: tag
+  value: '$(Build.BuildId)'
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
