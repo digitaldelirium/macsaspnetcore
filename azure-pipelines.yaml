@@ -8,20 +8,14 @@ pool:
 
 variables:
 - name: buildConfiguration
-  value: ''
 - name: runtimeEnvironment
-  value: ''
 - name: vaultName
-  value: ''
 - name: azureSubscription
   value: MSDN
   # Container registry service connection established during pipeline creation
 - name: dockerRegistryServiceConnection
-  value: ''
 - name: imageRepository
-  value: ''
 - name: containerRegistry
-  value: ''
 - name: dockerfilePath
   value: '$(Build.SourcesDirectory)/Dockerfile'
 - name: tag
