@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_jquery_3.4.1_jquery.js" t="IncludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_moment.js_2.20.1_moment.js" t="IncludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_twitter-bootstrap_4.3.1_js_bootstrap.js" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2019.2/system/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/.Rider2019.2/system/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_MacsASPNETCore.632820541.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.3/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.3/system/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_MacsASPNETCore.1458571870.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p=".dockerignore" t="Include" />
       <e p=".gitattributes" t="Include" />
       <e p=".gitignore" t="Include" />
+      <e p=".yarnclean" t="Include" />
       <e p="Activities2017.csv" t="Include" />
       <e p="Activities2017.sql" t="Include" />
       <e p="Activity.db" t="Include" />
       <e p="ActivitySeedData.sql" t="Include" />
       <e p="Application.db" t="Include" />
-      <e p="ClientPFX.pfx" t="Include" />
       <e p="Controllers" t="Include">
         <e p="Api" t="Include">
           <e p="ActivityController.cs" t="Include" />
@@ -35,14 +30,11 @@
       <e p="Extensions" t="Include">
         <e p="EmailSenderExtensions.cs" t="Include" />
       </e>
-      <e p="Identity.db" t="Include" />
       <e p="Jenkinsfile" t="Include" />
       <e p="Macs-Dev.pfx" t="Include" />
-      <e p="Macs.pfx" t="Include" />
       <e p="MacsASPNETCore.csproj" t="IncludeRecursive" />
       <e p="MacsASPNETCore.sln" t="IncludeFlat" />
       <e p="MacsASPNETCore.sln.DotSettings" t="Include" />
-      <e p="MacsPFX.pfx" t="Include" />
       <e p="Migrations" t="Include">
         <e p="20171229023122_InitialMigration.Designer.cs" t="Include" />
         <e p="20171229023122_InitialMigration.cs" t="Include" />
@@ -134,7 +126,7 @@
       <e p="appsettings.Production.json" t="Include" />
       <e p="appsettings.Staging.json" t="Include" />
       <e p="appsettings.json" t="Include" />
-      <e p="azure-pipelines.yml" t="Include" />
+      <e p="azure-pipelines.yaml" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="bower_components" t="Include" />
       <e p="bundleconfig.json" t="Include" />
@@ -144,24 +136,16 @@
       <e p="dev.Dockerfile" t="Include" />
       <e p="gulpfile.js" t="Include" />
       <e p="hosting.json" t="Include" />
-      <e p="letsencrypt.pfx" t="Include" />
-      <e p="macsvmssl.pfx" t="Include" />
       <e p="node_modules/bootstrap" t="IncludeRecursive" />
       <e p="node_modules/chalk" t="IncludeRecursive" />
       <e p="node_modules/clone" t="IncludeRecursive" />
       <e p="node_modules/eslint" t="IncludeRecursive" />
       <e p="node_modules/eslint-config-defaults" t="IncludeRecursive" />
-      <e p="node_modules/flatten-packages" t="IncludeRecursive" />
       <e p="node_modules/font-awesome" t="IncludeRecursive" />
       <e p="node_modules/fstream" t="IncludeRecursive" />
       <e p="node_modules/glob" t="IncludeRecursive" />
       <e p="node_modules/graceful-fs" t="IncludeRecursive" />
-      <e p="node_modules/grunt" t="IncludeRecursive" />
-      <e p="node_modules/grunt-bootlint" t="IncludeRecursive" />
-      <e p="node_modules/gulp" t="IncludeRecursive" />
       <e p="node_modules/gulp-concat" t="IncludeRecursive" />
-      <e p="node_modules/gulp-cssmin" t="IncludeRecursive" />
-      <e p="node_modules/gulp-uglify" t="IncludeRecursive" />
       <e p="node_modules/jquery" t="IncludeRecursive" />
       <e p="node_modules/minimatch" t="IncludeRecursive" />
       <e p="node_modules/minimist" t="IncludeRecursive" />
@@ -178,7 +162,7 @@
         <e p="Debug" t="Include">
           <e p="netcoreapp2.1" t="Include">
             <e p="MacsASPNETCore.AssemblyInfo.cs" t="Include" />
-            <e p="UserSecretsAssemblyInfo.cs" t="Include" />
+            <e p="MacsASPNETCore.RazorAssemblyInfo.cs" t="Include" />
           </e>
         </e>
       </e>
