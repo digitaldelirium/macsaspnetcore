@@ -1,78 +1,21 @@
 #! /usr/bin/pwsh
 param (
-    [Parameter(Mandatory, HelpMessage = 'Client ID for SPN', ParameterSetName = 'SPN')]
+    [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]   
     [ValidateNotNullOrEmpty()]
     [string]
-    $ClientId,
-
-    [Parameter(Mandatory, HelpMessage = 'Client Secret for SPN', ParameterSetName = 'SPN')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $ClientSecret,
-
-    [Parameter(Mandatory, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $TenantId,
-
-    [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
-    [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $VaultName,
-
-    [Parameter(HelpMessage = "full or partial subscription name, if not default")]
-    [string]
-    $SubscriptionId,
-
-    # Parameter help description
-    [Parameter(Mandatory, ParameterSetName = 'SPN')]
-    [switch]
-    $SPN
+    $VaultName
 )
 function Replace-Tokens {
     [CmdletBinding(DefaultParameterSetName = 'Default')]
     param (
-        [Parameter(Mandatory, HelpMessage = 'Client ID for SPN', ParameterSetName = 'SPN')]
+
+        [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]    
         [ValidateNotNullOrEmpty()]
         [string]
-        $ClientId,
-
-        [Parameter(Mandatory, HelpMessage = 'Client Secret for SPN', ParameterSetName = 'SPN')]
-        [ValidateNotNullOrEmpty()]
-        [string]
-        $ClientSecret,
-
-        [Parameter(Mandatory, HelpMessage = 'AAD Tenant', ParameterSetName = 'SPN')]
-        [ValidateNotNullOrEmpty()]
-        [string]
-        $TenantId,
-
-        [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'Default')]
-        [Parameter(Mandatory, HelpMessage = "Key Vault Name", ParameterSetName = 'SPN')]        
-        [ValidateNotNullOrEmpty()]
-        [string]
-        $VaultName,
-
-        [Parameter(HelpMessage = "full or partial subscription name, if not default")]
-        [string]
-        $SubscriptionId,
-
-        # Parameter help description
-        [Parameter(Mandatory, ParameterSetName = 'SPN')]
-        [switch]
-        $SPN
+        $VaultName
     )
         
     begin {
-
-        if ($SPN) {
-            [PSCredential]$credential = [PSCredential]::new($ClientId, $($ClientSecret | ConvertTo-SecureString -AsPlainText -Force))
-            Connect-AzAccount -ServicePrincipal -Credential $credential -Tenant $TenantId
-        }
-        else {
-            Connect-AzAccount
-        }
 
         if (!([string]::IsNullOrWhiteSpace($SubscriptionId))) {
             Set-AzContext -Subscription $SubscriptionId -Tenant $TenantId
@@ -136,8 +79,4 @@ function Replace-Tokens {
     }
 }
 
-if ($SPN) {
-    Replace-Tokens -ClientId $ClientId -ClientSecret $ClientSecret -SPN -TenantId $TenantId -SubscriptionId $SubscriptionId -VaultName $VaultName
-} else {
-    Replace-Tokens -VaultName $VaultName
-}
+Replace-Tokens -VaultName $VaultName
