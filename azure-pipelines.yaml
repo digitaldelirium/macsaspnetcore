@@ -50,4 +50,4 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-          Environment:$(runtimeEnvironment)
+          $(runtimeEnvironment)
