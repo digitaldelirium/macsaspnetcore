@@ -29,7 +29,7 @@ stages:
   displayName: 'Replace Tokens in files with secrets'
   jobs:
   - job: ReplaceTokens
-    displayName: 'Setup $(runtimeEnvironment) Environment for Deployment'
+    displayName: 'Setup $[variables.runtimeEnvironment] Environment for Deployment'
     steps:
     - task: AzurePowerShell@4
       inputs:
@@ -37,7 +37,7 @@ stages:
         scriptType: filePath
         scriptPath: $(Build.SourcesDirectory)/Deploy/Replace-Tokens.ps1
         scriptArguments:
-          -VaultName $(vaultName)
+          -VaultName $[variables.vaultName]
 - stage: Build
   displayName: Build and push stage
   jobs:  
