@@ -17,7 +17,7 @@ variables:
   value: 'ubuntu-latest'
   
 stages:
-- stage: SetupEnvironment
+- stage: BuildContainer
   displayName: 'Replace Tokens in files with secrets'
   jobs:
   - job: ReplaceTokens
@@ -33,7 +33,6 @@ stages:
         scriptPath: $(Build.SourcesDirectory)/Deploy/Replace-Tokens.ps1
         scriptArguments:
           -VaultName $(vaultName)
-- stage: Build
   displayName: Build and push stage
   jobs:  
   - job: Build
