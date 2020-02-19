@@ -21,7 +21,7 @@ stages:
   displayName: 'Replace Tokens in files with secrets'
   jobs:
   - job: ReplaceTokens
-    displayName: 'Setup $(runtimeEnvironment) Environment for Deployment'
+    displayName: 'Replace tokens for build and deployment'
     steps:
     # - pwsh: Install-Module Az -Force
     # - pwsh: Import-Module Az -Force
