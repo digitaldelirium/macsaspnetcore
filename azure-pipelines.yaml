@@ -75,7 +75,7 @@ stages:
           steps:
             - task: SSH@0
               inputs:
-                sshEndpoint: $(stagingEndpoint)
+                sshEndpoint: MacsStaging
                 runOptions: inline
                 inline: |
                   docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
@@ -86,7 +86,7 @@ stages:
           steps:
           - task: SSH@0
             inputs:
-              sshEndpoint: $(stagingEndpoint)
+              sshEndpoint: MacsStaging
               runOptions: inline
               inline: |
                 docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
