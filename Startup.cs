@@ -24,6 +24,12 @@ namespace MacsASPNETCore
             this.Environment = environment;
 
         }
+
+        private IConfigurationRoot GetConfigurationRoot(){
+            const string environmentPrefix = "CONFIG_";
+            return new ConfigurationBuilder()
+                .AddEnvironmentVariables(environmentPrefix).Build();
+        }
         public IConfiguration Configuration { get; private set; }
         public IHostingEnvironment Environment { get; private set; }
 
@@ -62,7 +68,7 @@ namespace MacsASPNETCore
 
             if (Environment.EnvironmentName == "Development")
             {
-                services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
+                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
                     .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb))
                     .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
                     .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
@@ -72,7 +78,7 @@ namespace MacsASPNETCore
                 services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
                     .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
                     .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
-                    .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));
+                    .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));          
             }
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
