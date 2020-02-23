@@ -4,7 +4,7 @@ trigger:
 pr: none
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ubuntu-18.04
 
 variables:
   # Container registry service connection established during pipeline creation
@@ -13,8 +13,6 @@ variables:
 - name: tag
   value: '$(Build.BuildId)'
   # Agent VM image name
-- name: vmImageName
-  value: 'ubuntu-latest'
 - group: macsCampingGroup
 stages:
 - stage: BuildContainer
@@ -65,7 +63,7 @@ stages:
   - deployment: 
     displayName: Deploy Mac's ASPNET Core App to Staging
     pool:
-      name: ubuntu-latest
+      name: ubuntu-18.04
     dependsOn: 
     timeoutInMinutes: 5
     environment: staging
