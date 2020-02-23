@@ -38,9 +38,9 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        tags:
-        - $(tag)
-        - macscampingarea.azurecr.io/macscampingapp:staging
+        tags: |
+          Build:$(tag)
+          macscampingarea.azurecr.io/macscampingapp:staging
 
 - stage: DeployContainer
   dependsOn: BuildContainer
