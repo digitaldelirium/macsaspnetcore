@@ -46,7 +46,6 @@ stages:
 
 - stage: DeployContainer
   dependsOn: BuildContainer
-  condition: success()
   displayName: Deploy MacASPNETCore Container
   variables:
   - name: oldContainerName
