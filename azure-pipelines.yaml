@@ -39,7 +39,7 @@ stages:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
-          $(tag)
+          $(tag);
           macscampingarea.azurecr.io/macscampingapp:staging
 
 - stage: DeployContainer
