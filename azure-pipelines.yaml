@@ -45,7 +45,8 @@ stages:
           macscampingarea.azurecr.io/macscampingapp:staging
 
 - stage: DeployContainer
-  condition: success('BuildContainer')
+  dependsOn: BuildContainer
+  condition: success()
   displayName: Deploy MacASPNETCore Container
   variables:
   - name: oldContainerName
@@ -58,7 +59,7 @@ stages:
     steps:
     - task: InstallSSHKey@0
       inputs:
-        knownHostsEntry: $(macsKnownHostKey)
+        knownHostsEntry: $(macsStagingHostKey)
         sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDd3/3ssGGjIreAgeB6oTAcgw+nXPmpKWyaYDiPPATUTbZb6ia/EYUZBPLnIujNflxJk8tBdzKgnXH5ZmCXwL3b1DF/U+i1gJDyLM44/iLYjCbbUd2GIe5NuQmzhLHej+lWknKEri5JCOTCVKIvzA+4UETpn/Z/M4uXR2blO76M44pS9o7rcg8FBuAOhKnkwXSF6/5GXzWSgPjsgCq0ETazoV6MG1cwj8S/XEN5VPTabankZ3TbrTl+76b8cHm9RJp6QfoapM+VxmMyqXBH7+lFoTuehqVoidbnvO47ycdol3WK17peOzV/P2bxE1gGqgV3U43dMFH+GqoP5mS+oTR309RJDJPnkpz58wR6PFU5tMBtvjSvEzJod8ciquyfFnj/NS8UTqwsE5x9Vcmy2pj7rZJgPe0vNwR91XK9WDOK/Rj1oJEbwQpFc2Tq57En1Bs4XerdNTwFcM6Bs/C5Mh0O/WflNgWrO0JHFt37Me+ppJs7v0TXGVcFfZ1DZF+v1mXCtOHjTNB5t77Eohfv1SKej8ieSEH5vZjzPkOWSQt30a0FP82/uYKGK+2eoklU00CE4m9m+HHtnTv85aa/A+sPjRAUaplQPcL2v5ZmmHI8VVP+n8X24BOwdrZAdd5bx6ogRW4FGSzwEdkWxGUPgElLY9UP/CWihRytgFD9O+rXgw== Deloyment Key
         sshKeySecureFile: $(macsPrivateKey)
   - deployment: 
@@ -67,26 +68,31 @@ stages:
       name: ubuntu-latest
     dependsOn: 
     timeoutInMinutes: 5
-    environment: Staging
+    environment: staging
     strategy:
       runOnce:
         preDeploy:
           steps:
             - task: SSH@0
               inputs:
-                sshEndpoint: macsvm.macscampingarea.com
+                sshEndpoint: $(stagingEndpoint)
                 runOptions: inline
                 inline: |
-                  "##vso[task.setvariable variable=oldContainerName]$(docker images macscampingarea.azurecr.io/macscampingapp:prod --format \"{{.ID}}\")"
-                  docker rm macsstaging -f
+                  docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
+                  "##vso[task.setvariable variable=oldContainerName]$(docker images macscampingarea.azurecr.io/macscampingapp:prod --format \"{{.ID}}\" || echo "No former image exists here!")"
+                  docker rm macsstaging -f || echo "this container did not previously exist... Nothing to do!"
                 failOnStdErr: true
         deploy:
           steps:
           - task: SSH@0
             inputs:
-              sshEndpoint: macsvm.macscampingarea.com
+              sshEndpoint: $(stagingEndpoint)
               runOptions: inline
               inline: |
                 docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
                 docker pull macscampingarea.azurecr.io/macscampingapp:staging
                 docker run -dit -n macsstaging -p 9080:80 -p 9443:443 -e ASPNETCORE_ENVIRONMENT=Staging macscampingarea.azurecr.io/macscampingapp:staging
+        postRouteTraffic:
+          steps:
+          - bash: |
+              sudo npm install -g newman
