@@ -62,7 +62,7 @@ stages:
   - deployment: 
     displayName: Deploy Mac's ASPNET Core App to Staging
     pool:
-      name: ubuntu-18.04
+      vmImage: ubuntu-18.04
     dependsOn: 
     timeoutInMinutes: 5
     environment: staging
