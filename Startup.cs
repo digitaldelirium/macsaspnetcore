@@ -68,7 +68,7 @@ namespace MacsASPNETCore
 
             if (Environment.EnvironmentName == "Development")
             {
-                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
+                services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
                     .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb))
                     .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
                     .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
