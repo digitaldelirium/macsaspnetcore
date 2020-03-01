@@ -73,11 +73,11 @@ namespace MacsASPNETCore.Controllers
 
             if (ModelState.IsValid)
             {
-                // if (_env.IsDevelopment())
-                // {
-                //     ViewBag.MailMessage = "Dummy Mail sent, Thanks!";
-                //     return View();
-                // }
+                if (_env.IsDevelopment())
+                {
+                    ViewBag.MailMessage = "Dummy Mail sent, Thanks!";
+                    return View();
+                }
 
                 Task<SendGrid.Response> response = SendContactMessage(model);
                 response.Wait();

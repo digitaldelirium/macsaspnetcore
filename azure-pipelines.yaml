@@ -13,9 +13,9 @@ variables:
 - name: tag
   value: '$(Build.BuildId)'
   # Agent VM image name
-- name: vmImageName
-  value: 'ubuntu-latest'
 - group: macsCampingGroup
+- name: dockerImageName
+  value: macscampingarea.azurecr.io/macscampingapp
 stages:
 - stage: BuildContainer
   displayName: 'Replace Tokens in files with secrets'
@@ -23,8 +23,6 @@ stages:
   - job: ReplaceTokens
     displayName: 'Replace tokens for build and deployment'
     steps:
-    # - pwsh: Install-Module Az -Force
-    # - pwsh: Import-Module Az -Force
     - task: AzurePowerShell@4
       inputs:
         azureSubscription: $(azureSubscription)
@@ -40,58 +38,93 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
-          macscampingarea.azurecr.io/macscampingapp:staging
+        tags: $(tag)
+        arguments: |
+          --tag macscampingarea.azurecr.io/macscampingapp:staging
+          --compress
 
-- stage: DeployContainer
-  dependsOn: BuildContainer
-  displayName: Deploy MacASPNETCore Container
-  variables:
-  - name: oldContainerName
-    value: ''
-  - name: dockerImageName
-    value: ''
-  - group: macsCampingGroup
-  jobs:
-  - job: DeployToStaging
-    steps:
-    - task: InstallSSHKey@0
-      inputs:
-        knownHostsEntry: $(macsStagingHostKey)
-        sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDd3/3ssGGjIreAgeB6oTAcgw+nXPmpKWyaYDiPPATUTbZb6ia/EYUZBPLnIujNflxJk8tBdzKgnXH5ZmCXwL3b1DF/U+i1gJDyLM44/iLYjCbbUd2GIe5NuQmzhLHej+lWknKEri5JCOTCVKIvzA+4UETpn/Z/M4uXR2blO76M44pS9o7rcg8FBuAOhKnkwXSF6/5GXzWSgPjsgCq0ETazoV6MG1cwj8S/XEN5VPTabankZ3TbrTl+76b8cHm9RJp6QfoapM+VxmMyqXBH7+lFoTuehqVoidbnvO47ycdol3WK17peOzV/P2bxE1gGqgV3U43dMFH+GqoP5mS+oTR309RJDJPnkpz58wR6PFU5tMBtvjSvEzJod8ciquyfFnj/NS8UTqwsE5x9Vcmy2pj7rZJgPe0vNwR91XK9WDOK/Rj1oJEbwQpFc2Tq57En1Bs4XerdNTwFcM6Bs/C5Mh0O/WflNgWrO0JHFt37Me+ppJs7v0TXGVcFfZ1DZF+v1mXCtOHjTNB5t77Eohfv1SKej8ieSEH5vZjzPkOWSQt30a0FP82/uYKGK+2eoklU00CE4m9m+HHtnTv85aa/A+sPjRAUaplQPcL2v5ZmmHI8VVP+n8X24BOwdrZAdd5bx6ogRW4FGSzwEdkWxGUPgElLY9UP/CWihRytgFD9O+rXgw== Deloyment Key
-        sshKeySecureFile: $(macsPrivateKey)
-  - deployment: 
-    displayName: Deploy Mac's ASPNET Core App to Staging
-    pool:
-      name: ubuntu-latest
-    dependsOn: 
-    timeoutInMinutes: 5
-    environment: staging
-    strategy:
-      runOnce:
-        preDeploy:
-          steps:
-            - task: SSH@0
-              inputs:
-                sshEndpoint: MacsStaging
-                runOptions: inline
-                inline: |
-                  docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
-                  "##vso[task.setvariable variable=oldContainerName]$(docker images macscampingarea.azurecr.io/macscampingapp:prod --format \"{{.ID}}\" || echo "No former image exists here!")"
-                  docker rm macsstaging -f || echo "this container did not previously exist... Nothing to do!"
-                failOnStdErr: true
-        deploy:
-          steps:
-          - task: SSH@0
-            inputs:
-              sshEndpoint: MacsStaging
-              runOptions: inline
-              inline: |
-                docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
-                docker pull macscampingarea.azurecr.io/macscampingapp:staging
-                docker run -dit -n macsstaging -p 9080:80 -p 9443:443 -e ASPNETCORE_ENVIRONMENT=Staging macscampingarea.azurecr.io/macscampingapp:staging
-        postRouteTraffic:
-          steps:
-          - bash: |
-              sudo npm install -g newman
+# - stage: DeployContainer
+#   dependsOn: BuildContainer
+#   displayName: Deploy MacASPNETCore Container
+#   variables:
+#   - name: oldContainerName
+#     value: ''
+#   - name: dockerImageName
+#     value: ''
+#   - group: macsCampingGroup
+#   jobs:
+#   - job: DeployToStaging
+#     steps:
+#     - task: InstallSSHKey@0
+#       inputs:
+#         knownHostsEntry: $(macsStagingHostKey)
+#         sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDd3/3ssGGjIreAgeB6oTAcgw+nXPmpKWyaYDiPPATUTbZb6ia/EYUZBPLnIujNflxJk8tBdzKgnXH5ZmCXwL3b1DF/U+i1gJDyLM44/iLYjCbbUd2GIe5NuQmzhLHej+lWknKEri5JCOTCVKIvzA+4UETpn/Z/M4uXR2blO76M44pS9o7rcg8FBuAOhKnkwXSF6/5GXzWSgPjsgCq0ETazoV6MG1cwj8S/XEN5VPTabankZ3TbrTl+76b8cHm9RJp6QfoapM+VxmMyqXBH7+lFoTuehqVoidbnvO47ycdol3WK17peOzV/P2bxE1gGqgV3U43dMFH+GqoP5mS+oTR309RJDJPnkpz58wR6PFU5tMBtvjSvEzJod8ciquyfFnj/NS8UTqwsE5x9Vcmy2pj7rZJgPe0vNwR91XK9WDOK/Rj1oJEbwQpFc2Tq57En1Bs4XerdNTwFcM6Bs/C5Mh0O/WflNgWrO0JHFt37Me+ppJs7v0TXGVcFfZ1DZF+v1mXCtOHjTNB5t77Eohfv1SKej8ieSEH5vZjzPkOWSQt30a0FP82/uYKGK+2eoklU00CE4m9m+HHtnTv85aa/A+sPjRAUaplQPcL2v5ZmmHI8VVP+n8X24BOwdrZAdd5bx6ogRW4FGSzwEdkWxGUPgElLY9UP/CWihRytgFD9O+rXgw== Deloyment Key
+#         sshKeySecureFile: $(macsPrivateKey)
+#   - deployment: 
+#     displayName: Deploy Mac's ASPNET Core App to Staging
+#     pool:
+#       vmImage: ubuntu-18.04
+#     dependsOn: 
+#     timeoutInMinutes: 5
+#     environment: staging
+#     strategy:
+#       runOnce:
+#         preDeploy:
+#           steps:
+#             - task: SSH@0
+#               inputs:
+#                 sshEndpoint: MacsStaging
+#                 runOptions: inline
+#                 inline: |
+#                   docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
+#                   "##vso[task.setvariable variable=oldContainerName]$(docker images macscampingarea.azurecr.io/macscampingapp:prod --format \"{{.ID}}\" || echo "No former image exists here!")"
+#                   docker rm macsstaging -f || echo "this container did not previously exist... Nothing to do!"
+#                 failOnStdErr: true
+#         deploy:
+#           steps:
+#           - task: SSH@0
+#             inputs:
+#               sshEndpoint: MacsStaging
+#               runOptions: inline
+#               inline: |
+#                 docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
+#                 docker pull macscampingarea.azurecr.io/macscampingapp:staging
+#                 docker run -dit -n macsstaging -p 9080:80 -p 9443:443 -e ASPNETCORE_ENVIRONMENT=Staging macscampingarea.azurecr.io/macscampingapp:staging
+#         postRouteTraffic:
+#           steps:
+#           - bash: |
+#               sudo npm install -g newman
+# - stage: TerraformInfrastructure
+#   displayName: Deploy Terraform infrastructure to Azure
+#   jobs:
+#   - job: DeployAppServiceInfra
+#     displayName: Deploy App Service via Terraform
+#     steps:
+#     - task: AzureKeyVault@1
+#       inputs:
+#         azureSubscription: MSDN
+#         keyVaultName: macscampvault
+#         secretsFilter: '*'
+#     - task: AzureCLI@2
+#       inputs:
+#         azureSubscription: MSDN
+#         scriptType: bash
+#         scriptLocation: inlineScript
+#         inlineScript: |
+#           cd $(Build.SourcesDirectory)/terraform
+#           terraform init
+
+
+# - stage: DeployToStagingAppService
+#   displayName: Deploy to Staging environment App Service
+#   dependsOn: BuildContainer
+#   condition: successes()
+#   jobs:
+#   - job: DeployToStaging
+#     steps:
+#     - task: AzureRmWebAppDeployment@4
+#       inputs:
+#         ConnectionType: 'AzureRM'
+#         appType: 'webAppContainer'
+#         WebAppName: macscampingarea-staging
+  
