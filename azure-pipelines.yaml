@@ -42,7 +42,6 @@ stages:
         arguments: |
           --tag macscampingarea.azurecr.io/macscampingapp:staging
           --compress
-          
 
 # - stage: DeployContainer
 #   dependsOn: BuildContainer
