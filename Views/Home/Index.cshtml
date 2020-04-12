@@ -1,4 +1,33 @@
 ﻿@section TopPane {
+        <div class="modal" id="covid">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">By order of Gov. Mills</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            In accordance with the "Shelter in Place" order enacted on April 3, campers will be prohibited
+                            through the month of April.
+                        </p>
+                        <p>We certainly miss our camp family, and know how hard it is during these uncertain times; but this too shall pass!</p>
+                        <p>We are hopeful to open mid-May per usual, and will watch the Governor's orders closely.</p>
+                        
+                        <p>Thanks for being the most wonderful part of the campground!</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;- Mac's</p>
+                        
+                        More on Maine's response to COVID-19 can be found&nbsp;<a href="https://www.maine.gov/covid19/" a>here</a>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal" aria-label="Close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="col-xs-12 lead" style="text-align: center;">
         Welcome to picturesque Poland, Maine! <br> Find out for yourself why Mainers call it "Vacationland", and it's the place New Englanders camp for the summers!
     </div>
@@ -96,4 +125,8 @@
 @section scripts
 {
     <script src="js/Index.js"></script>
+    <script type="text/javascript" async="async">
+        $("#covid").modal();
+        
+    </script>
 }
