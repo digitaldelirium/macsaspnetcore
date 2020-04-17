@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+   db:
+     image: mariadb:latest
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: '#{macs-root-password}#'
+       MYSQL_DATABASE: activities
+       MYSQL_USER: macs
+       MYSQL_PASSWORD: '#{macs-db-password}#'
+
+   website:
+     depends_on:
+       - db
+     image: macscampingarea.azurecr.io/digitaldelirium/macsaspnetcore:Production
+     ports:
+       - "8000:80"
+       - "8443:443"
+     restart: always
+     environment:
+       - ASPNETCORE_ENVIRONMENT=Production
+volumes:
+    db_data:

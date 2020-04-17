@@ -328,3 +328,6 @@ app/*
 
 # Ignore bower_components
 bower_components
+
+# Ignore Mac history folder
+.history/
