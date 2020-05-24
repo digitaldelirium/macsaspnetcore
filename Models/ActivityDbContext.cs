@@ -6,7 +6,7 @@ namespace MacsASPNETCore.Models
     {
         public ActivityDbContext(DbContextOptions<ActivityDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            // Database.EnsureCreated();
         }
 
         public DbSet<Activity> Activities { get; set; }
