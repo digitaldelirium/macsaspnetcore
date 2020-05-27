@@ -75,10 +75,10 @@ namespace MacsASPNETCore
             }
             else
             {
-                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities))
-                    .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
-                    .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
-                    .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));          
+                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities));
+                    // .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
+                    // .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
+                    // .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));          
             }
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
