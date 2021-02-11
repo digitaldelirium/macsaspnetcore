@@ -37,7 +37,6 @@ steps:
     appType: 'webAppLinux'
     WebAppName: macscampingarea
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
-    RuntimeStack: 'DOTNETCORE|2.1'
     StartupCommand: dotnet MacsASPNETCore.dll
 
 - task: AzureAppServiceSettings@1
@@ -48,35 +47,56 @@ steps:
     appName: 'macscampingarea'
     resourceGroupName: 'macscampinggroup'
     appSettings: |
-      {
-        "ApplicationInsights": {
-            "InstrumentationKey": "c3ccdba0-dfc0-49ed-aeff-298c09564342"
-        },
-        "Logging": {
-            "IncludeScopes": false,
-            "LogLevel": {
-                "Default": "Warning",
-                "System": "Information",
-                "Microsoft": "Information"
-            }
-        },
-        "Azure": {
-            "KeyVault": {
-                "Vault": "macscampvault",
-                "ClientId": "e8725941-c27a-4012-8c89-19aca10b11a5",
-                "ClientSecret": "$(client-secret)"
-            }
-        },
-        "AppSettings": {
-            "AdminEmail": "admin@macscampingarea.com",
-            "AdminPassword": "$(AppSettings--AdminPassword)",
-            "SiteEmailAddress": "ian.cornett@gmail.com",
-            "InfoEmailAddress": "info@macscampingarea.com",
-            "SendGridAPIKey": "$(AppSettings--SendGridAPIKey)",
-            "FacebookAppId": "$(FacebookAppId)",
-            "FacebookAppSecret": "$(FacebookAppSecret)"
-        },
-        "Data": {
-            "ActivityDb": "$(Data--ActivityDb)"
+      [
+        {
+          "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+          "value": "c3ccdba0-dfc0-49ed-aeff-298c09564342",
+          "slotSetting": false
+          },
+          {
+            "name": "AdminEmail",
+            "value": "admin@macscampingarea.com",
+            "slotSetting": false,
+          },
+          {
+            "name": "AdminPassword",
+            "value": "$(AppSettings--AdminPassword)",
+            "slotSettings": false
+          },
+          {
+            "name": "SiteEmailAddress",
+            "value": "ian@digitaldelirium.tech",
+            "slotSetting": false
+          },
+          {
+            "name": "InfoEmailAddress",
+            "value": "info@macscampingarea.com",
+            "slotSetting": false
+          },
+          {
+            "name": "SendGridAPIKey",
+            "value": "$(AppSettings--SendGridAPIKey)",
+            "slotSetting": false
+          },
+          {
+            "name": "FacebookAppId",
+            "value": "$(FacebookAppId)",
+            "slotSetting": false
+          },
+          {
+            "name": "FacebookAppSecret",
+            "value": "$(FacebookAppSecret)"
+            "slotSetting": false
+          }
+          {
+            "name": "Data:ActivityDb",
+            "value": "$(Data--ActivityDb)",
+            "slotSetting": false
+          },
+          {
+            "name": "linuxFxVersion",
+            "value": "DOTNET|2.1",
+            "slotSetting": false
+          }
         }
-      }
+      ]
