@@ -17,8 +17,7 @@
         "readable-stream": "^2.0.6",
         "rimraf": "2.2.8",
         "source-map": "~0.5.3",
-        "tar": "^2.2.1",
-        "uglifyjs-webpack-plugin": "^2.2.0"
+        "tar": "^2.2.1"
     },
     "devDependencies": {
         "eslint": "^6.3.0",
@@ -36,6 +35,7 @@
         "yarn": ">= 1.0.0"
     },
     "scripts": {
+        "build": "webpack",
         "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
     },
     "main": "index.js",
