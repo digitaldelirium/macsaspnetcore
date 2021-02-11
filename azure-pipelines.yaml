@@ -28,17 +28,6 @@ steps:
     arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
     zipAfterPublish: true
 
-- task: AzureRmWebAppDeployment@4
-  displayName: Deploy Mac's Website
-  name: deployWebApp
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Visual Studio Enterprise(9661a81b-1bc6-4836-ad63-41ddb2515f1b)'
-    appType: 'webAppLinux'
-    WebAppName: macscampingarea
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
-    StartupCommand: dotnet MacsASPNETCore.dll
-
 - task: AzureAppServiceSettings@1
   name: configureApp
   displayName: Configure Website
@@ -100,3 +89,14 @@ steps:
           }
         }
       ]
+
+- task: AzureRmWebAppDeployment@4
+  displayName: Deploy Mac's Website
+  name: deployWebApp
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Enterprise(9661a81b-1bc6-4836-ad63-41ddb2515f1b)'
+    appType: 'webAppLinux'
+    WebAppName: macscampingarea
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    StartupCommand: dotnet MacsASPNETCore.dll      
