@@ -89,7 +89,7 @@ steps:
             "slotSetting": false
         },
         {
-            "name": "Data:ActivityDb",
+            "name": "Data_ActivityDb",
             "value": "$(Data--ActivityDb)",
             "slotSetting": false
         },
