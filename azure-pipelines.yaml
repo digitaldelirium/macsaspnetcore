@@ -38,6 +38,7 @@ steps:
     WebAppName: macscampingarea
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     RuntimeStack: 'DOTNETCORE|2.1'
+    StartupCommand: dotnet MacsASPNETCore.dll
 
 - task: AzureAppServiceSettings@1
   name: configureApp
