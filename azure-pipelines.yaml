@@ -17,6 +17,7 @@ steps:
   displayName: Build Web App
   inputs:
     command: build
+    configuration: Release
     
 - task: DotNetCoreCLI@2
   name: publishAppPackage
@@ -47,25 +48,25 @@ steps:
     resourceGroupName: 'macscampinggroup'
     appSettings: |
       {
-          "ApplicationInsights": {
-              "InstrumentationKey": "c3ccdba0-dfc0-49ed-aeff-298c09564342"
-          },
-          "Logging": {
-              "IncludeScopes": false,
-              "LogLevel": {
-                  "Default": "Warning",
-                  "System": "Information",
-                  "Microsoft": "Information"
-              }
-          },
-          "Azure": {
-              "KeyVault": {
-                  "Vault": "macscampvault",
-                  "ClientId": "e8725941-c27a-4012-8c89-19aca10b11a5",
-                  "ClientSecret": "$(client-secret)"
-              }
-          },
-          "AppSettings": {
+        "ApplicationInsights": {
+            "InstrumentationKey": "c3ccdba0-dfc0-49ed-aeff-298c09564342"
+        },
+        "Logging": {
+            "IncludeScopes": false,
+            "LogLevel": {
+                "Default": "Warning",
+                "System": "Information",
+                "Microsoft": "Information"
+            }
+        },
+        "Azure": {
+            "KeyVault": {
+                "Vault": "macscampvault",
+                "ClientId": "e8725941-c27a-4012-8c89-19aca10b11a5",
+                "ClientSecret": "$(client-secret)"
+            }
+        },
+        "AppSettings": {
             "AdminEmail": "admin@macscampingarea.com",
             "AdminPassword": "$(AppSettings--AdminPassword)",
             "SiteEmailAddress": "ian.cornett@gmail.com",
@@ -74,9 +75,7 @@ steps:
             "FacebookAppId": "$(FacebookAppId)",
             "FacebookAppSecret": "$(FacebookAppSecret)"
         },
-        {
-          "Data": {
+        "Data": {
             "ActivityDb": "$(Data--ActivityDb)"
-          }
         }
       }
