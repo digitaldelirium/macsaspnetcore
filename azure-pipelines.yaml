@@ -36,56 +36,57 @@ steps:
     appName: 'macscampingarea'
     resourceGroupName: 'macscampinggroup'
     appSettings: |
-      [{
-        "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-        "value": "c3ccdba0-dfc0-49ed-aeff-298c09564342",
-        "slotSetting": false
-      },
-      {
-          "name": "AdminEmail",
-          "value": "admin@macscampingarea.com",
-          "slotSetting": false,
-      },
-      {
-          "name": "AdminPassword",
-          "value": "$(AppSettings--AdminPassword)",
-          "slotSettings": false
-      },
-      {
-          "name": "SiteEmailAddress",
-          "value": "ian@digitaldelirium.tech",
+      [
+        {
+          "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+          "value": "c3ccdba0-dfc0-49ed-aeff-298c09564342",
           "slotSetting": false
-      },
-      {
-          "name": "InfoEmailAddress",
-          "value": "info@macscampingarea.com",
-          "slotSetting": false
-      },
-      {
-          "name": "SendGridAPIKey",
-          "value": "$(AppSettings--SendGridAPIKey)",
-          "slotSetting": false
-      },
-      {
-          "name": "FacebookAppId",
-          "value": "$(FacebookAppId)",
-          "slotSetting": false
-      },
-      {
-          "name": "FacebookAppSecret",
-          "value": "$(FacebookAppSecret)",
-          "slotSetting": false
-      },
-      {
-          "name": "Data:ActivityDb",
-          "value": "$(Data--ActivityDb)",
-          "slotSetting": false
-      },
-      {
-          "name": "linuxFxVersion",
-          "value": "DOTNET|2.1",
-          "slotSetting": false
-      }
+        },
+        {
+            "name": "AdminEmail",
+            "value": "admin@macscampingarea.com",
+            "slotSetting": false
+        },
+        {
+            "name": "AdminPassword",
+            "value": "$(AppSettings--AdminPassword)",
+            "slotSettings": false
+        },
+        {
+            "name": "SiteEmailAddress",
+            "value": "ian@digitaldelirium.tech",
+            "slotSetting": false
+        },
+        {
+            "name": "InfoEmailAddress",
+            "value": "info@macscampingarea.com",
+            "slotSetting": false
+        },
+        {
+            "name": "SendGridAPIKey",
+            "value": "$(AppSettings--SendGridAPIKey)",
+            "slotSetting": false
+        },
+        {
+            "name": "FacebookAppId",
+            "value": "$(FacebookAppId)",
+            "slotSetting": false
+        },
+        {
+            "name": "FacebookAppSecret",
+            "value": "$(FacebookAppSecret)",
+            "slotSetting": false
+        },
+        {
+            "name": "Data:ActivityDb",
+            "value": "$(Data--ActivityDb)",
+            "slotSetting": false
+        },
+        {
+            "name": "linuxFxVersion",
+            "value": "DOTNET|2.1",
+            "slotSetting": false
+        }
       ]
 
 - task: AzureRmWebAppDeployment@4
