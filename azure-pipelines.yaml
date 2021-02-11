@@ -11,6 +11,7 @@ variables:
   # Agent VM image name
 - group: macsCampingGroup
 
+tasks:
 - task: DotNetCoreCLI@2
   name: build
   displayName: Build Web App
