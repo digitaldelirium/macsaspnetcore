@@ -97,5 +97,10 @@ steps:
             "name": "linuxFxVersion",
             "value": "DOTNET|2.1",
             "slotSetting": false
+        },
+        {
+          "name": "ASPNETCORE_ENVIRONMENT",
+          "value": "Production",
+          "slotSetting": false
         }
       ]
