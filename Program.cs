@@ -36,7 +36,7 @@ namespace MacsASPNETCore
                             options.Listen(IPAddress.Any, 9080);
                             break;
                         case "Production":
-                            options.Listen(IPAddress.Any, 80);
+                            options.Listen(IPAddress.Any, 8080);
                             break;
                     }
                 })
