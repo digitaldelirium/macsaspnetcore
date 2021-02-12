@@ -1,7 +1,9 @@
-trigger: 
-  - master
 
-pr: none
+
+pr:
+  branches:
+    include:
+      - master
 
 pool:
   vmImage: ubuntu-18.04
