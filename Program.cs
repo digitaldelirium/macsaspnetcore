@@ -25,21 +25,7 @@ namespace MacsASPNETCore
             var host = CreateWebHostBuilder(args);
 
             host.UseStartup<Startup>()
-            .UseKestrel(options =>
-                {
-                    switch (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"))
-                    {
-                        case "Development":
-                            options.Listen(IPAddress.Loopback, 8081);
-                            break;
-                        case "Staging":
-                            options.Listen(IPAddress.Any, 9080);
-                            break;
-                        case "Production":
-                            options.Listen(IPAddress.Any, 8080);
-                            break;
-                    }
-                })
+            .UseKestrel()
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseApplicationInsights()
             .ConfigureLogging((hostingContext, logging) =>
@@ -58,7 +44,7 @@ namespace MacsASPNETCore
             builder.ConfigureAppConfiguration((context, config) =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("hosting.json", optional: false);
+                    .AddJsonFile("hosting.json", optional: true);
 
                 if (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
                 {
