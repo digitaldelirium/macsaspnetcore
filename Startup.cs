@@ -1,4 +1,6 @@
 using System;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,6 +15,7 @@ using MacsASPNETCore.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols;
 
 namespace MacsASPNETCore
 {
@@ -25,7 +28,8 @@ namespace MacsASPNETCore
 
         }
 
-        private IConfigurationRoot GetConfigurationRoot(){
+        private IConfigurationRoot GetConfigurationRoot()
+        {
             const string environmentPrefix = "CONFIG_";
             return new ConfigurationBuilder()
                 .AddEnvironmentVariables(environmentPrefix).Build();
@@ -70,22 +74,24 @@ namespace MacsASPNETCore
 
             if (Environment.EnvironmentName == "Development")
             {
-                services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities))
-                    .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb))
-                    .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
-                    .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
+                services.AddDbContext<ActivityDbContext>(options => options.UseSqlite(activities));
+                // .AddDbContext<CustomerDbContext>(options => options.UseSqlite(customerDb))
+                // .AddDbContext<ReservationDbContext>(options => options.UseSqlite(rezdb))
+                // .AddDbContext<ApplicationDbContext>(options => options.UseSqlite(appdb));
             }
             else
             {
+                activities = System.Environment.GetEnvironmentVariable("CUSTOMCONNSTR_DELIRIUMDBACTIVITIES");
                 services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities));
-                    // .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
-                    // .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
-                    // .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));          
+                // .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
+                // .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
+                // .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));          
             }
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.Configure<ForwardedHeadersOptions>(options => {
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
                 // Azure Subnets
                 options.KnownNetworks.Add(new IPNetwork(IPAddress.Parse("::ffff:10.0.0.0"), 104));

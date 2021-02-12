@@ -18,25 +18,31 @@ namespace MacsASPNETCore.Controllers
     {
         private IEmailSender _mailService;
         private readonly IHostingEnvironment _env;
-        private ReservationDbContext _reservations;
-        private CustomerDbContext _customers;
+        // private ReservationDbContext _reservations;
+        // private CustomerDbContext _customers;
         private IActivityRepository _activityRepository;
         private readonly int year = DateTime.Now.Year;
         private readonly IConfiguration _configuration;
         //private ApplicationDbContext _context;
 
-        public HomeController(IEmailSender mailService, IHostingEnvironment env, IActivityRepository activities, CustomerDbContext customers, ReservationDbContext reservations, ApplicationDbContext context, IConfiguration configuration)
+        // public HomeController(IEmailSender mailService, IHostingEnvironment env, IActivityRepository activities, CustomerDbContext customers, ReservationDbContext reservations, ApplicationDbContext context, IConfiguration configuration)
+        // {
+        //     _mailService = mailService;
+        //     _env = env;
+        //     _activityRepository = activities;
+        //     // _customers = customers;
+        //     // _reservations = reservations;
+        //     _configuration = configuration;
+        //     //_context = context;
+        // }
+
+        public HomeController(IEmailSender mailService, IHostingEnvironment env, IActivityRepository activities, IConfiguration configuration)
         {
             _mailService = mailService;
             _env = env;
             _activityRepository = activities;
-            _customers = customers;
-            _reservations = reservations;
             _configuration = configuration;
-            //_context = context;
         }
-
-
 
         public IActionResult Index()
 

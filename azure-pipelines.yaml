@@ -104,3 +104,11 @@ steps:
           "slotSetting": false
         }
       ]
+    connectionStrings: |
+      [
+        {
+          "name": "DeliriumDbActivities",
+          "value": "$(Data--ActivityDb)",
+          "type": "Custom"
+        }
+      ]
