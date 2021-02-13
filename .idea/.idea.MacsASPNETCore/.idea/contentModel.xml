@@ -144,7 +144,6 @@
       <e p="appsettings.json" t="Include" />
       <e p="azure-pipelines.yaml" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
-      <e p="bower_components" t="Include" />
       <e p="bundleconfig.json" t="Include" />
       <e p="compilerconfig.json" t="Include" />
       <e p="compilerconfig.json.defaults" t="Include" />
@@ -174,8 +173,6 @@
       <e p="node_modules/rimraf" t="IncludeRecursive" />
       <e p="node_modules/source-map" t="IncludeRecursive" />
       <e p="node_modules/tar" t="IncludeRecursive" />
-      <e p="node_modules/uglifyjs-webpack-plugin" t="IncludeRecursive" />
-      <e p="node_modules/webpack-cli" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp2.1" t="Include">
@@ -301,6 +298,7 @@
         </e>
         <e p="web.config" t="Include" />
       </e>
+      <e p="yarn-error.log" t="Include" />
       <e p="yarn.lock" t="Include" />
     </e>
     <e p="$PROJECT_DIR$/../reactsite/node_modules/@babel/parser" t="IncludeRecursive" />
