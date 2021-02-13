@@ -35,8 +35,7 @@
         "yarn": ">= 1.0.0"
     },
     "scripts": {
-        "build": "webpack",
-        "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
+        "build": "webpack"
     },
     "main": "index.js",
     "repository": "https://github.com/digitaldelirium/macsaspnetcore",
