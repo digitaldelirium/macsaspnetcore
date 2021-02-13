@@ -24,19 +24,15 @@ namespace MacsASPNETCore
 
             var host = CreateWebHostBuilder(args);
 
-            host.UseStartup<Startup>()
-            .UseKestrel( options: options =>
-            {
-                options.ListenAnyIP(80);
-            })
-            .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseApplicationInsights()
-            .ConfigureLogging((hostingContext, logging) =>
-            {
-                logging.AddConsole();
-                logging.AddDebug();
-                logging.AddEventSourceLogger();
-            });
+            host.UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseApplicationInsights()
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.AddConsole();
+                    logging.AddDebug();
+                    logging.AddEventSourceLogger();
+                });
 
             host.Build().Run();
         }
@@ -60,6 +56,9 @@ namespace MacsASPNETCore
                     config.AddJsonFile($"appsettings.{env}.json", optional: false, reloadOnChange: true);
                 }
 
+                var settings = config.Build();
+                var connection = settings.GetConnectionString("AppConfig");
+                config.AddAzureAppConfiguration(connection);
                 config.AddEnvironmentVariables();
                 _configuration = config.Build();
             });
