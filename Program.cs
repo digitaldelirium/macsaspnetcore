@@ -27,7 +27,7 @@ namespace MacsASPNETCore
             host.UseStartup<Startup>()
             .UseKestrel( options: options =>
             {
-                options.ListenAnyIP(8080);
+                options.ListenAnyIP(80);
             })
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseApplicationInsights()
