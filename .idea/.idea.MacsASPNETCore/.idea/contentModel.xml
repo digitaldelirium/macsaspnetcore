@@ -152,6 +152,11 @@
       <e p="docker-compose.yml" t="Include" />
       <e p="gulpfile.js" t="Include" />
       <e p="hosting.json" t="Include" />
+      <e p="node_modules/@types" t="IncludeRecursive">
+        <e p="eslint" t="IncludeRecursive" />
+        <e p="estree" t="IncludeRecursive" />
+        <e p="json-schema" t="IncludeRecursive" />
+      </e>
       <e p="node_modules/applicationinsights" t="IncludeRecursive" />
       <e p="node_modules/bootstrap" t="IncludeRecursive" />
       <e p="node_modules/chalk" t="IncludeRecursive" />
@@ -173,6 +178,7 @@
       <e p="node_modules/rimraf" t="IncludeRecursive" />
       <e p="node_modules/source-map" t="IncludeRecursive" />
       <e p="node_modules/tar" t="IncludeRecursive" />
+      <e p="node_modules/webpack-cli" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="netcoreapp2.1" t="Include">
