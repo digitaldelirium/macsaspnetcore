@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <PackageId>MacsASPNETCore</PackageId>
     <UserSecretsId>aspnet5-MacsASPNETCore-6b05b224-5da0-4726-8546-88ef3c66e2c4</UserSecretsId>
-    <RuntimeIdentifiers>debian-x64; ubuntu-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>debian-x64; ubuntu-x64; win-x64; linux-x64;</RuntimeIdentifiers>
     <RuntimeFrameworkVersion>2.1.10</RuntimeFrameworkVersion>
     <AssetTargetFallback>$(AssetTargetFallback);dnxcore50</AssetTargetFallback>
     <ApplicationInsightsResourceId>/subscriptions/86392d70-8079-4fe1-a8ae-db5e853dd9a8/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/MacsASPNETCore</ApplicationInsightsResourceId>
@@ -31,13 +31,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.1.21" />
+    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="4.1.0" />
     <PackageReference Include="Microsoft.Azure.KeyVault" Version="3.0.3" />
     <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.1.0-preview" />
     <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="10.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
