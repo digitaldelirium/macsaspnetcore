@@ -30,6 +30,14 @@ namespace MacsASPNETCore
         private IConfigurationRoot GetConfigurationRoot()
         {
             const string environmentPrefix = "CONFIG_";
+
+            if (Environment.IsDevelopment())
+            {
+                return new ConfigurationBuilder()
+                    .AddUserSecrets<Startup>()
+                    .AddEnvironmentVariables(environmentPrefix)
+                    .Build();                
+            }
             return new ConfigurationBuilder()
                 .AddEnvironmentVariables(environmentPrefix).Build();
         }
