@@ -25,7 +25,10 @@ namespace MacsASPNETCore
             var host = CreateWebHostBuilder(args);
 
             host.UseStartup<Startup>()
-            .UseKestrel()
+            .UseKestrel( options: options =>
+            {
+                options.ListenAnyIP(8080);
+            })
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseApplicationInsights()
             .ConfigureLogging((hostingContext, logging) =>
