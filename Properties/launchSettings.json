@@ -1,31 +1,15 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:8081/",
-      "sslPort": 8443
-    }
-  },
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "Hosting:Environment": "Development",
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "web": {
-      "commandName": "web",
+      "commandName": "Project",
       "environmentVariables": {
-        "Hosting:Environment": "Development",
         "ASPNETCORE_URLS": "https://+:8443;http://+:8081",
-        "ASPNETCORE_HTTPS_PORT": "8443"
+        "ASPNETCORE_HTTPS_PORT": "8443",
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "httpPort": 8081,
-      "useSSL": true,
-      "sslPort": 8443
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:8081"
     }
   }
 }

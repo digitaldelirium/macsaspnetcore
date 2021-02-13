@@ -1,6 +1,3 @@
-trigger: 
-  - master
-
 pr: none
 
 pool:
@@ -8,123 +5,116 @@ pool:
 
 variables:
   # Container registry service connection established during pipeline creation
-- name: dockerfilePath
-  value: '$(Build.SourcesDirectory)/Dockerfile'
+
 - name: tag
   value: '$(Build.BuildId)'
   # Agent VM image name
 - group: macsCampingGroup
-- name: dockerImageName
-  value: macscampingarea.azurecr.io/macscampingapp
-stages:
-- stage: BuildContainer
-  displayName: 'Replace Tokens in files with secrets'
-  jobs:
-  - job: ReplaceTokens
-    displayName: 'Replace tokens for build and deployment'
-    steps:
-    - task: AzurePowerShell@4
-      inputs:
-        azureSubscription: $(azureSubscription)
-        azurePowerShellVersion: 'Latest installed Version'
-        scriptType: filePath
-        scriptPath: $(Build.SourcesDirectory)/Deploy/Replace-Tokens.ps1
-        scriptArguments:
-          -VaultName $(vaultName)
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: $(tag)
-        arguments: |
-          --tag macscampingarea.azurecr.io/macscampingapp:staging
-          --compress
+- group: MacsKeyVault
 
-# - stage: DeployContainer
-#   dependsOn: BuildContainer
-#   displayName: Deploy MacASPNETCore Container
-#   variables:
-#   - name: oldContainerName
-#     value: ''
-#   - name: dockerImageName
-#     value: ''
-#   - group: macsCampingGroup
-#   jobs:
-#   - job: DeployToStaging
-#     steps:
-#     - task: InstallSSHKey@0
-#       inputs:
-#         knownHostsEntry: $(macsStagingHostKey)
-#         sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDd3/3ssGGjIreAgeB6oTAcgw+nXPmpKWyaYDiPPATUTbZb6ia/EYUZBPLnIujNflxJk8tBdzKgnXH5ZmCXwL3b1DF/U+i1gJDyLM44/iLYjCbbUd2GIe5NuQmzhLHej+lWknKEri5JCOTCVKIvzA+4UETpn/Z/M4uXR2blO76M44pS9o7rcg8FBuAOhKnkwXSF6/5GXzWSgPjsgCq0ETazoV6MG1cwj8S/XEN5VPTabankZ3TbrTl+76b8cHm9RJp6QfoapM+VxmMyqXBH7+lFoTuehqVoidbnvO47ycdol3WK17peOzV/P2bxE1gGqgV3U43dMFH+GqoP5mS+oTR309RJDJPnkpz58wR6PFU5tMBtvjSvEzJod8ciquyfFnj/NS8UTqwsE5x9Vcmy2pj7rZJgPe0vNwR91XK9WDOK/Rj1oJEbwQpFc2Tq57En1Bs4XerdNTwFcM6Bs/C5Mh0O/WflNgWrO0JHFt37Me+ppJs7v0TXGVcFfZ1DZF+v1mXCtOHjTNB5t77Eohfv1SKej8ieSEH5vZjzPkOWSQt30a0FP82/uYKGK+2eoklU00CE4m9m+HHtnTv85aa/A+sPjRAUaplQPcL2v5ZmmHI8VVP+n8X24BOwdrZAdd5bx6ogRW4FGSzwEdkWxGUPgElLY9UP/CWihRytgFD9O+rXgw== Deloyment Key
-#         sshKeySecureFile: $(macsPrivateKey)
-#   - deployment: 
-#     displayName: Deploy Mac's ASPNET Core App to Staging
-#     pool:
-#       vmImage: ubuntu-18.04
-#     dependsOn: 
-#     timeoutInMinutes: 5
-#     environment: staging
-#     strategy:
-#       runOnce:
-#         preDeploy:
-#           steps:
-#             - task: SSH@0
-#               inputs:
-#                 sshEndpoint: MacsStaging
-#                 runOptions: inline
-#                 inline: |
-#                   docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
-#                   "##vso[task.setvariable variable=oldContainerName]$(docker images macscampingarea.azurecr.io/macscampingapp:prod --format \"{{.ID}}\" || echo "No former image exists here!")"
-#                   docker rm macsstaging -f || echo "this container did not previously exist... Nothing to do!"
-#                 failOnStdErr: true
-#         deploy:
-#           steps:
-#           - task: SSH@0
-#             inputs:
-#               sshEndpoint: MacsStaging
-#               runOptions: inline
-#               inline: |
-#                 docker login macscampingarea.azurecr.io -u macscampingarea -p $(macsACRPassword)
-#                 docker pull macscampingarea.azurecr.io/macscampingapp:staging
-#                 docker run -dit -n macsstaging -p 9080:80 -p 9443:443 -e ASPNETCORE_ENVIRONMENT=Staging macscampingarea.azurecr.io/macscampingapp:staging
-#         postRouteTraffic:
-#           steps:
-#           - bash: |
-#               sudo npm install -g newman
-# - stage: TerraformInfrastructure
-#   displayName: Deploy Terraform infrastructure to Azure
-#   jobs:
-#   - job: DeployAppServiceInfra
-#     displayName: Deploy App Service via Terraform
-#     steps:
-#     - task: AzureKeyVault@1
-#       inputs:
-#         azureSubscription: MSDN
-#         keyVaultName: macscampvault
-#         secretsFilter: '*'
-#     - task: AzureCLI@2
-#       inputs:
-#         azureSubscription: MSDN
-#         scriptType: bash
-#         scriptLocation: inlineScript
-#         inlineScript: |
-#           cd $(Build.SourcesDirectory)/terraform
-#           terraform init
+steps:
+- task: DotNetCoreCLI@2
+  name: build
+  displayName: Build Web App
+  inputs:
+    command: build
+    configuration: Release
+    
+- task: DotNetCoreCLI@2
+  name: publishAppPackage
+  displayName: Get App Package for Deployment
+  inputs:
+    command: publish
+    publishWebProjects: true
+    arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+    zipAfterPublish: true
 
+- task: AzureRmWebAppDeployment@4
+  displayName: Deploy Mac's Website
+  name: deployWebApp
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Enterprise(9661a81b-1bc6-4836-ad63-41ddb2515f1b)'
+    appType: 'webAppLinux'
+    WebAppName: macscampingarea
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    StartupCommand: dotnet MacsASPNETCore.dll      
 
-# - stage: DeployToStagingAppService
-#   displayName: Deploy to Staging environment App Service
-#   dependsOn: BuildContainer
-#   condition: successes()
-#   jobs:
-#   - job: DeployToStaging
-#     steps:
-#     - task: AzureRmWebAppDeployment@4
-#       inputs:
-#         ConnectionType: 'AzureRM'
-#         appType: 'webAppContainer'
-#         WebAppName: macscampingarea-staging
-  
+- task: AzureAppServiceSettings@1
+  name: configureApp
+  displayName: Configure Website
+  inputs:
+    azureSubscription: 'Visual Studio Enterprise(9661a81b-1bc6-4836-ad63-41ddb2515f1b)'
+    appName: 'macscampingarea'
+    resourceGroupName: 'macscampinggroup'
+    appSettings: |
+      [
+        {
+          "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+          "value": "c3ccdba0-dfc0-49ed-aeff-298c09564342",
+          "slotSetting": false
+        },
+        {
+            "name": "AdminEmail",
+            "value": "admin@macscampingarea.com",
+            "slotSetting": false
+        },
+        {
+            "name": "AdminPassword",
+            "value": "$(AppSettings--AdminPassword)",
+            "slotSettings": false
+        },
+        {
+            "name": "SiteEmailAddress",
+            "value": "ian@digitaldelirium.tech",
+            "slotSetting": false
+        },
+        {
+            "name": "InfoEmailAddress",
+            "value": "info@macscampingarea.com",
+            "slotSetting": false
+        },
+        {
+            "name": "SendGridAPIKey",
+            "value": "$(AppSettings--SendGridAPIKey)",
+            "slotSetting": false
+        },
+        {
+            "name": "FacebookAppId",
+            "value": "$(FacebookAppId)",
+            "slotSetting": false
+        },
+        {
+            "name": "FacebookAppSecret",
+            "value": "$(FacebookAppSecret)",
+            "slotSetting": false
+        },
+        {
+            "name": "Data_ActivityDb",
+            "value": "$(Data--ActivityDb)",
+            "slotSetting": false
+        },
+        {
+            "name": "linuxFxVersion",
+            "value": "DOTNET|2.1",
+            "slotSetting": false
+        },
+        {
+          "name": "ASPNETCORE_ENVIRONMENT",
+          "value": "Production",
+          "slotSetting": false
+        },
+        {
+          "name": "WEBSITES_PORT",
+          "value": 80,
+          "slotSetting": false
+        }
+      ]
+    connectionStrings: |
+      [
+        {
+          "name": "DeliriumDbActivities",
+          "value": "$(Data--ActivityDb)",
+          "type": "Custom"
+        }
+      ]
