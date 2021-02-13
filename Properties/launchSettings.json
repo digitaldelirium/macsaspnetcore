@@ -3,12 +3,13 @@
     "web": {
       "commandName": "Project",
       "environmentVariables": {
-        "Hosting:Environment": "Development",
         "ASPNETCORE_URLS": "https://+:8443;http://+:8081",
         "ASPNETCORE_HTTPS_PORT": "8443",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "httpPort": 80
+      "httpPort": 8081,
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:8081"
     }
   }
 }
