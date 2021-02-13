@@ -102,6 +102,11 @@ steps:
           "name": "ASPNETCORE_ENVIRONMENT",
           "value": "Production",
           "slotSetting": false
+        },
+        {
+          "name": "WEBSITES_PORT",
+          "value": 80,
+          "slotSetting": false
         }
       ]
     connectionStrings: |
