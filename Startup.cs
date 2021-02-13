@@ -80,8 +80,7 @@ namespace MacsASPNETCore
             }
             else
             {
-                activities = System.Environment.GetEnvironmentVariable("CUSTOMCONNSTR_DELIRIUMDBACTIVITIES");
-                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(activities));
+                services.AddDbContext<ActivityDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DeliriumDbActivities")));
                 // .AddDbContext<CustomerDbContext>(options => options.UseMySql(customerDb))
                 // .AddDbContext<ReservationDbContext>(options => options.UseMySql(rezdb))
                 // .AddDbContext<ApplicationDbContext>(options => options.UseMySql(appdb));          
