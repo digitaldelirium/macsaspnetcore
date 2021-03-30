@@ -130,7 +130,7 @@ function getUpcomingMonthEvents(target, month) {
         },
         error: function() {
             var errString = "<div class=\"panel panel-warning\">" +
-                "<div class=\"panel-header\">An Error Has Occurred</div>" +
+                "<div class=\"panel-header\">An Error Has Occurred, there may not be anything on the schedule as yet!</div>" +
                 "<div class=\"panel-body\">Could not retrieve " + monthNames[month] + " data</div></div>";
             return errString;
         }
