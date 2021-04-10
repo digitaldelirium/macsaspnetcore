@@ -16,7 +16,15 @@ namespace MacsASPNETCore.Models
 
         public List<Activity> GetAllActivities()
         {
-            return _context.Activities.OrderBy(a => a.StartTime).ToList();
+            try
+            {
+                return _context.Activities.OrderBy(a => a.StartTime).ToList();
+            }
+            catch (Exception e)
+            {
+                return new List<Activity>();
+            }
+            
         }
 
         public List<Activity> GetAllActivitiesByMonth(DateTime startDate, DateTime endDate)
